@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Mobile Programming Project</string>
+    <string name="logo_description">Application Logo</string>
+    <string name="oppure">Oppure</string>
+    <string name="registrati">Registrati</string>
+    <string name="accedi">Accedi</string>
+    <string name="registrazione">Registrazione</string>
+    <string name="server_client_id">157998387277-g8hh6e6p897ovgqqc59upe0fdsf7q9l6.apps.googleusercontent.com</string>
+
+    <string name="welcome_title">Benvenuto in</string>
+    <string name="welcome_message">Se non si è in possesso di un account ci si può registrare, oppure si può accedere con il proprio account Google.</string>
+    <string name="chiudi">Chiudi</string>
+
+
 </resources>

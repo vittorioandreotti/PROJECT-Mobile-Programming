@@ -9,7 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".RegistrazioneActivity"
+            android:theme="@style/Theme.App.Fullscreen" />
+
+        <activity
+            android:name=".AccediActivity"
+            android:theme="@style/Theme.App.Fullscreen" />
+
+        <activity
+            android:name=".ChooseLoginRegisterActivity"
+            android:theme="@style/Theme.App.Fullscreen" />
+        <activity android:name=".MainActivity" />
+
+        <activity
+            android:name=".SplashScreenActivity"
+            android:theme="@style/Theme.App.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
