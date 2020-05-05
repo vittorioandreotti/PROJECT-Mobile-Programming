@@ -15,12 +15,18 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="conferma_password">Conferma password</string>
+    <string name="password_corrente">Password corrente</string>
+    <string name="nuova_password">Nuova password</string>
     <string name="nome">Nome</string>
     <string name="cognome">Cognome</string>
     <string name="e_mail">E-mail</string>
     <string name="sono_un">Sono un:</string>
     <string name="proprietario_locatario">Proprietario (Locatario)</string>
     <string name="affittuario_coinquilino">Affittuario (Coinquilino)</string>
+
+    <string name="profilo">Profilo</string>
+    <string name="logout">Log-Out</string>
+    <string name="modifica">Modifica password:</string>
 
 
 </resources>
