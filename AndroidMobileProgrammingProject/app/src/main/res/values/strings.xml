@@ -10,6 +10,17 @@
     <string name="welcome_title">Benvenuto in</string>
     <string name="welcome_message">Se non si è in possesso di un account ci si può registrare, oppure si può accedere con il proprio account Google.</string>
     <string name="chiudi">Chiudi</string>
+    <string name="errore_login_google">Si è verificato un errore nell\'accesso con Google.</string>
+    <string name="errore_credenziali_google">Errore nell\'accesso. Credenziali errate.</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="conferma_password">Conferma password</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="e_mail">E-mail</string>
+    <string name="sono_un">Sono un:</string>
+    <string name="proprietario_locatario">Proprietario (Locatario)</string>
+    <string name="affittuario_coinquilino">Affittuario (Coinquilino)</string>
 
 
 </resources>
