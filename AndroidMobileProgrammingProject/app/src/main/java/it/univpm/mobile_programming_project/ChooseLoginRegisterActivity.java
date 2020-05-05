@@ -111,7 +111,6 @@ public class ChooseLoginRegisterActivity extends AppCompatActivity {
     {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
-        Toast.makeText(ChooseLoginRegisterActivity.this, "loginWithGoogle", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -149,7 +148,7 @@ public class ChooseLoginRegisterActivity extends AppCompatActivity {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("ChooseLoginRegisterActivity::handleGoogleSignInResult", "signInResult:failed code=" + e.getStatusCode());
 
-
+            Toast.makeText(ChooseLoginRegisterActivity.this, getString(R.string.errore_login_google), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -161,19 +160,17 @@ public class ChooseLoginRegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("OK", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            user.getDisplayName();
+                            // Sign in success.
+                            Log.d("ChooseLoginRegisterActivity::firebaseAuthWithGoogle", "signInWithCredential:success");
 
+                            // User logged in succesfully.
                             Intent intent = new Intent(ChooseLoginRegisterActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("ERROR", "signInWithCredential:failure", task.getException());
-//                            Snackbar.make(mBinding.mainLayout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-//                            updateUI(null);
+                            Log.w("ChooseLoginRegisterActivity::firebaseAuthWithGoogle", "signInWithCredential:failure", task.getException());
+                            Toast.makeText(ChooseLoginRegisterActivity.this, getString(R.string.errore_credenziali_google), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
