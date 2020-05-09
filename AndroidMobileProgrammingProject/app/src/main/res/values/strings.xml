@@ -26,8 +26,18 @@
     <string name="spese_condominio">Spese condominio</string>
     <string name="affitto">Affitto</string>
     <string name="bollette">Bollette</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="titolotorneo">Titolo</string>
+    <string name="datatorneo">Data</string>
+    <string name="oratorneo">Ora</string>
+    <string name="indirizzotorneo">Indirizzo</string>
+    <string name="descrizione">Descrizione</string>
+    <string name="categoriatorneo">Categoria</string>
+    <string name="crea">Crea Torneo</string>
+    <string name="Partecipa">Partecipa</string>
+    <string name="storicotorneo">Storico</string>
+    <string name="partecipatorneo">Partecipa</string>
+    <string name="creatorneo">Crea</string>
 
 
 </resources>
