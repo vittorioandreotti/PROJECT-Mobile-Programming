@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
+        <activity android:name=".view_pager.SpeseActivity"></activity>
         <activity
             android:name=".RegistrazioneActivity"
             android:theme="@style/Theme.App.Fullscreen" />

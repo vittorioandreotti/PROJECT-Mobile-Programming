@@ -22,5 +22,12 @@
     <string name="proprietario_locatario">Proprietario (Locatario)</string>
     <string name="affittuario_coinquilino">Affittuario (Coinquilino)</string>
 
+    <string name="sommario">Sommario</string>
+    <string name="spese_condominio">Spese condominio</string>
+    <string name="affitto">Affitto</string>
+    <string name="bollette">Bollette</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
