@@ -1,16 +1,14 @@
 package it.univpm.mobile_programming_project;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class AccediActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrazione);
+        setContentView(R.layout.activity_home);
     }
 }

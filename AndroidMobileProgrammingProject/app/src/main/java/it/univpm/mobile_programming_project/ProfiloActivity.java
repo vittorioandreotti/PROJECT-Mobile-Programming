@@ -6,29 +6,28 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import it.univpm.mobile_programming_project.fragment.FragmentHome;
-import it.univpm.mobile_programming_project.fragment.FragmentSpese;
-import it.univpm.mobile_programming_project.fragment.FragmentTornei;
+import it.univpm.mobile_programming_project.fragment.HomeFragment;
+import it.univpm.mobile_programming_project.fragment.SpeseFragment;
+import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 
 public class ProfiloActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
-    private FragmentHome fragmentHome;
-    private FragmentSpese fragmentSpese;
-    private FragmentTornei fragmentTornei;
+    private HomeFragment homeFragment;
+    private SpeseFragment speseFragment;
+    private TorneiFragment torneiFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilo);
 
-        fragmentHome=new FragmentHome();
-        fragmentSpese = new FragmentSpese();
-        fragmentTornei = new FragmentTornei();
+        homeFragment =new HomeFragment();
+        speseFragment = new SpeseFragment();
+        torneiFragment = new TorneiFragment();
 
         bottomNav=findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -37,13 +36,13 @@ public class ProfiloActivity extends AppCompatActivity {
                 Fragment selectedFragment=null;
                 switch(item.getItemId()){
                     case R.id.menu_home:
-                        selectedFragment=fragmentHome;
+                        selectedFragment= homeFragment;
                         break;
                     case R.id.menu_spese:
-                        selectedFragment=fragmentSpese;
+                        selectedFragment= speseFragment;
                         break;
                     case R.id.menu_tornei:
-                        selectedFragment=fragmentTornei;
+                        selectedFragment= torneiFragment;
                         break;
                 }
                 if(selectedFragment!=null){
