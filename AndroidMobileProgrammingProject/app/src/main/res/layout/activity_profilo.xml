@@ -22,11 +22,12 @@
     <ScrollView
         android:id="@+id/scrollviewProfilo"
         android:layout_width="match_parent"
-        android:layout_height="544dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtProfilo"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +38,8 @@
             android:layout_marginRight="50dp"
             android:layout_marginBottom="45dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -208,7 +210,7 @@
         app:itemTextColor="@color/bottom_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollviewProfilo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu" />
 
 
