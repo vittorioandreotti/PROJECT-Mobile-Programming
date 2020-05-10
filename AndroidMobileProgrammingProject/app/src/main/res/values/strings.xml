@@ -24,6 +24,23 @@
     <string name="proprietario_locatario">Proprietario (Locatario)</string>
     <string name="affittuario_coinquilino">Affittuario (Coinquilino)</string>
 
+    <string name="sommario">Sommario</string>
+    <string name="spese_condominio">Spese condominio</string>
+    <string name="affitto">Affitto</string>
+    <string name="bollette">Bollette</string>
+
+    <string name="titolotorneo">Titolo</string>
+    <string name="datatorneo">Data</string>
+    <string name="oratorneo">Ora</string>
+    <string name="indirizzotorneo">Indirizzo</string>
+    <string name="descrizione">Descrizione</string>
+    <string name="categoriatorneo">Categoria</string>
+    <string name="crea">Crea Torneo</string>
+    <string name="Partecipa">Partecipa</string>
+    <string name="storicotorneo">Storico</string>
+    <string name="partecipatorneo">Partecipa</string>
+    <string name="creatorneo">Crea</string>
+
     <string name="profilo">Profilo</string>
     <string name="logout">Log-Out</string>
     <string name="modifica">Modifica password:</string>
