@@ -7,12 +7,20 @@
 
     <!-- Fullscreen theme. -->
     <style name="Theme.App.Fullscreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- ... -->
+        <item name="colorPrimary">
+            @color/Primary
+        </item>
+        <item name="colorOnPrimary">
+            @color/OnPrimary
+        </item>
+
+
     </style>
 
     <!-- Card layout. -->
     <style name="Widget.App.Card" parent="Widget.MaterialComponents.CardView">
         <!-- ... -->
     </style>
+
 
 </resources>

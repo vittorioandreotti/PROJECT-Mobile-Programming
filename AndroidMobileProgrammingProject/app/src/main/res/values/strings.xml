@@ -44,7 +44,8 @@
     <string name="profilo">Profilo</string>
     <string name="logout">Log-Out</string>
     <string name="modifica">Modifica password:</string>
-    <string name="hello_blank_fragment">Blank fragment</string>
+    <string name="hello_blank_fragment">prova</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
