@@ -18,13 +18,13 @@
             android:name=".AccediActivity"
             android:theme="@style/Theme.App.Fullscreen" />
         <activity
-            android:name=".ChooseLoginRegisterActivity"
-            android:theme="@style/Theme.App.Fullscreen" />
-        <activity
             android:name=".ProfiloActivity"
             android:theme="@style/Theme.App.Fullscreen" />
         <activity
             android:name=".ChooseProprietarioAffittuarioActivity"
+            android:theme="@style/Theme.App.Fullscreen" />
+        <activity
+            android:name=".HomeActivity"
             android:theme="@style/Theme.App.Fullscreen" />
         <activity android:name=".MainActivity" />
         <activity

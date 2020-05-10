@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_splash_screen"
+    app:startDestination="@id/splashScreenFragment">
+
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.splash_screen.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_scegliLoginRegistrazioneFragment"
+            app:destination="@id/scegliLoginRegistrazioneFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/registrazioneFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.autenticazione.RegistrazioneFragment"
+        android:label="fragment_registrazione"
+        tools:layout="@layout/fragment_registrazione" >
+        <action
+            android:id="@+id/action_registrazioneFragment_to_scegliProprietarioAffittuarioFragment"
+            app:destination="@id/scegliProprietarioAffittuarioFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/creaCasaFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.splash_screen.CreaCasaFragment"
+        android:label="fragment_crea_casa"
+        tools:layout="@layout/fragment_crea_casa" />
+    <fragment
+        android:id="@+id/scegliLoginRegistrazioneFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.splash_screen.ScegliLoginRegistrazioneFragment"
+        android:label="fragment_scegli_login_registrazione"
+        tools:layout="@layout/fragment_scegli_login_registrazione" >
+        <action
+            android:id="@+id/action_scegliLoginRegistrazioneFragment_to_registrazioneFragment"
+            app:destination="@id/registrazioneFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+        <action
+            android:id="@+id/action_scegliLoginRegistrazioneFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_scegliLoginRegistrazioneFragment_to_scegliProprietarioAffittuarioFragment"
+            app:destination="@id/scegliProprietarioAffittuarioFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/scegliProprietarioAffittuarioFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.splash_screen.ScegliProprietarioAffittuarioFragment"
+        android:label="fragment_scegli_proprietario_affittuario"
+        tools:layout="@layout/fragment_scegli_proprietario_affittuario" >
+        <action
+            android:id="@+id/action_scegliProprietarioAffittuarioFragment_to_creaCasaFragment"
+            app:destination="@id/creaCasaFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+        <action
+            android:id="@+id/action_scegliProprietarioAffittuarioFragment_to_inserisciCodiceCasaFragment"
+            app:destination="@id/inserisciCodiceCasaFragment"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/inserisciCodiceCasaFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.splash_screen.InserisciCodiceCasaFragment"
+        android:label="fragment_inserisci_codice_casa"
+        tools:layout="@layout/fragment_inserisci_codice_casa" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.autenticazione.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>
