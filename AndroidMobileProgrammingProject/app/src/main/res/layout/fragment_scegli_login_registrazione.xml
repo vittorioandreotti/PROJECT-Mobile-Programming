@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.App.Fullscreen"
-    tools:context=".ChooseLoginRegisterActivity">
+    tools:context=".ScegliLoginRegistrazioneFragment">
 
     <Button
         android:id="@+id/btnAccedi"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="runAccediForm"/>
+        />
 
     <Button
         android:id="@+id/btnRegistrati"
@@ -29,7 +29,7 @@
         app:icon="@drawable/ic_add_circle_outline_white_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAccedi"
-        android:onClick="runRegistratiForm" />
+        />
 
     <TextView
         android:id="@+id/lblOppure"
@@ -42,12 +42,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegistrati" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/btnLoginWithGoogle"
+    <fragment
+        android:id="@+id/googleLoginFragment"
+        android:name="it.univpm.mobile_programming_project.fragment.autenticazione.GoogleAuthFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblOppure" />
 
