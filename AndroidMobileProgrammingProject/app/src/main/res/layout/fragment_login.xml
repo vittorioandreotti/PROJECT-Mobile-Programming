@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.App.Fullscreen"
-    tools:context=".AccediActivity">
+    tools:context=".fragment.autenticazione.LoginFragment"
+    android:background="@color/Primary">
 
 
     <TextView
@@ -18,7 +19,8 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/OnPrimary"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,12 +42,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/ic_email_light_grey_24dp">
+            app:startIconDrawable="@drawable/ic_email_light_grey_24dp"
+            app:startIconTint="@color/OnPrimary"
+            android:textColorHint="@color/OnPrimary"
+            app:endIconTint="@color/OnPrimary"
+            app:hintTextColor="@color/OnPrimary"
+
+
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bordo"
+
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,12 +73,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail"
-            app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
+            app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
+            app:startIconTint="@color/OnPrimary"
+            app:endIconTint="@color/OnPrimary"
+            android:textColorHint="@color/OnPrimary"
+            app:hintTextColor="@color/OnPrimary"
+
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:background="@drawable/bordo"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +98,12 @@
             android:text="@string/accedi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:backgroundTint="@color/Primary"
+            android:textColor="@color/OnPrimary"
+            app:iconTint="@color/OnPrimary"
+            app:strokeColor="@color/OnPrimary"/>
 
 
 

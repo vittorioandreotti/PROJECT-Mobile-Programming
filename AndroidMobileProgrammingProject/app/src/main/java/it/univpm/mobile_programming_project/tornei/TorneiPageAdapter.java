@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class PageAdapter extends FragmentPagerAdapter {
+public class TorneiPageAdapter extends FragmentPagerAdapter {
 
     int numOfTabs;
 
-    public PageAdapter(@NonNull FragmentManager fm, int numOfTabs) {
+    public TorneiPageAdapter(@NonNull FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
     }
@@ -24,11 +24,11 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new PartecipaFragment();
+                return new PartecipaTorneoFragment();
             case 1:
-                return new CreaFragment();
+                return new CreaTorneoFragment();
             case 2:
-                return new StoricoFragment();
+                return new StoricoTorneiFragment();
             default: return null;
         }
     }

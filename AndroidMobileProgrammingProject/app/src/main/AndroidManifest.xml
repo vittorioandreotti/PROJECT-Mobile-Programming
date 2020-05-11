@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="it.univpm.mobile_programming_project">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,6 +32,9 @@
             android:theme="@style/Theme.App.Fullscreen" />
         <activity
             android:name=".ChooseProprietarioAffittuarioActivity"
+            android:theme="@style/Theme.App.Fullscreen" />
+        <activity
+            android:name=".HomeActivity"
             android:theme="@style/Theme.App.Fullscreen" />
         <activity android:name=".MainActivity" />
         <activity
