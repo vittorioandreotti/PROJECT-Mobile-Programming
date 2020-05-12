@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.utils;
+package it.univpm.mobile_programming_project.utils.auth_helper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -61,12 +61,6 @@ public class GoogleAutenticationManager extends AuthenticationManager {
         //// DELETE ME! IT'S FOR DEBUG.
     }
 
-    public boolean isLoggedIn()
-    {
-        FirebaseUser firebaseUser = this.getUser();
-        return ( firebaseUser != null );
-    }
-
 
     @Override
     public void login(OnCompleteListener<AuthResult> authResultOnCompleteListener) {
@@ -110,7 +104,7 @@ public class GoogleAutenticationManager extends AuthenticationManager {
     public boolean logout() {
 
         // Firebase logout
-        this.mAuth.signOut();
+        super.logout();
 
         // Google logout
         this.mGoogleSignInClient.signOut();
@@ -118,10 +112,5 @@ public class GoogleAutenticationManager extends AuthenticationManager {
         return true;
     }
 
-    @Override
-    public FirebaseUser getUser()
-    {
-        return this.mAuth.getCurrentUser();
-    }
 
 }
