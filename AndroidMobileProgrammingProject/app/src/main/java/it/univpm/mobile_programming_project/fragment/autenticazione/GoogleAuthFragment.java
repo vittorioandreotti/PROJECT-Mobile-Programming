@@ -1,6 +1,5 @@
 package it.univpm.mobile_programming_project.fragment.autenticazione;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,18 +14,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.functions.FirebaseFunctionsException;
+
+import java.util.Map;
 
 import it.univpm.mobile_programming_project.HomeActivity;
-import it.univpm.mobile_programming_project.MainActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
-import it.univpm.mobile_programming_project.utils.GoogleAutenticationManager;
+import it.univpm.mobile_programming_project.fragment.splash_screen.SplashScreenFragment;
+import it.univpm.mobile_programming_project.utils.auth_helper.GoogleAutenticationManager;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,8 +36,10 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
 
     private GoogleAutenticationManager googleAutenticationManager;
 
+    FirebaseFunctionsHelper functionsHelper;
+
     public GoogleAuthFragment( ) {
-        //
+        functionsHelper = new FirebaseFunctionsHelper();
     }
 
 
@@ -83,10 +86,40 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, go to HomeActivity if registered, unless it is already registered go to HomeActivity.
-                            SplashScreenActivity splashScreenActivity = (SplashScreenActivity) GoogleAuthFragment.this.getActivity();
 
-                            NavController navController = Navigation.findNavController(getView());
-                            navController.navigate(R.id.action_scegliLoginRegistrazioneFragment_to_scegliProprietarioAffittuarioFragment);
+                            functionsHelper.getUserInfo().addOnCompleteListener(new OnCompleteListener<Map<String, Object>>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Map<String, Object>> task) {
+
+                                    // Handle Error
+                                    if (!task.isSuccessful()) {
+
+                                        Exception e = task.getException();
+                                        if (e instanceof FirebaseFunctionsException) {
+                                            FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                            FirebaseFunctionsException.Code code = ffe.getCode();
+                                            Object details = ffe.getDetails();
+                                        }
+                                        return;
+                                    }
+
+                                    Map<String, Object> result = task.getResult();
+                                    if(
+                                            result.containsKey("isUserInitialized") &&
+                                                    result.get("isUserInitialized") instanceof Boolean &&
+                                                    (Boolean)(result.get("isUserInitialized"))
+                                    )
+                                    {
+                                        // Logged in and data set -> Redirect to home activity
+                                        SplashScreenActivity splashScreenActivity = (SplashScreenActivity) GoogleAuthFragment.this.getActivity();
+                                        splashScreenActivity.navigateToHomeActivity(null);
+                                    }else{
+                                        // Logged in but data is not set -> Redirect to scegli proprietario affittuario
+                                        NavController navController = Navigation.findNavController(getView());
+                                        navController.navigate(R.id.action_scegliLoginRegistrazioneFragment_to_scegliProprietarioAffittuarioFragment);
+                                    }
+                                }
+                            });
 
 //                            splashScreenActivity.navigateToHomeActivity(null);
 //                            activity.finish();
