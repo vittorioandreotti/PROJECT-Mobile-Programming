@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.utils;
+package it.univpm.mobile_programming_project.utils.auth_helper;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
@@ -22,12 +22,6 @@ public class EmailAutenticationManager extends AuthenticationManager {
     {
         this();
         setCredentials(email, password);
-    }
-
-    public boolean isLoggedIn()
-    {
-        FirebaseUser firebaseUser = this.getUser();
-        return ( firebaseUser != null );
     }
 
     public void setCredentials(String email, String password)
@@ -54,19 +48,5 @@ public class EmailAutenticationManager extends AuthenticationManager {
                 .addOnCompleteListener(authResultOnCompleteListener);
     }
 
-    @Override
-    public boolean logout() {
-
-        // Firebase logout
-        this.mAuth.signOut();
-
-        return true;
-    }
-
-    @Override
-    public FirebaseUser getUser()
-    {
-        return this.mAuth.getCurrentUser();
-    }
 
 }
