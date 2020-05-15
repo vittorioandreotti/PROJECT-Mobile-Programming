@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".ScegliProprietarioAffittuarioFragment">
+tools:context=".fragment.splash_screen.ScegliProprietarioAffittuarioFragment">
 
 
 <TextView
@@ -17,7 +17,8 @@ tools:context=".ScegliProprietarioAffittuarioFragment">
     android:textAlignment="center"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintTop_toTopOf="parent"
+    android:textColor="@color/OnPrimary"/>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -35,7 +36,9 @@ tools:context=".ScegliProprietarioAffittuarioFragment">
         android:padding="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/button"
+        />
 
     <Button
         android:id="@+id/btnAffittuario"
@@ -46,7 +49,9 @@ tools:context=".ScegliProprietarioAffittuarioFragment">
         android:padding="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnProprietario" />
+        app:layout_constraintTop_toBottomOf="@id/btnProprietario"
+        style="@style/button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

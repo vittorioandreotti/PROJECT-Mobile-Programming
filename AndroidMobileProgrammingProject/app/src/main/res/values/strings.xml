@@ -40,6 +40,9 @@
     <string name="storicotorneo">Storico</string>
     <string name="partecipatorneo">Partecipa</string>
     <string name="creatorneo">Crea</string>
+    <string name="crea_casa">Crea casa</string>
+    <string name="creazione_casa">Creazione casa</string>
+
 
     <string name="profilo">Profilo</string>
     <string name="logout">Log-Out</string>

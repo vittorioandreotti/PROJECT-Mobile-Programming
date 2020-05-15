@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.App.Fullscreen"
-    tools:context=".ScegliLoginRegistrazioneFragment"
-    android:background="@color/Primary">
+    tools:context=".fragment.splash_screen.ScegliLoginRegistrazioneFragment"
+    >
 
 
 

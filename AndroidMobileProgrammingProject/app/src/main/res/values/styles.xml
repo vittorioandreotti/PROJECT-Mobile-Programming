@@ -13,8 +13,27 @@
         <item name="colorOnPrimary">
             @color/OnPrimary
         </item>
+        <item name="backgroundColor">
+            @color/Primary
+        </item>
+        <item name="android:windowBackground">
+            @color/Primary
+        </item>
+    </style>
 
+    <!--TEXT INPUT-->
+    <style name="textInput" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="startIconTint">@color/OnPrimary</item>
+        <item name="android:textColorHint">@color/OnPrimary</item>
+        <item name="endIconTint">@color/OnPrimary</item>
+        <item name="hintTextColor">@color/OnPrimary</item>
+    </style>
 
+    <!--BUTTON-->
+    <style name="button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/OnPrimary</item>
+        <item name="android:textColorHint">@color/OnPrimary</item>
+        <item name="strokeColor">@color/OnPrimary</item>
     </style>
 
     <!-- Card layout. -->
