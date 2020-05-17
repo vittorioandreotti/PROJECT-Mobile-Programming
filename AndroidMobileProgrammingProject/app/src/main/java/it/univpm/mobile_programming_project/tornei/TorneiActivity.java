@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.view_pager.PageAdapter;
+import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
 
 public class TorneiActivity extends AppCompatActivity {
 
@@ -24,13 +24,13 @@ public class TorneiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tornei);
 
-        tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabPartecipa = (TabItem) findViewById(R.id.tabpartecipa);
-        tabStorico = (TabItem) findViewById(R.id.tabstorico);
-        tabCrea = (TabItem) findViewById(R.id.tabcrea);
+        tabLayout = findViewById(R.id.tablayout);
+        tabPartecipa = findViewById(R.id.tabpartecipa);
+        tabStorico = findViewById(R.id.tabstorico);
+        tabCrea = findViewById(R.id.tabcrea);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        pagerAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager = findViewById(R.id.viewpager);
+        pagerAdapter = new SpesePageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.navigation.NavigationView;
 
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
+import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -92,11 +93,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //                titleId = R.string.spese;
 //                break;
 //
-//            // Tornei
-//            case R.id.nav_tornei:
-//                navigationFragment = new TorneiFragment();
-//                titleId = R.string.tornei;
-//                break;
+            // Tornei
+            case R.id.nav_tornei:
+                navigationFragment = new TorneiFragment();
+               titleId = R.string.tornei;
+                break;
 //
 //            // Profilo
 //            case R.id.nav_profilo:

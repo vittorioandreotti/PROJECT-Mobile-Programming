@@ -33,7 +33,7 @@ public class SpeseActivity extends AppCompatActivity {
 
         //
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        pagerAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        pagerAdapter = new SpesePageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
