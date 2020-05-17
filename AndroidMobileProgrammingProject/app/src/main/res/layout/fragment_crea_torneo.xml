@@ -28,7 +28,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtTitoloTorneo"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -40,14 +40,15 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordo"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputDateLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -63,13 +64,14 @@
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
                     android:focusable="false"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:background="@drawable/bordo"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtOraEvento"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -81,13 +83,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordo"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtIndirizzoEvento"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -99,13 +102,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordo"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtCategoriaEvento"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -117,13 +121,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordo"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDescrizione"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="10dp"
@@ -136,11 +141,14 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="top|left" />
+                    android:gravity="top|left"
+                    android:background="@drawable/bordo"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                style="@style/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

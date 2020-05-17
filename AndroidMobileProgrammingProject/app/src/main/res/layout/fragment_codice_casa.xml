@@ -46,14 +46,15 @@
         android:textColorHint="@color/OnPrimary"
         android:textColor="@color/OnPrimary"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imgShareCod"
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_marginLeft="10dp"
             app:layout_constraintLeft_toRightOf="@id/txtNome"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_share_black_24dp" />
+            app:srcCompat="@drawable/ic_share_black_24dp"
+            style="@style/button"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
