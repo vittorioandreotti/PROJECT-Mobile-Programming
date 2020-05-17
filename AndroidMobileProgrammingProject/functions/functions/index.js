@@ -63,6 +63,13 @@ exports.getUserInfo = functions.https.onCall((data, context) => {
                           {
                               // Utente loggato ma non inizializzato
 
+                              db
+                                .collection('users')
+                                .doc(uid)
+                                .set({
+                                    isUserInitialized: false
+                                });
+
                               return {
                                   userFirebase: userFirebase,
                                   isUserInitialized: false

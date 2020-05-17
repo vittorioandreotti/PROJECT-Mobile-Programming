@@ -7,18 +7,16 @@
 
     <!-- Fullscreen theme. -->
     <style name="Theme.App.Fullscreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">
-            @color/Primary
-        </item>
-        <item name="colorOnPrimary">
-            @color/OnPrimary
-        </item>
-        <item name="backgroundColor">
-            @color/Primary
-        </item>
-        <item name="android:windowBackground">
-            @color/Primary
-        </item>
+        <item name="colorPrimary">@color/Primary</item>
+        <item name="colorOnPrimary">@color/OnPrimary</item>
+        <item name="backgroundColor">@color/Primary</item>
+        <item name="android:windowBackground">@color/Primary</item>
+
+        <item name="android:statusBarColor">@color/OnPrimary</item>
+
+        <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="android:contextPopupMenuStyle">@style/Widget.MaterialComponents.PopupMenu.ContextMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
     </style>
 
     <!--TEXT INPUT-->

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group
+        android:checkableBehavior="single"
+    >
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_statistiche"
+            android:icon="@drawable/ic_statistiche"
+            android:title="Statistiche" />
+
+        <item
+            android:id="@+id/nav_spese"
+            android:icon="@drawable/ic_spese"
+            android:title="Spese" />
+
+        <item
+            android:id="@+id/nav_tornei"
+            android:icon="@drawable/ic_tornei"
+            android:title="Tornei" />
+
+        <item
+            android:id="@+id/nav_profilo"
+            android:icon="@drawable/ic_profile"
+            android:title="Profilo" />
+
+    </group>
+
+</menu>

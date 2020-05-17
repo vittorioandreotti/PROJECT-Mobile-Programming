@@ -111,7 +111,14 @@ public class SplashScreenFragment extends Fragment {
                 });
 
             }else{
-                SplashScreenFragment.this.navigateToScegliLoginRegistrazione();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        SplashScreenFragment.this.navigateToScegliLoginRegistrazione();
+                    }
+                },2000);
             }
 
 
