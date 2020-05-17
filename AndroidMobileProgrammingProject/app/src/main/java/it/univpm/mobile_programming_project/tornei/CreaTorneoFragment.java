@@ -1,25 +1,33 @@
 package it.univpm.mobile_programming_project.tornei;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CreaTorneoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreaTorneoFragment extends Fragment {
+public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private TextInputEditText textInputEditText;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,8 +68,25 @@ public class CreaTorneoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crea_torneo, container, false);
+        View v = inflater.inflate(R.layout.fragment_crea_torneo, container, false);
+
+        textInputEditText = v.findViewById(R.id.txtDataTorneo);
+        textInputEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
+        return v;
     }
 
+    public void showDatePickerDialog(View view) {
+        DialogFragment newFragment = new DatePickerFragment(this);
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        textInputEditText.setText(String.format("%d/%d/%d", dayOfMonth, month, year));
+    }
 }
