@@ -59,6 +59,13 @@
     <string name="spese">Spese</string>
     <string name="statistiche">Statistiche</string>
     <string name="tornei">Tornei</string>
+    <string name="nome_spesa">Nome spesa</string>
+    <string name="importo_spesa">Importo</string>
+    <string name="inserisci">Inserisci</string>
+    <string name="spesacomune">Spesa comune</string>
+    <string name="categoriabolletta">"Categoria "</string>
+    <string name="datascadenza">Data scadenza</string>
+    <string name="regolamento">Regolamento</string>
 
 
 </resources>

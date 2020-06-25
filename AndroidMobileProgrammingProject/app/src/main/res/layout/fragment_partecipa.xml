@@ -3,7 +3,129 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.App.Fullscreen"
     tools:context=".tornei.PartecipaTorneoFragment">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txtRegistrazione"
+    app:layout_constraintVertical_bias="0.0">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/txtTitoloTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/titolotorneo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/OnPrimary"
+            android:textColor="@color/OnPrimary"/>
+
+        <TextView
+            android:id="@+id/txtCategoriaTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/categoriatorneo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/OnPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitoloTorneo"
+            android:textColor="@color/OnPrimary"/>
+
+        <TextView
+            android:id="@+id/txtDataTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/datatorneo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/OnPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/txtCategoriaTorneo"
+            android:textColor="@color/OnPrimary"/>
+
+        <TextView
+            android:id="@+id/txtOraTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:text="@string/oratorneo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/OnPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/txtDataTorneo"
+            android:textColor="@color/OnPrimary"/>
+
+        <TextView
+            android:id="@+id/txtIndirizzoTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:text="@string/indirizzotorneo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/OnPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/txtOraTorneo"
+            android:textColor="@color/OnPrimary"/>
+
+        <TextView
+            android:id="@+id/txtRegolamentoTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:text="@string/regolamento"
+            android:gravity="top|left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/OnPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/txtIndirizzoTorneo"
+            android:textColor="@color/OnPrimary"/>
+
+        <Button
+            android:id="@+id/btnPartecipaTorneo"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/partecipatorneo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRegolamentoTorneo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
 </FrameLayout>

@@ -60,9 +60,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/nome"
                 android:textColorHint="@color/OnPrimary"
                 app:endIconMode="clear_text"
+                android:hint="@string/nome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgUserPicture"
@@ -74,8 +74,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"
-                    />
+                    android:background="@drawable/bordo" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
