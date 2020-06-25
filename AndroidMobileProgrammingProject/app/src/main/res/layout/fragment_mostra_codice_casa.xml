@@ -12,11 +12,11 @@
         android:id="@+id/txtCodCasaPronto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ecco i tuo codice, pronto per essere condiviso"
+        android:text="@string/codice_condiviso"
         android:layout_marginTop="200dp"
         android:textAlignment="center"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +34,13 @@
         app:layout_constraintTop_toBottomOf="@+id/txtCodCasaPronto">
 
     <TextView
-        android:id="@+id/txtNome"
+        android:id="@+id/txtCodice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Codice"
-        android:textSize="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="100dp"
+        android:text="@string/codice"
+        android:textSize="30sp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColorHint="@color/OnPrimary"
@@ -51,10 +51,10 @@
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_marginLeft="10dp"
-            app:layout_constraintLeft_toRightOf="@id/txtNome"
+            app:layout_constraintLeft_toRightOf="@id/txtCodice"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_share_black_24dp"
-            style="@style/button"/>
+            style="@style/Theme.Widget.Button"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

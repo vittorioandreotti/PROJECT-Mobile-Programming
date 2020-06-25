@@ -113,7 +113,7 @@
 
         <Button
             android:id="@+id/btnPartecipaTorneo"
-            style="@style/button"
+            style="@style/Theme.Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

@@ -5,5 +5,5 @@
     <color name="colorPrimaryDark"> #585858</color>
     <color name="OnPrimary">#ffca18</color>
     <color name="colorBackground">#585858</color>
-
+    <color name="LoadingBackground">#80000000</color>
 </resources>
