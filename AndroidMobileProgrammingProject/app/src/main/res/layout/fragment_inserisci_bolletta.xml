@@ -27,7 +27,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtNomeCategoriaBolletta"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputDateLayout"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -70,7 +70,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputDateScadenzaLayout"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -96,7 +96,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtImportoBolletta"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -119,7 +119,7 @@
 
             <Button
                 android:id="@+id/btnInsericiBolletta"
-                style="@style/button"
+                style="@style/Theme.Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

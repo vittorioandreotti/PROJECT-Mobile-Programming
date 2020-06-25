@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:startIconDrawable="@drawable/ic_email_light_grey_24dp"
-            style="@style/textInput"
+            style="@style/Theme.Widget.TextInput"
 
 
             >
@@ -60,7 +60,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtLoginPassword"
-            style="@style/textInput"
+            style="@style/Theme.Widget.TextInput"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword"
-            style="@style/button"
+            style="@style/Theme.Widget.Button"
             />
 
 

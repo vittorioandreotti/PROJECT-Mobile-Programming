@@ -47,7 +47,10 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -65,48 +68,51 @@
                         android:id="@+id/txtNome"
                         android:layout_width="115dp"
                         android:layout_height="25dp"
+                        android:layout_marginLeft="60dp"
                         android:layout_marginTop="16dp"
                         android:text="@string/nome"
-                        android:layout_marginLeft="60dp"
+                        android:textColor="@color/OnPrimary"
+                        android:textColorHint="@color/OnPrimary"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textColorHint="@color/OnPrimary"
-                        android:textColor="@color/OnPrimary"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/txtCognome"
                         android:layout_width="115dp"
                         android:layout_height="25dp"
+                        android:layout_marginLeft="60dp"
                         android:layout_marginTop="48dp"
                         android:text="@string/cognome"
-                        android:layout_marginLeft="60dp"
+                        android:textColor="@color/OnPrimary"
+                        android:textColorHint="@color/OnPrimary"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textColorHint="@color/OnPrimary"
                         app:layout_constraintTop_toBottomOf="@+id/txtNome"
-                        android:textColor="@color/OnPrimary"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/txtEmail"
+                        style="@style/Theme.Widget.TextInput"
                         android:layout_width="274dp"
                         android:layout_height="22dp"
                         android:text="@string/e_mail"
+                        android:textColor="@color/OnPrimary"
+                        android:textColorHint="@color/OnPrimary"
                         android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/txtCognome"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="96dp"
-                        android:textColorHint="@color/OnPrimary"
-                        android:textColor="@color/OnPrimary"/>
+                        tools:layout_editor_absoluteY="96dp" />
 
                     <Button
                         android:id="@+id/btnLogout"
-                        style="@style/button"
+                        style="@style/Theme.Widget.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/logout"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:layout_editor_absoluteY="133dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -125,13 +131,14 @@
                         android:layout_marginTop="16dp"
                         android:text="@string/modifica"
                         android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:textColor="@color/OnPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/txtPasswordCorrente"
+                        style="@style/Theme.Widget.TextInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password_corrente"
@@ -140,19 +147,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtModificaPassword"
                         app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-                        tools:layout_editor_absoluteY="238dp"
-                        style="@style/textInput"
-                        >
+                        tools:layout_editor_absoluteY="238dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"
-                            android:background="@drawable/bordo"/>
+                            android:background="@drawable/bordo"
+                            android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/txtNewPassword"
+                        style="@style/Theme.Widget.TextInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -161,20 +167,18 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtPasswordCorrente"
-                        app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-                        style="@style/textInput"
-                        >
+                        app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"
-                            android:background="@drawable/bordo"/>
+                            android:background="@drawable/bordo"
+                            android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/txtConfermaPassword"
-                        style="@style/textInput"
+                        style="@style/Theme.Widget.TextInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -188,24 +192,24 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"
-                            android:background="@drawable/bordo"/>
+                            android:background="@drawable/bordo"
+                            android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
                         android:id="@+id/btnModifica"
+                        style="@style/Theme.Widget.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Modifica"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtConfermaPassword"
-                        tools:layout_editor_absoluteY="133dp"
-                        style="@style/button"/>
+                        tools:layout_editor_absoluteY="133dp" />
 
                     <Button
                         android:id="@+id/btnDisiscriviti"
-                        style="@style/button"
+                        style="@style/Theme.Widget.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Disiscriviti"

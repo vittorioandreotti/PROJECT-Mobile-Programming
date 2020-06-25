@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnRegistrati"
         android:textColor="@color/OnPrimary"/>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/googleLoginFragment"
         android:name="it.univpm.mobile_programming_project.fragment.autenticazione.GoogleAuthFragment"
         android:layout_width="wrap_content"

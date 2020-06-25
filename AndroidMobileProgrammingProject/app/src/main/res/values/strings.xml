@@ -51,7 +51,6 @@
     <string name="title_activity_maps">Map</string>
 
 
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -59,6 +58,8 @@
     <string name="spese">Spese</string>
     <string name="statistiche">Statistiche</string>
     <string name="tornei">Tornei</string>
+    <string name="codice_condiviso">Ecco il tuo codice, pronto per essere condiviso</string>
+    <string name="codice">Codice</string>
     <string name="nome_spesa">Nome spesa</string>
     <string name="importo_spesa">Importo</string>
     <string name="inserisci">Inserisci</string>
@@ -66,6 +67,11 @@
     <string name="categoriabolletta">"Categoria "</string>
     <string name="datascadenza">Data scadenza</string>
     <string name="regolamento">Regolamento</string>
+    <string name="inserisci_codice_casa">Inserisci codice casa:</string>
+    <string name="inserisci_codice">Inserisci codice</string>
+    <string name="entra_in_una_casa">Entra in una casa</string>
+    <string name="inserisci_nome_della_casa">Inserisci nome della casa</string>
+    <string name="caricamento">Caricamento...</string>
 
 
 </resources>

@@ -11,59 +11,70 @@
         android:id="@+id/txtInserisciCodCasa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inserisci codice casa:"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/entra_in_una_casa"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textColor="@color/OnPrimary"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/OnPrimary"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInserisciCodCasa">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtCodiceCasa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Inserisci codice"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleTint="#001807FF"
-        style="@style/textInput"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtCodiceCasa"
+            style="@style/Theme.Widget.TextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bordo"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/inserisci_codice"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:passwordToggleTint="#001807FF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordo" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
             android:id="@+id/btnPartecipaCasa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:backgroundTint="@color/Primary"
             android:text="@string/Partecipa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtCodiceCasa"
-            style="@style/button"
+            style="@style/Theme.Widget.Button"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--  Fragment per il caricamento  -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="it.univpm.mobile_programming_project.fragment.LoadingFragment"
+        android:visibility="gone"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

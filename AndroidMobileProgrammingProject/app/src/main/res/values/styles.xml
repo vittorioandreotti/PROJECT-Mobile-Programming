@@ -20,7 +20,7 @@
     </style>
 
     <!--TEXT INPUT-->
-    <style name="textInput" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="Theme.Widget.TextInput" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="startIconTint">@color/OnPrimary</item>
         <item name="android:textColorHint">@color/OnPrimary</item>
         <item name="endIconTint">@color/OnPrimary</item>
@@ -28,14 +28,19 @@
     </style>
 
     <!--BUTTON-->
-    <style name="button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Theme.Widget.Button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/OnPrimary</item>
         <item name="android:textColorHint">@color/OnPrimary</item>
         <item name="strokeColor">@color/OnPrimary</item>
     </style>
 
+    <!--Progress Bar-->
+    <style name="Theme.Widget.ProgressBar" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">@color/OnPrimary</item>
+    </style>
+
     <!-- Card layout. -->
-    <style name="Widget.App.Card" parent="Widget.MaterialComponents.CardView">
+    <style name="Theme.Widget.Card" parent="Widget.MaterialComponents.CardView">
         <!-- ... -->
     </style>
 

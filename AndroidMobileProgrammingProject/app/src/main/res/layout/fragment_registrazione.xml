@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imgUserPicture"
                 app:passwordToggleTint="#001807FF"
                 app:startIconDrawable="@drawable/ic_group_light_grey_24dp"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -89,7 +89,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtLoginName"
                 app:startIconDrawable="@drawable/ic_group_light_grey_24dp"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
 
 
                 >
@@ -113,7 +113,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtLoginSurname"
                 app:startIconDrawable="@drawable/ic_email_light_grey_24dp"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -138,7 +138,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail"
                 app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -163,7 +163,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword"
                 app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -184,7 +184,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtLoginPasswordConfirm"
-                style="@style/button"
+                style="@style/Theme.Widget.Button"
                  />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

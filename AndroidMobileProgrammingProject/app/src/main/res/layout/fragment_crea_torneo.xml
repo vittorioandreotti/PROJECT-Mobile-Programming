@@ -28,7 +28,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtTitoloTorneo"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -48,7 +48,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputDateLayout"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -71,7 +71,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtOraEvento"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -90,7 +90,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtIndirizzoEvento"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -109,7 +109,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtCategoriaEvento"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -128,7 +128,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDescrizioneTorneo"
-                style="@style/textInput"
+                style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="10dp"
@@ -149,7 +149,7 @@
 
             <Button
                 android:id="@+id/btnCreaTorneo"
-                style="@style/button"
+                style="@style/Theme.Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

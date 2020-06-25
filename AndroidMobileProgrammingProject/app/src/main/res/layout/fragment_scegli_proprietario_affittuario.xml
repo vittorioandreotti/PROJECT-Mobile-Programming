@@ -37,7 +37,7 @@ tools:context=".fragment.splash_screen.ScegliProprietarioAffittuarioFragment">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/button"
+        style="@style/Theme.Widget.Button"
         />
 
     <Button
@@ -50,7 +50,7 @@ tools:context=".fragment.splash_screen.ScegliProprietarioAffittuarioFragment">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnProprietario"
-        style="@style/button"
+        style="@style/Theme.Widget.Button"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
