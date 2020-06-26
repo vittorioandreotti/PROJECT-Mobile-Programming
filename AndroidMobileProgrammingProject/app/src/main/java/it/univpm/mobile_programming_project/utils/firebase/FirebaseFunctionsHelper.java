@@ -19,19 +19,19 @@ public class FirebaseFunctionsHelper {
         this.mFunctions = FirebaseFunctions.getInstance();
     }
 
-    public Task< Map<String, Object> > getUserInfo() {
+    public Task< Boolean > isUserInitialized() {
 
         // Call the function and extract the result
         // exports.getUserInfo
 
         return this.mFunctions
-            .getHttpsCallable("getUserInfo")
+            .getHttpsCallable("isUserInitialized")
             .call( )
-            .continueWith(new Continuation<HttpsCallableResult, Map<String, Object>>() {
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                 @Override
-                public Map<String, Object> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
                     HttpsCallableResult result = task.getResult();
-                    Map<String, Object> resultData = (Map<String, Object>) result.getData();
+                    Boolean resultData = (Boolean) result.getData();
                     return resultData;
                 }
             });

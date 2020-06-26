@@ -22,10 +22,8 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import java.util.Map;
 
-import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
-import it.univpm.mobile_programming_project.fragment.splash_screen.SplashScreenFragment;
 import it.univpm.mobile_programming_project.utils.auth_helper.GoogleAutenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
@@ -87,9 +85,9 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
                         if (task.isSuccessful()) {
                             // Sign in success, go to HomeActivity if registered, unless it is already registered go to HomeActivity.
 
-                            functionsHelper.getUserInfo().addOnCompleteListener(new OnCompleteListener<Map<String, Object>>() {
+                            functionsHelper.isUserInitialized().addOnCompleteListener(new OnCompleteListener<Boolean>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Map<String, Object>> task) {
+                                public void onComplete(@NonNull Task<Boolean> task) {
 
                                     // Handle Error
                                     if (!task.isSuccessful()) {
@@ -103,12 +101,8 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
                                         return;
                                     }
 
-                                    Map<String, Object> result = task.getResult();
-                                    if(
-                                            result.containsKey("isUserInitialized") &&
-                                                    result.get("isUserInitialized") instanceof Boolean &&
-                                                    (Boolean)(result.get("isUserInitialized"))
-                                    )
+                                    Boolean isInitialized = task.getResult();
+                                    if( isInitialized )
                                     {
                                         // Logged in and data set -> Redirect to home activity
                                         SplashScreenActivity splashScreenActivity = (SplashScreenActivity) GoogleAuthFragment.this.getActivity();
