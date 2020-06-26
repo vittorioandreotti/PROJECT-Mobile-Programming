@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_home_black_24dp"
         android:checked="true"/>
 
     <item
         android:id="@+id/menu_spese"
-        android:title="Spese"
+        android:title="@string/spese"
         android:icon="@drawable/ic_attach_money_black_24dp"
         />
 
     <item
         android:id="@+id/menu_tornei"
-        android:title="Tornei"
+        android:title="@string/tornei"
         android:icon="@drawable/ic_trophy_icon_icons"
         />
 </menu>
