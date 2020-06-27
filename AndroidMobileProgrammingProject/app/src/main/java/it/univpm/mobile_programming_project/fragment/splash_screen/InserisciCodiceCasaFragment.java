@@ -22,29 +22,14 @@ public class InserisciCodiceCasaFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment InserisciCodiceCasaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InserisciCodiceCasaFragment newInstance(String param1, String param2) {
-        InserisciCodiceCasaFragment fragment = new InserisciCodiceCasaFragment();
-        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
-        return fragment;
+
+    public static InserisciCodiceCasaFragment newInstance() {
+        return new InserisciCodiceCasaFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
     }
 
     @Override

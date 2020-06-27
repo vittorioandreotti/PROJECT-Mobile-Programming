@@ -51,19 +51,93 @@ exports.isUserInitialized = functions.https.onCall((data, context) => {
         });
 });
 
-
 //
 exports.inserisciAffittuario = functions.https.onCall((data, context) => {
-    //
+    //  https://stackoverflow.com/questions/51292378/how-do-you-insert-a-reference-value-into-firestore
+    const uid = context.auth.uid;
 
-    // Set isUserInitialized = false
+    // Utente del DB
+    getUserDataByUID(uid)
+        .then( (utenteDb) => {
+            let nome = null;
+            let cognome = null;
+
+            if( utenteDb != undefined && utenteDb != null) {
+                nome = utenteDb.nome;
+                cognome = utenteDb.cognome;
+            }
+
+            getFirebaseUserByUID(uid)
+                .then( (utente) => {
+                    if( nome == null && cognome == null) {
+                        let fullName = utente.displayName;
+                        let indexSpace = fullName.indexOf(' ');
+                        nome = fullName.substr(0, indexSpace);
+                        cognome = fullName.substr(indexSpace);
+                    }
+
+                    // Settato sia nome, che cognome
+
+                    let data = {
+                        isUserInitialized: true,
+                        tipo: "affittuario",
+                        nome: nome,
+                        cognome: cognome,
+                    };
+
+                    return db
+                        .collection('users')
+                        .doc(uid)
+                        .set(data)
+                        .then((snapshot) => {
+                            return snapshot.data()
+                        });
+                });
+        });
 
 });
 
 //
 exports.inserisciProprietario = functions.https.onCall((data, context) => {
-    //
+    const uid = context.auth.uid;
 
-    // Set isUserInitialized = false
+    // Utente del DB
+    getUserDataByUID(uid)
+        .then( (utenteDb) => {
+            let nome = null;
+            let cognome = null;
+
+            if( utenteDb != undefined && utenteDb != null) {
+                nome = utenteDb.nome;
+                cognome = utenteDb.cognome;
+            }
+
+            getFirebaseUserByUID(uid)
+                .then( (utente) => {
+                    if( nome == null && cognome == null) {
+                        let fullName = utente.displayName;
+                        let indexSpace = fullName.indexOf(' ');
+                        nome = fullName.substr(0, indexSpace);
+                        cognome = fullName.substr(indexSpace);
+                    }
+
+                    // Settato sia nome, che cognome
+
+                    let data = {
+                        isUserInitialized: true,
+                        tipo: "proprietario",
+                        nome: nome,
+                        cognome: cognome,
+                    };
+
+                    return db
+                        .collection('users')
+                        .doc(uid)
+                        .set(data)
+                        .then((snapshot) => {
+                            return snapshot.data()
+                        });
+                });
+        });
 
 });

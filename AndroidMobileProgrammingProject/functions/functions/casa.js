@@ -8,6 +8,11 @@ let db = admin.firestore();
 */
 exports.creaCasa = functions.https.onCall((data, context) => {
 
+    const text = data.text;
+
+    console.log(text);
+    console.log(text.nomeCasa);
+
     /*
 
     */

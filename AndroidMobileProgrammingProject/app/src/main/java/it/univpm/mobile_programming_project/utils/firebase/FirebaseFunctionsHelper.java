@@ -26,7 +26,7 @@ public class FirebaseFunctionsHelper {
 
         return this.mFunctions
             .getHttpsCallable("isUserInitialized")
-            .call( )
+            .call()
             .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                 @Override
                 public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
@@ -38,5 +38,40 @@ public class FirebaseFunctionsHelper {
 
     }
 
+    public Task<Boolean> creaCasa(String nome, String indirizzo) {
 
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("nome", nome);
+        data.put("indirizzo", indirizzo);
+
+        return this.mFunctions
+            .getHttpsCallable("creaCasa")
+            .call( data )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
+
+
+    public Task<Boolean> inserisciProprietario() {
+
+        return this.mFunctions
+            .getHttpsCallable("inserisciProprietario")
+            .call(  )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
 }
