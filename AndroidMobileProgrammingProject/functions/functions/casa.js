@@ -17,10 +17,11 @@ exports.creaCasa = functions.https.onCall((data, context) => {
         indirizzo == undefined || indirizzo == null || indirizzo == ""
     ) return false;
 
+
     let dataInput = {
         nome: nome,
         indirizzo: indirizzo,
-        idProprietario: uid,
+        idProprietario: db.collection("users").doc(uid),
         idAffittuari: []
     }
 
@@ -50,15 +51,15 @@ exports.partecipaCasa = functions.https.onCall((data, context) => {
         uidCasa == undefined || uidCasa == null || uidCasa == ""
     ) return false;
 
+
     var casaRef = db.collection("case").doc(uidCasa);
 
     return casaRef.get()
       .then((casaDoc) => {
         if (casaDoc.exists) {
-            // La casa esiste
-            // Atomically add a new region to the "regions" array field.
+
                 casaRef.update({
-                    idAffittuari: firebase.firestore.FieldValue.arrayUnion(uid)
+                        idAffittuari: admin.firestore.FieldValue.arrayUnion( db.collection("users").doc(uid) )
                 });
                 return true;
         } else {
