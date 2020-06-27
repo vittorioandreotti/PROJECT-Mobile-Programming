@@ -55,7 +55,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="homepage">Homepage</string>
-    <string name="spese">Spese</string>
     <string name="statistiche">Statistiche</string>
     <string name="tornei">Tornei</string>
     <string name="codice_condiviso">Ecco il tuo codice, pronto per essere condiviso</string>
@@ -72,6 +71,8 @@
     <string name="entra_in_una_casa">Entra in una casa</string>
     <string name="inserisci_nome_della_casa">Inserisci nome della casa</string>
     <string name="caricamento">Caricamento...</string>
+    <string name="home">Home</string>
+    <string name="spese">Spese</string>
 
 
 </resources>

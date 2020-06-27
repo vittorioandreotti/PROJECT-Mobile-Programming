@@ -16,27 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Fullscreen">
-        <activity android:name=".tornei.TorneiActivity"></activity>
-        <activity android:name=".view_pager.SpeseActivity" />
-        <activity
-            android:name=".RegistrazioneActivity"
-            android:theme="@style/Theme.App.Fullscreen" />
-        <activity
-            android:name=".AccediActivity"
-            android:theme="@style/Theme.App.Fullscreen" />
-        <activity
-            android:name=".ChooseLoginRegisterActivity"
-            android:theme="@style/Theme.App.Fullscreen" />
+
+
+
         <activity
             android:name=".ProfiloActivity"
             android:theme="@style/Theme.App.Fullscreen" />
-        <activity
-            android:name=".ChooseProprietarioAffittuarioActivity"
-            android:theme="@style/Theme.App.Fullscreen" />
+
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.App.Fullscreen" />
-        <activity android:name=".MainActivity" />
+
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.App.Fullscreen">

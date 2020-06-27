@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
-public class InserimentoSpesePageAdapter extends FragmentPagerAdapter {
+public class InserimentoSpesePageAdapterAffittuario extends FragmentPagerAdapter {
 
     private int numbOfTabs;
 
-    public InserimentoSpesePageAdapter(@NonNull FragmentManager fm, int numbOfTabs) {
+    public InserimentoSpesePageAdapterAffittuario(@NonNull FragmentManager fm, int numbOfTabs) {
         super(fm);
         this.numbOfTabs = numbOfTabs;
     }
@@ -25,11 +25,8 @@ public class InserimentoSpesePageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new InserisciSpesaCondominioFragment();
-            case 1:
-                return new InserisciBolletteFragment();
-            case 2:
-                return new InserisciAffittoFragment();
+                return new InserisciSpesaComuneFragment();
+
             default: return null;
         }
     }

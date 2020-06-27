@@ -50,7 +50,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // This prevent fragment from being replaced on rotation
         if( savedInstanceState == null ){
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new HomeFragment() ).commit();
+            Fragment homeFragment;
+/*
+            if( AFFITTUARIO ) {
+                homeFragment = new HomeAffittuarioFragment();
+            }else{
+                homeFragment = new HomeProprietarioFragment();
+            }*/
+homeFragment = new HomeFragment();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, homeFragment ).commit();
             navigationView.setCheckedItem(R.id.nav_home);
             setToolbarTitle(getString(R.string.homepage));
         }
