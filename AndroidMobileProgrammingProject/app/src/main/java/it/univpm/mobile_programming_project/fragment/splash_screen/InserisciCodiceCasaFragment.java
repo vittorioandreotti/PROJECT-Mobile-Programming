@@ -4,10 +4,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.SplashScreenActivity;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
 
 /**
@@ -15,11 +26,14 @@ import it.univpm.mobile_programming_project.R;
  * Use the {@link InserisciCodiceCasaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InserisciCodiceCasaFragment extends Fragment {
+public class InserisciCodiceCasaFragment extends Fragment implements View.OnClickListener {
 
+    private FragmentContainerView loadingFragment;
+    private final FirebaseFunctionsHelper firebaseFunctionsHelper;
+    private TextInputEditText txtCodiceCasaInput;
 
     public InserisciCodiceCasaFragment() {
-        // Required empty public constructor
+        this.firebaseFunctionsHelper = new FirebaseFunctionsHelper();
     }
 
 
@@ -33,9 +47,81 @@ public class InserisciCodiceCasaFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.btnPartecipaCasa).setOnClickListener(this);
+        txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inserisci_codice_casa, container, false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.btnPartecipaCasa)
+        {
+            loadingFragment.setVisibility(View.VISIBLE);
+
+            this.firebaseFunctionsHelper.inserisciAffittuario().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                @Override
+                public void onComplete(@NonNull Task<Boolean> task) {
+
+                    // Handle Error
+                    if (!task.isSuccessful()) {
+                        Exception e = task.getException();
+                        if (e instanceof FirebaseFunctionsException) {
+                            FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                            FirebaseFunctionsException.Code code = ffe.getCode();
+                            Object details = ffe.getDetails();
+                        }
+                        loadingFragment.setVisibility(View.GONE);
+                        return;
+                    }
+
+                    Boolean isAffittuarioInserito = task.getResult();
+                    if (isAffittuarioInserito) {
+                        InserisciCodiceCasaFragment.this.firebaseFunctionsHelper.partecipaCasa().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Boolean> task) {
+
+                                // Handle Error
+                                if (!task.isSuccessful()) {
+                                    Exception e = task.getException();
+                                    if (e instanceof FirebaseFunctionsException) {
+                                        FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                        FirebaseFunctionsException.Code code = ffe.getCode();
+                                        Object details = ffe.getDetails();
+                                    }
+                                    loadingFragment.setVisibility(View.GONE);
+                                    return;
+                                }
+
+                                Boolean isCasaValid = task.getResult();
+                                if (isCasaValid) {
+                                    // Casa valida -> Redirect to home activity
+                                    loadingFragment.setVisibility(View.GONE);
+                                    SplashScreenActivity splashScreenActivity = (SplashScreenActivity) InserisciCodiceCasaFragment.this.getActivity();
+                                    splashScreenActivity.navigateToHomeActivity(null);
+                                } else {
+                                    // Casa non valida
+                                    Toast.makeText(InserisciCodiceCasaFragment.this.getContext(), "Codice casa non valido.", Toast.LENGTH_LONG).show();
+                                }
+
+                                loadingFragment.setVisibility(View.GONE);
+                            }
+                        });
+                    } else {
+                        // Casa non creata
+                        Toast.makeText(InserisciCodiceCasaFragment.this.getContext(), "Errore nella creazione dell'utente.", Toast.LENGTH_LONG).show();
+                    }
+
+                    loadingFragment.setVisibility(View.GONE);
+                }
+            });
+        }
     }
 }

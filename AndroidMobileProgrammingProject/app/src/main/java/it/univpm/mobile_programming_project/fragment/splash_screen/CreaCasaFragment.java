@@ -32,10 +32,10 @@ import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelp
  */
 public class CreaCasaFragment extends Fragment implements View.OnClickListener {
 
-    FragmentContainerView loadingFragment;
-    FirebaseFunctionsHelper firebaseFunctionsHelper;
-    TextInputEditText txtNomeCasa;
-    TextInputEditText txtIndirizzoCasa;
+    private FragmentContainerView loadingFragment;
+    private final FirebaseFunctionsHelper firebaseFunctionsHelper;
+    private TextInputEditText txtNomeCasa;
+    private TextInputEditText txtIndirizzoCasa;
 
     public CreaCasaFragment() {
         // Required empty public constructor

@@ -74,4 +74,34 @@ public class FirebaseFunctionsHelper {
                 }
             });
     }
+
+    public Task<Boolean> partecipaCasa() {
+
+        return this.mFunctions
+            .getHttpsCallable("partecipaCasa")
+            .call(  )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
+
+    public Task<Boolean> inserisciAffittuario() {
+
+        return this.mFunctions
+            .getHttpsCallable("inserisciAffittuario")
+            .call(  )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
 }
