@@ -43,6 +43,7 @@
             app:passwordToggleTint="#001807FF">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtCodiceCasaInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bordo" />

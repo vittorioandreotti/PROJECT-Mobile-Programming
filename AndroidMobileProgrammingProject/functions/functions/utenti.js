@@ -56,44 +56,50 @@ exports.inserisciAffittuario = functions.https.onCall((data, context) => {
     //  https://stackoverflow.com/questions/51292378/how-do-you-insert-a-reference-value-into-firestore
     const uid = context.auth.uid;
 
-    // Utente del DB
-    getUserDataByUID(uid)
-        .then( (utenteDb) => {
-            let nome = null;
-            let cognome = null;
+        // Utente del DB
+        return getUserDataByUID(uid)
+            .then( (utenteDb) => {
+                let nome = null;
+                let cognome = null;
 
-            if( utenteDb != undefined && utenteDb != null) {
-                nome = utenteDb.nome;
-                cognome = utenteDb.cognome;
-            }
+                if( utenteDb != undefined && utenteDb != null) {
+                    nome = utenteDb.nome;
+                    cognome = utenteDb.cognome;
+                }
 
-            getFirebaseUserByUID(uid)
-                .then( (utente) => {
-                    if( nome == null && cognome == null) {
-                        let fullName = utente.displayName;
-                        let indexSpace = fullName.indexOf(' ');
-                        nome = fullName.substr(0, indexSpace);
-                        cognome = fullName.substr(indexSpace);
-                    }
+                return getFirebaseUserByUID(uid)
+                    .then( (utente) => {
+                        if( nome == null && cognome == null) {
+                            let fullName = utente.displayName;
+                            let indexSpace = fullName.indexOf(' ');
+                            nome = fullName.substr(0, indexSpace);
+                            cognome = fullName.substr(indexSpace);
+                        }
 
-                    // Settato sia nome, che cognome
+                        // Settato sia nome, che cognome
 
-                    let data = {
-                        isUserInitialized: true,
-                        tipo: "affittuario",
-                        nome: nome,
-                        cognome: cognome,
-                    };
+                        let data = {
+                            isUserInitialized: true,
+                            tipo: "affittuario",
+                            nome: nome,
+                            cognome: cognome,
+                        };
 
-                    return db
-                        .collection('users')
-                        .doc(uid)
-                        .set(data)
-                        .then((snapshot) => {
-                            return snapshot.data()
-                        });
-                });
-        });
+                        return db
+                            .collection('users')
+                            .doc(uid)
+                            .set(data)
+                            .then( () => {
+                                return true;
+                            })
+                            .catch((error) => {
+                                console.log("ERROR!");
+                                console.log(error);
+                                return false;
+                            });
+                    });
+            });
+
 
 });
 
@@ -102,7 +108,7 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
     const uid = context.auth.uid;
 
     // Utente del DB
-    getUserDataByUID(uid)
+    return getUserDataByUID(uid)
         .then( (utenteDb) => {
             let nome = null;
             let cognome = null;
@@ -112,7 +118,7 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
                 cognome = utenteDb.cognome;
             }
 
-            getFirebaseUserByUID(uid)
+            return getFirebaseUserByUID(uid)
                 .then( (utente) => {
                     if( nome == null && cognome == null) {
                         let fullName = utente.displayName;
@@ -134,8 +140,13 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
                         .collection('users')
                         .doc(uid)
                         .set(data)
-                        .then((snapshot) => {
-                            return snapshot.data()
+                        .then( () => {
+                            return true;
+                        })
+                        .catch((error) => {
+                            console.log("ERROR!");
+                            console.log(error);
+                            return false;
                         });
                 });
         });

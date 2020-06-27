@@ -16,6 +16,7 @@ exports.creaCasa = functions.https.onCall((data, context) => {
     /*
 
     */
+    return true;
 
 });
 
