@@ -51,6 +51,28 @@
                 android:background="@drawable/bordo" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtIndirizzoCasa"
+            style="@style/Theme.Widget.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/inserisci_indirizzo_della_casa"
+            android:textAlignment="center"
+            app:endIconMode="clear_text"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:passwordToggleTint="#001807FF"
+            app:layout_constraintTop_toBottomOf="@+id/txtNomeCasa">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordo" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <Button
             android:id="@+id/btnCreaCasa"
             style="@style/Theme.Widget.Button"
@@ -60,7 +82,7 @@
             android:text="@string/crea_casa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNomeCasa" />
+            app:layout_constraintTop_toBottomOf="@+id/txtIndirizzoCasa" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -69,10 +69,11 @@
     <string name="inserisci_codice_casa">Inserisci codice casa:</string>
     <string name="inserisci_codice">Inserisci codice</string>
     <string name="entra_in_una_casa">Entra in una casa</string>
-    <string name="inserisci_nome_della_casa">Inserisci nome della casa</string>
+    <string name="inserisci_nome_della_casa">Inserisci nome</string>
     <string name="caricamento">Caricamento...</string>
     <string name="home">Home</string>
     <string name="spese">Spese</string>
+    <string name="inserisci_indirizzo_della_casa">Inserisci indirizzo</string>
 
 
 </resources>
