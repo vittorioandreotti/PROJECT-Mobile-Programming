@@ -39,6 +39,7 @@ exports.isUserInitialized = functions.https.onCall((data, context) => {
 
     return getUserDataByUID(uid)
         .then(function(userRecord) {
+            // console.log(userRecord);
               if( userRecord == null )
               {
                   // L'utente è autenticato a Firebase, ma NON ha un account nel database Firebase
@@ -63,8 +64,8 @@ exports.inserisciAffittuario = functions.https.onCall((data, context) => {
         // Utente del DB
         return getUserDataByUID(uid)
             .then( (utenteDb) => {
-                let nome = null;
-                let cognome = null;
+                let nome = "";
+                let cognome = "";
 
                 if( utenteDb != undefined && utenteDb != null) {
                     nome = utenteDb.nome;
@@ -73,11 +74,16 @@ exports.inserisciAffittuario = functions.https.onCall((data, context) => {
 
                 return getFirebaseUserByUID(uid)
                     .then( (utente) => {
-                        if( nome == null && cognome == null) {
+                        if( nome == null || cognome == null || nome == "" || cognome == "") {
                             let fullName = utente.displayName;
-                            let indexSpace = fullName.indexOf(' ');
-                            nome = fullName.substr(0, indexSpace);
-                            cognome = fullName.substr(indexSpace);
+                            if(fullName != undefined) {
+                                let indexSpace = fullName.indexOf(' ');
+                                if( nome == null || nome == "")
+                                    nome = fullName.substr(0, indexSpace);
+
+                                if( cognome == null || cognome == "")
+                                    cognome = fullName.substr(indexSpace);
+                            }
                         }
 
                         // Settato sia nome, che cognome
@@ -93,7 +99,7 @@ exports.inserisciAffittuario = functions.https.onCall((data, context) => {
                         return db
                             .collection('users')
                             .doc(uid)
-                            .set(data)
+                            .set(data, { merge: true })
                             .then( () => {
                                 return true;
                             })
@@ -115,8 +121,8 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
     // Utente del DB
     return getUserDataByUID(uid)
         .then( (utenteDb) => {
-            let nome = null;
-            let cognome = null;
+            let nome = "";
+            let cognome = "";
 
             if( utenteDb != undefined && utenteDb != null) {
                 nome = utenteDb.nome;
@@ -125,11 +131,16 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
 
             return getFirebaseUserByUID(uid)
                 .then( (utente) => {
-                    if( nome == null && cognome == null) {
+                    if( nome == null || cognome == null || nome == "" || cognome == "") {
                         let fullName = utente.displayName;
-                        let indexSpace = fullName.indexOf(' ');
-                        nome = fullName.substr(0, indexSpace);
-                        cognome = fullName.substr(indexSpace);
+                        if(fullName != undefined) {
+                            let indexSpace = fullName.indexOf(' ');
+                            if( nome == null || nome == "")
+                                nome = fullName.substr(0, indexSpace);
+
+                            if( cognome == null || cognome == "")
+                                cognome = fullName.substr(indexSpace);
+                        }
                     }
 
                     // Settato sia nome, che cognome
@@ -145,7 +156,7 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
                     return db
                         .collection('users')
                         .doc(uid)
-                        .set(data)
+                        .set(data, { merge: true })
                         .then( () => {
                             return true;
                         })
@@ -166,7 +177,7 @@ exports.registraUtente = functions.https.onCall((data, context) => {
         let nome = data.nome;
         let cognome = data.cognome;
 
-       let data = {
+       let dataUtente = {
            nome: nome,
            cognome: cognome,
        };
@@ -174,7 +185,7 @@ exports.registraUtente = functions.https.onCall((data, context) => {
        return db
            .collection('users')
            .doc(uid)
-           .set(data)
+           .set(dataUtente, { merge: true })
            .then( () => {
                return true;
            })
