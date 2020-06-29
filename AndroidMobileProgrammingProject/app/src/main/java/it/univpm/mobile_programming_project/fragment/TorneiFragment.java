@@ -30,7 +30,7 @@ public class TorneiFragment extends Fragment {
 
     private int paginaDiLancio = 0;
 
-    TorneiFragment() {
+    public TorneiFragment() {
     }
 
     public TorneiFragment(int paginaDiLancio) {
