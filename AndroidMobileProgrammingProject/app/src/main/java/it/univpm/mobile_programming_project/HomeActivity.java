@@ -1,10 +1,7 @@
 package it.univpm.mobile_programming_project;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,14 +10,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
 import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivityWithLoading implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
 
@@ -55,13 +52,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // This prevent fragment from being replaced on rotation
         if( savedInstanceState == null ){
             Fragment homeFragment;
-/*
+
+            /*
             if( AFFITTUARIO ) {
                 homeFragment = new HomeAffittuarioFragment();
             }else{
                 homeFragment = new HomeProprietarioFragment();
             }*/
-homeFragment = new HomeFragment();
+            homeFragment = new HomeFragment();
 
             getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, homeFragment ).commit();
             navigationView.setCheckedItem(R.id.nav_home);
@@ -145,12 +143,5 @@ homeFragment = new HomeFragment();
         ((Toolbar)findViewById(R.id.toolbar)).setTitle( newTitle );
     }
 
-    public static void startLoading(Activity activity) {
-        ((FragmentContainerView)activity.findViewById(R.id.fragmentLoading)).setVisibility(View.VISIBLE);
-    }
-
-    public static void stopLoading(Activity activity) {
-        ((FragmentContainerView)activity.findViewById(R.id.fragmentLoading)).setVisibility(View.GONE);
-    }
 
 }

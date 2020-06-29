@@ -30,7 +30,8 @@
         android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAccedi">
+        app:layout_constraintTop_toBottomOf="@+id/txtAccedi"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtLoginEmail"
@@ -48,6 +49,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLoginEmailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -70,11 +72,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail"
             app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-
-
-            >
+            app:errorEnabled="true" >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLoginPasswordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"

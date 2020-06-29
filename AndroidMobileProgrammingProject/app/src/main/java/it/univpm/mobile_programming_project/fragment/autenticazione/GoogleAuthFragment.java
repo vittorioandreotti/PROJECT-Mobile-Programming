@@ -20,8 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.functions.FirebaseFunctionsException;
 
-import java.util.Map;
-
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
 import it.univpm.mobile_programming_project.utils.auth_helper.GoogleAutenticationManager;
@@ -66,6 +64,7 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.btnLoginWithGoogle:
+                ((SplashScreenActivity)this.getActivity()).startLoading();
                 this.googleAutenticationManager.login(null);
                 break;
         }
@@ -89,6 +88,7 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
                                 @Override
                                 public void onComplete(@NonNull Task<Boolean> task) {
 
+
                                     // Handle Error
                                     if (!task.isSuccessful()) {
 
@@ -98,8 +98,11 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
                                             FirebaseFunctionsException.Code code = ffe.getCode();
                                             Object details = ffe.getDetails();
                                         }
+                                        ((SplashScreenActivity)GoogleAuthFragment.this.getActivity()).stopLoading();
                                         return;
                                     }
+
+                                    ((SplashScreenActivity)GoogleAuthFragment.this.getActivity()).stopLoading();
 
                                     Boolean isInitialized = task.getResult();
                                     if( isInitialized )
@@ -120,6 +123,7 @@ public class GoogleAuthFragment extends Fragment implements View.OnClickListener
                         } else {
                             GoogleAuthFragment.this.showFirebaseError(task.getException());
                         }
+                        ((SplashScreenActivity)GoogleAuthFragment.this.getActivity()).stopLoading();
                     }
                 });
                 break;

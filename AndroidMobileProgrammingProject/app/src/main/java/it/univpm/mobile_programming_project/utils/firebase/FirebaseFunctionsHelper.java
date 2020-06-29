@@ -75,11 +75,14 @@ public class FirebaseFunctionsHelper {
             });
     }
 
-    public Task<Boolean> partecipaCasa() {
+    public Task<Boolean> partecipaCasa(String idCasa) {
+
+        Map<String, Object> dataInput = new HashMap<>();
+        dataInput.put("idCasa", idCasa);
 
         return this.mFunctions
             .getHttpsCallable("partecipaCasa")
-            .call(  )
+            .call( dataInput )
             .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                 @Override
                 public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
@@ -93,15 +96,31 @@ public class FirebaseFunctionsHelper {
     public Task<Boolean> inserisciAffittuario() {
 
         return this.mFunctions
-            .getHttpsCallable("inserisciAffittuario")
-            .call(  )
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                @Override
-                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    Boolean resultData = (Boolean) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("inserisciAffittuario")
+                .call(  )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
     }
+
+    public Task<Boolean> registraUtente() {
+
+        return this.mFunctions
+                .getHttpsCallable("registraUtente")
+                .call(  )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
 }

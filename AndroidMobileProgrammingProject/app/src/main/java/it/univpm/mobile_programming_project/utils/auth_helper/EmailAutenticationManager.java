@@ -12,7 +12,7 @@ public class EmailAutenticationManager extends AuthenticationManager {
     private String email = null;
     private String password = null;
 
-    EmailAutenticationManager( )
+    public EmailAutenticationManager()
     {
         super(AUTH_TYPE.EMAIL_AND_PASSWORD);
         this.mAuth = FirebaseAuth.getInstance();
@@ -32,7 +32,7 @@ public class EmailAutenticationManager extends AuthenticationManager {
 
     @Override
     public void login(OnCompleteListener<AuthResult> authResultOnCompleteListener) {
-        if(this.isLoggedIn()) return;
+        if(this.isLoggedIn()) this.logout();
 
         this.mAuth
                 .signInWithEmailAndPassword(this.email, this.password)
@@ -41,7 +41,7 @@ public class EmailAutenticationManager extends AuthenticationManager {
 
     @Override
     public void registrazione(OnCompleteListener<AuthResult> authResultOnCompleteListener) {
-        if(this.isLoggedIn()) return;
+        if(this.isLoggedIn()) this.logout();
 
         this.mAuth
                 .createUserWithEmailAndPassword(this.email, this.password)
