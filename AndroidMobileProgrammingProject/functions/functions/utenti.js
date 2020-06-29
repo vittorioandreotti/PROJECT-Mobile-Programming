@@ -24,6 +24,10 @@ let getUserDataByUID = (uid) => {
         });
 }
 
+exports.getUser = functions.https.onCall((data, context) => {
+    return getUserDataByUID(context.auth.uid);
+});
+
 exports.isUserInitialized = functions.https.onCall((data, context) => {
 
     const uid = context.auth.uid;
