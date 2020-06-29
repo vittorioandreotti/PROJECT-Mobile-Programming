@@ -50,8 +50,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Button btnLogin = view.findViewById(R.id.btnAccedi);
         txtEmail = view.findViewById(R.id.txtLoginEmailInput);
         txtPassword = view.findViewById(R.id.txtLoginPasswordInput);
-        txtEmailLayout = view.findViewById(R.id.txtLoginEmail);
-        txtPasswordLayout = view.findViewById(R.id.txtLoginPassword);
+        txtEmailLayout = view.findViewById(R.id.txtEmail);
+        txtPasswordLayout = view.findViewById(R.id.txtPassword);
         btnLogin.setOnClickListener(this);
     }
 
@@ -156,24 +156,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 });
             }
         });
-//        autenticationManager.registrazione(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                // Registrazione fallita
-//                if (!task.isSuccessful()) {
-//
-//                    Exception e = task.getException();
-//                    if (e instanceof FirebaseFunctionsException) {
-//                        FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
-//                        FirebaseFunctionsException.Code code = ffe.getCode();
-//                        Object details = ffe.getDetails();
-//                    }
-//                    return;
-//                }
-//
-//                // Registrazione ok
-//            }
-//        });
     }
 
 }

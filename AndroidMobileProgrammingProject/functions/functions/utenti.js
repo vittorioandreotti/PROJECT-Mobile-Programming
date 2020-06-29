@@ -193,6 +193,6 @@ exports.registraUtente = functions.https.onCall((data, context) => {
                console.log("ERROR!");
                console.log(error);
                return false;
-       });
+           });
 
 });

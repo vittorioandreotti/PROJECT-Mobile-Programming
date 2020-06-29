@@ -108,11 +108,15 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-    public Task<Boolean> registraUtente() {
+    public Task<Boolean> registraUtente(String nome, String cognome) {
+
+        Map<String, Object> dataInput = new HashMap<>();
+        dataInput.put("nome", nome);
+        dataInput.put("cognome", cognome);
 
         return this.mFunctions
                 .getHttpsCallable("registraUtente")
-                .call(  )
+                .call( dataInput )
                 .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                     @Override
                     public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
