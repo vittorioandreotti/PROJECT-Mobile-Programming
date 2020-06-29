@@ -83,6 +83,7 @@ exports.inserisciAffittuario = functions.https.onCall((data, context) => {
                             tipo: "affittuario",
                             nome: nome,
                             cognome: cognome,
+                            tornei: [],
                         };
 
                         return db
@@ -134,6 +135,7 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
                         tipo: "proprietario",
                         nome: nome,
                         cognome: cognome,
+                        tornei: [],
                     };
 
                     return db
@@ -150,5 +152,32 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
                         });
                 });
         });
+
+});
+
+// Va chiamata dopo del sign in con email e password
+exports.registraUtente = functions.https.onCall((data, context) => {
+
+        const uid = context.auth.uid;
+        let nome = data.nome;
+        let cognome = data.cognome;
+
+       let data = {
+           nome: nome,
+           cognome: cognome,
+       };
+
+       return db
+           .collection('users')
+           .doc(uid)
+           .set(data)
+           .then( () => {
+               return true;
+           })
+           .catch((error) => {
+               console.log("ERROR!");
+               console.log(error);
+               return false;
+       });
 
 });

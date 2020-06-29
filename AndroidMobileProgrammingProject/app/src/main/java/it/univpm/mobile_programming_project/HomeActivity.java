@@ -1,7 +1,10 @@
 package it.univpm.mobile_programming_project;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -10,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -105,9 +109,15 @@ homeFragment = new HomeFragment();
 //                break;
 //
             // Tornei
-            case R.id.nav_tornei:
-                navigationFragment = new TorneiFragment();
-               titleId = R.string.tornei;
+            case R.id.nav_crea_un_torneo:
+                navigationFragment = new TorneiFragment(TorneiFragment.CREA);
+                titleId = R.string.tornei;
+                break;
+
+            // Tornei
+            case R.id.nav_partecipa_torneo:
+                navigationFragment = new TorneiFragment(TorneiFragment.PARTECIPA);
+                titleId = R.string.tornei;
                 break;
 //
 //            // Profilo
@@ -134,4 +144,13 @@ homeFragment = new HomeFragment();
 
         ((Toolbar)findViewById(R.id.toolbar)).setTitle( newTitle );
     }
+
+    public static void startLoading(Activity activity) {
+        ((FragmentContainerView)activity.findViewById(R.id.fragmentLoading)).setVisibility(View.VISIBLE);
+    }
+
+    public static void stopLoading(Activity activity) {
+        ((FragmentContainerView)activity.findViewById(R.id.fragmentLoading)).setVisibility(View.GONE);
+    }
+
 }
