@@ -3,11 +3,9 @@ package it.univpm.mobile_programming_project;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 
-import it.univpm.mobile_programming_project.R;
-
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivityWithLoading {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

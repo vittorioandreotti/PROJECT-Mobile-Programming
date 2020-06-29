@@ -19,24 +19,112 @@ public class FirebaseFunctionsHelper {
         this.mFunctions = FirebaseFunctions.getInstance();
     }
 
-    public Task< Map<String, Object> > getUserInfo() {
+    public Task< Boolean > isUserInitialized() {
 
         // Call the function and extract the result
         // exports.getUserInfo
 
         return this.mFunctions
-            .getHttpsCallable("getUserInfo")
-            .call( )
-            .continueWith(new Continuation<HttpsCallableResult, Map<String, Object>>() {
+            .getHttpsCallable("isUserInitialized")
+            .call()
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                 @Override
-                public Map<String, Object> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
                     HttpsCallableResult result = task.getResult();
-                    Map<String, Object> resultData = (Map<String, Object>) result.getData();
+                    Boolean resultData = (Boolean) result.getData();
                     return resultData;
                 }
             });
 
     }
 
+    public Task<Boolean> creaCasa(String nome, String indirizzo) {
+
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("nome", nome);
+        data.put("indirizzo", indirizzo);
+
+        return this.mFunctions
+            .getHttpsCallable("creaCasa")
+            .call( data )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
+
+
+    public Task<Boolean> inserisciProprietario() {
+
+        return this.mFunctions
+            .getHttpsCallable("inserisciProprietario")
+            .call(  )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
+
+    public Task<Boolean> partecipaCasa(String idCasa) {
+
+        Map<String, Object> dataInput = new HashMap<>();
+        dataInput.put("idCasa", idCasa);
+
+        return this.mFunctions
+            .getHttpsCallable("partecipaCasa")
+            .call( dataInput )
+            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                @Override
+                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    Boolean resultData = (Boolean) result.getData();
+                    return resultData;
+                }
+            });
+    }
+
+    public Task<Boolean> inserisciAffittuario() {
+
+        return this.mFunctions
+                .getHttpsCallable("inserisciAffittuario")
+                .call(  )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
+    public Task<Boolean> registraUtente(String nome, String cognome) {
+
+        Map<String, Object> dataInput = new HashMap<>();
+        dataInput.put("nome", nome);
+        dataInput.put("cognome", cognome);
+
+        return this.mFunctions
+                .getHttpsCallable("registraUtente")
+                .call( dataInput )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
 
 }

@@ -13,10 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 
+import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
 import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivityWithLoading implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
 
@@ -25,6 +26,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Prendi l'utente autenticato e salva i suoi dati in shared preferences
+        //
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,7 +51,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // This prevent fragment from being replaced on rotation
         if( savedInstanceState == null ){
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new HomeFragment() ).commit();
+            Fragment homeFragment;
+
+            /*
+            if( AFFITTUARIO ) {
+                homeFragment = new HomeAffittuarioFragment();
+            }else{
+                homeFragment = new HomeProprietarioFragment();
+            }*/
+            homeFragment = new HomeFragment();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, homeFragment ).commit();
             navigationView.setCheckedItem(R.id.nav_home);
             setToolbarTitle(getString(R.string.homepage));
         }
@@ -94,9 +107,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //                break;
 //
             // Tornei
-            case R.id.nav_tornei:
-                navigationFragment = new TorneiFragment();
-               titleId = R.string.tornei;
+            case R.id.nav_crea_un_torneo:
+                navigationFragment = new TorneiFragment(TorneiFragment.CREA);
+                titleId = R.string.tornei;
+                break;
+
+            // Tornei
+            case R.id.nav_partecipa_torneo:
+                navigationFragment = new TorneiFragment(TorneiFragment.PARTECIPA);
+                titleId = R.string.tornei;
                 break;
 //
 //            // Profilo
@@ -123,4 +142,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         ((Toolbar)findViewById(R.id.toolbar)).setTitle( newTitle );
     }
+
+
 }

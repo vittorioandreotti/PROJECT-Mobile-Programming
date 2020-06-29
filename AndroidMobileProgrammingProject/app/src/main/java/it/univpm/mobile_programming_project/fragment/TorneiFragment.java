@@ -19,10 +19,29 @@ import com.google.android.material.tabs.TabLayout;
 
 public class TorneiFragment extends Fragment {
 
+    public static final int PARTECIPA = 0;
+    public static final int CREA = 1;
+    public static final int STORICO = 2;
+
     private TabLayout tabLayout;
     private TabItem tabPartecipa, tabCrea, tabStorico;
     private ViewPager viewPager;
-    public PagerAdapter pagerAdapter;
+    private PagerAdapter pagerAdapter;
+
+    private int paginaDiLancio = 0;
+
+    public TorneiFragment() {
+    }
+
+    public TorneiFragment(int paginaDiLancio) {
+        switch (paginaDiLancio) {
+            case TorneiFragment.PARTECIPA:
+            case TorneiFragment.CREA:
+            case TorneiFragment.STORICO:
+                this.paginaDiLancio = paginaDiLancio;
+                break;
+        }
+    }
 
 
     @Override
@@ -44,6 +63,10 @@ public class TorneiFragment extends Fragment {
 
         pagerAdapter = new TorneiPageAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
+
+        // Naviga direttamente alla pagina specificata nel costruttore,
+        // oppure alla prima pagina se non specificata
+        viewPager.setCurrentItem(this.paginaDiLancio);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -24,10 +24,20 @@
             android:icon="@drawable/ic_spese"
             android:title="Spese" />
 
+
+        <!--    TORNEI    -->
+
         <item
-            android:id="@+id/nav_tornei"
-            android:icon="@drawable/ic_tornei"
-            android:title="Tornei" />
+            android:id="@+id/nav_crea_un_torneo"
+            android:icon="@drawable/ic_trophy_icon_icons"
+            android:title="Crea un torneo" />
+
+        <item
+            android:id="@+id/nav_partecipa_torneo"
+            android:icon="@drawable/ic_trophy_icon_icons"
+            android:title="Partecipa ad un torneo" />
+
+
 
         <item
             android:id="@+id/nav_profilo"

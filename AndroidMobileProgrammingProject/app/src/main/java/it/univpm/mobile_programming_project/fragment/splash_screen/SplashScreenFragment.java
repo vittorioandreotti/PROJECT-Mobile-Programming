@@ -18,11 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.functions.FirebaseFunctionsException;
 
-import java.util.Map;
-
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.SplashScreenActivity;
 import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
@@ -76,9 +73,9 @@ public class SplashScreenFragment extends Fragment {
             // If user is authenticated and has home data setted redirect to HomeActivity
             if( authenticationManager.isLoggedIn() )
             {
-                functionsHelper.getUserInfo().addOnCompleteListener(new OnCompleteListener<Map<String, Object>>() {
+                functionsHelper.isUserInitialized().addOnCompleteListener(new OnCompleteListener<Boolean>() {
                     @Override
-                    public void onComplete(@NonNull Task<Map<String, Object>> task) {
+                    public void onComplete(@NonNull Task<Boolean> task) {
 
                         // Handle Error
                         if (!task.isSuccessful()) {
@@ -92,12 +89,8 @@ public class SplashScreenFragment extends Fragment {
                             return;
                         }
 
-                        Map<String, Object> result = task.getResult();
-                        if(
-                                result.containsKey("isUserInitialized") &&
-                                        result.get("isUserInitialized") instanceof Boolean &&
-                                        (Boolean)(result.get("isUserInitialized"))
-                        )
+                        Boolean isInitialized = task.getResult();
+                        if(isInitialized)
                         {
                             // Logged in and data set -> Redirect to home activity
                             Intent intent = new Intent( getActivity() , HomeActivity.class);

@@ -1,107 +1,47 @@
-const functions = require('firebase-functions');
-
-//// Get a reference to the database service
-//var db = firebase.database();
-
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
+const functions = require('firebase-functions');
+
 admin.initializeApp();
 
 let db = admin.firestore();
 
+module.exports = {
+  ...require("./spese.js"),
+  ...require("./tornei.js"),
+  ...require("./utenti.js"),
+  ...require("./casa.js"),
+};
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
 
 
-let getFirebaseUserByUID = (uid) => {
-    return admin.auth()
-        .getUser(uid)
-        .then(function(userRecord) {
-            return( userRecord );
-        });
-}
 
-let getUserDataByUID = (uid) => {
 
-    return db
-        .collection('users')
-        .doc(uid)
-        .get()
-        .then((snapshot) => {
-            return snapshot.data()
-        });
 
-}
-
-// getUserInfo
-exports.getUserInfo = functions.https.onCall((data, context) => {
-
-    // Authentication / user information is automatically added to the request.
-    const uid = context.auth.uid;
-
-    return getFirebaseUserByUID( uid )
-        .then(function(userFirebase) {
-
-            if( userFirebase == null )
-            {
-                // Utente non loggato
-                return {
-                    isUserInitialized: false
-                };
-
-            }else{
-
-                // Utente loggato
-
-                return getUserDataByUID(uid)
-                    .then(function(userRecord) {
-                          if( userRecord == null )
-                          {
-                              // Utente loggato ma non inizializzato
-
-                              db
-                                .collection('users')
-                                .doc(uid)
-                                .set({
-                                    isUserInitialized: false
-                                });
-
-                              return {
-                                  userFirebase: userFirebase,
-                                  isUserInitialized: false
-                              };
-                          }else{
-
-                              // Utente loggato e forse inizializzato
-
-                              return {
-                                  user:         userRecord,
-                                  userFirebase: userFirebase,
-                                  isUserInitialized: userRecord.isUserInitialized || false
-                              };
-                          }
-                    })
-                    .catch((err) => {
-                        console.log('Error getting documents', err);
-                    });
-            }
-        });
-});
 
 //exports.test = functions.https.onRequest((req, res) => {
 //
-//    let uid = 'PrNrobCbObgoBnspqZMA5PiHva82';
+//    // Id Firebase Console di Matteo
+//    let uid = 'kfAxv0ovOvg3mLyS2xRhlbSzLxW2';
 //
-//    getUserInfoFromDb(uid)
-//        .then((userRecord) => {
-//            res.send( userRecord );
+////    res.send(uid);
+//
+//     getFirebaseUserByUID( uid )
+//        .then(function(userFirebase) {
+//            res.send( userFirebase );
 //        })
 //        .catch((err) => {
 //            console.log('Error getting documents', err);
 //        });
+//
+////    getUserInfoFromDb(uid)
+////        .then((userRecord) => {
+////            res.send( userRecord );
+////        })
+////        .catch((err) => {
+////            console.log('Error getting documents', err);
+////        });
 //});
 

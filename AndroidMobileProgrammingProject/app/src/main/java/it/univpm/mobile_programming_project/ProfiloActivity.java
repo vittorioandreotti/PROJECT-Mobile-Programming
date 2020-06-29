@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
-import it.univpm.mobile_programming_project.fragment.SpeseFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 
 public class ProfiloActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private HomeFragment homeFragment;
-    private SpeseFragment speseFragment;
+    private SpeseAffittuarioFragment speseFragment;
     private TorneiFragment torneiFragment;
 
     @Override
@@ -26,7 +26,7 @@ public class ProfiloActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profilo);
 
         homeFragment =new HomeFragment();
-        speseFragment = new SpeseFragment();
+        speseFragment = new SpeseAffittuarioFragment();
         torneiFragment = new TorneiFragment();
 
         bottomNav=findViewById(R.id.bottom_nav);
