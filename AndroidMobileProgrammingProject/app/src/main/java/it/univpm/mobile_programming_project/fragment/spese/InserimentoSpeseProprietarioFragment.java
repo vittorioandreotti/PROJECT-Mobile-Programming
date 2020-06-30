@@ -1,10 +1,13 @@
 package it.univpm.mobile_programming_project.fragment.spese;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
 import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
 import it.univpm.mobile_programming_project.view_pager.SpesePageAdapterAffittuario;
@@ -27,7 +30,6 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
     public static final int AFFITTO = 2;
 
     private TabLayout intabLayout;
-    private TabItem  intabSpeseCondominio, intabAffitto, intabBollette, intabspesacomune;
     private ViewPager inviewPager;
     public PagerAdapter inpagerAdapter;
 
@@ -55,9 +57,6 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_inserimento_spese, container, false);
 
         intabLayout = view.findViewById(R.id.intablayout);
-        intabSpeseCondominio = view.findViewById(R.id.tabspesecondomio);
-        intabAffitto = view.findViewById(R.id.intabaffitto);
-        intabBollette = view.findViewById(R.id.intabbollette);
 
 
         inviewPager = view.findViewById(R.id.viewpager);
@@ -79,13 +78,30 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 inviewPager.setCurrentItem(tab.getPosition());
-//                if (tab.getPosition() == 0) {
-                    inpagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 1) {
-//                    inpagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 2) {
-//                    inpagerAdapter.notifyDataSetChanged();
-//                }
+
+
+                inpagerAdapter.notifyDataSetChanged();
+
+                int titoloId = R.string.spese;
+                Activity activity = getActivity();
+
+                switch(tab.getPosition()){
+                    case InserimentoSpeseProprietarioFragment.SPESACONDOMINIO:
+                        titoloId = R.string.spese_condominio;
+                        break;
+
+                    case InserimentoSpeseProprietarioFragment.BOLLETTE:
+                        titoloId = R.string.bollette;
+                        break;
+
+                    case InserimentoSpeseProprietarioFragment.AFFITTO:
+                        titoloId = R.string.affitto;
+                        break;
+                }
+
+                ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
+
+
             }
 
             @Override

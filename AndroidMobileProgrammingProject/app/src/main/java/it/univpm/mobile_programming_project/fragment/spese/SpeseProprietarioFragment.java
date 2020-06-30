@@ -1,9 +1,11 @@
 package it.univpm.mobile_programming_project.fragment.spese;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
 import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
@@ -26,7 +28,6 @@ public class SpeseProprietarioFragment extends Fragment {
     public static final int BOLLETTE = 3;
 
     private TabLayout tabLayout;
-    private TabItem tabSommario, tabSpeseCondominio, tabAffitto, tabBollette;
     private ViewPager viewPager;
     public PagerAdapter pagerAdapter;
 
@@ -54,10 +55,6 @@ public class SpeseProprietarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_spese_proprietario, container, false);
 
         tabLayout = view.findViewById(R.id.tablayout);
-        tabSommario = view.findViewById(R.id.tabsommario);
-        tabSpeseCondominio = view.findViewById(R.id.tabspesecondomio);
-        tabAffitto = view.findViewById(R.id.tabaffitto);
-        tabBollette = view.findViewById(R.id.tabbollette);
         viewPager = view.findViewById(R.id.viewpager);
 
         return view;
@@ -77,15 +74,34 @@ public class SpeseProprietarioFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-//                if (tab.getPosition() == 0) {
-                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 1) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 2) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 3) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                }
+
+
+                pagerAdapter.notifyDataSetChanged();
+
+                int titoloId = R.string.spese;
+                Activity activity = getActivity();
+
+                switch(tab.getPosition()){
+                    case SpeseProprietarioFragment.SOMMARIO:
+                        titoloId = R.string.sommario;
+                        break;
+
+                    case SpeseProprietarioFragment.SPESACONDOMINIO:
+                        titoloId = R.string.spese_condominio;
+                        break;
+
+                    case SpeseProprietarioFragment.AFFITTO:
+                        titoloId = R.string.affitto;
+                        break;
+
+                    case SpeseProprietarioFragment.BOLLETTE:
+                        titoloId = R.string.bollette;
+                        break;
+                }
+
+                ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
+
+
             }
 
             @Override
