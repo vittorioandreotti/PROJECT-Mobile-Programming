@@ -42,10 +42,7 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollViewMenu">
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -55,7 +52,7 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu_proprietario"
         />
-    </ScrollView>
+
     <!--  TODO: LEVARE app:menu QUA SOPRA  -->
 
 

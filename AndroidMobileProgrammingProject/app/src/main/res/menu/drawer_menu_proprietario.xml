@@ -5,42 +5,51 @@
     tools:showIn="navigation_view"
     >
 
-        <group
-            android:id="@+id/home"
-            android:checkableBehavior="single">
+        <!--    HOME    -->
+    <group
+        android:id="@+id/home"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
 
-        </group>
+    </group>
 
 
 
-        <!--    STATISTICHE    -->
-        <group
-            android:id="@+id/group_statistiche"
-            android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_statistiche"
+
+    <!--    STATISTICHE    -->
+    <group
+        android:id="@+id/group_statistiche"
+        android:checkableBehavior="single">
+
+        <item android:title="Statistiche"
             android:icon="@drawable/ic_statistiche"
-            android:title="Statistiche" />
+            >
+            <menu>
+
+
 
         <item
             android:id="@+id/nav_statistiche_tutte_case"
+            android:icon="@drawable/ic_statistiche"
             android:title="Tutte le case" />
 
         <item
             android:id="@+id/nav_statistiche_sola_casa"
+            android:icon="@drawable/ic_statistiche"
             android:title="Singola casa" />
+            </menu>
+        </item>
+    </group>
 
-        </group>
 
 
-        <!--    SOMMARIO    -->
-        <group
-            android:id="@+id/group_sommario"
-            android:checkableBehavior="single">
+    <!--    SOMMARIO    -->
+    <group
+        android:id="@+id/group_sommario"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_sommario"
@@ -55,12 +64,12 @@
             android:id="@+id/nav_sommario_non_pagate"
             android:title="Spese non pagate" />
 
-        </group>
+    </group>
 
-        <!--    CASE    -->
-        <group
-            android:id="@+id/group_case"
-            android:checkableBehavior="single">
+    <!--    CASE    -->
+    <group
+        android:id="@+id/group_case"
+        android:checkableBehavior="single">
 
 
         <item
@@ -76,14 +85,14 @@
             android:id="@+id/nav_lista_case"
             android:title="Lista" />
 
-        </group>
+    </group>
 
 
 
-        <!--    SPESE    -->
-        <group
-            android:id="@+id/group_spese"
-            android:checkableBehavior="single">
+    <!--    SPESE    -->
+    <group
+        android:id="@+id/group_spese"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_spese"
             android:icon="@drawable/ic_spese"
@@ -101,15 +110,16 @@
             android:id="@+id/nav_ins_bollette"
             android:title="Inserisci bollette" />
 
-        </group>
+    </group>
 
 
 
 
-        <!--    TORNEI    -->
-        <group
-            android:id="@+id/group_tornei"
-            android:checkableBehavior="single">
+
+    <!--    TORNEI    -->
+    <group
+        android:id="@+id/group_tornei"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_torneo"
             android:icon="@drawable/ic_trophy_icon_icons"
@@ -127,17 +137,17 @@
             android:id="@+id/nav_storico_torneo"
             android:title="Storico" />
 
-        </group>
+    </group>
 
 
-        <group
-            android:id="@+id/group_profilo"
-            android:checkableBehavior="single">
+    <group
+        android:id="@+id/group_profilo"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_profile"
             android:title="Profilo" />
-        </group>
+    </group>
 
 
 

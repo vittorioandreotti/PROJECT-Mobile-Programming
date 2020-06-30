@@ -5,20 +5,30 @@
     tools:showIn="navigation_view"
     >
 
+    <!--    HOME    -->
     <group
         android:checkableBehavior="single"
-    >
+        android:id="@+id/home"
+        >
 
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
+    </group>
 
+    <group
+        android:id="@+id/group_statistiche"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_statistiche"
             android:icon="@drawable/ic_statistiche"
             android:title="Statistiche" />
+    </group>
 
+    <group
+        android:id="@+id/group_spese"
+        android:checkableBehavior="single">
         <!--    SPESE    -->
         <item
             android:id="@+id/nav_spese"
@@ -44,10 +54,14 @@
         <item
             android:id="@+id/nav_bollette"
             android:title="Bollette" />
+    </group>
 
 
 
 
+    <group
+        android:id="@+id/group_tornei"
+        android:checkableBehavior="single">
 
         <!--    TORNEI    -->
         <item
@@ -66,14 +80,19 @@
         <item
             android:id="@+id/nav_storico_torneo"
             android:title="Storico" />
+    </group>
 
 
 
+    <group
+        android:id="@+id/group_profilo"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_profile"
             android:title="Profilo" />
-
     </group>
+
+
 
 </menu>
