@@ -31,9 +31,10 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
     private ViewPager inviewPager;
     public PagerAdapter inpagerAdapter;
 
-    private int paginaDiLancio = 0;
+    private int paginaDiLancio;
 
     public InserimentoSpeseProprietarioFragment() {
+        this.paginaDiLancio=0;
     }
 
     public InserimentoSpeseProprietarioFragment(int paginaDiLancio) {
@@ -74,17 +75,17 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
         // oppure alla prima pagina se non specificata
         inviewPager.setCurrentItem(this.paginaDiLancio);
 
-        intabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        intabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 inviewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0) {
+//                if (tab.getPosition() == 0) {
                     inpagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 1) {
-                    inpagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 2) {
-                    inpagerAdapter.notifyDataSetChanged();
-                }
+//                } else if (tab.getPosition() == 1) {
+//                    inpagerAdapter.notifyDataSetChanged();
+//                } else if (tab.getPosition() == 2) {
+//                    inpagerAdapter.notifyDataSetChanged();
+//                }
             }
 
             @Override

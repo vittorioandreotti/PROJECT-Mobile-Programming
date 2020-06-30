@@ -30,9 +30,10 @@ public class SpeseProprietarioFragment extends Fragment {
     private ViewPager viewPager;
     public PagerAdapter pagerAdapter;
 
-    private int paginaDiLancio = 0;
+    private int paginaDiLancio;
 
     public SpeseProprietarioFragment() {
+        this.paginaDiLancio=0;
     }
 
     public SpeseProprietarioFragment(int paginaDiLancio) {
@@ -72,19 +73,19 @@ public class SpeseProprietarioFragment extends Fragment {
         // oppure alla prima pagina se non specificata
         viewPager.setCurrentItem(this.paginaDiLancio);
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0) {
+//                if (tab.getPosition() == 0) {
                     pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 1) {
-                    pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 2) {
-                    pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 3) {
-                    pagerAdapter.notifyDataSetChanged();
-                }
+//                } else if (tab.getPosition() == 1) {
+//                    pagerAdapter.notifyDataSetChanged();
+//                } else if (tab.getPosition() == 2) {
+//                    pagerAdapter.notifyDataSetChanged();
+//                } else if (tab.getPosition() == 3) {
+//                    pagerAdapter.notifyDataSetChanged();
+//                }
             }
 
             @Override

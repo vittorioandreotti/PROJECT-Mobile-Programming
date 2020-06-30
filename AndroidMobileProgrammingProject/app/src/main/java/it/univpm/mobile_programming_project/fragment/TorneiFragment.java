@@ -31,9 +31,11 @@ public class TorneiFragment extends Fragment {
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
 
-    private int paginaDiLancio = 0;
+    private int paginaDiLancio;
 
-    public TorneiFragment (){}
+    public TorneiFragment (){
+        this.paginaDiLancio=0;
+    }
 
     public TorneiFragment(int paginaDiLancio) {
         switch (paginaDiLancio) {
@@ -75,7 +77,7 @@ public class TorneiFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
 //                if (tab.getPosition() == 0) {
-//                    pagerAdapter.notifyDataSetChanged();
+                    pagerAdapter.notifyDataSetChanged();
 //                } else if (tab.getPosition() == 1) {
 //                    pagerAdapter.notifyDataSetChanged();
 //                } else if (tab.getPosition() == 2) {

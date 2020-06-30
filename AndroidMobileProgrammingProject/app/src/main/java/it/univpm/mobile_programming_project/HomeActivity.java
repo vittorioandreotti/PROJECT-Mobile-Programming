@@ -48,11 +48,12 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
 
-        if(PROPRIETARIO) {
+//        if(PROPRIETARIO) {
             navigationView.inflateMenu(R.menu.drawer_menu_proprietario);
-        }else{
-            navigationView.inflateMenu(R.menu.drawer_menu_affittuario);
-        }
+//        }else{
+//            navigationView.inflateMenu(R.menu.drawer_menu_affittuario);
+//        }
+        //TODO: MODIFICARE
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -104,16 +105,17 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if( AFFITTUARIO ) {
-            return onNavigationItemSelectedAffittuario(item);
-        }else{
+//        if( AFFITTUARIO ) {
+//            return onNavigationItemSelectedAffittuario(item);
+//        }else{
             return onNavigationItemSelectedProprietario(item);
-        }
+//        }
+        //TODO: MODIFICARE
 
     }
 
     private boolean onNavigationItemSelectedProprietario(@NonNull MenuItem item) {
-        Fragment navigationFragment;
+        Fragment navigationFragment = null;
         int titleId;
 
         switch (item.getItemId())
