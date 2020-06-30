@@ -61,63 +61,48 @@ public class SplashScreenFragment extends Fragment {
 
         navController = Navigation.findNavController(view);
 
-//
-//
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//
+        // If user is authenticated and has home data setted redirect to HomeActivity
+        if( authenticationManager.isLoggedIn() ) {
+            functionsHelper.isUserInitialized().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                @Override
+                public void onComplete(@NonNull Task<Boolean> task) {
 
-            // If user is authenticated and has home data setted redirect to HomeActivity
-            if( authenticationManager.isLoggedIn() )
-            {
-                functionsHelper.isUserInitialized().addOnCompleteListener(new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
+                    // Handle Error
+                    if (!task.isSuccessful()) {
 
-                        // Handle Error
-                        if (!task.isSuccessful()) {
-
-                            Exception e = task.getException();
-                            if (e instanceof FirebaseFunctionsException) {
-                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
-                                FirebaseFunctionsException.Code code = ffe.getCode();
-                                Object details = ffe.getDetails();
-                            }
-                            return;
+                        Exception e = task.getException();
+                        if (e instanceof FirebaseFunctionsException) {
+                            FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                            FirebaseFunctionsException.Code code = ffe.getCode();
+                            Object details = ffe.getDetails();
                         }
-
-                        Boolean isInitialized = task.getResult();
-                        if(isInitialized)
-                        {
-                            // Logged in and data set -> Redirect to home activity
-                            Intent intent = new Intent( getActivity() , HomeActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }else{
-                            // Logged in but data is not set -> Redirect to scegli proprietario affittuario
-                            SplashScreenFragment.this.navigateToScegliProprietarioAffittuario();
-                        }
+                        return;
                     }
-                });
 
-            }else{
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        SplashScreenFragment.this.navigateToScegliLoginRegistrazione();
+                    Boolean isInitialized = task.getResult();
+                    if(isInitialized)
+                    {
+                        // Logged in and data set -> Redirect to home activity
+                        Intent intent = new Intent( getActivity() , HomeActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else{
+                        // Logged in but data is not set -> Redirect to scegli proprietario affittuario
+                        SplashScreenFragment.this.navigateToScegliProprietarioAffittuario();
                     }
-                },2000);
-            }
+                }
+            });
 
+        } else {
 
-//          }
-//        },500);
-
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    SplashScreenFragment.this.navigateToScegliLoginRegistrazione();
+                }
+            },2000);
+        }
     }
 
     private void navigateToScegliLoginRegistrazione() {

@@ -65,12 +65,7 @@ public class RegistrazioneFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registrazione, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_registrazione, container, false);
 
         view.findViewById(R.id.btnRegistrati).setOnClickListener(this);
 
@@ -85,6 +80,13 @@ public class RegistrazioneFragment extends Fragment implements View.OnClickListe
         txtEmailLayout = view.findViewById(R.id.txtEmail);
         txtPasswordLayout = view.findViewById(R.id.txtPassword);
         txtPasswordConfermaLayout = view.findViewById(R.id.txtPasswordConfirm);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override

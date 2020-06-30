@@ -49,15 +49,18 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.btnPartecipaCasa).setOnClickListener(this);
-        txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inserisci_codice_casa, container, false);
+        View view = inflater.inflate(R.layout.fragment_inserisci_codice_casa, container, false);
+
+        view.findViewById(R.id.btnPartecipaCasa).setOnClickListener(this);
+        txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
+
+        return view;
     }
 
     @Override
@@ -81,6 +84,7 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
                         ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
                         return;
                     }
+
 
                     Boolean isAffittuarioInserito = task.getResult();
                     if (isAffittuarioInserito) {
