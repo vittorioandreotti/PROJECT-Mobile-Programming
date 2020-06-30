@@ -3,7 +3,6 @@ package it.univpm.mobile_programming_project.utils.auth_helper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class EmailAutenticationManager extends AuthenticationManager {
 

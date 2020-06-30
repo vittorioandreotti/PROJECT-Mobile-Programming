@@ -28,7 +28,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDateLayout"
+                android:id="@+id/txtDataSpesaBolletta"
                 style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDataAffitto"
+                    android:id="@+id/txtDataAffittoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
@@ -51,7 +51,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDateScadenzaLayout"
+                android:id="@+id/txtDataScadenza"
                 style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,10 +60,10 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputDateLayout">
+                app:layout_constraintTop_toBottomOf="@+id/txtDataSpesaBolletta">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDataScadenzaAffitto"
+                    android:id="@+id/txtDataScadenzaInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
@@ -82,16 +82,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Importo mensile"
+                android:hint="@string/importo_mensile"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputDateScadenzaLayout">
+                app:layout_constraintTop_toBottomOf="@+id/txtDataScadenza">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtImportoAffittoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    android:background="@drawable/bordo"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtNumeroMesiAffitto"
+                style="@style/Theme.Widget.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/numero_di_mensilit"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtImportoAffitto">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNumeroMesiAffittoInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordo"
+                    android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +137,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtImportoAffitto" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNumeroMesiAffitto" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

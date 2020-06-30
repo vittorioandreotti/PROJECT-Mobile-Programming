@@ -16,7 +16,10 @@ import android.widget.DatePicker;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Date;
+
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 
 /**
@@ -24,25 +27,18 @@ import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
  * Use the {@link InserisciAffittoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InserisciAffittoFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class InserisciAffittoFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
-    private TextInputEditText textInputDataAffitto;
-    private TextInputEditText textInputDataScadenzaAffitto;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextInputEditText txtDataAffittoInput;
+    private TextInputEditText txtDataScadenzaInput;
+    private TextInputEditText txtImportoAffittoInput;
+    private TextInputEditText txtNumeroMesiAffittoInput;
 
     public InserisciAffittoFragment() {
         // Required empty public constructor
     }
 
-    public static InserisciAffittoFragment newInstance(String param1, String param2) {
+    public static InserisciAffittoFragment newInstance() {
         InserisciAffittoFragment fragment = new InserisciAffittoFragment();
         return fragment;
     }
@@ -58,21 +54,14 @@ public class InserisciAffittoFragment extends Fragment implements DatePickerDial
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_inserisci_affitto, container, false);
 
-        textInputDataAffitto = view.findViewById(R.id.txtDataAffitto);
-        textInputDataScadenzaAffitto = view.findViewById(R.id.txtDataScadenzaAffitto);
-        textInputDataAffitto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(v);
-            }
-        });
+        txtImportoAffittoInput = view.findViewById(R.id.txtImportoAffittoInput);
+        txtDataAffittoInput = view.findViewById(R.id.txtDataAffittoInput);
+        txtDataScadenzaInput = view.findViewById(R.id.txtDataScadenzaInput);
+        txtNumeroMesiAffittoInput = view.findViewById(R.id.txtNumeroMesiAffittoInput);
 
-        textInputDataScadenzaAffitto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(v);
-            }
-        });
+        txtDataAffittoInput.setOnClickListener(this);
+        txtDataScadenzaInput.setOnClickListener(this);
+        view.findViewById(R.id.btnInsericiAffitto).setOnClickListener(this);
 
         return view;
     }
@@ -83,7 +72,7 @@ public class InserisciAffittoFragment extends Fragment implements DatePickerDial
 
     }
 
-    public void showDatePickerDialog(View view) {
+    private void showDatePickerDialog(View view) {
         DialogFragment newFragment = new DatePickerFragment(this);
         FragmentManager fm = getActivity().getSupportFragmentManager();
         newFragment.show(fm, "datePicker");
@@ -96,13 +85,54 @@ public class InserisciAffittoFragment extends Fragment implements DatePickerDial
 
         switch (view.getId())
         {
-            case R.id.txtDataAffitto:
-                textInputDataAffitto.setText(formattedDate);
+            case R.id.txtDataAffittoInput:
+                txtDataAffittoInput.setText(formattedDate);
                 break;
 
-            case R.id.txtDataScadenzaAffitto:
-                textInputDataScadenzaAffitto.setText(formattedDate);
+            case R.id.txtDataScadenzaInput:
+                txtDataScadenzaInput.setText(formattedDate);
                 break;
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.txtDataAffittoInput:
+            case R.id.txtDataScadenzaInput:
+                showDatePickerDialog(v);
+                break;
+
+            case R.id.btnInsericiAffitto:
+                inserisciSpesaAffitto();
+                break;
+
+        }
+    }
+
+    private void inserisciSpesaAffitto() {
+
+        Date dataAffitto = Helper.fromStringToDate(txtDataAffittoInput.getText().toString());
+        Date dataScadenzaAffitto = Helper.fromStringToDate(txtDataScadenzaInput.getText().toString());
+        String nomeSpesa = txtImportoAffittoInput.getText().toString();
+        Integer numeroMesiAffitto;
+        Integer importoAffitto;
+
+        try {
+            numeroMesiAffitto = Integer.parseInt(txtNumeroMesiAffittoInput.getText().toString());
+        } catch (NumberFormatException exception) {
+            numeroMesiAffitto = 0;
+        }
+
+        try {
+            importoAffitto = Integer.parseInt(txtImportoAffittoInput.getText().toString());
+        } catch (NumberFormatException exception) {
+            importoAffitto = 0;
+        }
+
+        // TODO: Inserisci affitto
+    }
+
+
 }

@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,8 +18,6 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
-import it.univpm.mobile_programming_project.fragment.LoadingFragment;
-import it.univpm.mobile_programming_project.fragment.autenticazione.GoogleAuthFragment;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
 

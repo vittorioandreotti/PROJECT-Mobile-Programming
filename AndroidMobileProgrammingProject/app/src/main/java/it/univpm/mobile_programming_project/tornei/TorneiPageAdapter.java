@@ -1,5 +1,7 @@
 package it.univpm.mobile_programming_project.tornei;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,6 +33,12 @@ public class TorneiPageAdapter extends FragmentPagerAdapter {
                 return new StoricoTorneiFragment();
             default: return null;
         }
+    }
+
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        return super.instantiateItem(container, position);
     }
 
     /**

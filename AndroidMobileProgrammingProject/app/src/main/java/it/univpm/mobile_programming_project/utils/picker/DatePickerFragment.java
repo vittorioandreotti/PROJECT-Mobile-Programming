@@ -8,8 +8,6 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
-import it.univpm.mobile_programming_project.tornei.CreaTorneoFragment;
-
 public class DatePickerFragment extends DialogFragment {
 
     private final DatePickerDialog.OnDateSetListener dateSetListener;
