@@ -1,9 +1,11 @@
 package it.univpm.mobile_programming_project.fragment.spese;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
 import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
@@ -26,7 +28,6 @@ public class SpeseAffittuarioFragment extends Fragment {
     public static final int BOLLETTE = 3;
 
     private TabLayout tabLayout;
-    private TabItem tabSommario, tabSpesaComune, tabAffitto, tabBollette;
     private ViewPager viewPager;
     public PagerAdapter pagerAdapter;
 
@@ -55,10 +56,6 @@ public class SpeseAffittuarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_spese_affittuario, container, false);
 
         tabLayout = view.findViewById(R.id.tablayout);
-        tabSommario = view.findViewById(R.id.tabsommario);
-        tabSpesaComune = view.findViewById(R.id.tabspesacomune);
-        tabAffitto = view.findViewById(R.id.tabaffitto);
-        tabBollette = view.findViewById(R.id.tabbollette);
         viewPager = view.findViewById(R.id.viewpager);
 
         return view;
@@ -78,15 +75,34 @@ public class SpeseAffittuarioFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-//                if (tab.getPosition() == 0) {
-                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 1) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 2) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 3) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                }
+
+
+                pagerAdapter.notifyDataSetChanged();
+
+                int titoloId = R.string.spese;
+                Activity activity = getActivity();
+
+                switch(tab.getPosition()){
+                    case SpeseAffittuarioFragment.SOMMARIO:
+                        titoloId = R.string.sommario;
+                        break;
+
+                    case SpeseAffittuarioFragment.SPESACOMUNE:
+                        titoloId = R.string.spesacomune;
+                        break;
+
+                    case SpeseAffittuarioFragment.AFFITTO:
+                        titoloId = R.string.affitto;
+                        break;
+
+                    case SpeseAffittuarioFragment.BOLLETTE:
+                        titoloId = R.string.bollette;
+                        break;
+                }
+
+                ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
+
+
             }
 
             @Override

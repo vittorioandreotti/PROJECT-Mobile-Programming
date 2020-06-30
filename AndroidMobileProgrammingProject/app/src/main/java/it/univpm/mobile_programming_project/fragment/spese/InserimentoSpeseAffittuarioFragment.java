@@ -1,9 +1,11 @@
 package it.univpm.mobile_programming_project.fragment.spese;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
 import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
@@ -25,7 +27,6 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
 
 
     private TabLayout intabLayout;
-    private TabItem  intabspesacomune;
     private ViewPager inviewPager;
     public PagerAdapter inpagerAdapter;
 
@@ -50,7 +51,6 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_inserimento_spese_affittuario, container, false);
 
         intabLayout = view.findViewById(R.id.intablayout);
-        intabspesacomune = view.findViewById(R.id.intabspesacomune);
 
         inviewPager = view.findViewById(R.id.viewpager);
 
@@ -71,9 +71,23 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 inviewPager.setCurrentItem(tab.getPosition());
-                //if (tab.getPosition() == 0) {
-                    inpagerAdapter.notifyDataSetChanged();
-                //}
+
+
+                inpagerAdapter.notifyDataSetChanged();
+
+                int titoloId = R.string.spese;
+                Activity activity = getActivity();
+
+                switch(tab.getPosition()){
+                    case InserimentoSpeseAffittuarioFragment.SPESACOMUNE:
+                        titoloId = R.string.spese_condominio;
+                        break;
+                        
+                }
+
+                ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
+
+
             }
 
             @Override
