@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
 import it.univpm.mobile_programming_project.fragment.TorneiFragment;
+import it.univpm.mobile_programming_project.fragment.profilo.ProfiloFragment;
 import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
@@ -153,14 +154,14 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.inserisci_spesa_condominio;
                 break;
 
-            case R.id.nav_ins_affitto:
+            case R.id.nav_ins_bollette:
                 navigationFragment = new InserimentoSpeseProprietarioFragment(InserimentoSpeseProprietarioFragment.BOLLETTE);
-                titleId = R.string.inserisci_affitto;
+                titleId = R.string.inserisci_bollette;
                 break;
 
-            case R.id.nav_ins_bollette:
+            case R.id.nav_ins_affitto:
                 navigationFragment = new InserimentoSpeseProprietarioFragment(InserimentoSpeseProprietarioFragment.AFFITTO);
-                titleId = R.string.inserisci_bollette;
+                titleId = R.string.inserisci_affitto;
                 break;
 
 
@@ -184,12 +185,12 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 navigationFragment = new TorneiFragment(TorneiFragment.STORICO);
                 titleId = R.string.storicotorneo;
                 break;
-//
-//            // Profilo
-//            case R.id.nav_profilo:
-//                navigationFragment = new ProfiloFragment();
-//                titleId = R.string.profilo;
-//                break;
+
+            // Profilo
+            case R.id.nav_profilo:
+                navigationFragment = new ProfiloFragment();
+                titleId = R.string.profilo;
+                break;
 
             default:
                 return false;

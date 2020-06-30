@@ -20,7 +20,7 @@
 
 
         <activity
-            android:name=".ProfiloActivity"
+            android:name=".fragment.profilo.ProfiloActivity"
             android:theme="@style/Theme.App.Fullscreen" />
 
         <activity

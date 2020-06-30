@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project;
+package it.univpm.mobile_programming_project.fragment.profilo;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.TorneiFragment;
