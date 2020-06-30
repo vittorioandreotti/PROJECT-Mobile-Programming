@@ -23,11 +23,7 @@ import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InserisciSpesaCondominioFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class InserisciSpesaCondominioFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
     private TextInputEditText txtDataSpesaCondominioInput;
@@ -38,10 +34,7 @@ public class InserisciSpesaCondominioFragment extends Fragment implements DatePi
         // Required empty public constructor
     }
 
-    public static InserisciSpesaCondominioFragment newInstance() {
-        InserisciSpesaCondominioFragment fragment = new InserisciSpesaCondominioFragment();
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

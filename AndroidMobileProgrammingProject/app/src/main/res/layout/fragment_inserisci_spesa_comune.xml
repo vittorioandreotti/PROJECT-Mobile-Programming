@@ -38,6 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNomeSpesaComuneInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordo"/>
@@ -46,7 +47,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDateLayout"
+                android:id="@+id/txtDataSpesaComune"
                 style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtNomeSpesaComune">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDataSpesaComune"
+                    android:id="@+id/txtDataSpesaComuneInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
@@ -81,12 +82,14 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputDateLayout">
+                app:layout_constraintTop_toBottomOf="@+id/txtDataSpesaComune">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtImportoSpesaComuneInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    android:background="@drawable/bordo"
+                    android:inputType="numberDecimal"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,6 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtImportoSpesaComune">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtDescrizioneSpesaComuneInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top|left"
