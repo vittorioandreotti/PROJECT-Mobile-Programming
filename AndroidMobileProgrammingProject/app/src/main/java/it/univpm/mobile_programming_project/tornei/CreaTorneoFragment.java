@@ -15,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
@@ -55,7 +54,7 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_crea_torneo, container, false);
 
-        tietDate = v.findViewById(R.id.txtDataTorneo);
+        tietDate = v.findViewById(R.id.txtDataTorneoInput);
         tietDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +62,7 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
             }
         });
 
-        tietTime = v.findViewById(R.id.txtOraEvento);
+        tietTime = v.findViewById(R.id.txtOraEventoInput);
         tietTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.App.Fullscreen"
+    android:background="@android:color/white"
     tools:context=".tornei.CreaTorneoFragment">
 
     <ScrollView
@@ -38,6 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTitoloTorneoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordo"/>
@@ -58,7 +60,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtTitoloTorneo">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDataTorneo"
+                    android:id="@+id/txtDataTorneoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
@@ -81,6 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/inputDateLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtOraEventoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordo"/>

@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.tornei.CreaTorneoFragment;
+import it.univpm.mobile_programming_project.tornei.PartecipaTorneoFragment;
+import it.univpm.mobile_programming_project.tornei.StoricoTorneiFragment;
 import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
 import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
 
@@ -30,8 +33,7 @@ public class TorneiFragment extends Fragment {
 
     private int paginaDiLancio = 0;
 
-    public TorneiFragment() {
-    }
+    public TorneiFragment (){}
 
     public TorneiFragment(int paginaDiLancio) {
         switch (paginaDiLancio) {
@@ -72,13 +74,13 @@ public class TorneiFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0) {
-                    pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 1) {
-                    pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 2) {
-                    pagerAdapter.notifyDataSetChanged();
-                }
+//                if (tab.getPosition() == 0) {
+//                    pagerAdapter.notifyDataSetChanged();
+//                } else if (tab.getPosition() == 1) {
+//                    pagerAdapter.notifyDataSetChanged();
+//                } else if (tab.getPosition() == 2) {
+//                    pagerAdapter.notifyDataSetChanged();
+//                }
             }
 
             @Override
