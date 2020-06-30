@@ -26,4 +26,18 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
+
+    <!--  Fragment per il caricamento  -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="it.univpm.mobile_programming_project.fragment.LoadingFragment"
+        android:visibility="gone"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -96,15 +96,35 @@ public class FirebaseFunctionsHelper {
     public Task<Boolean> inserisciAffittuario() {
 
         return this.mFunctions
-            .getHttpsCallable("inserisciAffittuario")
-            .call(  )
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                @Override
-                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    Boolean resultData = (Boolean) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("inserisciAffittuario")
+                .call(  )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
     }
+
+    public Task<Boolean> registraUtente(String nome, String cognome) {
+
+        Map<String, Object> dataInput = new HashMap<>();
+        dataInput.put("nome", nome);
+        dataInput.put("cognome", cognome);
+
+        return this.mFunctions
+                .getHttpsCallable("registraUtente")
+                .call( dataInput )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
 }

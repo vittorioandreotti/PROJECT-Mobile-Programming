@@ -45,33 +45,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
-                android:id="@+id/imgUserPicture"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtNome"
+                style="@style/Theme.Widget.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nome"
+                android:textColorHint="@color/OnPrimary"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_profile"
-                />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLoginName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColorHint="@color/OnPrimary"
-                app:endIconMode="clear_text"
-                android:hint="@string/nome"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgUserPicture"
                 app:passwordToggleTint="#001807FF"
-                app:startIconDrawable="@drawable/ic_group_light_grey_24dp"
-                style="@style/Theme.Widget.TextInput"
-                >
+                app:startIconDrawable="@drawable/ic_group_light_grey_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNomeInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordo" />
@@ -79,7 +68,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLoginSurname"
+                android:id="@+id/txtCognome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -87,7 +76,7 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLoginName"
+                app:layout_constraintTop_toBottomOf="@id/txtNome"
                 app:startIconDrawable="@drawable/ic_group_light_grey_24dp"
                 style="@style/Theme.Widget.TextInput"
 
@@ -95,6 +84,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCognomeInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordo"
@@ -103,7 +93,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLoginEmail"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -111,12 +101,13 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLoginSurname"
+                app:layout_constraintTop_toBottomOf="@id/txtCognome"
                 app:startIconDrawable="@drawable/ic_email_light_grey_24dp"
                 style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEmailInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -128,7 +119,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLoginPassword"
+                android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -136,24 +127,24 @@
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail"
+                app:layout_constraintTop_toBottomOf="@+id/txtEmail"
                 app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
                 style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPasswordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:background="@drawable/bordo"
-
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLoginPasswordConfirm"
+                android:id="@+id/txtPasswordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -161,12 +152,13 @@
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword"
+                app:layout_constraintTop_toBottomOf="@+id/txtPassword"
                 app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
                 style="@style/Theme.Widget.TextInput"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPasswordConfirmInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -183,7 +175,7 @@
                 android:text="@string/registrati"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLoginPasswordConfirm"
+                app:layout_constraintTop_toBottomOf="@+id/txtPasswordConfirm"
                 style="@style/Theme.Widget.Button"
                  />
 

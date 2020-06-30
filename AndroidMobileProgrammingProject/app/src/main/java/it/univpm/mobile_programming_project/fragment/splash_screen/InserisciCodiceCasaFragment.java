@@ -50,8 +50,7 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btnPartecipaCasa).setOnClickListener(this);
-        this.txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
-        this.loadingFragment = view.findViewById(R.id.fragmentLoading);
+        txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
     }
 
     @Override
@@ -65,7 +64,7 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
     public void onClick(View v) {
         if(v.getId() == R.id.btnPartecipaCasa)
         {
-            loadingFragment.setVisibility(View.VISIBLE);
+            ((SplashScreenActivity)this.getActivity()).startLoading();
 
             this.firebaseFunctionsHelper.inserisciAffittuario().addOnCompleteListener(new OnCompleteListener<Boolean>() {
                 @Override
@@ -79,15 +78,24 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
                             FirebaseFunctionsException.Code code = ffe.getCode();
                             Object details = ffe.getDetails();
                         }
-                        loadingFragment.setVisibility(View.GONE);
+                        ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
                         return;
                     }
 
 
                     Boolean isAffittuarioInserito = task.getResult();
                     if (isAffittuarioInserito) {
-                        String txtCodiceCasaInput = InserisciCodiceCasaFragment.this.txtCodiceCasaInput.getText().toString();
-                        InserisciCodiceCasaFragment.this.firebaseFunctionsHelper.partecipaCasa(txtCodiceCasaInput).addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                        String codiceCasa = txtCodiceCasaInput.getText().toString();
+
+
+                        if(codiceCasa.equals("")) {
+                            Toast.makeText(InserisciCodiceCasaFragment.this.getContext(), "Inserire un codice casa.", Toast.LENGTH_LONG).show();
+                            ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
+                            return;
+                        }
+
+
+                        InserisciCodiceCasaFragment.this.firebaseFunctionsHelper.partecipaCasa(codiceCasa).addOnCompleteListener(new OnCompleteListener<Boolean>() {
                             @Override
                             public void onComplete(@NonNull Task<Boolean> task) {
 
@@ -99,22 +107,21 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
                                         FirebaseFunctionsException.Code code = ffe.getCode();
                                         Object details = ffe.getDetails();
                                     }
-                                    loadingFragment.setVisibility(View.GONE);
+                                    ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
                                     return;
                                 }
 
                                 Boolean isCasaValid = task.getResult();
                                 if (isCasaValid) {
                                     // Casa valida -> Redirect to home activity
-                                    loadingFragment.setVisibility(View.GONE);
+                                    ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
                                     SplashScreenActivity splashScreenActivity = (SplashScreenActivity) InserisciCodiceCasaFragment.this.getActivity();
                                     splashScreenActivity.navigateToHomeActivity(null);
                                 } else {
                                     // Casa non valida
                                     Toast.makeText(InserisciCodiceCasaFragment.this.getContext(), "Codice casa non valido.", Toast.LENGTH_LONG).show();
+                                    ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
                                 }
-
-                                loadingFragment.setVisibility(View.GONE);
                             }
                         });
                     } else {
@@ -122,7 +129,7 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
                         Toast.makeText(InserisciCodiceCasaFragment.this.getContext(), "Errore nella creazione dell'utente.", Toast.LENGTH_LONG).show();
                     }
 
-                    loadingFragment.setVisibility(View.GONE);
+                    ((SplashScreenActivity)InserisciCodiceCasaFragment.this.getActivity()).stopLoading();
                 }
             });
         }

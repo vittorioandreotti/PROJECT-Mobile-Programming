@@ -51,17 +51,34 @@ exports.partecipaCasa = functions.https.onCall((data, context) => {
         uidCasa == undefined || uidCasa == null || uidCasa == ""
     ) return false;
 
-
     var casaRef = db.collection("case").doc(uidCasa);
 
     return casaRef.get()
       .then((casaDoc) => {
         if (casaDoc.exists) {
 
-                casaRef.update({
-                        idAffittuari: admin.firestore.FieldValue.arrayUnion( db.collection("users").doc(uid) )
-                });
-                return true;
+                let docUtente = db.collection("users").doc(uid);
+
+                let dataUtenteCasa = {
+                    casa: casaRef
+                };
+
+                return docUtente
+                    .set(dataUtenteCasa, { merge: true })
+                    .then( () => {
+
+                        casaRef.update({
+                                idAffittuari: admin.firestore.FieldValue.arrayUnion( docUtente )
+                        });
+
+                        return true;
+                    })
+                    .catch((error) => {
+                        console.log("ERROR!");
+                        console.log(error);
+                        return false;
+                    });
+
         } else {
             // La casa non esiste
             return false;

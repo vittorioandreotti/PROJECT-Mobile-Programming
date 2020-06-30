@@ -30,10 +30,11 @@
         android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAccedi">
+        app:layout_constraintTop_toBottomOf="@+id/txtAccedi"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtLoginEmail"
+            android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/e_mail"
@@ -48,6 +49,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLoginEmailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -59,7 +61,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtLoginPassword"
+            android:id="@+id/txtPassword"
             style="@style/Theme.Widget.TextInput"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
@@ -68,13 +70,12 @@
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
             app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-
-
-            >
+            app:errorEnabled="true" >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLoginPasswordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -92,7 +93,7 @@
             android:text="@string/accedi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword"
+            app:layout_constraintTop_toBottomOf="@+id/txtPassword"
             style="@style/Theme.Widget.Button"
             />
 
