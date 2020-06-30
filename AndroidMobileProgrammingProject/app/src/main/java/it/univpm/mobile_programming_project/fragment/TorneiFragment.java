@@ -1,9 +1,11 @@
 package it.univpm.mobile_programming_project.fragment;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.tornei.CreaTorneoFragment;
 import it.univpm.mobile_programming_project.tornei.PartecipaTorneoFragment;
@@ -13,6 +15,7 @@ import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -27,7 +30,6 @@ public class TorneiFragment extends Fragment {
     public static final int STORICO = 2;
 
     private TabLayout tabLayout;
-    private TabItem tabPartecipa, tabCrea, tabStorico;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
 
@@ -54,9 +56,6 @@ public class TorneiFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tornei, container, false);
 
         tabLayout = view.findViewById(R.id.tablayout);
-        tabPartecipa = view.findViewById(R.id.tabpartecipa);
-        tabStorico = view.findViewById(R.id.tabstorico);
-        tabCrea = view.findViewById(R.id.tabcrea);
         viewPager = view.findViewById(R.id.viewpager);
 
         return view;
@@ -76,13 +75,30 @@ public class TorneiFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-//                if (tab.getPosition() == 0) {
-                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 1) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                } else if (tab.getPosition() == 2) {
-//                    pagerAdapter.notifyDataSetChanged();
-//                }
+
+
+                pagerAdapter.notifyDataSetChanged();
+
+                int titoloId = R.string.tornei;
+                Activity activity = getActivity();
+
+                switch(tab.getPosition()){
+                    case TorneiFragment.PARTECIPA:
+                        titoloId = R.string.partecipatorneo;
+                        break;
+
+                    case TorneiFragment.CREA:
+                        titoloId = R.string.creatorneo;
+                        break;
+
+                    case TorneiFragment.STORICO:
+                        titoloId = R.string.storicotorneo;
+                        break;
+                }
+
+                ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
+
+
             }
 
             @Override

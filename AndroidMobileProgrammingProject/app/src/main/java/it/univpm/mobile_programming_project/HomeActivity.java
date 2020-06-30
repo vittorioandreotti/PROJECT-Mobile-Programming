@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
+
     }
 
     @Override
@@ -300,7 +301,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         return true;
     }
 
-    private void setToolbarTitle(String newTitle)
+    public void setToolbarTitle(String newTitle)
     {
         ((Toolbar)findViewById(R.id.toolbar)).setTitle( newTitle );
     }
