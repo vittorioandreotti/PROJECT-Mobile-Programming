@@ -38,6 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNomeSpesaCondominioInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordo"/>
@@ -46,7 +47,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDateLayout"
+                android:id="@+id/txtDataSpesaBolletta"
                 style="@style/Theme.Widget.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtNomeSpesaCondominio">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDataSpesaCondominio"
+                    android:id="@+id/txtDataSpesaCondominioInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
@@ -81,12 +82,14 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputDateLayout">
+                app:layout_constraintTop_toBottomOf="@+id/txtDataSpesaBolletta">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtImportoSpesaCondominioInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    android:background="@drawable/bordo"
+                    android:inputType="numberDecimal"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

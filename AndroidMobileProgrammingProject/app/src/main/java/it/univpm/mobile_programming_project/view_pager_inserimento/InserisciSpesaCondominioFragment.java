@@ -1,5 +1,6 @@
 package it.univpm.mobile_programming_project.view_pager_inserimento;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
@@ -14,7 +15,12 @@ import android.widget.DatePicker;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 
 /**
@@ -22,48 +28,24 @@ import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
  * Use the {@link InserisciSpesaCondominioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InserisciSpesaCondominioFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class InserisciSpesaCondominioFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
-    private TextInputEditText textInputEditText;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextInputEditText txtDataSpesaCondominioInput;
+    private TextInputEditText txtNomeSpesaCondominioInput;
+    private TextInputEditText txtImportoSpesaCondominioInput;
 
     public InserisciSpesaCondominioFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SpeseCondominioFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InserisciSpesaCondominioFragment newInstance(String param1, String param2) {
+    public static InserisciSpesaCondominioFragment newInstance() {
         InserisciSpesaCondominioFragment fragment = new InserisciSpesaCondominioFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -72,17 +54,18 @@ public class InserisciSpesaCondominioFragment extends Fragment implements DatePi
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_inserisci_spesa_condominio, container, false);
 
-        textInputEditText = v.findViewById(R.id.txtDataSpesaCondominio);
-        textInputEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(v);
-            }
-        });
+        txtNomeSpesaCondominioInput = v.findViewById(R.id.txtNomeSpesaCondominioInput);
+        txtImportoSpesaCondominioInput = v.findViewById(R.id.txtImportoSpesaCondominioInput);
+
+        txtDataSpesaCondominioInput = v.findViewById(R.id.txtDataSpesaCondominioInput);
+
+        txtDataSpesaCondominioInput.setOnClickListener(this);
+        v.findViewById(R.id.btnInserisciSpesaCondominio).setOnClickListener(this);
+
         return v;
     }
 
-    public void showDatePickerDialog(View view) {
+    private void showDatePickerDialog(View view) {
         DialogFragment newFragment = new DatePickerFragment(this);
         FragmentManager fm = getActivity().getSupportFragmentManager();
         newFragment.show(fm, "datePicker");
@@ -90,7 +73,39 @@ public class InserisciSpesaCondominioFragment extends Fragment implements DatePi
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        textInputEditText.setText(String.format("%d/%d/%d", dayOfMonth, month, year));
+        String formattedDate = String.format("%d/%d/%d", dayOfMonth, month, year);
+        txtDataSpesaCondominioInput.setText(formattedDate);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.btnInserisciSpesaCondominio:
+                inserisciSpesaCondominio();
+                break;
+
+            case R.id.txtDataSpesaCondominioInput:
+                showDatePickerDialog(v);
+                break;
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void inserisciSpesaCondominio() {
+
+        String nomeSpesa = txtNomeSpesaCondominioInput.getText().toString();
+        String dataSpesaStringa = txtDataSpesaCondominioInput.getText().toString();
+        Date dataSpesa = Helper.fromStringToDate(dataSpesaStringa);
+        Integer importoSpesa;
+
+        try {
+            importoSpesa = Integer.parseInt(txtImportoSpesaCondominioInput.getText().toString());
+        } catch (NumberFormatException exception) {
+            importoSpesa = 0;
+        }
+
+        // TODO: Inserire spesa condominio
     }
 }
 
