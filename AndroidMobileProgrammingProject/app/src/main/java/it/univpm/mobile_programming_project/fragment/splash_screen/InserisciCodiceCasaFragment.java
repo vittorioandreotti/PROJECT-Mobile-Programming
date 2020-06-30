@@ -85,6 +85,7 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
                         return;
                     }
 
+
                     Boolean isAffittuarioInserito = task.getResult();
                     if (isAffittuarioInserito) {
                         String codiceCasa = txtCodiceCasaInput.getText().toString();

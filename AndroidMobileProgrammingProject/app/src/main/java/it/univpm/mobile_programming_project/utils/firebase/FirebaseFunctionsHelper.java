@@ -77,12 +77,12 @@ public class FirebaseFunctionsHelper {
 
     public Task<Boolean> partecipaCasa(String idCasa) {
 
-        Map<String, Object> dataInput = new HashMap<>();
-        dataInput.put("idCasa", idCasa);
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
 
         return this.mFunctions
             .getHttpsCallable("partecipaCasa")
-            .call( dataInput )
+            .call( data )
             .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                 @Override
                 public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {

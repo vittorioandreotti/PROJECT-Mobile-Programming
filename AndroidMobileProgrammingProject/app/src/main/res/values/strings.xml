@@ -35,7 +35,7 @@
     <string name="indirizzotorneo">Indirizzo</string>
     <string name="descrizione">Descrizione</string>
     <string name="categoriatorneo">Categoria</string>
-    <string name="crea">Crea Torneo</string>
+    <string name="crea">Crea</string>
     <string name="Partecipa">Partecipa</string>
     <string name="storicotorneo">Storico</string>
     <string name="partecipatorneo">Partecipa</string>
@@ -74,6 +74,15 @@
     <string name="home">Home</string>
     <string name="spese">Spese</string>
     <string name="inserisci_indirizzo_della_casa">Inserisci indirizzo</string>
+    <string name="gestisciSpesaComune">Gestisci spesa comune</string>
+    <string name="inserisci_spesa_condominio">Inserisci spesa condominio</string>
+    <string name="inserisci_bollette">Inserisci bollette</string>
+    <string name="inserisci_affitto">Inserisci affitto</string>
+    <string name="listacase">"Lista "</string>
+    <string name="statistiche_tutte_case">Tutte le case</string>
+    <string name="statistiche_sola_casa">Singola casa</string>
+    <string name="pagate">Spese pagate</string>
+    <string name="non_pagate">Spese non pagate</string>
 
 
 </resources>
