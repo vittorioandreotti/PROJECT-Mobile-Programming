@@ -26,60 +26,69 @@
             android:title="Statistiche" />
     </group>
 
+
+    <!--    SPESE    -->
     <group
         android:id="@+id/group_spese"
         android:checkableBehavior="single">
-        <!--    SPESE    -->
-        <item
-            android:id="@+id/nav_spese"
-            android:icon="@drawable/ic_spese"
-            android:title="Spese" />
 
+        <item android:title="Spese">
+        <menu>
         <item
             android:id="@+id/nav_gestione_spesa_comune"
+            android:icon="@drawable/ic_spese"
             android:title="Gestisci spesa comune" />
 
         <item
             android:id="@+id/nav_sommario"
+            android:icon="@drawable/ic_spese"
             android:title="@string/sommario" />
 
         <item
             android:id="@+id/nav_spesacomune"
+            android:icon="@drawable/ic_spese"
             android:title="Spese in comune" />
 
         <item
             android:id="@+id/nav_affitto"
+            android:icon="@drawable/ic_spese"
             android:title="Affitto" />
 
         <item
             android:id="@+id/nav_bollette"
+            android:icon="@drawable/ic_spese"
             android:title="Bollette" />
+
+        </menu>
+        </item>
     </group>
 
 
 
 
+    <!--    TORNEI    -->
     <group
         android:id="@+id/group_tornei"
         android:checkableBehavior="single">
 
-        <!--    TORNEI    -->
-        <item
-            android:id="@+id/nav_torneo"
-            android:icon="@drawable/ic_trophy_icon_icons"
-            android:title="Tornei" />
+        <item android:title="Tornei">
+            <menu>
+                <item
+                    android:id="@+id/nav_partecipa_torneo"
+                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:title="Partecipa" />
 
-        <item
-            android:id="@+id/nav_partecipa_torneo"
-            android:title="Partecipa" />
+                <item
+                    android:id="@+id/nav_crea_un_torneo"
+                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:title="Crea" />
 
-        <item
-            android:id="@+id/nav_crea_un_torneo"
-            android:title="Crea" />
-
-        <item
-            android:id="@+id/nav_storico_torneo"
-            android:title="Storico" />
+                <item
+                    android:id="@+id/nav_storico_torneo"
+                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:title="Storico" />
+            </menu>
+        </item>
     </group>
 
 

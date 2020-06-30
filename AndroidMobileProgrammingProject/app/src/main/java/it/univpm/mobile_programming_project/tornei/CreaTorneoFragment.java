@@ -20,11 +20,7 @@ import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 import it.univpm.mobile_programming_project.utils.picker.TimePickerFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreaTorneoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private TextInputEditText tietDate;
@@ -34,11 +30,6 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
         // Required empty public constructor
     }
 
-    public static CreaTorneoFragment newInstance(String param1, String param2) {
-        CreaTorneoFragment fragment = new CreaTorneoFragment();
-
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

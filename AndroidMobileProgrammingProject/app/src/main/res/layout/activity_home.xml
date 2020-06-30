@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu_proprietario"
+        app:menu="@menu/drawer_menu_affittuario"
         />
 
     <!--  TODO: LEVARE app:menu QUA SOPRA  -->
