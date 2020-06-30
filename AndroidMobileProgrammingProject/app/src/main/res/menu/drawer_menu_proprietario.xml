@@ -23,20 +23,10 @@
     <group
         android:id="@+id/group_statistiche"
         android:checkableBehavior="single">
-
-        <item android:title="Statistiche">
-            <menu>
-                <item
-                    android:id="@+id/nav_statistiche_tutte_case"
-                    android:icon="@drawable/ic_statistiche"
-                    android:title="Tutte le case" />
-
-                <item
-                    android:id="@+id/nav_statistiche_sola_casa"
-                    android:icon="@drawable/ic_statistiche"
-                    android:title="Singola casa" />
-            </menu>
-        </item>
+        <item
+            android:id="@+id/nav_statistiche"
+            android:icon="@drawable/ic_statistiche"
+            android:title="Statistiche" />
     </group>
 
 
@@ -61,28 +51,6 @@
         </item>
     </group>
 
-
-    <!--    CASE    -->
-    <group
-        android:id="@+id/group_case"
-        android:checkableBehavior="single">
-
-        <item android:title="Case">
-            <menu>
-
-                <item
-                    android:id="@+id/nav_crea_casa"
-                    android:icon="@drawable/ic_home"
-                    android:title="Crea" />
-
-                <item
-                    android:id="@+id/nav_lista_case"
-                    android:icon="@drawable/ic_home"
-                    android:title="Lista" />
-
-            </menu>
-        </item>
-    </group>
 
 
 
