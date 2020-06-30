@@ -144,7 +144,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
 //                navigationFragment = new StatisticheFragment();
 //                titleId = R.string.non_pagate;
 //                break;
-            
+
 
 
             // SPESE

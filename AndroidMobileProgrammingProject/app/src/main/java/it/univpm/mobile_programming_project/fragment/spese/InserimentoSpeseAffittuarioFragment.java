@@ -52,7 +52,7 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
 
         intabLayout = view.findViewById(R.id.intablayout);
 
-        inviewPager = view.findViewById(R.id.viewpager);
+        inviewPager = view.findViewById(R.id.inviewpager);
 
         return view;
     }
