@@ -17,8 +17,8 @@
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/Background"
-            app:tabTextColor="@android:color/white">
+            android:background="@android:color/white"
+            app:tabTextColor="@color/OnPrimary">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

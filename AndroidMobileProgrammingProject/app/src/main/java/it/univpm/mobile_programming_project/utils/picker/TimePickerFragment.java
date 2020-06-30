@@ -1,5 +1,6 @@
 package it.univpm.mobile_programming_project.utils.picker;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.Dialog;
@@ -17,6 +18,7 @@ public class TimePickerFragment extends DialogFragment {
         this.timeSetListener = timeSetListener;
     }
 
+    @NonNull
     public Dialog onCreateDialog (Bundle savedIstance) {
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);

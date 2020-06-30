@@ -41,18 +41,5 @@ public class TorneiPageAdapter extends FragmentPagerAdapter {
         return numOfTabs;
     }
 
-    /**
-     * Return a unique identifier for the item at the given position.
-     *
-     * <p>The default implementation returns the given position.
-     * Subclasses should override this method if the positions of items can change.</p>
-     *
-     * @param position Position within this adapter
-     * @return Unique identifier for the item at position
-     */
-    @Override
-    public long getItemId(int position) {
-        return POSITION_NONE;
-    }
 }
 
