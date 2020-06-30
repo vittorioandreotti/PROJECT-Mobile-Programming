@@ -55,18 +55,18 @@ public class CreaCasaFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        (view.findViewById(R.id.btnCreaCasa)).setOnClickListener(this);
-        this.txtNomeCasa = view.findViewById(R.id.txtNomeCasaInput);
-        this.txtIndirizzoCasa = view.findViewById(R.id.txtIndirizzoCasaInput);
-        this.loadingFragment = view.findViewById(R.id.fragmentLoading);
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crea_casa, container, false);
+        View view = inflater.inflate(R.layout.fragment_crea_casa, container, false);
+        (view.findViewById(R.id.btnCreaCasa)).setOnClickListener(this);
+        this.txtNomeCasa = view.findViewById(R.id.txtNomeCasaInput);
+        this.txtIndirizzoCasa = view.findViewById(R.id.txtIndirizzoCasaInput);
+        this.loadingFragment = view.findViewById(R.id.fragmentLoading);
+        return view;
     }
 
     @Override

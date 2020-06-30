@@ -68,7 +68,7 @@ public class TorneiFragment extends Fragment {
         // oppure alla prima pagina se non specificata
         viewPager.setCurrentItem(this.paginaDiLancio);
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());

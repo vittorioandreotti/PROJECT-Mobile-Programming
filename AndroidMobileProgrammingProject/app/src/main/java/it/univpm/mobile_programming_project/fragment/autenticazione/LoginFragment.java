@@ -47,19 +47,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button btnLogin = view.findViewById(R.id.btnAccedi);
-        txtEmail = view.findViewById(R.id.txtLoginEmailInput);
-        txtPassword = view.findViewById(R.id.txtLoginPasswordInput);
-        txtEmailLayout = view.findViewById(R.id.txtEmail);
-        txtPasswordLayout = view.findViewById(R.id.txtPassword);
-        btnLogin.setOnClickListener(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        Button btnLogin = view.findViewById(R.id.btnAccedi);
+        txtEmail = view.findViewById(R.id.txtLoginEmailInput);
+        txtPassword = view.findViewById(R.id.txtLoginPasswordInput);
+        txtEmailLayout = view.findViewById(R.id.txtEmail);
+        txtPasswordLayout = view.findViewById(R.id.txtPassword);
+        btnLogin.setOnClickListener(this);
+
+        return view;
     }
 
 
