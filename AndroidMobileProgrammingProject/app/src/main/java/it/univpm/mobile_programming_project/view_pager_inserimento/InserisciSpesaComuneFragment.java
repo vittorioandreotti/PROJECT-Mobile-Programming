@@ -1,5 +1,6 @@
 package it.univpm.mobile_programming_project.view_pager_inserimento;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
@@ -14,56 +15,30 @@ import android.widget.DatePicker;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Date;
+
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InserisciSpesaComuneFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class InserisciSpesaComuneFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private TextInputEditText textInputEditText;
+public class InserisciSpesaComuneFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private TextInputEditText txtNomeSpesaComuneInput;
+    private TextInputEditText txtDataSpesaComuneInput;
+    private TextInputEditText txtImportoSpesaComuneInput;
+    private TextInputEditText txtDescrizioneSpesaComuneInput;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     public InserisciSpesaComuneFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SpeseCondominioFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InserisciSpesaComuneFragment newInstance(String param1, String param2) {
-        InserisciSpesaComuneFragment fragment = new InserisciSpesaComuneFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -72,8 +47,14 @@ public class InserisciSpesaComuneFragment extends Fragment implements DatePicker
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_inserisci_spesa_comune, container, false);
 
-        textInputEditText = v.findViewById(R.id.txtDataSpesaComune);
-        textInputEditText.setOnClickListener(new View.OnClickListener() {
+        txtNomeSpesaComuneInput = v.findViewById(R.id.txtNomeSpesaComuneInput);
+        txtImportoSpesaComuneInput = v.findViewById(R.id.txtImportoSpesaComuneInput);
+        txtDescrizioneSpesaComuneInput = v.findViewById(R.id.txtDescrizioneSpesaComuneInput);
+
+        v.findViewById(R.id.btnInserisciSpesaComune).setOnClickListener(this);
+
+        txtDataSpesaComuneInput = v.findViewById(R.id.txtDataSpesaComune);
+        txtDataSpesaComuneInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
@@ -90,6 +71,33 @@ public class InserisciSpesaComuneFragment extends Fragment implements DatePicker
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        textInputEditText.setText(String.format("%d/%d/%d", dayOfMonth, month, year));
+        txtDataSpesaComuneInput.setText(String.format("%d/%d/%d", dayOfMonth, month, year));
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.btnInserisciSpesaComune:
+                inserisciSpesaComune();
+                break;
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void inserisciSpesaComune() {
+        String nomeSpesa = txtNomeSpesaComuneInput.getText().toString();
+        String descSpesa = txtDescrizioneSpesaComuneInput.getText().toString();
+        String dataSpesaStringa = txtDataSpesaComuneInput.getText().toString();
+        Date dataSpesa = Helper.fromStringToDate(dataSpesaStringa);
+        Integer importoSpesa;
+
+        try {
+            importoSpesa = Integer.parseInt(txtImportoSpesaComuneInput.getText().toString());
+        } catch (NumberFormatException exception) {
+            importoSpesa = 0;
+        }
+
+        // TODO: Inserire spesa comune
     }
 }

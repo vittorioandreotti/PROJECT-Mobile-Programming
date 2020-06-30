@@ -128,14 +128,9 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 break;
 
 //            // STATISTICHE
-//            case R.id.nav_statistiche_tutte_case:
+//            case R.id.nav_statistiche:
 //                navigationFragment = new StatisticheFragment();
-//                titleId = R.string.statistiche_tutte_case;
-//                break;
-//
-//            case R.id.nav_statistiche_sola_casa:
-//                navigationFragment = new StatisticheFragment();
-//                titleId = R.string.statistiche_sola_casa;
+//                titleId = R.string.statistiche;
 //                break;
 
 
@@ -150,17 +145,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
 //                titleId = R.string.non_pagate;
 //                break;
 
-
-            // CASE
-            case R.id.nav_crea_casa:
-                navigationFragment = new CreaCasaFragment();
-                titleId = R.string.crea;
-                break;
-
-            case R.id.nav_lista_case:
-                //navigationFragment = new ;
-                titleId = R.string.listacase;
-                break;
 
 
             // SPESE
