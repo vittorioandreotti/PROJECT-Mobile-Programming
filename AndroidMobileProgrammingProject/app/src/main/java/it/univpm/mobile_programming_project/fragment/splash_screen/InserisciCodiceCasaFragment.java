@@ -50,7 +50,8 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btnPartecipaCasa).setOnClickListener(this);
-        txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
+        this.txtCodiceCasaInput = view.findViewById(R.id.txtCodiceCasaInput);
+        this.loadingFragment = view.findViewById(R.id.fragmentLoading);
     }
 
     @Override
@@ -82,9 +83,11 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
                         return;
                     }
 
+
                     Boolean isAffittuarioInserito = task.getResult();
                     if (isAffittuarioInserito) {
-                        InserisciCodiceCasaFragment.this.firebaseFunctionsHelper.partecipaCasa().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                        String txtCodiceCasaInput = InserisciCodiceCasaFragment.this.txtCodiceCasaInput.getText().toString();
+                        InserisciCodiceCasaFragment.this.firebaseFunctionsHelper.partecipaCasa(txtCodiceCasaInput).addOnCompleteListener(new OnCompleteListener<Boolean>() {
                             @Override
                             public void onComplete(@NonNull Task<Boolean> task) {
 

@@ -20,10 +20,32 @@ import com.google.android.material.tabs.TabLayout;
 
 public class SpeseAffittuarioFragment extends Fragment {
 
+    public static final int SOMMARIO = 0;
+    public static final int SPESACOMUNE = 1;
+    public static final int AFFITTO = 2;
+    public static final int BOLLETTE = 3;
+
     private TabLayout tabLayout;
     private TabItem tabSommario, tabSpesaComune, tabAffitto, tabBollette;
     private ViewPager viewPager;
     public PagerAdapter pagerAdapter;
+
+    private int paginaDiLancio = 0;
+
+    public SpeseAffittuarioFragment() {
+    }
+
+    public SpeseAffittuarioFragment(int paginaDiLancio) {
+        switch (paginaDiLancio) {
+            case SpeseAffittuarioFragment.SOMMARIO:
+            case SpeseAffittuarioFragment.SPESACOMUNE:
+            case SpeseAffittuarioFragment.AFFITTO:
+            case SpeseAffittuarioFragment.BOLLETTE:
+
+                this.paginaDiLancio = paginaDiLancio;
+                break;
+        }
+    }
 
 
     @Override
@@ -47,6 +69,10 @@ public class SpeseAffittuarioFragment extends Fragment {
         pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
+        // Naviga direttamente alla pagina specificata nel costruttore,
+        // oppure alla prima pagina se non specificata
+        viewPager.setCurrentItem(this.paginaDiLancio);
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -56,6 +82,8 @@ public class SpeseAffittuarioFragment extends Fragment {
                 } else if (tab.getPosition() == 1) {
                     pagerAdapter.notifyDataSetChanged();
                 } else if (tab.getPosition() == 2) {
+                    pagerAdapter.notifyDataSetChanged();
+                } else if (tab.getPosition() == 3) {
                     pagerAdapter.notifyDataSetChanged();
                 }
             }

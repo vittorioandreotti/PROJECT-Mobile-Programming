@@ -51,6 +51,8 @@
         app:menu="@menu/drawer_menu_affittuario"
         />
 
+    <!--  TODO: LEVARE app:menu QUA SOPRA  -->
+
 
     <!--  Fragment per il caricamento  -->
     <androidx.fragment.app.FragmentContainerView

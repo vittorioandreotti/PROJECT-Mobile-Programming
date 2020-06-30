@@ -75,11 +75,14 @@ public class FirebaseFunctionsHelper {
             });
     }
 
-    public Task<Boolean> partecipaCasa() {
+    public Task<Boolean> partecipaCasa(String idCasa) {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
 
         return this.mFunctions
             .getHttpsCallable("partecipaCasa")
-            .call(  )
+            .call( data )
             .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                 @Override
                 public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {

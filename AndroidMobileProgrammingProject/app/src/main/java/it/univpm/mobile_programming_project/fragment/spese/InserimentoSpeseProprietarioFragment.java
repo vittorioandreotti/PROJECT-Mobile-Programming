@@ -22,10 +22,30 @@ import com.google.android.material.tabs.TabLayout;
 
 public class InserimentoSpeseProprietarioFragment extends Fragment {
 
+    public static final int SPESACONDOMINIO = 0;
+    public static final int BOLLETTE = 1;
+    public static final int AFFITTO = 2;
+
     private TabLayout intabLayout;
     private TabItem  intabSpeseCondominio, intabAffitto, intabBollette, intabspesacomune;
     private ViewPager inviewPager;
     public PagerAdapter inpagerAdapter;
+
+    private int paginaDiLancio = 0;
+
+    public InserimentoSpeseProprietarioFragment() {
+    }
+
+    public InserimentoSpeseProprietarioFragment(int paginaDiLancio) {
+        switch (paginaDiLancio) {
+            case InserimentoSpeseProprietarioFragment.SPESACONDOMINIO:
+            case InserimentoSpeseProprietarioFragment.BOLLETTE:
+            case InserimentoSpeseProprietarioFragment.AFFITTO:
+
+                this.paginaDiLancio = paginaDiLancio;
+                break;
+        }
+    }
 
 
     @Override
@@ -49,6 +69,10 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
 
         inpagerAdapter = new InserimentoSpesePageAdapter(getActivity().getSupportFragmentManager(), intabLayout.getTabCount());
         inviewPager.setAdapter(inpagerAdapter);
+
+        // Naviga direttamente alla pagina specificata nel costruttore,
+        // oppure alla prima pagina se non specificata
+        inviewPager.setCurrentItem(this.paginaDiLancio);
 
         intabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
