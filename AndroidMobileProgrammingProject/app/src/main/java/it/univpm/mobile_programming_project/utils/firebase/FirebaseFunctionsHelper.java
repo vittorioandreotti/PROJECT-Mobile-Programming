@@ -127,4 +127,19 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    public Task<HashMap<String, Object>> getUtenteAndCasa() {
+
+        return this.mFunctions
+            .getHttpsCallable("getUtenteAndCasa")
+            .call( )
+            .continueWith(new Continuation<HttpsCallableResult, HashMap<String, Object>>() {
+                @Override
+                public HashMap<String, Object> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                    HttpsCallableResult result = task.getResult();
+                    HashMap<String, Object> resultData = (HashMap<String, Object>) result.getData();
+                    return resultData;
+                }
+            });
+    }
+
 }

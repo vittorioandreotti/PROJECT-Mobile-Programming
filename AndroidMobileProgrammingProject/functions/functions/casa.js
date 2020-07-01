@@ -3,6 +3,15 @@ const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 let db = admin.firestore();
 
+// Prende i dati dell'utente dall'autenticazione console di firebase
+let getFireBaseUserByUID = (uid) => {
+    return admin.auth()
+        .getUser(uid)
+        .then(function(userRecord) {
+            return( userRecord );
+        });
+}
+
 /**
 *
 */
@@ -84,5 +93,66 @@ exports.partecipaCasa = functions.https.onCall((data, context) => {
             return false;
         }
     });
+
+});
+
+
+exports.getUtenteAndCasa = functions.https.onCall((data, context) => {
+    const uid = context.auth.uid;
+
+    var utenteRef = db.collection("users").doc(uid);
+
+    return utenteRef
+        .get()
+        .then((snapshotUser) => {
+            let userData = snapshotUser.data();
+            console.log(snapshotUser);
+            console.log(userData);
+            let casaRef = userData.casa;
+
+            return casaRef
+                .get()
+                .then((snapshotCasa) => {
+                    let casaData = snapshotCasa.data();
+
+                    console.log(snapshotCasa);
+                    console.log(casaData)
+
+                    return getFireBaseUserByUID(uid)
+                        .then((utenteFirebase) => {
+
+                            console.log(utenteFirebase);
+
+                            return {
+                                error: false,
+                                casa: {
+                                    id: snapshotCasa.id,
+                                    nome: casaData.nome,
+                                    indirizzo: casaData.indirizzo
+                                },
+                                utente: {
+                                    id: snapshotUser.id,
+                                    nome: userData.nome,
+                                    cognome: userData.cognome,
+                                    tipo: userData.tipo,
+                                }
+                            }
+
+
+                        });
+
+                });
+
+        })
+        .catch((error) => {
+            console.log("ERROR!");
+            console.log(error);
+            return {
+                error: true,
+                errorMessage: error
+            }
+        });
+
+
 
 });

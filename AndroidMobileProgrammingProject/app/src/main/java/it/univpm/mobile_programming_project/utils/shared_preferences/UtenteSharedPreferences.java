@@ -6,9 +6,13 @@ public class UtenteSharedPreferences extends SharedPreferencesHelper {
 
     private static final String tipoPreferences = "PROFILO";
 
-    private static final String keyNome    = "Nome";
-    private static final String keyCognome = "Cognome";
-    private static final String keyEmail   = "Email";
+    private static final String keyInizializzato    = "Inizializzato";
+
+    private static final String keyIdUtente = "IdUtente";
+    private static final String keyNome     = "Nome";
+    private static final String keyCognome  = "Cognome";
+    private static final String keyEmail    = "Email";
+    private static final String keyTipo     = "TipoUtente";
 
     private static final String keyIdCasa         = "IdCasa";
     private static final String keyNomeCasa       = "NomeCasa";
@@ -17,8 +21,15 @@ public class UtenteSharedPreferences extends SharedPreferencesHelper {
     //    new UtenteSharedPreferencesHelper(this.getApplicationContext())  // DA ACTIVITY
     //    new UtenteSharedPreferencesHelper(getActivity().getApplicationContext())  // DA FRAGMENT
 
-    protected UtenteSharedPreferences(Context context) {
+    public UtenteSharedPreferences(Context context) {
         super(context, UtenteSharedPreferences.tipoPreferences);
+    }
+
+    public Boolean isInitialized() {
+        return this.contains(keyInizializzato) && this.getBoolean(keyInizializzato);
+    }
+    public void setInitialized() {
+        this.setBoolean(keyInizializzato, true);
     }
 
     public String getNome() {
@@ -63,5 +74,31 @@ public class UtenteSharedPreferences extends SharedPreferencesHelper {
         this.setString(keyIndirizzoCasa, indirizzoCasa);
     }
 
+    public String getIdUtente() {
+        return this.getString(keyIdUtente);
+    }
+    public void setIdUtente( String idUtente ) {
+        this.setString(keyIdUtente, idUtente);
+    }
 
+    public String getTipo() {
+        return this.getString(keyTipo);
+    }
+    public void setTipo( String tipo ) {
+        this.setString(keyTipo, tipo);
+    }
+
+    public boolean isProprietario() {
+        String tipo;
+        tipo = this.getTipo();
+        if(tipo == null) return false;
+        return tipo.toLowerCase().equals("proprietario");
+    }
+
+    public boolean isAffittuario() {
+        String tipo;
+        tipo = this.getTipo();
+        if(tipo == null) return false;
+        return tipo.toLowerCase().equals("affittuario");
+    }
 }

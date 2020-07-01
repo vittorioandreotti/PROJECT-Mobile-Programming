@@ -20,7 +20,7 @@ public abstract class SharedPreferencesHelper {
         return this.sharedpreferences.contains(key);
     }
 
-    void clearPreferences() {
+    public void clearPreferences() {
         this.sharedpreferences.edit().clear().commit();
     }
 
