@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.spese.SpeseProprietarioFragment"
+    tools:context=".fragment.spese.proprietario.InserimentoSpeseProprietarioFragment"
     android:theme="@style/Theme.App.Fullscreen"
     android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
         style="@style/TextAppearance.MaterialComponents.Headline4"
-        android:id="@+id/tablayout"
+        android:id="@+id/intablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabTextColor="@color/OnPrimary">
@@ -19,32 +19,26 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabsommario"
-            android:text="@string/sommario"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tabspesecondomio"
+            android:id="@+id/intabspesecondomio"
             android:text="@string/spese_condominio"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabaffitto"
-            android:text="@string/affitto"/>
+            android:id="@+id/intabbollette"
+            android:text="@string/bollette"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabbollette"
-            android:text="@string/bollette"/>
+            android:id="@+id/intabaffitto"
+            android:text="@string/affitto"/>
 
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/inviewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

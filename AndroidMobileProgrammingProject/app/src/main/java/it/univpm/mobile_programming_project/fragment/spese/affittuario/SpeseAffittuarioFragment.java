@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.fragment.spese;
+package it.univpm.mobile_programming_project.fragment.spese.affittuario;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,17 +7,14 @@ import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
-import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
-import it.univpm.mobile_programming_project.view_pager.SpesePageAdapterAffittuario;
+import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
+import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class SpeseAffittuarioFragment extends Fragment {
@@ -26,10 +23,12 @@ public class SpeseAffittuarioFragment extends Fragment {
     public static final int SPESACOMUNE = 1;
     public static final int AFFITTO = 2;
     public static final int BOLLETTE = 3;
+    public static final int SPESACONDOMINIO = 4;
+
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    public PagerAdapter pagerAdapter;
+    public SpesePageAdapterAffittuario pagerAdapter;
 
     private int paginaDiLancio;
 
@@ -38,34 +37,26 @@ public class SpeseAffittuarioFragment extends Fragment {
     }
 
     public SpeseAffittuarioFragment(int paginaDiLancio) {
-        switch (paginaDiLancio) {
-            case SpeseAffittuarioFragment.SOMMARIO:
-            case SpeseAffittuarioFragment.SPESACOMUNE:
-            case SpeseAffittuarioFragment.AFFITTO:
-            case SpeseAffittuarioFragment.BOLLETTE:
-
-                this.paginaDiLancio = paginaDiLancio;
-                break;
-        }
+        this.paginaDiLancio = paginaDiLancio;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_spese_affittuario, container, false);
+        View view = inflater.inflate(R.layout.fragment_spese_affittuario, container, false);
 
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+        pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+
+        pagerAdapter.addFragment(new SommarioFragment());
+        pagerAdapter.addFragment(new SpesaComuneFragment());
+        pagerAdapter.addFragment(new AffittoFragment());
+        pagerAdapter.addFragment(new BolletteFragment());
+        pagerAdapter.addFragment(new SpeseCondominioFragment());
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
@@ -75,14 +66,12 @@ public class SpeseAffittuarioFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-
-
                 pagerAdapter.notifyDataSetChanged();
 
                 int titoloId = R.string.spese;
                 Activity activity = getActivity();
 
-                switch(tab.getPosition()){
+                switch (tab.getPosition()) {
                     case SpeseAffittuarioFragment.SOMMARIO:
                         titoloId = R.string.sommario;
                         break;
@@ -98,10 +87,12 @@ public class SpeseAffittuarioFragment extends Fragment {
                     case SpeseAffittuarioFragment.BOLLETTE:
                         titoloId = R.string.bollette;
                         break;
+
+                    case SpeseAffittuarioFragment.SPESACONDOMINIO:
+                        titoloId = R.string.spese_condominio;
                 }
 
-                ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
-
+                ((HomeActivity) activity).setToolbarTitle(activity.getString(titoloId));
 
             }
 
@@ -116,7 +107,8 @@ public class SpeseAffittuarioFragment extends Fragment {
             }
         });
 
-        viewPager.addOnPageChangeListener (new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        return view;
     }
 }

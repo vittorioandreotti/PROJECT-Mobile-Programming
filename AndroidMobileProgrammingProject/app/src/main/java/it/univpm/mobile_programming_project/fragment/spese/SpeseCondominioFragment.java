@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.view_pager;
+package it.univpm.mobile_programming_project.fragment.spese;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import it.univpm.mobile_programming_project.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SommarioFragment#newInstance} factory method to
+ * Use the {@link SpeseCondominioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SommarioFragment extends Fragment {
+public class SpeseCondominioFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,7 +25,7 @@ public class SommarioFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SommarioFragment() {
+    public SpeseCondominioFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class SommarioFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SommarioFragment.
+     * @return A new instance of fragment SpeseCondominioFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SommarioFragment newInstance(String param1, String param2) {
-        SommarioFragment fragment = new SommarioFragment();
+    public static SpeseCondominioFragment newInstance(String param1, String param2) {
+        SpeseCondominioFragment fragment = new SpeseCondominioFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,6 +60,6 @@ public class SommarioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sommario, container, false);
+        return inflater.inflate(R.layout.fragment_spese_condominio, container, false);
     }
 }

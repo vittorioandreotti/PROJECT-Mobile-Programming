@@ -227,14 +227,14 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.inserisci_spesa_condominio;
                 break;
 
-            case R.id.nav_ins_affitto:
+            case R.id.nav_ins_bollette:
                 navigationFragment = new InserimentoSpeseProprietarioFragment(InserimentoSpeseProprietarioFragment.BOLLETTE);
-                titleId = R.string.inserisci_affitto;
+                titleId = R.string.inserisci_bollette;
                 break;
 
-            case R.id.nav_ins_bollette:
+            case R.id.nav_ins_affitto:
                 navigationFragment = new InserimentoSpeseProprietarioFragment(InserimentoSpeseProprietarioFragment.AFFITTO);
-                titleId = R.string.inserisci_bollette;
+                titleId = R.string.inserisci_affitto;
                 break;
 
 
@@ -258,12 +258,12 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 navigationFragment = new TorneiFragment(TorneiFragment.STORICO);
                 titleId = R.string.storicotorneo;
                 break;
-//
-//            // Profilo
-//            case R.id.nav_profilo:
-//                navigationFragment = new ProfiloFragment();
-//                titleId = R.string.profilo;
-//                break;
+
+            // Profilo
+            case R.id.nav_profilo:
+                navigationFragment = new ProfiloFragment();
+                titleId = R.string.profilo;
+                break;
 
             default:
                 return false;
@@ -319,6 +319,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
             case R.id.nav_bollette:
                 navigationFragment = new SpeseAffittuarioFragment(SpeseAffittuarioFragment.BOLLETTE);
                 titleId = R.string.bollette;
+                break;
+
+            case R.id.nav_spesecondominio:
+                navigationFragment = new SpeseAffittuarioFragment(SpeseAffittuarioFragment.SPESACONDOMINIO);
+                titleId = R.string.spese_condominio;
                 break;
 
 

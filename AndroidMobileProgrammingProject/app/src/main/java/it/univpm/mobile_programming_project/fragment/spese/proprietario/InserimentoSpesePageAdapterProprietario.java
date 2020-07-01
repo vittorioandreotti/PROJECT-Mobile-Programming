@@ -1,18 +1,24 @@
-package it.univpm.mobile_programming_project.view_pager_inserimento;
+package it.univpm.mobile_programming_project.fragment.spese.proprietario;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import java.util.ArrayList;
 
 
-public class InserimentoSpesePageAdapter extends FragmentPagerAdapter {
+public class InserimentoSpesePageAdapterProprietario extends FragmentStatePagerAdapter {
 
-    private int numbOfTabs;
+    private ArrayList<Fragment> fragments;
 
-    public InserimentoSpesePageAdapter(@NonNull FragmentManager fm, int numbOfTabs) {
+    public InserimentoSpesePageAdapterProprietario(@NonNull FragmentManager fm) {
         super(fm);
-        this.numbOfTabs = numbOfTabs;
+        fragments = new ArrayList<>();
+    }
+
+    public void addFragment( Fragment fragment ) {
+        fragments.add(fragment);
     }
 
     /**
@@ -39,8 +45,6 @@ public class InserimentoSpesePageAdapter extends FragmentPagerAdapter {
      */
     @Override
     public int getCount() {
-        return numbOfTabs;
+        return fragments.size();
     }
-
-
 }

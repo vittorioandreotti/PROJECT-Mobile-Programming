@@ -6,7 +6,39 @@ let db = admin.firestore();
 
 
 let inserisciSpesaAffitto = (data, context) => {
-    //
+                let titolo = data.titolo;
+                let indirizzo = data.indirizzo;
+                let dataOraEvento = admin.firestore.Timestamp.fromDate( new Date( data.dataOraEvento ) );
+                let categoria = data.categoria;
+                let regolamento = data.regolamento || "";
+
+
+                if(
+                    titolo == undefined || titolo == null || titolo == "" ||
+                    dataOraEvento == undefined || dataOraEvento == null ||
+                    categoria == undefined || categoria == null || categoria == "" ||
+                    indirizzo == undefined || indirizzo == null || indirizzo == ""
+                ) return false;
+
+                let dataInput = {
+                    titolo: titolo,
+                    indirizzo: indirizzo,
+                    regolamento: regolamento,
+                    categoria: categoria,
+                    dataOraEvento: dataOraEvento,
+                    partecipanti: []
+                }
+                return db
+                    .collection('tornei')
+                    .add(dataInput)
+                    .then( () => {
+                        return true;
+                    })
+                    .catch((error) => {
+                        console.log("ERROR!");
+                        console.log(error);
+                        return false;
+                    });
 }
 
 let inserisciSpesaBolletta = (data, context) => {

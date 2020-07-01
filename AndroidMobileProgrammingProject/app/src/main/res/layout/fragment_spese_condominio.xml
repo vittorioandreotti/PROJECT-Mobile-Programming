@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view_pager.SpeseCondominioFragment">
+    tools:context=".fragment.spese.SpeseCondominioFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

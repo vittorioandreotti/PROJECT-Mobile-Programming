@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.view_pager_inserimento;
+package it.univpm.mobile_programming_project.fragment.spese.proprietario;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;

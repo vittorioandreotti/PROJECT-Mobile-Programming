@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,16 +13,21 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.functions.FirebaseFunctionsException;
 
-import java.util.Date;
-
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.SplashScreenActivity;
+import it.univpm.mobile_programming_project.fragment.splash_screen.InserisciCodiceCasaFragment;
 import it.univpm.mobile_programming_project.utils.Helper;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
 import it.univpm.mobile_programming_project.utils.picker.TimePickerFragment;
 
@@ -35,9 +41,10 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
     private TextInputEditText txtCategoriaEventoInput;
     private TextInputEditText txtDescrizioneTorneoInput;
 
+    private FirebaseFunctionsHelper firebaseFunctionsHelper;
 
     public CreaTorneoFragment() {
-        // Required empty public constructor
+        firebaseFunctionsHelper = new FirebaseFunctionsHelper();
     }
 
 
@@ -100,12 +107,12 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        txtDataTorneoInput.setText(String.format("%d/%d/%d", dayOfMonth, month, year));
+        txtDataTorneoInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        txtOraEventoInput.setText(String.format("%d/%d", hourOfDay, minute));
+        txtOraEventoInput.setText(String.format( Helper.getTimeFormat(), hourOfDay, minute));
     }
 
 
@@ -113,15 +120,42 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
     private void creaTorneo() {
         String titoloTorneo = txtTitoloTorneoInput.getText().toString();
         String dataEventoStringa = txtDataTorneoInput.getText().toString();
-        Date dataEvento = Helper.fromStringToDate(dataEventoStringa);
         String oraEventoStringa = txtOraEventoInput.getText().toString();
-        Date oraEvento = Helper.fromStringToDate(oraEventoStringa);
+
         String indirizzoEvento = txtIndirizzoEventoInput.getText().toString();
         String categoriaTorneo = txtCategoriaEventoInput.getText().toString();
         String regolamentoTorneo = txtDescrizioneTorneoInput.getText().toString();
 
+        ((HomeActivity) CreaTorneoFragment.this.getActivity()).startLoading();
+        firebaseFunctionsHelper
+                .inserisciTorneo(titoloTorneo, indirizzoEvento, categoriaTorneo, regolamentoTorneo, dataEventoStringa, oraEventoStringa)
+                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        // Handle Error
+                        if (!task.isSuccessful()) {
+                            Exception e = task.getException();
+                            if (e instanceof FirebaseFunctionsException) {
+                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                FirebaseFunctionsException.Code code = ffe.getCode();
+                                Object details = ffe.getDetails();
+                            }
+                            ((HomeActivity) CreaTorneoFragment.this.getActivity()).stopLoading();
+                            return;
+                        }
 
-        // TODO: Inserire torneo
+                        Boolean isTorneoValid = task.getResult();
+                        if (isTorneoValid) {
+                            // Torneo valido
+                            Toast.makeText(CreaTorneoFragment.this.getContext(), "Torneo creato con successo.", Toast.LENGTH_LONG).show();
+                        } else {
+                            // Torneo non valido
+                            Toast.makeText(CreaTorneoFragment.this.getContext(), "Torneo non creato.", Toast.LENGTH_LONG).show();
+                        }
+                        ((HomeActivity)CreaTorneoFragment.this.getActivity()).stopLoading();
+                    }
+                });
+
     }
 
 

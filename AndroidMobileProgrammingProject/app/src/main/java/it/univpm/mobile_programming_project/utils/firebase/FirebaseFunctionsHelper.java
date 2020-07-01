@@ -7,8 +7,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import it.univpm.mobile_programming_project.utils.Helper;
 
 public class FirebaseFunctionsHelper {
 
@@ -126,6 +129,56 @@ public class FirebaseFunctionsHelper {
                     }
                 });
     }
+
+    public Task<Boolean> inserisciTorneo(String titolo, String indirizzo, String categoria, String regolamento, String dataEvento, String oraEvento ) {
+
+        Date dataOraEvento = Helper.fromStringToDateTime(dataEvento, oraEvento);
+
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("titolo", titolo);
+        data.put("indirizzo", indirizzo);
+        data.put("categoria", categoria);
+        data.put("regolamento", regolamento);
+        data.put("dataOraEvento", dataOraEvento.toString() );
+
+        return this.mFunctions
+                .getHttpsCallable("inserisciTorneo")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
+
+//    public Task<Boolean> partecipaTorneo(String idTorneo) {
+//
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("idTorneo", idTorneo);
+//
+//        return this.mFunctions
+//                .getHttpsCallable("partecipaTorneo")
+//                .call( data )
+//                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+//                    @Override
+//                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+//                        HttpsCallableResult result = task.getResult();
+//                        Boolean resultData = (Boolean) result.getData();
+//                        return resultData;
+//                    }
+//                });
+//    }
+
+
+
+
+
 
     public Task<HashMap<String, Object>> getUtenteAndCasa() {
 

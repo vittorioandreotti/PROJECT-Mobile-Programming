@@ -67,14 +67,14 @@
                     android:title="Inserisci spese condominio" />
 
                 <item
-                    android:id="@+id/nav_ins_affitto"
-                    android:icon="@drawable/ic_spese"
-                    android:title="Inserisci affitto" />
-
-                <item
                     android:id="@+id/nav_ins_bollette"
                     android:icon="@drawable/ic_spese"
                     android:title="Inserisci bollette" />
+
+                <item
+                    android:id="@+id/nav_ins_affitto"
+                    android:icon="@drawable/ic_spese"
+                    android:title="Inserisci affitto" />
 
             </menu>
         </item>

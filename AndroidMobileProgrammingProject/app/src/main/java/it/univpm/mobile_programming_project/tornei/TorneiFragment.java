@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.fragment;
+package it.univpm.mobile_programming_project.tornei;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,20 +7,10 @@ import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.tornei.CreaTorneoFragment;
-import it.univpm.mobile_programming_project.tornei.PartecipaTorneoFragment;
-import it.univpm.mobile_programming_project.tornei.StoricoTorneiFragment;
-import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
-import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class TorneiFragment extends Fragment {
@@ -31,7 +21,7 @@ public class TorneiFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private PagerAdapter pagerAdapter;
+    private TorneiPageAdapter pagerAdapter;
 
     private int paginaDiLancio;
 
@@ -40,13 +30,7 @@ public class TorneiFragment extends Fragment {
     }
 
     public TorneiFragment(int paginaDiLancio) {
-        switch (paginaDiLancio) {
-            case TorneiFragment.PARTECIPA:
-            case TorneiFragment.CREA:
-            case TorneiFragment.STORICO:
-                this.paginaDiLancio = paginaDiLancio;
-                break;
-        }
+        this.paginaDiLancio = paginaDiLancio;
     }
 
 
@@ -57,26 +41,27 @@ public class TorneiFragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
+        pagerAdapter = new TorneiPageAdapter(getActivity().getSupportFragmentManager());
+        pagerAdapter.addFragment(new PartecipaTorneoFragment());
+        pagerAdapter.addFragment(new CreaTorneoFragment());
+        pagerAdapter.addFragment(new StoricoTorneiFragment());
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        pagerAdapter = new TorneiPageAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
+
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
         viewPager.setCurrentItem(this.paginaDiLancio);
 
+//    }
+//
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-
-
                 pagerAdapter.notifyDataSetChanged();
 
                 int titoloId = R.string.tornei;
@@ -113,6 +98,8 @@ public class TorneiFragment extends Fragment {
         });
 
         viewPager.addOnPageChangeListener (new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        return view;
 
     }
 }

@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.view_pager_inserimento;
+package it.univpm.mobile_programming_project.fragment.spese.affittuario;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
