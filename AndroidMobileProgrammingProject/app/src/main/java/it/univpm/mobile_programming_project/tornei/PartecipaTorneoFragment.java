@@ -9,13 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
 
 public class PartecipaTorneoFragment extends Fragment {
 
+    private FirebaseFunctionsHelper firebaseFunctionsHelper;
 
     public PartecipaTorneoFragment() {
-        // Required empty public constructor
+        firebaseFunctionsHelper = new FirebaseFunctionsHelper();
     }
 
 

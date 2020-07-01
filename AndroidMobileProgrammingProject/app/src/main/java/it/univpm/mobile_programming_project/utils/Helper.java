@@ -33,6 +33,17 @@ public abstract class Helper {
         }
     }
 
+    public static Date fromStringToDateTime(String dateString, String oraString) {
+        return fromStringToDate(dateString + " " + oraString, "dd/MM/yyyy HH:mm");
+    }
+
+    public static String getDateFormat() {
+        return "%02d/%02d/%04d";
+    }
+
+    public static String getTimeFormat() {
+        return "%02d:%02d";
+    }
 
 
 }
