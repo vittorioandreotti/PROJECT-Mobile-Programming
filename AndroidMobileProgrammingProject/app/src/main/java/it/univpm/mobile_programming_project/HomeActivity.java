@@ -1,17 +1,22 @@
 package it.univpm.mobile_programming_project;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.HashMap;
 
 import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
@@ -19,18 +24,25 @@ import it.univpm.mobile_programming_project.fragment.TorneiFragment;
 import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
-import it.univpm.mobile_programming_project.fragment.splash_screen.CreaCasaFragment;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
+import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
 public class HomeActivity extends AppCompatActivityWithLoading implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private Bundle savedInstanceState;
 
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private UtenteSharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
+        this.sharedPreferences = new UtenteSharedPreferences(this);
 
     }
 
@@ -38,57 +50,120 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     protected void onStart() {
         super.onStart();
 
-        // INIZIA CARICAMENTO
+        final HomeActivity context = this;
 
-        // Prendi l'utente autenticato e salva i suoi dati in shared preferences
-        //
+        navigationView = findViewById(R.id.navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
 
-//        if(PROPRIETARIO) {
-            navigationView.inflateMenu(R.menu.drawer_menu_proprietario);
-//        }else{
-//            navigationView.inflateMenu(R.menu.drawer_menu_affittuario);
-//        }
-        //TODO: MODIFICARE
+        navigationView.setNavigationItemSelectedListener(context);
 
-        navigationView.setNavigationItemSelectedListener(this);
+        final GuiAsyncTask asyncGuiSetup = new GuiAsyncTask(new OnTaskResultListener() {
+            @Override
+            public void onPreExecute() {
+                context.startLoading();
+            }
+
+            @Override
+            public Object doInBackground(Object obj) {
+
+                context.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        context.navigationView.getMenu().clear();
+
+                        if(context.sharedPreferences.isProprietario()) {
+                            context.navigationView.inflateMenu(R.menu.drawer_menu_proprietario);
+                        }else{
+                            context.navigationView.inflateMenu(R.menu.drawer_menu_affittuario);
+                        }
+
+                        // This prevent fragment from being replaced on rotation
+                        if( context.savedInstanceState == null ){
+
+                            Fragment homeFragment;
+
+//                            if(preferences.isProprietario()) {
+//                                homeFragment = new HomeProprietarioFragment();
+//                            }else{
+//                                homeFragment = new HomeAffittuarioFragment();
+//                            }
+                            homeFragment = new HomeFragment();
+
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, homeFragment ).commit();
+                            navigationView.setCheckedItem(R.id.nav_home);
+                            setToolbarTitle(getString(R.string.homepage));
+                        }
+
+                        context.actionBarDrawerToggle = new ActionBarDrawerToggle(
+                                context,
+                                context.drawerLayout,
+                                context.toolbar,
+                                R.string.navigation_drawer_open,
+                                R.string.navigation_drawer_close
+                        );
+
+                        context.drawerLayout.addDrawerListener(context.actionBarDrawerToggle);
+                        context.actionBarDrawerToggle.syncState();
+                    }
+
+                });
+
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(Object obj) {
+                context.navigationView.invalidate();
+                context.navigationView.bringToFront();
+                context.actionBarDrawerToggle.syncState();
+                context.stopLoading();
+            }
+
+        });
+
+        if( !this.sharedPreferences.isInitialized() ) {
+            context.startLoading();
+            FirebaseFunctionsHelper functionsHelper = new FirebaseFunctionsHelper();
+            functionsHelper.getUtenteAndCasa().addOnCompleteListener(new OnCompleteListener<HashMap<String, Object>>()
+            {
+                @Override
+                public void onComplete(@NonNull Task<HashMap<String, Object>> task)
+                {
+                    if(!task.isSuccessful()) return;
 
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close
-        );
+                    HashMap<String, Object> result = task.getResult();
 
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+                    if((Boolean)result.get("error")) {
+                        Toast.makeText(context, "Errore nella lettura delle informazioni sull'utente e la casa.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
-        // This prevent fragment from being replaced on rotation
-        if( this.savedInstanceState == null ){
-            Fragment homeFragment;
+                    HashMap<String, String> resultCasa = (HashMap<String, String>) result.get("casa");
+                    HashMap<String, String> resultUtente = (HashMap<String, String>) result.get("utente");
 
-            /*
-            if( AFFITTUARIO ) {
-                homeFragment = new HomeAffittuarioFragment();
-            }else{
-                homeFragment = new HomeProprietarioFragment();
-            }*/
-            homeFragment = new HomeFragment();
+                    context.sharedPreferences.setIdUtente(resultUtente.get("id"));
+                    context.sharedPreferences.setNome(resultUtente.get("nome"));
+                    context.sharedPreferences.setCognome(resultUtente.get("cognome"));
+                    context.sharedPreferences.setTipo(resultUtente.get("tipo"));
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, homeFragment ).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-            setToolbarTitle(getString(R.string.homepage));
+                    context.sharedPreferences.setIdCasa(resultCasa.get("id"));
+                    context.sharedPreferences.setNomeCasa(resultCasa.get("nome"));
+                    context.sharedPreferences.setIndirizzoCasa(resultCasa.get("indirizzo"));
+
+                    context.sharedPreferences.setInitialized();
+                    asyncGuiSetup.execute();
+                }
+            });
+        }else{
+            asyncGuiSetup.execute();
         }
-
-        // FINE CARICAMENTO
-
     }
 
     @Override
@@ -106,12 +181,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-//        if( AFFITTUARIO ) {
-//            return onNavigationItemSelectedAffittuario(item);
-//        }else{
+        if( this.sharedPreferences.isAffittuario() ) {
+            return onNavigationItemSelectedAffittuario(item);
+        }else{
             return onNavigationItemSelectedProprietario(item);
-//        }
-        //TODO: MODIFICARE
+        }
 
     }
 
@@ -285,10 +359,44 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         return true;
     }
 
-    public void setToolbarTitle(String newTitle)
-    {
+    public void setToolbarTitle(String newTitle) {
         ((Toolbar)findViewById(R.id.toolbar)).setTitle( newTitle );
     }
 
+
+    /**
+     * Interfaccia che permette di ascoltare quando la GUI è pronta
+     */
+    public interface OnTaskResultListener{
+        void onPreExecute();
+        void onPostExecute(Object obj);
+        Object doInBackground(Object obj);
+    }
+
+    public class GuiAsyncTask extends AsyncTask<Object,Object,Object> { //change Object to required type
+
+        private OnTaskResultListener listener;
+
+        GuiAsyncTask(OnTaskResultListener listener){
+            this.listener=listener;
+        }
+
+
+        @Override
+        protected Object doInBackground(Object... objects) {
+            return listener.doInBackground(objects);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            listener.onPreExecute();
+        }
+
+
+        @Override
+        protected void onPostExecute(Object obj){
+            listener.onPostExecute(obj);
+        }
+    }
 
 }
