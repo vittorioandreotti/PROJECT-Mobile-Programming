@@ -7,13 +7,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+
 public class TorneiPageAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
 
-    public TorneiPageAdapter(@NonNull FragmentManager fm, int numOfTabs) {
-        super(fm);
-        this.numOfTabs = numOfTabs;
+    private ArrayList<Fragment> fragments;
+
+    public TorneiPageAdapter(@NonNull FragmentManager fm) {
+        super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+
+        fragments = new ArrayList<>();
+
+    }
+
+    public void addFragment( Fragment fragment ) {
+        fragments.add(fragment);
     }
 
     /**
@@ -24,15 +34,7 @@ public class TorneiPageAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new PartecipaTorneoFragment();
-            case 1:
-                return new CreaTorneoFragment();
-            case 2:
-                return new StoricoTorneiFragment();
-            default: return null;
-        }
+        return fragments.get(position);
     }
 
     @NonNull
@@ -46,7 +48,7 @@ public class TorneiPageAdapter extends FragmentPagerAdapter {
      */
     @Override
     public int getCount() {
-        return numOfTabs;
+        return fragments.size();
     }
 
 //    /**

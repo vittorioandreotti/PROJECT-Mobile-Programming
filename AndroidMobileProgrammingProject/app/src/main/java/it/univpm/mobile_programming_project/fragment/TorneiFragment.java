@@ -31,7 +31,7 @@ public class TorneiFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private PagerAdapter pagerAdapter;
+    private TorneiPageAdapter pagerAdapter;
 
     private int paginaDiLancio;
 
@@ -57,19 +57,22 @@ public class TorneiFragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
+        pagerAdapter = new TorneiPageAdapter(getActivity().getSupportFragmentManager());
+        pagerAdapter.addFragment(new PartecipaTorneoFragment());
+        pagerAdapter.addFragment(new CreaTorneoFragment());
+        pagerAdapter.addFragment(new StoricoTorneiFragment());
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        pagerAdapter = new TorneiPageAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
+
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
         viewPager.setCurrentItem(this.paginaDiLancio);
+
+//    }
+//
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -113,6 +116,8 @@ public class TorneiFragment extends Fragment {
         });
 
         viewPager.addOnPageChangeListener (new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        return view;
 
     }
 }

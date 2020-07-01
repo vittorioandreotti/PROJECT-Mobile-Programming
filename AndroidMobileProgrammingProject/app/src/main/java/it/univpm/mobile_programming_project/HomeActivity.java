@@ -5,7 +5,6 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,7 +19,6 @@ import it.univpm.mobile_programming_project.fragment.profilo.ProfiloFragment;
 import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
-import it.univpm.mobile_programming_project.fragment.splash_screen.CreaCasaFragment;
 
 public class HomeActivity extends AppCompatActivityWithLoading implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,12 +30,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         // INIZIA CARICAMENTO
 
