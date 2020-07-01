@@ -5,14 +5,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import java.util.ArrayList;
 
-public class InserimentoSpesePageAdapter extends FragmentStatePagerAdapter {
 
-    private int numbOfTabs;
+public class InserimentoSpesePageAdapterProprietario extends FragmentStatePagerAdapter {
 
-    public InserimentoSpesePageAdapter(@NonNull FragmentManager fm, int numbOfTabs) {
+    private ArrayList<Fragment> fragments;
+
+    public InserimentoSpesePageAdapterProprietario(@NonNull FragmentManager fm) {
         super(fm);
-        this.numbOfTabs = numbOfTabs;
+        fragments = new ArrayList<>();
+    }
+
+    public void addFragment( Fragment fragment ) {
+        fragments.add(fragment);
     }
 
     /**
@@ -39,8 +45,6 @@ public class InserimentoSpesePageAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public int getCount() {
-        return numbOfTabs;
+        return fragments.size();
     }
-
-
 }

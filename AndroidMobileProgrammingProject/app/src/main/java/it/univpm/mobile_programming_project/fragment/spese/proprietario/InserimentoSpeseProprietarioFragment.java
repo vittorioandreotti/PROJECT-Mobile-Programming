@@ -8,10 +8,7 @@ import android.view.ViewGroup;
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -24,7 +21,7 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
 
     private TabLayout intabLayout;
     private ViewPager inviewPager;
-    public PagerAdapter inpagerAdapter;
+    public InserimentoSpesePageAdapterProprietario inpagerAdapter;
 
     private int paginaDiLancio;
 
@@ -33,14 +30,7 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
     }
 
     public InserimentoSpeseProprietarioFragment(int paginaDiLancio) {
-        switch (paginaDiLancio) {
-            case InserimentoSpeseProprietarioFragment.SPESACONDOMINIO:
-            case InserimentoSpeseProprietarioFragment.BOLLETTE:
-            case InserimentoSpeseProprietarioFragment.AFFITTO:
-
-                this.paginaDiLancio = paginaDiLancio;
-                break;
-        }
+        this.paginaDiLancio = paginaDiLancio;
     }
 
 
@@ -50,18 +40,15 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inserimento_spese, container, false);
 
         intabLayout = view.findViewById(R.id.intablayout);
-
-
         inviewPager = view.findViewById(R.id.inviewpager);
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        inpagerAdapter = new InserimentoSpesePageAdapter(getActivity().getSupportFragmentManager(), intabLayout.getTabCount());
+        inpagerAdapter = new InserimentoSpesePageAdapterProprietario(getActivity().getSupportFragmentManager());
         inviewPager.setAdapter(inpagerAdapter);
+
+        inpagerAdapter.addFragment(new InserisciSpesaCondominioFragment());
+        inpagerAdapter.addFragment(new InserisciBolletteFragment());
+        inpagerAdapter.addFragment(new InserisciAffittoFragment());
+
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
@@ -109,6 +96,6 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
         });
 
         inviewPager.addOnPageChangeListener (new TabLayout.TabLayoutOnPageChangeListener(intabLayout));
-
+        return view;
     }
 }
