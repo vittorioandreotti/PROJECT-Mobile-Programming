@@ -11,7 +11,6 @@ import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
 import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpesePageAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
