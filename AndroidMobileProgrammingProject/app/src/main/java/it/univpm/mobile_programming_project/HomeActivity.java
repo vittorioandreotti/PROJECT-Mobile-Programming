@@ -14,11 +14,11 @@ import com.google.android.material.navigation.NavigationView;
 
 import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
-import it.univpm.mobile_programming_project.fragment.TorneiFragment;
+import it.univpm.mobile_programming_project.tornei.TorneiFragment;
 import it.univpm.mobile_programming_project.fragment.profilo.ProfiloFragment;
-import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseAffittuarioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseProprietarioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserimentoSpeseAffittuarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 
 public class HomeActivity extends AppCompatActivityWithLoading implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -238,6 +238,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
             case R.id.nav_bollette:
                 navigationFragment = new SpeseAffittuarioFragment(SpeseAffittuarioFragment.BOLLETTE);
                 titleId = R.string.bollette;
+                break;
+
+            case R.id.nav_spesecondominio:
+                navigationFragment = new SpeseAffittuarioFragment(SpeseAffittuarioFragment.SPESACONDOMINIO);
+                titleId = R.string.spese_condominio;
                 break;
 
 

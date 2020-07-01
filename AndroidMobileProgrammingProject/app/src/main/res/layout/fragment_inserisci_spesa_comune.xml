@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.App.Fullscreen"
-    tools:context=".view_pager_inserimento.InserisciSpesaComuneFragment">
+    tools:context=".fragment.spese.affittuario.InserisciSpesaComuneFragment">
 
     <ScrollView
         android:layout_width="match_parent"

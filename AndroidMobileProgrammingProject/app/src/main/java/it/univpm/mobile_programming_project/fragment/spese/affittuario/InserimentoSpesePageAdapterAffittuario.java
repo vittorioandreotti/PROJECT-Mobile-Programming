@@ -1,17 +1,16 @@
-package it.univpm.mobile_programming_project.view_pager_inserimento;
+package it.univpm.mobile_programming_project.fragment.spese.affittuario;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 
-public class InserimentoSpesePageAdapter extends FragmentStatePagerAdapter {
+public class InserimentoSpesePageAdapterAffittuario extends FragmentStatePagerAdapter {
 
     private int numbOfTabs;
 
-    public InserimentoSpesePageAdapter(@NonNull FragmentManager fm, int numbOfTabs) {
+    public InserimentoSpesePageAdapterAffittuario(@NonNull FragmentManager fm, int numbOfTabs) {
         super(fm);
         this.numbOfTabs = numbOfTabs;
     }
@@ -26,11 +25,8 @@ public class InserimentoSpesePageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new InserisciSpesaCondominioFragment();
-            case 1:
-                return new InserisciBolletteFragment();
-            case 2:
-                return new InserisciAffittoFragment();
+                return new InserisciSpesaComuneFragment();
+
             default: return null;
         }
     }

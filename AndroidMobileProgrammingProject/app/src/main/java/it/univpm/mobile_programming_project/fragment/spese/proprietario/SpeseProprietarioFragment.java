@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.fragment.spese;
+package it.univpm.mobile_programming_project.fragment.spese.proprietario;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
-import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
-import it.univpm.mobile_programming_project.view_pager.SpesePageAdapterAffittuario;
+import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
+import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpesaComuneFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class SpeseProprietarioFragment extends Fragment {
@@ -29,7 +30,7 @@ public class SpeseProprietarioFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    public PagerAdapter pagerAdapter;
+    public SpesePageAdapterProprietario pagerAdapter;
 
     private int paginaDiLancio;
 
@@ -38,33 +39,25 @@ public class SpeseProprietarioFragment extends Fragment {
     }
 
     public SpeseProprietarioFragment(int paginaDiLancio) {
-        switch (paginaDiLancio) {
-            case SpeseProprietarioFragment.SOMMARIO:
-            case SpeseProprietarioFragment.SPESACONDOMINIO:
-            case SpeseProprietarioFragment.AFFITTO:
-            case SpeseProprietarioFragment.BOLLETTE:
+        this.paginaDiLancio = paginaDiLancio;
 
-                this.paginaDiLancio = paginaDiLancio;
-                break;
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_spese_proprietario, container, false);
+        View view = inflater.inflate(R.layout.fragment_spese_proprietario, container, false);
 
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        pagerAdapter = new SpesePageAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+        pagerAdapter = new SpesePageAdapterProprietario(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+
+        pagerAdapter.addFragment(new SommarioFragment());
+        pagerAdapter.addFragment(new SpeseCondominioFragment());
+        pagerAdapter.addFragment(new AffittoFragment());
+        pagerAdapter.addFragment(new BolletteFragment());
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
@@ -101,7 +94,6 @@ public class SpeseProprietarioFragment extends Fragment {
 
                 ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
 
-
             }
 
             @Override
@@ -117,5 +109,6 @@ public class SpeseProprietarioFragment extends Fragment {
 
         viewPager.addOnPageChangeListener (new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        return view;
     }
 }

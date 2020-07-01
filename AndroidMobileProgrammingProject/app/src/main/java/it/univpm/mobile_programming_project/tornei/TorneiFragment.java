@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.fragment;
+package it.univpm.mobile_programming_project.tornei;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,20 +7,10 @@ import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.tornei.CreaTorneoFragment;
-import it.univpm.mobile_programming_project.tornei.PartecipaTorneoFragment;
-import it.univpm.mobile_programming_project.tornei.StoricoTorneiFragment;
-import it.univpm.mobile_programming_project.tornei.TorneiPageAdapter;
-import it.univpm.mobile_programming_project.view_pager.SpesePageAdapter;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class TorneiFragment extends Fragment {
@@ -40,13 +30,7 @@ public class TorneiFragment extends Fragment {
     }
 
     public TorneiFragment(int paginaDiLancio) {
-        switch (paginaDiLancio) {
-            case TorneiFragment.PARTECIPA:
-            case TorneiFragment.CREA:
-            case TorneiFragment.STORICO:
-                this.paginaDiLancio = paginaDiLancio;
-                break;
-        }
+        this.paginaDiLancio = paginaDiLancio;
     }
 
 

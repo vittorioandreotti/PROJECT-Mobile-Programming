@@ -52,13 +52,17 @@
         <item
             android:id="@+id/nav_affitto"
             android:icon="@drawable/ic_spese"
-            android:title="Affitto" />
+            android:title="@string/affitto" />
 
         <item
             android:id="@+id/nav_bollette"
             android:icon="@drawable/ic_spese"
-            android:title="Bollette" />
+            android:title="@string/bollette" />
 
+            <item
+                android:id="@+id/nav_spesecondominio"
+                android:icon="@drawable/ic_spese"
+                android:title="@string/spese_condominio" />
         </menu>
         </item>
     </group>

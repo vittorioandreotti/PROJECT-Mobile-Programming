@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.spese.SpeseAffittuarioFragment"
+    tools:context=".fragment.spese.proprietario.SpeseProprietarioFragment"
     android:theme="@style/Theme.App.Fullscreen"
     android:orientation="vertical">
 
@@ -25,8 +25,8 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabspesacomune"
-            android:text="@string/spesacomune"/>
+            android:id="@+id/tabspesecondomio"
+            android:text="@string/spese_condominio"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

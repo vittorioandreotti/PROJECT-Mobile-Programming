@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.view_pager;
+package it.univpm.mobile_programming_project.fragment.spese;
 
 import android.os.Bundle;
 
