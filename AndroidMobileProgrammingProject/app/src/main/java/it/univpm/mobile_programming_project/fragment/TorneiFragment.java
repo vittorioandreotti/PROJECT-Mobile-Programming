@@ -78,8 +78,6 @@ public class TorneiFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-
-
                 pagerAdapter.notifyDataSetChanged();
 
                 int titoloId = R.string.tornei;
