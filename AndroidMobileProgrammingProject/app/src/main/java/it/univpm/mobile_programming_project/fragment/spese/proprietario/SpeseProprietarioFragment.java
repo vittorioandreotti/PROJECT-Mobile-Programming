@@ -11,12 +11,7 @@ import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
 import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpesaComuneFragment;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
