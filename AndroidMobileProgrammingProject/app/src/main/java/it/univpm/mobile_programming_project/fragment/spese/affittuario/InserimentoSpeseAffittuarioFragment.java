@@ -7,6 +7,11 @@ import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
+import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpesePageAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,11 +25,9 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
 
     public static final int SPESACOMUNE = 0;
 
-
     private TabLayout intabLayout;
     private ViewPager inviewPager;
-    public PagerAdapter inpagerAdapter;
-
+    public InserimentoSpesePageAdapterAffittuario inpagerAdapter;
 
     private int paginaDiLancio;
 
@@ -33,11 +36,7 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
     }
 
     public InserimentoSpeseAffittuarioFragment(int paginaDiLancio) {
-        switch (paginaDiLancio) {
-            case InserimentoSpeseAffittuarioFragment.SPESACOMUNE:
-                this.paginaDiLancio = paginaDiLancio;
-                break;
-        }
+        this.paginaDiLancio = paginaDiLancio;
     }
 
     @Override
@@ -46,17 +45,12 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inserimento_spese_affittuario, container, false);
 
         intabLayout = view.findViewById(R.id.intablayout);
-
         inviewPager = view.findViewById(R.id.inviewpager);
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        inpagerAdapter = new InserimentoSpesePageAdapterAffittuario(getActivity().getSupportFragmentManager(), intabLayout.getTabCount());
+        inpagerAdapter = new InserimentoSpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
         inviewPager.setAdapter(inpagerAdapter);
+
+        inpagerAdapter.addFragment(new InserisciSpesaComuneFragment());
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
@@ -77,7 +71,6 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
                     case InserimentoSpeseAffittuarioFragment.SPESACOMUNE:
                         titoloId = R.string.spese_condominio;
                         break;
-                        
                 }
 
                 ((HomeActivity)activity).setToolbarTitle( activity.getString(titoloId) );
@@ -98,5 +91,6 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
 
         inviewPager.addOnPageChangeListener (new TabLayout.TabLayoutOnPageChangeListener(intabLayout));
 
+        return view;
     }
 }
