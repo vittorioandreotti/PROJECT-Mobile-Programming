@@ -20,10 +20,11 @@ import java.util.HashMap;
 
 import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
-import it.univpm.mobile_programming_project.fragment.TorneiFragment;
-import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseAffittuarioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.InserimentoSpeseProprietarioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.SpeseAffittuarioFragment;
+import it.univpm.mobile_programming_project.fragment.profilo.ProfiloFragment;
+import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserimentoSpeseAffittuarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
+import it.univpm.mobile_programming_project.tornei.TorneiFragment;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
@@ -43,12 +44,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
         this.sharedPreferences = new UtenteSharedPreferences(this);
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         final HomeActivity context = this;
 
