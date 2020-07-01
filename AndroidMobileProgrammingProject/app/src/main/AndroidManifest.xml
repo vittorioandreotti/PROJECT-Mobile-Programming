@@ -18,6 +18,9 @@
         android:theme="@style/Theme.App.Fullscreen">
 
 
+
+
+
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.App.Fullscreen" />
