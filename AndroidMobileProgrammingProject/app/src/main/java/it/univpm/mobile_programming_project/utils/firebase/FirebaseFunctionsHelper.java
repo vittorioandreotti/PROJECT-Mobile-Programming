@@ -27,6 +27,7 @@ public class FirebaseFunctionsHelper {
 
     public FirebaseFunctionsHelper(UtenteSharedPreferences sharedPreferences)
     {
+        this();
         this.sharedPreferences = sharedPreferences;
     }
 
@@ -228,6 +229,28 @@ public class FirebaseFunctionsHelper {
                     }
                 });
     }
+
+    public Task<Boolean> disiscrizione() {
+
+        String idCasa = this.sharedPreferences.getIdCasa();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
+
+        return this.mFunctions
+                .getHttpsCallable("disiscrizione")
+                .call(data)
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
+
 
 
 }

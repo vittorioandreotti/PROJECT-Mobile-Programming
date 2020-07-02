@@ -196,3 +196,31 @@ exports.registraUtente = functions.https.onCall((data, context) => {
            });
 
 });
+
+exports.disiscrizione = functions.https.onCall((data, context) => {
+
+        const uid = context.auth.uid;
+
+        let uidRef = db.collection("users").doc(uid);
+
+        return db
+            .collection('case')
+            .doc(data.idCasa)
+            .update({
+               idAffittuari: admin.firestore.FieldValue.arrayRemove( uidRef )
+            })
+            .then(function() {
+                return admin.auth().deleteUser(uid)
+                  .then(function() {
+                        return true;
+                  });
+            })
+            .catch(function(error) {
+                return false;
+            });
+
+
+
+
+
+});

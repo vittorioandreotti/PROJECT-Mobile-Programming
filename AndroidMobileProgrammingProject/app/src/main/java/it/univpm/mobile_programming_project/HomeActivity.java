@@ -340,12 +340,12 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 navigationFragment = new TorneiFragment(TorneiFragment.STORICO);
                 titleId = R.string.storicotorneo;
                 break;
-//
-//            // Profilo
-//            case R.id.nav_profilo:
-//                navigationFragment = new ProfiloFragment();
-//                titleId = R.string.profilo;
-//                break;
+
+            // Profilo
+            case R.id.nav_profilo:
+                navigationFragment = new ProfiloFragment();
+                titleId = R.string.profilo;
+                break;
 
             default:
                 return false;
