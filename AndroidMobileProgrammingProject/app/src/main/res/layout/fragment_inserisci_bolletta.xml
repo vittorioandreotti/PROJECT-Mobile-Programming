@@ -27,7 +27,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtNomeCategoriaBolletta"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -41,14 +41,14 @@
                     android:id="@+id/txtNomeCategoriaBollettaInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDataSpesaBolletta"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -65,14 +65,14 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDataScadenzaBolletta"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -89,14 +89,14 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtImportoBolletta"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -110,7 +110,7 @@
                     android:id="@+id/txtImportoBollettaInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"
+
                     android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>

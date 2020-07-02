@@ -28,7 +28,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtTitoloTorneo"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -42,14 +42,14 @@
                     android:id="@+id/txtTitoloTorneoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDataTorneo"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -66,13 +66,13 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtOraEvento"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -89,13 +89,13 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtIndirizzoEvento"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -109,13 +109,13 @@
                     android:id="@+id/txtIndirizzoEventoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtCategoriaEvento"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -129,13 +129,13 @@
                     android:id="@+id/txtCategoriaEventoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDescrizioneTorneo"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="10dp"
@@ -150,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top|left"
-                    android:background="@drawable/bordo"
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
