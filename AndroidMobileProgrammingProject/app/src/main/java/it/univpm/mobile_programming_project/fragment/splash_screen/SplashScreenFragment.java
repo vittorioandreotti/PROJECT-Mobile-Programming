@@ -1,5 +1,6 @@
 package it.univpm.mobile_programming_project.fragment.splash_screen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.SplashScreenActivity;
 import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
@@ -37,6 +39,7 @@ public class SplashScreenFragment extends Fragment {
     private FirebaseFunctionsHelper functionsHelper;
     private AuthenticationManager authenticationManager;
     private UtenteSharedPreferences sharedPreferences;
+    private Context context;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class SplashScreenFragment extends Fragment {
 
     public SplashScreenFragment() {
         currentUser = null;
+        this.sharedPreferences = null;
     }
 
     @Override
@@ -57,9 +61,15 @@ public class SplashScreenFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+        this.sharedPreferences = new UtenteSharedPreferences(getContext());
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.sharedPreferences = new UtenteSharedPreferences(getContext());
 
         navController = Navigation.findNavController(view);
 
@@ -70,9 +80,10 @@ public class SplashScreenFragment extends Fragment {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    launchHomeActivity();
+                    launchHomeActivity(SplashScreenFragment.this.context);
                 }
             },1700);
+            return;
         }
 
         // If user is authenticated and has home data setted redirect to HomeActivity
@@ -97,7 +108,7 @@ public class SplashScreenFragment extends Fragment {
                     if(isInitialized)
                     {
                         // Logged in and data set -> Redirect to home activity
-                        launchHomeActivity();
+                        SplashScreenFragment.this.launchHomeActivity(SplashScreenFragment.this.context );
                     }else{
                         // Logged in but data is not set -> Redirect to scegli proprietario affittuario
                         SplashScreenFragment.this.navigateToScegliProprietarioAffittuario();
@@ -116,8 +127,8 @@ public class SplashScreenFragment extends Fragment {
         }
     }
 
-    private void launchHomeActivity() {
-        Intent intent = new Intent( getContext() , HomeActivity.class);
+    private void launchHomeActivity(Context context) {
+        Intent intent = new Intent( context , HomeActivity.class);
         startActivity(intent);
         getActivity().finish();
     }

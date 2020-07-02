@@ -50,13 +50,14 @@ public class SpeseAffittuarioFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewpager);
 
         pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
 
         pagerAdapter.addFragment(new SommarioFragment());
         pagerAdapter.addFragment(new SpesaComuneFragment());
         pagerAdapter.addFragment(new AffittoFragment());
         pagerAdapter.addFragment(new BolletteFragment());
         pagerAdapter.addFragment(new SpeseCondominioFragment());
+
+        viewPager.setAdapter(pagerAdapter);
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata

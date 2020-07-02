@@ -15,22 +15,28 @@ import android.widget.DatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.Helper;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
+import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link InserisciBolletteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InserisciBolletteFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+public class InserisciBolletteFragment extends Fragment implements View.OnClickListener {
 
     private TextInputEditText txtDataSpesaBollettaInput;
-    private TextInputEditText txtDataScadenzaInput;
+    private TextInputEditText txtDataScadenzaBollettaInput;
     private TextInputEditText txtNomeCategoriaBollettaInput;
     private TextInputEditText txtImportoBollettaInput;
 
+    private FirebaseFunctionsHelper firebaseFunctionsHelper;
+    private UtenteSharedPreferences utenteSharedPreferences;
+
     public InserisciBolletteFragment() {
-        // Required empty public constructor
+        firebaseFunctionsHelper = new FirebaseFunctionsHelper(utenteSharedPreferences);
     }
 
     public static InserisciBolletteFragment newInstance() {
@@ -41,6 +47,7 @@ public class InserisciBolletteFragment extends Fragment implements DatePickerDia
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        utenteSharedPreferences = new UtenteSharedPreferences(getContext());
     }
 
     @Override
@@ -53,19 +60,19 @@ public class InserisciBolletteFragment extends Fragment implements DatePickerDia
         txtImportoBollettaInput = v.findViewById(R.id.txtImportoBollettaInput);
 
         txtDataSpesaBollettaInput = v.findViewById(R.id.txtDataSpesaBollettaInput);
-        txtDataScadenzaInput = v.findViewById(R.id.txtDataScadenzaInput);
+        txtDataScadenzaBollettaInput = v.findViewById(R.id.txtDataScadenzaBollettaInput);
 
         txtDataSpesaBollettaInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(v);
+                showDatePickerDialogInserimento(v);
             }
         });
 
-        txtDataScadenzaInput.setOnClickListener(new View.OnClickListener() {
+        txtDataScadenzaBollettaInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(v);
+                showDatePickerDialogScadenza(v);
             }
         });
 
@@ -75,27 +82,26 @@ public class InserisciBolletteFragment extends Fragment implements DatePickerDia
     }
 
 
-
-    private void showDatePickerDialog(View view) {
-        DialogFragment newFragment = new DatePickerFragment(this);
+    private void showDatePickerDialogScadenza(View view) {
+        DialogFragment newFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                txtDataScadenzaBollettaInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
+            }
+        });
         FragmentManager fm = getActivity().getSupportFragmentManager();
         newFragment.show(fm, "datePicker");
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-        String formattedDate = String.format("%d/%d/%d", dayOfMonth, month, year);
-
-        switch(view.getId()){
-            case R.id.txtDataSpesaBollettaInput:
-                txtDataSpesaBollettaInput.setText(formattedDate);
-                break;
-
-            case R.id.txtDataScadenzaInput:
-                txtDataScadenzaInput.setText(formattedDate);
-                break;
-        }
+    private void showDatePickerDialogInserimento(View view) {
+        DialogFragment newFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                txtDataSpesaBollettaInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
+            }
+        });
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        newFragment.show(fm, "datePicker");
     }
 
     @Override
@@ -110,15 +116,14 @@ public class InserisciBolletteFragment extends Fragment implements DatePickerDia
     private void inserisciBolletta() {
         String nomeCategoriaBollettaInput = this.txtNomeCategoriaBollettaInput.getText().toString();
         String dataSpesaBollettaInputString = this.txtDataSpesaBollettaInput.getText().toString();
-        String dataScadenzaInputString = this.txtDataScadenzaInput.getText().toString();
-        Integer importoBollettaInput;
+        String dataScadenzaInputString = this.txtDataScadenzaBollettaInput.getText().toString();
+        Double importoBollettaInput;
         try {
-            importoBollettaInput = Integer.parseInt(txtImportoBollettaInput.getText().toString());
+            importoBollettaInput = Double.parseDouble(txtImportoBollettaInput.getText().toString());
         } catch (NumberFormatException exception) {
-            importoBollettaInput = 0;
+            importoBollettaInput = 0.0;
         }
 
-        // TODO: Inserire spesa bollette
+        this.firebaseFunctionsHelper.inserisciSpesaBolletta(importoBollettaInput, nomeCategoriaBollettaInput, dataSpesaBollettaInputString, dataScadenzaInputString);
     }
 }
-

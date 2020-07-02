@@ -86,6 +86,9 @@
                     android:id="@+id/txtOraEventoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:background="@drawable/bordo"/>
 
             </com.google.android.material.textfield.TextInputLayout>

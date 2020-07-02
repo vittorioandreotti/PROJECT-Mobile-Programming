@@ -5,34 +5,83 @@ let db = admin.firestore();
 
 
 
-let inserisciSpesaAffitto = (data, context) => {
-                let titolo = data.titolo;
-                let indirizzo = data.indirizzo;
-                let dataOraEvento = admin.firestore.Timestamp.fromDate( new Date( data.dataOraEvento ) );
+let inserisciSpesaBolletta = (data, context) => {
+                let dataInserimento = data.dataInserimento;
+                let dataScadenza = data.dataScadenza;
+                let spesa_totale = data.prezzo;
                 let categoria = data.categoria;
-                let regolamento = data.regolamento || "";
+                let idCasa = data.idCasa;
 
+                // Get a new write batch
+                const batch = db.batch();
 
                 if(
-                    titolo == undefined || titolo == null || titolo == "" ||
-                    dataOraEvento == undefined || dataOraEvento == null ||
+                    idCasa == undefined || idCasa == null || idCasa == "" ||
                     categoria == undefined || categoria == null || categoria == "" ||
-                    indirizzo == undefined || indirizzo == null || indirizzo == ""
+                    dataInserimento == undefined || dataInserimento == null ||
+                    dataScadenza == undefined || dataScadenza == null ||
+                    spesa_totale == undefined || spesa_totale == null
                 ) return false;
 
                 let dataInput = {
-                    titolo: titolo,
-                    indirizzo: indirizzo,
-                    regolamento: regolamento,
+                    prezzoTotale: spesa_totale,
                     categoria: categoria,
-                    dataOraEvento: dataOraEvento,
-                    partecipanti: []
+                    tipo: "bolletta",
+                    dataInserimento: dataInserimento,
+                    dataScadenza: dataScadenza,
+
                 }
                 return db
-                    .collection('tornei')
+                    .collection('case')
+                    .doc(idCasa)
+                    .collection("spese")
                     .add(dataInput)
-                    .then( () => {
-                        return true;
+                    .then( ( spesaSnapshot ) => {
+
+                        return db
+                            .collection("case")
+                            .doc(idCasa)
+                            .get()
+                            .then(( datiCasaSnapshot )=>{
+                                let datiCasa = datiCasaSnapshot.data();
+
+                                let spesa_singola = spesa_totale / datiCasa.idAffittuari.length;
+
+                                let spesaUtentiCollectionRef = db
+                                   .collection('case')
+                                   .doc(idCasa)
+                                   .collection("spese")
+                                   .doc(spesaSnapshot.id)
+                                   .collection("utenti");
+
+                                for( let i = 0; i < datiCasa.idAffittuari.length; i++) {
+
+                                    let docPathAffittuario = datiCasa.idAffittuari[i].path;
+                                    let indexBarra = docPathAffittuario.lastIndexOf("/")
+                                    let idUtenteSingolo = "";
+                                    if(indexBarra >= 0) {
+                                        idUtenteSingolo = docPathAffittuario.substr(indexBarra+1);
+                                    }else{
+                                        idUtenteSingolo = docPathAffittuario;
+                                    }
+
+                                    let docNuovaSpesaUtenteRef = spesaUtentiCollectionRef.doc(idUtenteSingolo);
+                                    let datiSpesaUtente = {
+                                        dataPagamento : null,
+                                        prezzo : spesa_singola,
+                                    };
+
+                                    batch.set(docNuovaSpesaUtenteRef, datiSpesaUtente);
+                                }
+
+                                // Commit the batch
+                                return batch.commit().then(()=>{
+                                    return true;
+                                });
+
+
+
+                            });
                     })
                     .catch((error) => {
                         console.log("ERROR!");
@@ -41,7 +90,7 @@ let inserisciSpesaAffitto = (data, context) => {
                     });
 }
 
-let inserisciSpesaBolletta = (data, context) => {
+let inserisciSpesaAffitto = (data, context) => {
     //
 }
 

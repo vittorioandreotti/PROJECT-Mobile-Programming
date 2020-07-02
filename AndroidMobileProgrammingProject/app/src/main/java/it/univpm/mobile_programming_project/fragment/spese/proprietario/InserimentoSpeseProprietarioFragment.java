@@ -43,11 +43,12 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
         inviewPager = view.findViewById(R.id.inviewpager);
 
         inpagerAdapter = new InserimentoSpesePageAdapterProprietario(getActivity().getSupportFragmentManager());
-        inviewPager.setAdapter(inpagerAdapter);
 
         inpagerAdapter.addFragment(new InserisciSpesaCondominioFragment());
         inpagerAdapter.addFragment(new InserisciBolletteFragment());
         inpagerAdapter.addFragment(new InserisciAffittoFragment());
+
+        inviewPager.setAdapter(inpagerAdapter);
 
 
         // Naviga direttamente alla pagina specificata nel costruttore,

@@ -12,15 +12,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.univpm.mobile_programming_project.utils.Helper;
+import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
 public class FirebaseFunctionsHelper {
 
+    private UtenteSharedPreferences sharedPreferences;
     private FirebaseFunctions mFunctions;
 
     public FirebaseFunctionsHelper()
     {
         this.mFunctions = FirebaseFunctions.getInstance();
     }
+
+
+    public FirebaseFunctionsHelper(UtenteSharedPreferences sharedPreferences)
+    {
+        this.sharedPreferences = sharedPreferences;
+    }
+
 
     public Task< Boolean > isUserInitialized() {
 
@@ -156,28 +165,34 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    public Task<Boolean> inserisciSpesaBolletta(Double importo, String categoria, String stringDataBolletta, String stringDataScadenza) {
 
-//    public Task<Boolean> partecipaTorneo(String idTorneo) {
-//
-//        Map<String, Object> data = new HashMap<>();
-//        data.put("idTorneo", idTorneo);
-//
-//        return this.mFunctions
-//                .getHttpsCallable("partecipaTorneo")
-//                .call( data )
-//                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-//                    @Override
-//                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-//                        HttpsCallableResult result = task.getResult();
-//                        Boolean resultData = (Boolean) result.getData();
-//                        return resultData;
-//                    }
-//                });
-//    }
+        String idCasa = this.sharedPreferences.getIdCasa();
 
+        Date dataBolletta = Helper.fromStringToDate(stringDataBolletta);
+        Date dataScadenza = Helper.fromStringToDate(stringDataScadenza);
 
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
+        data.put("categoria", categoria);
+        data.put("prezzo", importo);
+        data.put("dataInserimento", dataBolletta.toString() );
+        data.put("dataScadenza", dataScadenza.toString() );
 
-
+        return this.mFunctions
+                .getHttpsCallable("inserisciSpesaBolletta")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
 
 
     public Task<HashMap<String, Object>> getUtenteAndCasa() {
@@ -194,5 +209,25 @@ public class FirebaseFunctionsHelper {
                 }
             });
     }
+
+
+    public Task<Boolean> partecipaTorneo(String idTorneo) {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("idTorneo", idTorneo);
+
+        return this.mFunctions
+                .getHttpsCallable("partecipaTorneo")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
 
 }

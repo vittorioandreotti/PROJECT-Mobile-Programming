@@ -27,7 +27,7 @@ import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
  * Use the {@link InserisciAffittoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InserisciAffittoFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+public class InserisciAffittoFragment extends Fragment implements View.OnClickListener {
 
     private TextInputEditText txtDataAffittoInput;
     private TextInputEditText txtDataScadenzaInput;
@@ -56,7 +56,7 @@ public class InserisciAffittoFragment extends Fragment implements DatePickerDial
 
         txtImportoAffittoInput = view.findViewById(R.id.txtImportoAffittoInput);
         txtDataAffittoInput = view.findViewById(R.id.txtDataAffittoInput);
-        txtDataScadenzaInput = view.findViewById(R.id.txtDataScadenzaInput);
+        txtDataScadenzaInput = view.findViewById(R.id.txtDataScadenzaBollettaInput);
         txtNumeroMesiAffittoInput = view.findViewById(R.id.txtNumeroMesiAffittoInput);
 
         txtDataAffittoInput.setOnClickListener(this);
@@ -72,36 +72,40 @@ public class InserisciAffittoFragment extends Fragment implements DatePickerDial
 
     }
 
-    private void showDatePickerDialog(View view) {
-        DialogFragment newFragment = new DatePickerFragment(this);
+    private void showDatePickerDialogScadenza(View view) {
+        DialogFragment newFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                txtDataScadenzaInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
+            }
+        });
         FragmentManager fm = getActivity().getSupportFragmentManager();
         newFragment.show(fm, "datePicker");
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-        String formattedDate = String.format("%d/%d/%d", dayOfMonth, month, year);
-
-        switch (view.getId())
-        {
-            case R.id.txtDataAffittoInput:
-                txtDataAffittoInput.setText(formattedDate);
-                break;
-
-            case R.id.txtDataScadenzaInput:
-                txtDataScadenzaInput.setText(formattedDate);
-                break;
-        }
+    private void showDatePickerDialogInserimento(View view) {
+        DialogFragment newFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                txtDataAffittoInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
+            }
+        });
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        newFragment.show(fm, "datePicker");
     }
+
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
             case R.id.txtDataAffittoInput:
-            case R.id.txtDataScadenzaInput:
-                showDatePickerDialog(v);
+                showDatePickerDialogInserimento(v);
+                break;
+
+            case R.id.txtDataScadenzaBollettaInput:
+                showDatePickerDialogScadenza(v);
                 break;
 
             case R.id.btnInsericiAffitto:

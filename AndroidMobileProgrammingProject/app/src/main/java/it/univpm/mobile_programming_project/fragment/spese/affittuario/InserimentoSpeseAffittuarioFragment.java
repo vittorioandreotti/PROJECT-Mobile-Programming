@@ -39,9 +39,10 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
         inviewPager = view.findViewById(R.id.inviewpager);
 
         inpagerAdapter = new InserimentoSpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
-        inviewPager.setAdapter(inpagerAdapter);
 
         inpagerAdapter.addFragment(new InserisciSpesaComuneFragment());
+
+        inviewPager.setAdapter(inpagerAdapter);
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
