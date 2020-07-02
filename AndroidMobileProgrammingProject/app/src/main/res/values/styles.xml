@@ -32,22 +32,41 @@
     </style>
 
     <!--BUTTON-->
-    <style name="Theme.Widget.Button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Theme.Widget.Button" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="backgroundTint">@color/primaryColor</item>
+        <item name="iconTint">@android:color/white</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <!--BUTTON-->
+    <style name="Theme.Widget.ButtonRed" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="backgroundTint">@android:color/holo_red_dark</item>
+        <item name="iconTint">@android:color/white</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <!--BUTTON-->
+    <style name="Theme.Widget.Button.OutlinedButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textColorHint">@color/primaryColor</item>
         <item name="strokeColor">@color/primaryColor</item>
     </style>
 
     <!--BUTTON-->
-    <style name="Theme.Widget.ButtonRed" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Theme.Widget.ButtonRed.OutlinedButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@android:color/holo_red_dark</item>
         <item name="android:textColorHint">@android:color/holo_red_dark</item>
         <item name="strokeColor">@android:color/holo_red_dark</item>
+        <item name="android:tint">@android:color/holo_red_dark</item>
     </style>
 
     <!--Progress Bar-->
     <style name="Theme.Widget.ProgressBar" parent="@style/Widget.AppCompat.ProgressBar">
-        <item name="android:indeterminateTint">@color/primaryColor</item>
+        <item name="android:indeterminateTint">@color/primaryLightColor</item>
     </style>
 
     <!-- Card layout. -->
