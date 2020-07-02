@@ -13,14 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.functions.FirebaseFunctionsException;
 
 import java.util.Date;
 
+import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.utils.Helper;
+import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
+import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,10 +39,12 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
     private TextInputEditText txtDataAffittoInput;
     private TextInputEditText txtDataScadenzaInput;
     private TextInputEditText txtImportoAffittoInput;
-    private TextInputEditText txtNumeroMesiAffittoInput;
+    private TextInputEditText txtTitoloAffittoInput;
+
+    private FirebaseFunctionsHelper firebaseFunctionsHelper;
+    private UtenteSharedPreferences utenteSharedPreferences;
 
     public InserisciAffittoFragment() {
-        // Required empty public constructor
     }
 
     public static InserisciAffittoFragment newInstance() {
@@ -46,6 +55,8 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        utenteSharedPreferences = new UtenteSharedPreferences(getContext());
+        firebaseFunctionsHelper = new FirebaseFunctionsHelper(utenteSharedPreferences);
     }
 
     @Override
@@ -57,7 +68,7 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
         txtImportoAffittoInput = view.findViewById(R.id.txtImportoAffittoInput);
         txtDataAffittoInput = view.findViewById(R.id.txtDataAffittoInput);
         txtDataScadenzaInput = view.findViewById(R.id.txtDataScadenzaBollettaInput);
-        txtNumeroMesiAffittoInput = view.findViewById(R.id.txtNumeroMesiAffittoInput);
+        txtTitoloAffittoInput = view.findViewById(R.id.txtTitoloAffittoInput);
 
         txtDataAffittoInput.setOnClickListener(this);
         txtDataScadenzaInput.setOnClickListener(this);
@@ -117,25 +128,48 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
 
     private void inserisciSpesaAffitto() {
 
-        Date dataAffitto = Helper.fromStringToDate(txtDataAffittoInput.getText().toString());
-        Date dataScadenzaAffitto = Helper.fromStringToDate(txtDataScadenzaInput.getText().toString());
-        String nomeSpesa = txtImportoAffittoInput.getText().toString();
-        Integer numeroMesiAffitto;
-        Integer importoAffitto;
+        String dataAffitto = this.txtDataAffittoInput.getText().toString();
+        String dataScadenzaAffitto = this.txtDataScadenzaInput.getText().toString();
+        String titoloAffitto = this.txtTitoloAffittoInput.getText().toString();
+        Double importoAffitto;
+
 
         try {
-            numeroMesiAffitto = Integer.parseInt(txtNumeroMesiAffittoInput.getText().toString());
+            importoAffitto = Double.parseDouble(txtImportoAffittoInput.getText().toString());
         } catch (NumberFormatException exception) {
-            numeroMesiAffitto = 0;
+            importoAffitto = 0.0;
         }
 
-        try {
-            importoAffitto = Integer.parseInt(txtImportoAffittoInput.getText().toString());
-        } catch (NumberFormatException exception) {
-            importoAffitto = 0;
-        }
+        ((HomeActivity) InserisciAffittoFragment.this.getActivity()).startLoading();
+        this.firebaseFunctionsHelper
+                .inserisciSpesaAffitto(importoAffitto, titoloAffitto, dataAffitto, dataScadenzaAffitto)
+                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if (!task.isSuccessful()) {
+                            Exception e = task.getException();
+                            if (e instanceof FirebaseFunctionsException) {
+                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                FirebaseFunctionsException.Code code = ffe.getCode();
+                                Object details = ffe.getDetails();
+                            }
+                            ((HomeActivity) InserisciAffittoFragment.this.getActivity()).stopLoading();
+                            return;
+                        }
 
-        // TODO: Inserisci affitto
+                        Boolean isSpesaInseritaCorrettamente = task.getResult();
+                        if(isSpesaInseritaCorrettamente) {
+                            // Spesa inserita correttamente
+                            Toast.makeText(InserisciAffittoFragment.this.getContext(), "Spesa inserita con successo.", Toast.LENGTH_LONG).show();
+                        } else {
+                            // Spesa non inserita
+                            Toast.makeText(InserisciAffittoFragment.this.getContext(), "Spesa non inserita.", Toast.LENGTH_LONG).show();
+                        }
+                        ((HomeActivity)InserisciAffittoFragment.this.getActivity()).stopLoading();
+                    }
+
+                });
+
     }
 
 

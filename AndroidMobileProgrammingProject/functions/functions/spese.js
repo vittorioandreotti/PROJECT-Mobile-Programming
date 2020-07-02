@@ -91,15 +91,253 @@ let inserisciSpesaBolletta = (data, context) => {
 }
 
 let inserisciSpesaAffitto = (data, context) => {
-    //
+                    let dataInserimento = data.dataInserimento;
+                    let dataScadenza = data.dataScadenza;
+                    let spesa_totale = data.prezzo;
+                    let titolo = data.titolo;
+                    let idCasa = data.idCasa;
+
+                    // Get a new write batch
+                    const batch = db.batch();
+
+                    if(
+                        idCasa == undefined || idCasa == null || idCasa == "" ||
+                        titolo == undefined || titolo == null || titolo == "" ||
+                        dataInserimento == undefined || dataInserimento == null ||
+                        dataScadenza == undefined || dataScadenza == null ||
+                        spesa_totale == undefined || spesa_totale == null
+                    ) return false;
+
+                    let dataInput = {
+                        titolo: titolo,
+                        tipo: "affitto",
+                        dataInserimento: dataInserimento,
+                        dataScadenza: dataScadenza,
+
+                    }
+                    return db
+                        .collection('case')
+                        .doc(idCasa)
+                        .collection("spese")
+                        .add(dataInput)
+                        .then( ( spesaSnapshot ) => {
+
+                            return db
+                                .collection("case")
+                                .doc(idCasa)
+                                .get()
+                                .then(( datiCasaSnapshot )=>{
+                                    let datiCasa = datiCasaSnapshot.data();
+
+                                    let spesa_singola = spesa_totale;
+
+                                    let spesaUtentiCollectionRef = db
+                                       .collection('case')
+                                       .doc(idCasa)
+                                       .collection("spese")
+                                       .doc(spesaSnapshot.id)
+                                       .collection("utenti");
+
+                                    for( let i = 0; i < datiCasa.idAffittuari.length; i++) {
+
+                                        let docPathAffittuario = datiCasa.idAffittuari[i].path;
+                                        let indexBarra = docPathAffittuario.lastIndexOf("/")
+                                        let idUtenteSingolo = "";
+                                        if(indexBarra >= 0) {
+                                            idUtenteSingolo = docPathAffittuario.substr(indexBarra+1);
+                                        }else{
+                                            idUtenteSingolo = docPathAffittuario;
+                                        }
+
+                                        let docNuovaSpesaUtenteRef = spesaUtentiCollectionRef.doc(idUtenteSingolo);
+                                        let datiSpesaUtente = {
+                                            dataPagamento : null,
+                                            prezzo : spesa_singola,
+                                        };
+
+                                        batch.set(docNuovaSpesaUtenteRef, datiSpesaUtente);
+                                    }
+
+                                    // Commit the batch
+                                    return batch.commit().then(()=>{
+                                        return true;
+                                    });
+
+
+
+                                });
+                        })
+                        .catch((error) => {
+                            console.log("ERROR!");
+                            console.log(error);
+                            return false;
+                        });
 }
 
 let inserisciSpesaCondominio = (data, context) => {
-    //
+                        let dataInserimento = data.dataInserimento;
+                        let spesa_totale = data.prezzo;
+                        let nome = data.nome;
+                        let idCasa = data.idCasa;
+
+                        // Get a new write batch
+                        const batch = db.batch();
+
+                        if(
+                            idCasa == undefined || idCasa == null || idCasa == "" ||
+                            nome == undefined || nome == null || nome == "" ||
+                            dataInserimento == undefined || dataInserimento == null ||
+                            spesa_totale == undefined || spesa_totale == null
+                        ) return false;
+
+                        let dataInput = {
+                            nome: nome,
+                            tipo: "condominio",
+                            dataInserimento: dataInserimento,
+
+                        }
+                        return db
+                            .collection('case')
+                            .doc(idCasa)
+                            .collection("spese")
+                            .add(dataInput)
+                            .then( ( spesaSnapshot ) => {
+
+                                return db
+                                    .collection("case")
+                                    .doc(idCasa)
+                                    .get()
+                                    .then(( datiCasaSnapshot )=>{
+                                        let datiCasa = datiCasaSnapshot.data();
+
+                                        let spesa_singola = spesa_totale;
+
+                                        let spesaUtentiCollectionRef = db
+                                           .collection('case')
+                                           .doc(idCasa)
+                                           .collection("spese")
+                                           .doc(spesaSnapshot.id)
+                                           .collection("utenti");
+
+                                        for( let i = 0; i < datiCasa.idAffittuari.length; i++) {
+
+                                            let docPathAffittuario = datiCasa.idAffittuari[i].path;
+                                            let indexBarra = docPathAffittuario.lastIndexOf("/")
+                                            let idUtenteSingolo = "";
+                                            if(indexBarra >= 0) {
+                                                idUtenteSingolo = docPathAffittuario.substr(indexBarra+1);
+                                            }else{
+                                                idUtenteSingolo = docPathAffittuario;
+                                            }
+
+                                            let docNuovaSpesaUtenteRef = spesaUtentiCollectionRef.doc(idUtenteSingolo);
+                                            let datiSpesaUtente = {
+                                                dataPagamento : null,
+                                                prezzo : spesa_singola,
+                                            };
+
+                                            batch.set(docNuovaSpesaUtenteRef, datiSpesaUtente);
+                                        }
+
+                                        // Commit the batch
+                                        return batch.commit().then(()=>{
+                                            return true;
+                                        });
+
+
+
+                                    });
+                            })
+                            .catch((error) => {
+                                console.log("ERROR!");
+                                console.log(error);
+                                return false;
+                            });
 }
 
 let inserisciSpesaComune = (data, context) => {
-    //
+                        let dataInserimento = data.dataInserimento;
+                        let spesa_totale = data.prezzo;
+                        let nome = data.nome;
+                        let descrizione = data.descrizione;
+                        let idCasa = data.idCasa;
+
+                        // Get a new write batch
+                        const batch = db.batch();
+
+                        if(
+                            idCasa == undefined || idCasa == null || idCasa == "" ||
+                            nome == undefined || nome == null || nome == "" ||
+                            descrizione == undefined || descrizione == null || descrizione == "" ||
+                            dataInserimento == undefined || dataInserimento == null ||
+                            spesa_totale == undefined || spesa_totale == null
+                        ) return false;
+
+                        let dataInput = {
+                            prezzoTotale: spesa_totale,
+                            nome: nome,
+                            descrizione: descrizione,
+                            tipo: "comune",
+                            dataInserimento: dataInserimento,
+
+                        }
+                        return db
+                            .collection('case')
+                            .doc(idCasa)
+                            .collection("spese")
+                            .add(dataInput)
+                            .then( ( spesaSnapshot ) => {
+
+                                return db
+                                    .collection("case")
+                                    .doc(idCasa)
+                                    .get()
+                                    .then(( datiCasaSnapshot )=>{
+                                        let datiCasa = datiCasaSnapshot.data();
+
+                                        let spesa_singola = spesa_totale / datiCasa.idAffittuari.length;
+
+                                        let spesaUtentiCollectionRef = db
+                                           .collection('case')
+                                           .doc(idCasa)
+                                           .collection("spese")
+                                           .doc(spesaSnapshot.id)
+                                           .collection("utenti");
+
+                                        for( let i = 0; i < datiCasa.idAffittuari.length; i++) {
+
+                                            let docPathAffittuario = datiCasa.idAffittuari[i].path;
+                                            let indexBarra = docPathAffittuario.lastIndexOf("/")
+                                            let idUtenteSingolo = "";
+                                            if(indexBarra >= 0) {
+                                                idUtenteSingolo = docPathAffittuario.substr(indexBarra+1);
+                                            }else{
+                                                idUtenteSingolo = docPathAffittuario;
+                                            }
+
+                                            let docNuovaSpesaUtenteRef = spesaUtentiCollectionRef.doc(idUtenteSingolo);
+                                            let datiSpesaUtente = {
+                                                dataPagamento : null,
+                                                prezzo : spesa_singola,
+                                            };
+
+                                            batch.set(docNuovaSpesaUtenteRef, datiSpesaUtente);
+                                        }
+
+                                        // Commit the batch
+                                        return batch.commit().then(()=>{
+                                            return true;
+                                        });
+
+
+
+                                    });
+                            })
+                            .catch((error) => {
+                                console.log("ERROR!");
+                                console.log(error);
+                                return false;
+                            });
 }
 
 //
