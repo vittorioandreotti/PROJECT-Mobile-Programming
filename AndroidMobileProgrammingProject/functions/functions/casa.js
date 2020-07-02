@@ -37,8 +37,19 @@ exports.creaCasa = functions.https.onCall((data, context) => {
     return db
         .collection('case')
         .add(dataInput)
-        .then( () => {
-            return true;
+        .then( (casaRef) => {
+
+            let dataUtente = {
+                casa: casaRef
+            };
+
+            return db
+                .collection('users')
+                .doc(uid)
+                .set(dataUtente, {merge: true})
+                .then( () => {
+                    return true;
+                });
         })
         .catch((error) => {
             console.log("ERROR!");
