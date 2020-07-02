@@ -82,7 +82,7 @@ exports.inserisciAffittuario = functions.https.onCall((data, context) => {
                                     nome = fullName.substr(0, indexSpace);
 
                                 if( cognome == null || cognome == "")
-                                    cognome = fullName.substr(indexSpace);
+                                    cognome = fullName.substr(indexSpace+1);
                             }
                         }
 
@@ -139,7 +139,7 @@ exports.inserisciProprietario = functions.https.onCall((data, context) => {
                                 nome = fullName.substr(0, indexSpace);
 
                             if( cognome == null || cognome == "")
-                                cognome = fullName.substr(indexSpace);
+                                cognome = fullName.substr(indexSpace+1);
                         }
                     }
 
@@ -218,5 +218,30 @@ exports.disiscrizione = functions.https.onCall((data, context) => {
             .catch(function(error) {
                 return false;
             });
+});
 
+exports.modificaPassword = functions.https.onCall((data, context) => {
+
+        let passwordCorrente = data.passwordCorrente;
+        let newPassword = data.newPassword;
+        let newPasswordRepeat = data.newPasswordRepeat;
+
+        if (newPassword != newPasswordRepeat) {
+            return false;
+        }
+
+        const uid = context.auth.uid;
+
+        //  var user = admin.auth().currentUser;
+
+        // Prompt the user to re-provide their sign-in credentials
+        return admin.auth().updateUser(uid, {
+                  password: newPassword
+              })
+                  .then(function() {
+                        return true;
+                  })
+                  .catch(function(error) {
+                        return false;
+        });
 });

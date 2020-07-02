@@ -73,10 +73,25 @@ public class ProfiloFragment extends Fragment {
         FirebaseUser firebaseUser = authenticationManager.getUser();
         email.setText(firebaseUser.getEmail());
 
+
         disiscriviti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 disiscrizione();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+        modifica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modificaPassword();
             }
         });
         return view;
@@ -123,6 +138,52 @@ public class ProfiloFragment extends Fragment {
                 });
     }
 
+    private void logout(){
+
+        ProfiloFragment.this.utenteSharedPreferences.clearPreferences();
+        authenticationManager.logout();
+
+        Intent intent = new Intent(ProfiloFragment.this.activity, SplashScreenActivity.class);
+        startActivity(intent);
+        ProfiloFragment.this.activity.finish();
+
+    }
+
+    private void modificaPassword() {
+
+        String pass_corrente = this.pass_corrente.getText().toString();
+        String nuova_pass = this.nuova_pass.getText().toString();
+        String conferma_pass = this.conferma_pass.getText().toString();
+
+        ((HomeActivity)this.activity).startLoading();
+
+        this.firebaseFunctionsHelper.modificaPassword(pass_corrente, nuova_pass, conferma_pass)
+                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if(!task.isSuccessful()) {
+                            Toast.makeText(ProfiloFragment.this.getActivity(), "Riprova, si è verificato un problema", Toast.LENGTH_LONG).show();
+                            ((HomeActivity)ProfiloFragment.this.activity).stopLoading();
+                            return;
+                        }
+
+                        Boolean modificaEffettuata = (Boolean)task.getResult();
+                        if(modificaEffettuata) {
+                            Toast.makeText(ProfiloFragment.this.getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
+
+                            ProfiloFragment.this.utenteSharedPreferences.clearPreferences();
+                            authenticationManager.logout();
+
+                            Intent intent = new Intent(ProfiloFragment.this.activity, SplashScreenActivity.class);
+                            startActivity(intent);
+                            ProfiloFragment.this.activity.finish();
+                        }else{
+                            Toast.makeText(ProfiloFragment.this.getActivity(), "Credenziali inserite non corrette", Toast.LENGTH_LONG).show();
+                        }
+                        ((HomeActivity)ProfiloFragment.this.activity).stopLoading();
+                    }
+                });
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     }
