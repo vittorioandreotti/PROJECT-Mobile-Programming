@@ -38,7 +38,6 @@ public class ProfiloFragment extends Fragment {
     private Button modifica;
     private Button disiscriviti;
 
-    private TextInputEditText pass_corrente;
     private TextInputEditText nuova_pass;
     private TextInputEditText conferma_pass;
     private AuthenticationManager authenticationManager;
@@ -63,7 +62,6 @@ public class ProfiloFragment extends Fragment {
         logout = view.findViewById(R.id.btnLogout);
         modifica = view.findViewById(R.id.btnModifica);
         disiscriviti = view.findViewById(R.id.btnDisiscriviti);
-        pass_corrente = view.findViewById(R.id.txtPasswordCorrenteInput);
         nuova_pass = view.findViewById(R.id.txtNewPasswordInput);
         conferma_pass = view.findViewById(R.id.txtConfermaPasswordInput);
 
@@ -151,13 +149,12 @@ public class ProfiloFragment extends Fragment {
 
     private void modificaPassword() {
 
-        String pass_corrente = this.pass_corrente.getText().toString();
         String nuova_pass = this.nuova_pass.getText().toString();
         String conferma_pass = this.conferma_pass.getText().toString();
 
         ((HomeActivity)this.activity).startLoading();
 
-        this.firebaseFunctionsHelper.modificaPassword(pass_corrente, nuova_pass, conferma_pass)
+        this.firebaseFunctionsHelper.modificaPassword(nuova_pass, conferma_pass)
                 .addOnCompleteListener(new OnCompleteListener<Boolean>() {
                     @Override
                     public void onComplete(@NonNull Task<Boolean> task) {

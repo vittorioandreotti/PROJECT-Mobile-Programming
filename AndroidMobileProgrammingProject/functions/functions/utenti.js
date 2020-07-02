@@ -222,7 +222,6 @@ exports.disiscrizione = functions.https.onCall((data, context) => {
 
 exports.modificaPassword = functions.https.onCall((data, context) => {
 
-        let passwordCorrente = data.passwordCorrente;
         let newPassword = data.newPassword;
         let newPasswordRepeat = data.newPasswordRepeat;
 
@@ -232,9 +231,6 @@ exports.modificaPassword = functions.https.onCall((data, context) => {
 
         const uid = context.auth.uid;
 
-        //  var user = admin.auth().currentUser;
-
-        // Prompt the user to re-provide their sign-in credentials
         return admin.auth().updateUser(uid, {
                   password: newPassword
               })
