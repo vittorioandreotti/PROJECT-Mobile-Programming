@@ -25,6 +25,7 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
+import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserisciSpesaComuneFragment;
 import it.univpm.mobile_programming_project.fragment.splash_screen.InserisciCodiceCasaFragment;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
@@ -126,6 +127,11 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
         String categoriaTorneo = txtCategoriaEventoInput.getText().toString();
         String regolamentoTorneo = txtDescrizioneTorneoInput.getText().toString();
 
+        if (titoloTorneo.isEmpty() || dataEventoStringa.isEmpty() || oraEventoStringa.isEmpty() || indirizzoEvento.isEmpty() || categoriaTorneo.isEmpty()) {
+            Toast.makeText(CreaTorneoFragment.this.getContext(), "Inserisci tutti i campi", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ((HomeActivity) CreaTorneoFragment.this.getActivity()).startLoading();
         firebaseFunctionsHelper
                 .inserisciTorneo(titoloTorneo, indirizzoEvento, categoriaTorneo, regolamentoTorneo, dataEventoStringa, oraEventoStringa)
@@ -147,6 +153,14 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
                         Boolean isTorneoValid = task.getResult();
                         if (isTorneoValid) {
                             // Torneo valido
+
+                            txtTitoloTorneoInput.setText("");
+                            txtDataTorneoInput.setText("");
+                            txtOraEventoInput.setText("");
+                            txtIndirizzoEventoInput.setText("");
+                            txtCategoriaEventoInput.setText("");
+                            txtDescrizioneTorneoInput.setText("");
+
                             Toast.makeText(CreaTorneoFragment.this.getContext(), "Torneo creato con successo.", Toast.LENGTH_LONG).show();
                         } else {
                             // Torneo non valido

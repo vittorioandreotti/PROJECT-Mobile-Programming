@@ -140,6 +140,11 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
             importoAffitto = 0.0;
         }
 
+        if (dataAffitto.isEmpty() || dataScadenzaAffitto.isEmpty() || titoloAffitto.isEmpty() || importoAffitto.isNaN()) {
+            Toast.makeText(InserisciAffittoFragment.this.getContext(), "Inserisci tutti i campi", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ((HomeActivity) InserisciAffittoFragment.this.getActivity()).startLoading();
         this.firebaseFunctionsHelper
                 .inserisciSpesaAffitto(importoAffitto, titoloAffitto, dataAffitto, dataScadenzaAffitto)
@@ -160,6 +165,11 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
                         Boolean isSpesaInseritaCorrettamente = task.getResult();
                         if(isSpesaInseritaCorrettamente) {
                             // Spesa inserita correttamente
+
+                            txtDataAffittoInput.setText("");
+                            txtDataScadenzaInput.setText("");
+                            txtTitoloAffittoInput.setText("");
+                            txtImportoAffittoInput.setText("");
                             Toast.makeText(InserisciAffittoFragment.this.getContext(), "Spesa inserita con successo.", Toast.LENGTH_LONG).show();
                         } else {
                             // Spesa non inserita

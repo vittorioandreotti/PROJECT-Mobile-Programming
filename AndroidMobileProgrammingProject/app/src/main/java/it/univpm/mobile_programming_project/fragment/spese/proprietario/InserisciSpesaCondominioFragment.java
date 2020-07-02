@@ -108,6 +108,11 @@ public class InserisciSpesaCondominioFragment extends Fragment implements DatePi
             importoSpesa = 0.0;
         }
 
+        if (nomeSpesa.isEmpty() || dataSpesaStringa.isEmpty() || importoSpesa.isNaN()) {
+            Toast.makeText(InserisciSpesaCondominioFragment.this.getContext(), "Inserisci tutti i campi", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ((HomeActivity) InserisciSpesaCondominioFragment.this.getActivity()).startLoading();
         this.firebaseFunctionsHelper
                 .inserisciSpesaCondominio(importoSpesa, nomeSpesa, dataSpesaStringa)

@@ -132,6 +132,11 @@ public class InserisciBolletteFragment extends Fragment implements View.OnClickL
             importoBollettaInput = 0.0;
         }
 
+        if (nomeCategoriaBollettaInput.isEmpty() || dataSpesaBollettaInputString.isEmpty() || dataScadenzaInputString.isEmpty() || importoBollettaInput.isNaN()) {
+            Toast.makeText(InserisciBolletteFragment.this.getContext(), "Inserisci tutti i campi", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ((HomeActivity) InserisciBolletteFragment.this.getActivity()).startLoading();
         this.firebaseFunctionsHelper
                 .inserisciSpesaBolletta(importoBollettaInput, nomeCategoriaBollettaInput, dataSpesaBollettaInputString, dataScadenzaInputString)
