@@ -338,6 +338,25 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    public Task<Boolean> modificaPassword(String passwordCorrente, String newPassword, String newPasswordRepeat) {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("passwordCorrente", passwordCorrente);
+        data.put("newPassword", newPassword);
+        data.put("newPasswordRepeat", newPasswordRepeat);
+
+        return this.mFunctions
+                .getHttpsCallable("modificaPassword")
+                .call(data)
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
 
 
 
