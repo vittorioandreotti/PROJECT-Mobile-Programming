@@ -28,7 +28,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtTitoloAffitto"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -42,14 +42,14 @@
                     android:id="@+id/txtTitoloAffittoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDataSpesaBolletta"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -66,13 +66,13 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDataScadenzaBolletta"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -89,7 +89,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:background="@drawable/bordo"/>
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +98,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtImportoAffitto"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -112,7 +112,7 @@
                     android:id="@+id/txtImportoAffittoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"
+
                     android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>

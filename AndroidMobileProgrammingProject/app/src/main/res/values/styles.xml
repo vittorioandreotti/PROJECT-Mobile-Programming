@@ -7,41 +7,81 @@
 
     <!-- Fullscreen theme. -->
     <style name="Theme.App.Fullscreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/Primary</item>
-        <item name="colorOnPrimary">@color/OnPrimary</item>
-        <item name="backgroundColor">@color/Primary</item>
-        <item name="android:windowBackground">@color/Primary</item>
 
-        <item name="android:statusBarColor">@color/OnPrimary</item>
+        <item name="backgroundColor">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryLightColor</item>
+
+        <item name="android:statusBarColor">@color/primaryDarkColor</item>
 
         <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
         <item name="android:contextPopupMenuStyle">@style/Widget.MaterialComponents.PopupMenu.ContextMenu</item>
         <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
     </style>
 
-    <!--TEXT INPUT-->
-    <style name="Theme.Widget.TextInput" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="startIconTint">@color/OnPrimary</item>
-        <item name="android:textColorHint">@color/OnPrimary</item>
-        <item name="endIconTint">@color/OnPrimary</item>
-        <item name="hintTextColor">@color/OnPrimary</item>
+    <!--TEXT INPUT LAYOUT-->
+    <style name="Theme.Widget.TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="startIconTint">@color/primaryColor</item>
+        <item name="android:textColorHint">@color/primaryColor</item>
+        <item name="endIconTint">@color/primaryColor</item>
+        <item name="hintTextColor">@color/primaryColor</item>
+
+        <item name="boxStrokeColor">@color/primaryColor</item>
     </style>
 
     <!--BUTTON-->
     <style name="Theme.Widget.Button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:textColor">@color/OnPrimary</item>
-        <item name="android:textColorHint">@color/OnPrimary</item>
-        <item name="strokeColor">@color/OnPrimary</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textColorHint">@color/primaryColor</item>
+        <item name="strokeColor">@color/primaryColor</item>
     </style>
 
     <!--Progress Bar-->
     <style name="Theme.Widget.ProgressBar" parent="@style/Widget.AppCompat.ProgressBar">
-        <item name="android:indeterminateTint">@color/OnPrimary</item>
+        <item name="android:indeterminateTint">@color/primaryColor</item>
     </style>
 
     <!-- Card layout. -->
     <style name="Theme.Widget.Card" parent="Widget.MaterialComponents.CardView">
         <!-- ... -->
+    </style>
+
+    <!-- Toolbar style -->
+    <style name="Theme.App.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/primaryColor</item>
+        <item name="android:elevation">4dp</item>
+
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+
+    </style>
+
+    <style name="Theme.App.TabLayout">
+
+        <item name="tabTextColor">@android:color/white</item>
+        <item name="background">@color/primaryColor</item>
+
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="tabMode">scrollable</item>
+        <item name="android:background">@color/primaryLightColor</item>
+
+    </style>
+
+    <style name="Theme.App.NavHeader" parent="@style/ThemeOverlay.AppCompat.Dark">
+
+        <item name="android:background">@color/primaryColor</item>
+
+    </style>
+
+    <style name="Theme.App.TextView.Title">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">30dp</item>
+    </style>
+
+    <style name="Theme.App.TextView.Loading">
+        <item name="android:textColor">@color/primaryColor</item>
     </style>
 
 

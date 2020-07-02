@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/txtAccedi"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="@style/Theme.App.TextView.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/accedi"
@@ -19,8 +19,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/OnPrimary"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,9 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:startIconDrawable="@drawable/ic_email_light_grey_24dp"
-            style="@style/Theme.Widget.TextInput"
-
-
+            style="@style/Theme.Widget.TextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -53,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:background="@drawable/bordo"
+
 
                 />
 
@@ -62,7 +59,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtPassword"
-            style="@style/Theme.Widget.TextInput"
+            style="@style/Theme.Widget.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
@@ -79,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:background="@drawable/bordo"
+
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

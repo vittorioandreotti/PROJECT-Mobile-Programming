@@ -10,11 +10,11 @@
     android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="@style/Theme.App.TabLayout"
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/OnPrimary">
+        android:layout_gravity="center">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

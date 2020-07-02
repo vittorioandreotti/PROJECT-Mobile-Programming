@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/txtRegistrazione"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="@style/Theme.App.TextView.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registrazione"
@@ -21,8 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/OnPrimary"
-
         />
 
     <ScrollView
@@ -47,23 +45,21 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtNome"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nome"
-                android:textColorHint="@color/OnPrimary"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:passwordToggleTint="#001807FF"
                 app:startIconDrawable="@drawable/ic_group_light_grey_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtNomeInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo" />
+                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +74,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtNome"
                 app:startIconDrawable="@drawable/ic_group_light_grey_24dp"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
 
 
                 >
@@ -87,7 +83,7 @@
                     android:id="@+id/txtCognomeInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +99,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtCognome"
                 app:startIconDrawable="@drawable/ic_email_light_grey_24dp"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -111,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:background="@drawable/bordo">
+                    >
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -129,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEmail"
                 app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -137,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:background="@drawable/bordo"
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -154,7 +150,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPassword"
                 app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-                style="@style/Theme.Widget.TextInput"
+                style="@style/Theme.Widget.TextInputLayout"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -162,7 +158,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:background="@drawable/bordo"
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -171,7 +167,7 @@
                 android:id="@+id/btnRegistrati"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/registrati"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
