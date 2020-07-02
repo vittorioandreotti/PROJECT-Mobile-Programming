@@ -19,7 +19,7 @@ public abstract class Helper {
     }
 
     public static Date fromStringToDate(String dateString ) {
-        return fromStringToDate(dateString, "dd-MM-yyyy");
+        return fromStringToDate(dateString, "dd/MM/yyyy");
     }
 
     @SuppressLint("SimpleDateFormat")

@@ -181,9 +181,97 @@ public class FirebaseFunctionsHelper {
         data.put("prezzo", importo);
         data.put("dataInserimento", dataBolletta.toString() );
         data.put("dataScadenza", dataScadenza.toString() );
+        data.put("tipoSpesa", "bolletta");
 
         return this.mFunctions
-                .getHttpsCallable("inserisciSpesaBolletta")
+                .getHttpsCallable("inserisciSpesa")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
+    public Task<Boolean> inserisciSpesaAffitto(Double importo, String titolo, String stringDataAffitto, String stringDataScadenza) {
+
+        String idCasa = this.sharedPreferences.getIdCasa();
+
+        Date dataAffitto = Helper.fromStringToDate(stringDataAffitto);
+        Date dataScadenza = Helper.fromStringToDate(stringDataScadenza);
+
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
+        data.put("titolo", titolo);
+        data.put("prezzo", importo);
+        data.put("dataInserimento", dataAffitto.toString() );
+        data.put("dataScadenza", dataScadenza.toString() );
+        data.put("tipoSpesa", "affitto");
+
+        return this.mFunctions
+                .getHttpsCallable("inserisciSpesa")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
+    public Task<Boolean> inserisciSpesaCondominio(Double importo, String nome, String stringDataAffitto) {
+
+        String idCasa = this.sharedPreferences.getIdCasa();
+
+        Date dataAffitto = Helper.fromStringToDate(stringDataAffitto);
+
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
+        data.put("nome", nome);
+        data.put("prezzo", importo);
+        data.put("dataInserimento", dataAffitto.toString() );
+        data.put("tipoSpesa", "condominio");
+
+        return this.mFunctions
+                .getHttpsCallable("inserisciSpesa")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
+    }
+
+    public Task<Boolean> inserisciSpesaComune(Double importo, String nome, String stringDataSpesa, String descrizione) {
+
+        String idCasa = this.sharedPreferences.getIdCasa();
+
+        Date dataSpesa = Helper.fromStringToDate(stringDataSpesa);
+
+        // Call the function and extract the result
+        // exports.getUserInfo
+        Map<String, Object> data = new HashMap<>();
+        data.put("idCasa", idCasa);
+        data.put("nome", nome);
+        data.put("prezzo", importo);
+        data.put("dataInserimento", dataSpesa.toString() );
+        data.put("descrizione", descrizione);
+        data.put("tipoSpesa", "comune");
+
+        return this.mFunctions
+                .getHttpsCallable("inserisciSpesa")
                 .call( data )
                 .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
                     @Override

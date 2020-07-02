@@ -26,6 +26,26 @@
             app:layout_constraintStart_toStartOf="parent">
 
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtTitoloAffitto"
+                style="@style/Theme.Widget.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/titoloAffitto"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTitoloAffittoInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordo"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtDataSpesaBolletta"
@@ -37,7 +57,7 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/txtTitoloAffitto">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtDataAffittoInput"
@@ -99,32 +119,6 @@
 
 
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtNumeroMesiAffitto"
-                style="@style/Theme.Widget.TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/numero_di_mensilit"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtImportoAffitto">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtNumeroMesiAffittoInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bordo"
-                    android:inputType="number"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-
             <Button
                 android:id="@+id/btnInsericiAffitto"
                 style="@style/Theme.Widget.Button"
@@ -137,7 +131,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNumeroMesiAffitto" />
+                app:layout_constraintTop_toBottomOf="@+id/txtImportoAffitto" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

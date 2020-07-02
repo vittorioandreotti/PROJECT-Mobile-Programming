@@ -86,6 +86,7 @@
     <string name="data_della_spesa">Data della spesa</string>
     <string name="numero_di_mensilit">Numero di mensilità</string>
     <string name="importo_mensile">Importo mensile</string>
+    <string name="titoloAffitto">Titolo</string>
 
 
 </resources>
