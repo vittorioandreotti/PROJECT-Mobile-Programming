@@ -219,8 +219,4 @@ exports.disiscrizione = functions.https.onCall((data, context) => {
                 return false;
             });
 
-
-
-
-
 });

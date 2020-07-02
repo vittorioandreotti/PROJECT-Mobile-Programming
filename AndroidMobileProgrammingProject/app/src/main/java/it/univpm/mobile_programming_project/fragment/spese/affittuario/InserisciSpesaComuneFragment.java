@@ -64,7 +64,7 @@ public class InserisciSpesaComuneFragment extends Fragment implements DatePicker
 
         v.findViewById(R.id.btnInserisciSpesaComune).setOnClickListener(this);
 
-        txtDataSpesaComuneInput = v.findViewById(R.id.txtDataSpesaComune);
+        txtDataSpesaComuneInput = v.findViewById(R.id.txtDataSpesaComuneInput);
         txtDataSpesaComuneInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +108,11 @@ public class InserisciSpesaComuneFragment extends Fragment implements DatePicker
             importoSpesa = 0.0;
         }
 
+        if (nomeSpesa.isEmpty() || descSpesa.isEmpty() || dataSpesaStringa.isEmpty() || importoSpesa.isNaN()) {
+            Toast.makeText(InserisciSpesaComuneFragment.this.getContext(), "Inserisci tutti i campi", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ((HomeActivity) InserisciSpesaComuneFragment.this.getActivity()).startLoading();
         this.firebaseFunctionsHelper
                 .inserisciSpesaComune(importoSpesa, nomeSpesa, dataSpesaStringa, descSpesa)
@@ -128,6 +133,10 @@ public class InserisciSpesaComuneFragment extends Fragment implements DatePicker
                         Boolean isSpesaInseritaCorrettamente = task.getResult();
                         if(isSpesaInseritaCorrettamente) {
                             // Spesa inserita correttamente
+                            txtDataSpesaComuneInput.setText("");
+                            txtDescrizioneSpesaComuneInput.setText("");
+                            txtImportoSpesaComuneInput.setText("");
+                            txtNomeSpesaComuneInput.setText("");
                             Toast.makeText(InserisciSpesaComuneFragment.this.getContext(), "Spesa inserita con successo.", Toast.LENGTH_LONG).show();
                         } else {
                             // Spesa non inserita
