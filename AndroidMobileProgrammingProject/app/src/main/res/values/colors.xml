@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="testBg">#eceff1</color>
 
     <color name="primaryColor">#006064</color>
     <color name="primaryLightColor">#428e92</color>
     <color name="primaryDarkColor">#00363a</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="background">#E1E2E1</color>
+    <color name="background">@color/testBg</color>
 
 
-    <color name="Primary">#E1E2E1</color>
+    <color name="Primary">@color/testBg</color>
     <color name="colorPrimaryDark"> #E1E2E1</color>
     <color name="OnPrimary">#ffca18</color>
     <color name="colorBackground">#E1E2E1</color>

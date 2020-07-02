@@ -38,6 +38,13 @@
         <item name="strokeColor">@color/primaryColor</item>
     </style>
 
+    <!--BUTTON-->
+    <style name="Theme.Widget.ButtonRed" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textColorHint">@android:color/holo_red_dark</item>
+        <item name="strokeColor">@android:color/holo_red_dark</item>
+    </style>
+
     <!--Progress Bar-->
     <style name="Theme.Widget.ProgressBar" parent="@style/Widget.AppCompat.ProgressBar">
         <item name="android:indeterminateTint">@color/primaryColor</item>
@@ -75,13 +82,25 @@
 
     </style>
 
+    <style name="Theme.App.TextView" />
+
     <style name="Theme.App.TextView.Title">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">30dp</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="Theme.App.TextView.Subtitle">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="Theme.App.TextView.Loading">
         <item name="android:textColor">@color/primaryColor</item>
+    </style>
+
+    <style name="Theme.App.TextView.Muted">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
 

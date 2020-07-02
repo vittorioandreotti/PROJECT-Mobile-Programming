@@ -89,6 +89,10 @@
     <string name="titoloAffitto">Titolo</string>
     <string name="full_name">Full name</string>
     <string name="fullname_email_com">fullname@email.com</string>
+    <string name="cancella_account">Cancella account</string>
+    <string name="label_nome">Nome:</string>
+    <string name="label_cognome">Cognome:</string>
+    <string name="label_email">Email:</string>
 
 
 </resources>

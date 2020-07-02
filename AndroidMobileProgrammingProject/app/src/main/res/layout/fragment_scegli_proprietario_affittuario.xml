@@ -9,7 +9,7 @@ tools:context=".fragment.splash_screen.ScegliProprietarioAffittuarioFragment">
 
 <TextView
     android:id="@+id/txtRegistrazione"
-    style="@style/TextAppearance.MaterialComponents.Headline4"
+    style="@style/Theme.App.TextView.Title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/sono_un"
@@ -17,8 +17,7 @@ tools:context=".fragment.splash_screen.ScegliProprietarioAffittuarioFragment">
     android:textAlignment="center"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:textColor="@color/OnPrimary"/>
+    app:layout_constraintTop_toTopOf="parent"/>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
