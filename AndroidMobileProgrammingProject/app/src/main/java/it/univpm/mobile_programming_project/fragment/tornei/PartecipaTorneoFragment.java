@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class PartecipaTorneoFragment extends Fragment {
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private View view;
+    private SwipeRefreshLayout swipeLayout;
 
     public PartecipaTorneoFragment() {
         firebaseFunctionsHelper = new FirebaseFunctionsHelper();
@@ -51,6 +53,15 @@ public class PartecipaTorneoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_partecipa_a_torneo, container, false);
+
+        swipeLayout = view.findViewById(R.id.swipe_refresh);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initRecyclerView();
+            }
+        });
+
         return view;
     }
 
@@ -89,10 +100,15 @@ public class PartecipaTorneoFragment extends Fragment {
                 }else{
                     Toast.makeText(getActivity(), "Errore nella lettura dei tornei", Toast.LENGTH_SHORT).show();
                 }
+                stopRefreshing();
             }
         });
 
 
+    }
+
+    private void stopRefreshing() {
+        swipeLayout.setRefreshing(false);
     }
 
 }
