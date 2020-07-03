@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:layout_marginTop="20dp"
-        android:visibility="gone"
+
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDatiUtente"
         tools:layout_editor_absoluteX="25dp">
 
@@ -127,39 +127,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtPasswordCorrente"
-            style="@style/Theme.Widget.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="@string/password_corrente"
-            app:endIconMode="password_toggle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtModificaPassword"
-            app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp"
-            tools:layout_editor_absoluteY="238dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtPasswordCorrenteInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtNewPassword"
             style="@style/Theme.Widget.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:hint="@string/nuova_password"
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPasswordCorrente"
+            app:layout_constraintTop_toBottomOf="@+id/txtModificaPassword"
             app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
 
             <com.google.android.material.textfield.TextInputEditText

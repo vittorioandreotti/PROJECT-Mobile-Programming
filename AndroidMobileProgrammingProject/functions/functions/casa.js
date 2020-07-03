@@ -40,8 +40,10 @@ exports.creaCasa = functions.https.onCall((data, context) => {
         .then( (casaRef) => {
 
             let dataUtente = {
-                casa: casaRef
+                casa: db.collection("case").doc(casaRef.id)
             };
+
+            console.log(dataUtente)
 
             return db
                 .collection('users')

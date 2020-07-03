@@ -338,10 +338,9 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-    public Task<Boolean> modificaPassword(String passwordCorrente, String newPassword, String newPasswordRepeat) {
+    public Task<Boolean> modificaPassword(String newPassword, String newPasswordRepeat) {
 
         Map<String, Object> data = new HashMap<>();
-        data.put("passwordCorrente", passwordCorrente);
         data.put("newPassword", newPassword);
         data.put("newPasswordRepeat", newPasswordRepeat);
 
