@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 
@@ -28,6 +29,7 @@ import it.univpm.mobile_programming_project.fragment.spese.affittuario.Inserimen
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.fragment.tornei.TorneiFragment;
+import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
