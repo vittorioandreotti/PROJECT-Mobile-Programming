@@ -359,104 +359,138 @@ exports.inserisciSpesa = functions.https.onCall((data, context) => {
 */
 exports.elencoSpeseAffittuario = functions.https.onCall((data, context) => {
 
-    // DA DIVIDERE PER TIPOLOGIA
-    /*
-        {
-            "affitto" : {
-                "pagate" : [
-                    {
-                      ... // Dati spesa
-                    },{
-                      ... // Dati spesa
-                    },
-                ],
-                "da pagare" : [
-                    {
-                      ... // Dati spesa
-                    },{
-                      ... // Dati spesa
-                    },
-                ],
-                "in scadenza" : [
-                    {
-                      ... // Dati spesa
-                    },{
-                      ... // Dati spesa
-                    },
-                ],
-            },
-            "bollette" : {
-                "pagate" : [
-                    {
-                      ... // Dati spesa
-                    },{
-                      ... // Dati spesa
-                    },
-                ],
-                "da pagare" : [
-                    {
-                      ... // Dati spesa
-                    },{
-                      ... // Dati spesa
-                    },
-                ],
-                "in scadenza" : [
-                    {
-                      ... // Dati spesa
-                    },{
-                      ... // Dati spesa
-                    },
-                ],
-            },
+       let oggettoRitorno = {
+           sommario : { daPagare:[], pagate:[] },
+           affitto : { daPagare:[], pagate:[] },
+           bollette : { daPagare:[], pagate:[] },
+           comune : { daPagare:[], pagate:[] },
+           condominio : { daPagare:[], pagate:[] },
+       };
 
-        }
-    */
+        let idCasa = data.idCasa;
+        if(idCasa == undefined || idCasa == null || idCasa == "") return false;
+
+        return db
+            .collection("case")
+            .doc(idCasa)
+            .collection("spese")
+            .get()
+            .then( (speseSnapshot) => {
+                    // Tutte le spese di una casa
+
+                  speseSnapshot.forEach((doc) => {
+                    // Per ogni spesa di una casa
+                    let datiSpesaSingola = doc.data();
+
+                    // Tipo della spesa singola
+                    let tipoSpesaDoc = datiSpesaSingola.tipo;
+
+//                    let utentiSpesaSingola =
+                    let utentiSnapshot = doc.collection("utenti").get();
+
+
+                         // Tutti gli utenti di una spesa
+
+                    utentiSnapshot.forEach((utenteDoc) => {
+                            // Per ogni utente di una singola spesa
+                            let datiUtenteSpesaSingola = utenteDoc.data();
+
+                            let dataPagamento = datiUtenteSpesaSingola.dataPagamento;
+
+                            let objDataSpesa = {
+                                    nome: datiSpesaSingola.nome,
+                                    descrizione: datiSpesaSingola.descrizione,
+                                    dataInserimento: datiSpesaSingola.dataInserimento,
+                                    prezzo: datiUtenteSpesaSingola.prezzo
+                            };
+                            if( dataPagamento == null ){
+                                // NON HA PAGATO
+                                 oggettoRitorno[tipoSpesaDoc].daPagare.push(objDataSpesa);
+                                 objDataSpesa.tipo = tipoSpesaDoc;
+                                 oggettoRitorno.sommario.daPagare.push(objDataSpesa);
+
+                            }else{
+                                // HA PAGATO
+                                objDataSpesa.dataPagamento = datiUtenteSpesaSingola.dataPagamento;
+                                oggettoRitorno[tipoSpesaDoc].pagate.push(objDataSpesa);
+                                objDataSpesa.tipo = tipoSpesaDoc;
+                                oggettoRitorno.sommario.pagate.push(objDataSpesa);
+                            }
+
+                    });
+              });
+              console.log(oggettoRitorno)
+              return oggettoRitorno;
+        });
 
 
 });
+
+
 
 /**
 *
 */
 exports.elencoSpeseProprietario = functions.https.onCall((data, context) => {
 
-    /*
-    {
-        "affitto" : {
-            "pagate" : [
-                {
-                  ... // Dati spesa
-                },{
-                  ... // Dati spesa
-                },
-            ],
-            "da pagare" : [
-                {
-                  ... // Dati spesa
-                },{
-                  ... // Dati spesa
-                },
-            ],
-        },
-        "bollette" : {
-            "pagate" : [
-                {
-                  ... // Dati spesa
-                },{
-                  ... // Dati spesa
-                },
-            ],
-            "da pagare" : [
-                {
-                  ... // Dati spesa
-                },{
-                  ... // Dati spesa
-                },
-            ],
-        },
+    let oggettoRitorno = {
+           sommario : { nonPagate:[], pagate:[] },
+           affitto : { nonPagate:[], pagate:[] },
+           bollette : { nonPagate:[], pagate:[] },
+           condominio : { nonPagate:[], pagate:[] },
+       };
 
-    }
-    */
+    let idCasa = data.idCasa;
+    if(idCasa == undefined || idCasa == null || idCasa == "") return false;
 
+    return db
+        .collection("case")
+        .doc(idCasa)
+        .collection("spese")
+        .get()
+        .then( (speseSnapshot) => {
+                // Tutte le spese di una casa
+
+              speseSnapshot.forEach((doc) => {
+                // Per ogni spesa di una casa
+                let datiSpesaSingola = doc.data();
+
+                // Tipo della spesa singola
+                let tipoSpesaDoc = datiSpesaSingola.tipo;
+
+                let utentiSnapshot = doc.collection("utenti").get();
+                // Tutti gli utenti di una spesa
+
+                        utentiSnapshot.forEach((utenteDoc) => {
+                            // Per ogni utente di una singola spesa
+                            let datiUtenteSpesaSingola = utenteDoc.data();
+
+                            let dataPagamento = datiUtenteSpesaSingola.dataPagamento;
+
+                            let objDataSpesa = {
+                                    nome: datiSpesaSingola.nome,
+                                    descrizione: datiSpesaSingola.descrizione,
+                                    dataInserimento: datiSpesaSingola.dataInserimento,
+                                    prezzo: datiUtenteSpesaSingola.prezzo
+                            };
+                            if( dataPagamento == null ){
+                                // NON PAGATA
+                                 oggettoRitorno[tipoSpesaDoc].nonPagate.push(objDataSpesa);
+                                 objDataSpesa.tipo = tipoSpesaDoc;
+                                 oggettoRitorno.sommario.nonPagate.push(objDataSpesa);
+
+                            }else{
+                                // PAGATA
+                                objDataSpesa.dataPagamento = datiUtenteSpesaSingola.dataPagamento;
+                                oggettoRitorno[tipoSpesaDoc].pagate.push(objDataSpesa);
+                                objDataSpesa.tipo = tipoSpesaDoc;
+                                oggettoRitorno.sommario.pagate.push(objDataSpesa);
+                            }
+
+                });
+          });
+
+          return oggettoRitorno;
+    });
 });
 

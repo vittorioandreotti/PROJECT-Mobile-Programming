@@ -1,5 +1,7 @@
 package it.univpm.mobile_programming_project.fragment.splash_screen;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +22,17 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
+import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
 
 public class CondividiCodiceCasaFragment extends Fragment implements View.OnClickListener {
 
     private FragmentContainerView loadingFragment;
-    private final FirebaseFunctionsHelper firebaseFunctionsHelper;
-    private TextView txtCodice;
+    private TextView Codice;
+    private UtenteSharedPreferences sharedPreferences;
+
 
     public CondividiCodiceCasaFragment() {
-        this.firebaseFunctionsHelper = new FirebaseFunctionsHelper();
     }
 
 
@@ -53,14 +56,20 @@ public class CondividiCodiceCasaFragment extends Fragment implements View.OnClic
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_mostra_codice_casa, container, false);
 
+        this.sharedPreferences = new UtenteSharedPreferences(getActivity());
         view.findViewById(R.id.btnShareCod).setOnClickListener(this);
-        txtCodice = view.findViewById(R.id.txtCodice);
+        Codice = view.findViewById(R.id.txtCodice);
+        Codice.setText(CondividiCodiceCasaFragment.this.sharedPreferences.getIdCasa());
 
         return view;
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "Ecco il codice della mia casa: " + Codice.getText().toString());
+        getActivity().startActivity(intent);
 
     }
 
