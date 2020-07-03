@@ -22,5 +22,6 @@ public class AppCompatActivityWithLoading extends AppCompatActivity {
 
     public void stopLoading() {
         ((FragmentContainerView)this.findViewById(R.id.fragmentLoading)).setVisibility(View.GONE);
+        this.findViewById(R.id.navigation_view).bringToFront();
     }
 }

@@ -53,10 +53,6 @@ public class TorneiFragment extends Fragment {
         // oppure alla prima pagina se non specificata
         viewPager.setCurrentItem(this.paginaDiLancio);
 
-//    }
-//
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -70,6 +66,7 @@ public class TorneiFragment extends Fragment {
                 switch(tab.getPosition()){
                     case TorneiFragment.PARTECIPA:
                         titoloId = R.string.partecipatorneo;
+                        ((PartecipaTorneoFragment)pagerAdapter.getItem(TorneiFragment.PARTECIPA)).initRecyclerView();
                         break;
 
                     case TorneiFragment.CREA:

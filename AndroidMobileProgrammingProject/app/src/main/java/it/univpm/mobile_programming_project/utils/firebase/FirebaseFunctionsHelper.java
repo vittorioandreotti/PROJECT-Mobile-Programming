@@ -7,10 +7,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import it.univpm.mobile_programming_project.models.Torneo;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
@@ -358,5 +361,36 @@ public class FirebaseFunctionsHelper {
     }
 
 
+    public Task<List<Torneo>> elencoTornei() {
+        return this.mFunctions
+                .getHttpsCallable("elencoTornei")
+                .call()
+                .continueWith(new Continuation<HttpsCallableResult, List<Torneo>>() {
+                    @Override
+                    public List<Torneo> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Map<String, Object> resultData = (Map<String, Object>) result.getData();
 
+                        List<Torneo> listaTornei = new ArrayList<Torneo>();
+
+                        if( (Boolean)resultData.get("error") ) {
+                            return listaTornei;
+                        }
+
+                        for( Map<String, Object> torneoSingolo : (List<Map<String, Object>>) resultData.get("tornei") ) {
+                            //
+                            String id = (String)torneoSingolo.get("id");
+                            String titolo = (String)torneoSingolo.get("titolo");
+                            String categoria = (String)torneoSingolo.get("categoria");
+                            String indirizzo = (String)torneoSingolo.get("indirizzo");
+                            String regolamento = (String)torneoSingolo.get("regolamento");
+                            Object dataOra = torneoSingolo.get("dataOra");
+
+                            listaTornei.add( new Torneo(id, titolo, categoria, indirizzo, new Date(), regolamento) );
+                        }
+
+                        return listaTornei;
+                    }
+                });
+    }
 }
