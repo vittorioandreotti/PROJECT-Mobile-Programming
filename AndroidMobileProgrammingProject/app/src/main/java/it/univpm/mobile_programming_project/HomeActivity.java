@@ -192,8 +192,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         }
     }
 
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -235,6 +233,12 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
 //                titleId = R.string.non_pagate;
 //                break;
 
+
+            // CODICE CASA
+            case R.id.nav_codice_casa:
+                navigationFragment = new CondividiCodiceCasaFragment();
+                titleId = R.string.inserisci_codice_casa;
+                break;
 
 
             // SPESE

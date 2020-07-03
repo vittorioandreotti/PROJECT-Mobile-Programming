@@ -66,6 +66,7 @@
     <string name="categoriabolletta">"Categoria "</string>
     <string name="datascadenza">Data scadenza</string>
     <string name="regolamento">Regolamento</string>
+    <string name="codice_casa">Codice casa</string>
     <string name="inserisci_codice_casa">Inserisci codice casa:</string>
     <string name="inserisci_codice">Inserisci codice</string>
     <string name="entra_in_una_casa">Entra in una casa</string>

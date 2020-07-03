@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imgShareCod"
+            android:id="@+id/btnShareCod"
             style="@style/Theme.Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
