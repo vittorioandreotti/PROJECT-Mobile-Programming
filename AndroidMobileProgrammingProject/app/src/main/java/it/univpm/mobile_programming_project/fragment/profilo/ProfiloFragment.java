@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -20,6 +21,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+
+import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
@@ -44,6 +49,7 @@ public class ProfiloFragment extends Fragment {
     private Context context;
     private Activity activity;
     private UtenteSharedPreferences utenteSharedPreferences;
+
 
     public ProfiloFragment() {
         // Required empty public constructor
@@ -71,6 +77,16 @@ public class ProfiloFragment extends Fragment {
         FirebaseUser firebaseUser = authenticationManager.getUser();
         email.setText(firebaseUser.getEmail());
 
+        List<? extends UserInfo> userProviderInfo = ((FirebaseUser)authenticationManager.getUser()).getProviderData();
+        ConstraintLayout constraintLayoutModificaPassword = view.findViewById(R.id.constraintLayoutModificaPassword);
+
+        for( UserInfo userInfo : userProviderInfo ) {
+            String providerId = userInfo.getProviderId();
+            if (providerId.equals(GoogleAuthProvider.PROVIDER_ID)) {
+                constraintLayoutModificaPassword.setVisibility(View.GONE);
+                break;
+            }
+        }
 
         disiscriviti.setOnClickListener(new View.OnClickListener() {
             @Override
