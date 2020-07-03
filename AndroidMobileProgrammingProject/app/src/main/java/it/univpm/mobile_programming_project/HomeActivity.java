@@ -1,10 +1,11 @@
 package it.univpm.mobile_programming_project;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,8 +43,9 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     private NavigationView navigationView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private UtenteSharedPreferences sharedPreferences;
+    private TextView navHeaderFullName;
+    private TextView navHeaderEmail;
     private AuthenticationManager authenticationManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,15 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 context.navigationView.invalidate();
                 context.navigationView.bringToFront();
                 context.actionBarDrawerToggle.syncState();
+
+                View navViewHeader = context.navigationView.getHeaderView(0);
+
+                navHeaderFullName = navViewHeader.findViewById(R.id.txtPlaceholderFullName);
+                navHeaderEmail = navViewHeader.findViewById(R.id.txtPlaceholderEmail);
+
+                navHeaderFullName.setText(HomeActivity.this.sharedPreferences.getNome() + " " + HomeActivity.this.sharedPreferences.getCognome());
+                navHeaderEmail.setText(context.authenticationManager.getUser().getEmail());
+
                 context.stopLoading();
             }
 
@@ -180,8 +191,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
             super.onBackPressed();
         }
     }
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
