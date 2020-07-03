@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.tornei;
+package it.univpm.mobile_programming_project.fragment.tornei;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;

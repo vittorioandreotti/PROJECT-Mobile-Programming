@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.tornei;
+package it.univpm.mobile_programming_project.fragment.tornei;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -24,9 +24,6 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.SplashScreenActivity;
-import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserisciSpesaComuneFragment;
-import it.univpm.mobile_programming_project.fragment.splash_screen.InserisciCodiceCasaFragment;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;

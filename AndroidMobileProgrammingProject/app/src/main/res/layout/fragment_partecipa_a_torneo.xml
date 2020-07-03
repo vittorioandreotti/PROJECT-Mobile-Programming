@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.App.Fullscreen"
-    tools:context=".tornei.PartecipaTorneoFragment">
+    tools:context=".fragment.tornei.PartecipaTorneoFragment">
 
 <ScrollView
     android:layout_width="match_parent"

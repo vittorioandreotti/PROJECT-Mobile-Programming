@@ -12,7 +12,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/home" />
 
     </group>
 
@@ -26,7 +26,7 @@
         <item
             android:id="@+id/nav_statistiche"
             android:icon="@drawable/ic_statistiche"
-            android:title="Statistiche" />
+            android:title="@string/statistiche" />
     </group>
 
 
@@ -36,45 +36,58 @@
         android:id="@+id/group_sommario"
         android:checkableBehavior="single">
 
-        <item android:title="Sommario">
+        <item android:title="@string/sommario">
             <menu>
                 <item
                     android:id="@+id/nav_sommario_pagate"
                     android:icon="@drawable/ic_cake"
-                    android:title="Spese pagate" />
+                    android:title="@string/spese_pagate" />
 
                 <item
                     android:id="@+id/nav_sommario_non_pagate"
                     android:icon="@drawable/ic_cake"
-                    android:title="Spese non pagate" />
+                    android:title="@string/spese_non_pagate" />
             </menu>
         </item>
     </group>
 
+    <!--  Codice casa  -->
+    <group
+        android:id="@+id/group_codice_casa"
+        android:checkableBehavior="single">
 
+        <item android:title="@string/casa">
+            <menu>
+                <item
+                    android:id="@+id/nav_codice_casa"
+                    android:icon="@drawable/ic_spese"
+                    android:title="@string/codice_casa" />
+            </menu>
+        </item>
 
+    </group>
 
     <!--    SPESE    -->
     <group
         android:id="@+id/group_spese"
         android:checkableBehavior="single">
 
-        <item android:title="Spese">
+        <item android:title="@string/spese">
             <menu>
                 <item
                     android:id="@+id/nav_ins_spesa_condominio"
                     android:icon="@drawable/ic_spese"
-                    android:title="Inserisci spese condominio" />
+                    android:title="@string/inserisci_spese_condominio" />
 
                 <item
                     android:id="@+id/nav_ins_bollette"
                     android:icon="@drawable/ic_spese"
-                    android:title="Inserisci bollette" />
+                    android:title="@string/inserisci_bollette" />
 
                 <item
                     android:id="@+id/nav_ins_affitto"
                     android:icon="@drawable/ic_spese"
-                    android:title="Inserisci affitto" />
+                    android:title="@string/inserisci_affitto" />
 
             </menu>
         </item>
@@ -89,22 +102,22 @@
         android:id="@+id/group_tornei"
         android:checkableBehavior="single">
 
-        <item android:title="Tornei">
+        <item android:title="@string/tornei">
             <menu>
                 <item
                     android:id="@+id/nav_partecipa_torneo"
                     android:icon="@drawable/ic_trophy_icon_icons"
-                    android:title="Partecipa" />
+                    android:title="@string/partecipa" />
 
                 <item
                     android:id="@+id/nav_crea_un_torneo"
                     android:icon="@drawable/ic_trophy_icon_icons"
-                    android:title="Crea" />
+                    android:title="@string/crea" />
 
                 <item
                     android:id="@+id/nav_storico_torneo"
                     android:icon="@drawable/ic_trophy_icon_icons"
-                    android:title="Storico" />
+                    android:title="@string/storico" />
             </menu>
         </item>
     </group>
@@ -116,7 +129,7 @@
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_profile"
-            android:title="Profilo" />
+            android:title="@string/profilo" />
     </group>
 
 
