@@ -1,5 +1,6 @@
 package it.univpm.mobile_programming_project;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 
@@ -60,7 +62,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-
 
         navigationView.setNavigationItemSelectedListener(context);
 
@@ -127,7 +128,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 context.actionBarDrawerToggle.syncState();
 
                 View navViewHeader = context.navigationView.getHeaderView(0);
-                
+
                 navHeaderFullName = navViewHeader.findViewById(R.id.txtPlaceholderFullName);
                 navHeaderEmail = navViewHeader.findViewById(R.id.txtPlaceholderEmail);
 
@@ -277,6 +278,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.profilo;
                 break;
 
+            // Log-Out
+            case R.id.nav_logout:
+                logout();
+                return true;
+
             default:
                 return false;
         }
@@ -364,6 +370,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.profilo;
                 break;
 
+            // Log-Out
+            case R.id.nav_logout:
+                logout();
+                return true;
+
             default:
                 return false;
         }
@@ -374,6 +385,16 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         drawerLayout.closeDrawers();
 
         return true;
+    }
+
+    private void logout() {
+        FirebaseUser firebaseUser = authenticationManager.getUser();
+        HomeActivity.this.sharedPreferences.clearPreferences();
+        authenticationManager.logout();
+
+        Intent intent = new Intent(HomeActivity.this, SplashScreenActivity.class);
+        startActivity(intent);
+        HomeActivity.this.finish();
     }
 
     public void setToolbarTitle(String newTitle) {
