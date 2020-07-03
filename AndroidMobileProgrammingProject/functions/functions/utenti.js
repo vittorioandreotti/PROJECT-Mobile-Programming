@@ -203,6 +203,8 @@ exports.disiscrizione = functions.https.onCall((data, context) => {
 
         let uidRef = db.collection("users").doc(uid);
 
+        const fieldValue = admin.firestore.FieldValue;
+
         return db
             .collection('case')
             .doc(data.idCasa)
@@ -212,12 +214,24 @@ exports.disiscrizione = functions.https.onCall((data, context) => {
             .then(function() {
                 return admin.auth().deleteUser(uid)
                   .then(function() {
-                        return true;
+                        return db
+                            .collection('users')
+                            .doc(uid)
+                            .delete()
+                            .then(function() {
+                                return true;
+                                })
+                            .catch(function() {
+                                return false;
+                            });
                   });
             })
-            .catch(function(error) {
+            .catch(function() {
                 return false;
             });
+
+
+
 });
 
 exports.modificaPassword = functions.https.onCall((data, context) => {

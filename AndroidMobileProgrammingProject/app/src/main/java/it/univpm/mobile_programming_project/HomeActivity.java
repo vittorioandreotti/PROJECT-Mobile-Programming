@@ -1,8 +1,11 @@
 package it.univpm.mobile_programming_project;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +40,10 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     private NavigationView navigationView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private UtenteSharedPreferences sharedPreferences;
+    private TextView navHeaderFullName;
+    private TextView navHeaderEmail;
+    private AuthenticationManager authenticationManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
         this.sharedPreferences = new UtenteSharedPreferences(this);
+        this.authenticationManager = new AuthenticationManager();
 
         final HomeActivity context = this;
 
@@ -117,6 +125,15 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 context.navigationView.invalidate();
                 context.navigationView.bringToFront();
                 context.actionBarDrawerToggle.syncState();
+
+                View navViewHeader = context.navigationView.getHeaderView(0);
+
+                navHeaderFullName = navViewHeader.findViewById(R.id.txtPlaceholderFullName);
+                navHeaderEmail = navViewHeader.findViewById(R.id.txtPlaceholderEmail);
+
+                navHeaderFullName.setText(HomeActivity.this.sharedPreferences.getNome() + " " + HomeActivity.this.sharedPreferences.getCognome());
+                navHeaderEmail.setText(context.authenticationManager.getUser().getEmail());
+
                 context.stopLoading();
             }
 
@@ -172,6 +189,8 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
             super.onBackPressed();
         }
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -260,6 +279,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.profilo;
                 break;
 
+            // Log-Out
+            case R.id.nav_logout:
+                logout();
+                return true;
+
             default:
                 return false;
         }
@@ -347,6 +371,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.profilo;
                 break;
 
+            // Log-Out
+            case R.id.nav_logout:
+                logout();
+                return true;
+
             default:
                 return false;
         }
@@ -357,6 +386,16 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         drawerLayout.closeDrawers();
 
         return true;
+    }
+
+    private void logout() {
+        FirebaseUser firebaseUser = authenticationManager.getUser();
+        HomeActivity.this.sharedPreferences.clearPreferences();
+        authenticationManager.logout();
+
+        Intent intent = new Intent(HomeActivity.this, SplashScreenActivity.class);
+        startActivity(intent);
+        HomeActivity.this.finish();
     }
 
     public void setToolbarTitle(String newTitle) {

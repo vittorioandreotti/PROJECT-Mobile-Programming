@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/Theme.App.NavHeader"
+    android:id="@+id/nav_header"
     >
 
     <LinearLayout
