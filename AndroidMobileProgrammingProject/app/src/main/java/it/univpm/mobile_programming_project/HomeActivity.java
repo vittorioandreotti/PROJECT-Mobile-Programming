@@ -3,6 +3,8 @@ package it.univpm.mobile_programming_project;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ import it.univpm.mobile_programming_project.fragment.spese.affittuario.Inserimen
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.tornei.TorneiFragment;
+import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
@@ -37,6 +40,9 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     private NavigationView navigationView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private UtenteSharedPreferences sharedPreferences;
+    private TextView navHeaderFullName;
+    private TextView navHeaderEmail;
+    private AuthenticationManager authenticationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
         this.sharedPreferences = new UtenteSharedPreferences(this);
+        this.authenticationManager = new AuthenticationManager();
 
         final HomeActivity context = this;
 
@@ -53,6 +60,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
 
         navigationView.setNavigationItemSelectedListener(context);
 
@@ -117,6 +125,15 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 context.navigationView.invalidate();
                 context.navigationView.bringToFront();
                 context.actionBarDrawerToggle.syncState();
+
+                View navViewHeader = context.navigationView.getHeaderView(0);
+                
+                navHeaderFullName = navViewHeader.findViewById(R.id.txtPlaceholderFullName);
+                navHeaderEmail = navViewHeader.findViewById(R.id.txtPlaceholderEmail);
+
+                navHeaderFullName.setText(HomeActivity.this.sharedPreferences.getNome() + " " + HomeActivity.this.sharedPreferences.getCognome());
+                navHeaderEmail.setText(context.authenticationManager.getUser().getEmail());
+
                 context.stopLoading();
             }
 
