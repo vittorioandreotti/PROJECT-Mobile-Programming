@@ -61,7 +61,7 @@
                 <item
                     android:id="@+id/nav_codice_casa"
                     android:icon="@drawable/ic_textsms_black_24dp"
-                    android:title="@string/codice_casa" />
+                    android:title="@string/codice_casa2" />
             </menu>
         </item>
 

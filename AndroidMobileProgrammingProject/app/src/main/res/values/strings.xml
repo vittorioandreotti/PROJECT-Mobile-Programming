@@ -99,6 +99,7 @@
     <string name="inserisci_spese_condominio">Inserisci spese condominio</string>
     <string name="partecipa">Partecipa</string>
     <string name="storico">Storico</string>
+    <string name="codice_casa2">Codice casa</string>
 
 
 </resources>

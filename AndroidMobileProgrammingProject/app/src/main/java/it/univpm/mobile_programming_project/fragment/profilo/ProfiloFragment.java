@@ -88,6 +88,12 @@ public class ProfiloFragment extends Fragment {
             }
         }
 
+
+        boolean tipoUtente = utenteSharedPreferences.isProprietario();
+        if (tipoUtente) {
+            disiscriviti.setVisibility(View.GONE);
+        }
+
         disiscriviti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
