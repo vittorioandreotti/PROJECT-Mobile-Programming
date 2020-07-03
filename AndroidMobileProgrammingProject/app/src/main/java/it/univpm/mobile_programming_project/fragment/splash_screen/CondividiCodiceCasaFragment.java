@@ -69,6 +69,8 @@ public class CondividiCodiceCasaFragment extends Fragment implements View.OnClic
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, "Ecco il codice della mia casa: " + Codice.getText().toString());
+        getActivity().startActivity(intent);
+
     }
 
 
