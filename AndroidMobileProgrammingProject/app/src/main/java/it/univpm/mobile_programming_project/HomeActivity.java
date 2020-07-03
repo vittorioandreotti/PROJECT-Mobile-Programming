@@ -28,6 +28,7 @@ import it.univpm.mobile_programming_project.fragment.profilo.ProfiloFragment;
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserimentoSpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
+import it.univpm.mobile_programming_project.fragment.splash_screen.CondividiCodiceCasaFragment;
 import it.univpm.mobile_programming_project.fragment.tornei.TorneiFragment;
 import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
