@@ -60,7 +60,7 @@
             <menu>
                 <item
                     android:id="@+id/nav_codice_casa"
-                    android:icon="@drawable/ic_spese"
+                    android:icon="@drawable/ic_textsms_black_24dp"
                     android:title="@string/codice_casa" />
             </menu>
         </item>
