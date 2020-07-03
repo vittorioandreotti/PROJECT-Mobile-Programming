@@ -1,5 +1,7 @@
 package it.univpm.mobile_programming_project;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 
@@ -25,6 +28,7 @@ import it.univpm.mobile_programming_project.fragment.spese.affittuario.Inserimen
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.tornei.TorneiFragment;
+import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
@@ -37,6 +41,8 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
     private NavigationView navigationView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private UtenteSharedPreferences sharedPreferences;
+    private AuthenticationManager authenticationManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         setContentView(R.layout.activity_home);
         this.savedInstanceState = savedInstanceState;
         this.sharedPreferences = new UtenteSharedPreferences(this);
+        this.authenticationManager = new AuthenticationManager();
 
         final HomeActivity context = this;
 
@@ -173,6 +180,8 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         }
     }
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -259,6 +268,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 navigationFragment = new ProfiloFragment();
                 titleId = R.string.profilo;
                 break;
+
+            // Log-Out
+            case R.id.nav_logout:
+                logout();
+                return true;
 
             default:
                 return false;
@@ -347,6 +361,11 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.profilo;
                 break;
 
+            // Log-Out
+            case R.id.nav_logout:
+                logout();
+                return true;
+
             default:
                 return false;
         }
@@ -357,6 +376,16 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
         drawerLayout.closeDrawers();
 
         return true;
+    }
+
+    private void logout() {
+        FirebaseUser firebaseUser = authenticationManager.getUser();
+        HomeActivity.this.sharedPreferences.clearPreferences();
+        authenticationManager.logout();
+
+        Intent intent = new Intent(HomeActivity.this, SplashScreenActivity.class);
+        startActivity(intent);
+        HomeActivity.this.finish();
     }
 
     public void setToolbarTitle(String newTitle) {
