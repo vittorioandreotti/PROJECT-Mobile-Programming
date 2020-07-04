@@ -133,6 +133,11 @@ public class InserisciSpesaCondominioFragment extends Fragment implements DatePi
                         Boolean isSpesaInseritaCorrettamente = task.getResult();
                         if(isSpesaInseritaCorrettamente) {
                             // Spesa inserita correttamente
+
+                            txtNomeSpesaCondominioInput.setText("");
+                            txtDataSpesaCondominioInput.setText("");
+                            txtImportoSpesaCondominioInput.setText("");
+
                             Toast.makeText(InserisciSpesaCondominioFragment.this.getContext(), "Spesa inserita con successo.", Toast.LENGTH_LONG).show();
                         } else {
                             // Spesa non inserita

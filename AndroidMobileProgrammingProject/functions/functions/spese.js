@@ -419,7 +419,7 @@ exports.elencoSpeseAffittuario = functions.https.onCall((data, context) => {
 
                     });
               });
-              console.log(oggettoRitorno)
+              oggettoRitorno.error = false;
               return oggettoRitorno;
         });
 
