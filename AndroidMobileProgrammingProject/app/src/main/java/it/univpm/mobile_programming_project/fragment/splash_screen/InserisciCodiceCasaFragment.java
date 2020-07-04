@@ -18,6 +18,7 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 
 
@@ -65,6 +66,9 @@ public class InserisciCodiceCasaFragment extends Fragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
+
+        new CloseKeyboard(getActivity());
+
         if(v.getId() == R.id.btnPartecipaCasa)
         {
             ((SplashScreenActivity)this.getActivity()).startLoading();

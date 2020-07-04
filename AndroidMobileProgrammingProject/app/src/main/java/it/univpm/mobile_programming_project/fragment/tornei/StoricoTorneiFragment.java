@@ -13,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,18 +38,15 @@ public class StoricoTorneiFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private View view;
     private SwipeRefreshLayout swipeLayout;
-
+    private LinearLayout linearLayout;
 
     public StoricoTorneiFragment() {
         firebaseFunctionsHelper = new FirebaseFunctionsHelper();
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -64,9 +62,10 @@ public class StoricoTorneiFragment extends Fragment {
                 initRecyclerView();
             }
         });
+        linearLayout = view.findViewById(R.id.LinearLayoutRichiestaPartecipazione);
+
 
         return view;
-
     }
 
     @Override
@@ -89,10 +88,19 @@ public class StoricoTorneiFragment extends Fragment {
             public void onComplete(@NonNull Task<List<Torneo>> task) {
                 if(task.isSuccessful()) {
 
-                    adapter = new StoricoTorneoAdapter(task.getResult());
+                    List<Torneo> listaTornei =  task.getResult();
+
+                    adapter = new StoricoTorneoAdapter(listaTornei);
                     recyclerViewStoricoTorneo.setAdapter(adapter);
 
                     ((HomeActivity)getActivity()).stopLoading();
+
+                    if(listaTornei.size()==0){
+                        linearLayout.setVisibility(View.VISIBLE);
+                    }else {
+                        linearLayout.setVisibility(View.GONE);
+                    }
+
                 }else{
                     Toast.makeText(getActivity(), "Errore nella lettura dei tornei", Toast.LENGTH_SHORT).show();
                 }

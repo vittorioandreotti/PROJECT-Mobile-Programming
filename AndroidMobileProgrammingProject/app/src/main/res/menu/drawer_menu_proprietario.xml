@@ -18,35 +18,32 @@
 
 
 
-
-    <!--    STATISTICHE    -->
+    <!--    SOMMARIO SPESE   -->
     <group
-        android:id="@+id/group_statistiche"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_statistiche"
-            android:icon="@drawable/ic_statistiche"
-            android:title="@string/statistiche" />
-    </group>
-
-
-
-    <!--    SOMMARIO    -->
-    <group
-        android:id="@+id/group_sommario"
+        android:id="@+id/group_sommario_spese"
         android:checkableBehavior="single">
 
-        <item android:title="@string/sommario">
+        <item android:title="@string/sommario_spese">
             <menu>
                 <item
-                    android:id="@+id/nav_sommario_pagate"
+                    android:id="@+id/nav_sommario_proprietario"
                     android:icon="@drawable/ic_cake"
-                    android:title="@string/spese_pagate" />
+                    android:title="@string/sommario" />
 
                 <item
-                    android:id="@+id/nav_sommario_non_pagate"
+                    android:id="@+id/nav_spesecondominio_proprietario"
                     android:icon="@drawable/ic_cake"
-                    android:title="@string/spese_non_pagate" />
+                    android:title="@string/spese_condominio" />
+
+                <item
+                    android:id="@+id/nav_affitto_proprietario"
+                    android:icon="@drawable/ic_cake"
+                    android:title="@string/affitto" />
+
+                <item
+                    android:id="@+id/nav_bollette_proprietario"
+                    android:icon="@drawable/ic_cake"
+                    android:title="@string/bollette" />
             </menu>
         </item>
     </group>

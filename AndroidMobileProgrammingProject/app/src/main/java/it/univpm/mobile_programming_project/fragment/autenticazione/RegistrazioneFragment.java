@@ -22,6 +22,7 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.auth_helper.EmailAutenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
@@ -91,6 +92,9 @@ public class RegistrazioneFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        new CloseKeyboard(getActivity());
+
         if(v.getId() == R.id.btnRegistrati) {
             registrazione();
         }

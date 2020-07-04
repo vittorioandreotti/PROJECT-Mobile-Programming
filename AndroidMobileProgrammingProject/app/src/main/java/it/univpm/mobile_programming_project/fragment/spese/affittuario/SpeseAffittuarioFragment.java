@@ -13,6 +13,7 @@ import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
 import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
@@ -124,6 +125,8 @@ public class SpeseAffittuarioFragment extends Fragment {
                 int titoloId = R.string.spese;
                 Activity activity = getActivity();
 
+                new CloseKeyboard(activity);
+
                 switch (tab.getPosition()) {
                     case SpeseAffittuarioFragment.SOMMARIO:
                         titoloId = R.string.sommario;
@@ -163,38 +166,4 @@ public class SpeseAffittuarioFragment extends Fragment {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
-    /**
-     * Interfaccia che permette di ascoltare quando la GUI è pronta
-     */
-    public interface OnTaskResultListener{
-        void onPreExecute();
-        void onPostExecute(Object obj);
-        Object doInBackground(Object obj);
-    }
-
-    public class GuiSetupAsyncTask extends AsyncTask<Object,Object,Object> { //change Object to required type
-
-        private OnTaskResultListener listener;
-
-        GuiSetupAsyncTask(OnTaskResultListener listener){
-            this.listener=listener;
-        }
-
-
-        @Override
-        protected Object doInBackground(Object... objects) {
-            return listener.doInBackground(objects);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            listener.onPreExecute();
-        }
-
-
-        @Override
-        protected void onPostExecute(Object obj){
-            listener.onPostExecute(obj);
-        }
-    }
 }

@@ -110,6 +110,12 @@
     <string name="prezzo_">Prezzo:</string>
     <string name="data_inserimento_">Data inserimento:</string>
     <string name="data_pagamento_">Data pagamento:</string>
+    <string name="l_importo_dell_affitto_riferito_al_singolo_affittuario">L\'importo dell\'affitto è riferito al singolo affittuario.</string>
+    <string name="l_importo_della_bolletta_verr_diviso_tra_gli_affittuari">L\'importo della bolletta verrà diviso tra gli affittuari.</string>
+    <string name="l_importo_della_spesa_verr_diviso_tra_i_coinquilini">L\'importo della spesa verrà diviso tra i coinquilini.</string>
+    <string name="l_importo_della_spesa_condominale_riferito_al_singolo_affittuario">L\'importo della spesa condominale è riferito al singolo affittuario.</string>
+    <string name="richiesta_partecipazione">Non hai partecipato ancora a nessun torneo.</string>
+    <string name="sommario_spese">Sommario spese</string>
 
 
 </resources>

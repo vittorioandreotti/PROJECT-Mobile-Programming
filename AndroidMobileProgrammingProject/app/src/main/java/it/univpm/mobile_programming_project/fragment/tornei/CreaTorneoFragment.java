@@ -24,6 +24,7 @@ import com.google.firebase.functions.FirebaseFunctionsException;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;

@@ -132,5 +132,9 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Theme.App.TextView.Muted.Gray">
+        <item name="android:textColor">@color/greyTextMuted</item>
+    </style>
+
 
 </resources>

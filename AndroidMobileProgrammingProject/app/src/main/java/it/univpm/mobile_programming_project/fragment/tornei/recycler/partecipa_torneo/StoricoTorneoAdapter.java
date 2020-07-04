@@ -28,6 +28,7 @@ public class StoricoTorneoAdapter extends RecyclerView.Adapter < StoricoTorneoAd
         this.mTorneiList = mTorneiList;
     }
 
+
     public void addTorneo(Torneo torneo) {
         this.mTorneiList.add(torneo);
     }

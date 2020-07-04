@@ -15,6 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,11 +114,20 @@
                     android:id="@+id/txtImportoAffittoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/txtAffitto"
+                style="@style/Theme.App.TextView.Muted.Gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/l_importo_dell_affitto_riferito_al_singolo_affittuario"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtImportoAffitto"/>
 
 
             <Button
@@ -124,14 +135,13 @@
                 style="@style/Theme.Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/inserisci"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtImportoAffitto" />
+                app:layout_constraintTop_toBottomOf="@+id/txtAffitto"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
