@@ -88,13 +88,21 @@
                     android:id="@+id/txtImportoSpesaCondominioInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:inputType="numberDecimal"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
+            <TextView
+                android:id="@+id/txtSpesaCondominio"
+                style="@style/Theme.App.TextView.Muted.Gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/l_importo_della_spesa_condominale_riferito_al_singolo_affittuario"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtImportoSpesaCondominio"/>
 
 
             <Button
@@ -102,14 +110,13 @@
                 style="@style/Theme.Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/inserisci"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtImportoSpesaCondominio" />
+                app:layout_constraintTop_toBottomOf="@+id/txtSpesaCondominio" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
