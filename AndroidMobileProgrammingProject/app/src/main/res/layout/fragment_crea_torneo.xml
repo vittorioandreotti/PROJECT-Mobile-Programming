@@ -137,7 +137,7 @@
                 android:id="@+id/txtDescrizioneTorneo"
                 style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="170dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/regolamento"
                 app:endIconMode="clear_text"

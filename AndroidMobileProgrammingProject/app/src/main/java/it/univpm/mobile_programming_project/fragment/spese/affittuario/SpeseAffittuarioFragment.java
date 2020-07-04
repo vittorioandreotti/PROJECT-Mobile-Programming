@@ -11,6 +11,7 @@ import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
 import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -71,6 +72,8 @@ public class SpeseAffittuarioFragment extends Fragment {
 
                 int titoloId = R.string.spese;
                 Activity activity = getActivity();
+
+                new CloseKeyboard(activity);
 
                 switch (tab.getPosition()) {
                     case SpeseAffittuarioFragment.SOMMARIO:

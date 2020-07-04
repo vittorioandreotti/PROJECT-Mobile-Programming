@@ -107,7 +107,7 @@
                 android:id="@+id/txtDescrizioneSpesaComune"
                 style="@style/Theme.Widget.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="170dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/descrizione"
                 app:endIconMode="clear_text"

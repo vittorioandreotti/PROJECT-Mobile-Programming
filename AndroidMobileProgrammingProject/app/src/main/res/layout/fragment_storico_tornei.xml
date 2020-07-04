@@ -8,6 +8,28 @@
     android:theme="@style/Theme.App.Fullscreen"
     tools:context=".fragment.tornei.StoricoTorneiFragment">
 
+    <LinearLayout
+        android:id="@+id/LinearLayoutRichiestaPartecipazione"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtrichiestaPartecipazione"
+            style="@style/Theme.App.TextView.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:textAlignment="center"
+            android:text="@string/richiesta_partecipazione"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+             />
+
+    </LinearLayout>
+
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_height="match_parent"
@@ -30,8 +52,6 @@
 
 
             </androidx.recyclerview.widget.RecyclerView>
-
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </LinearLayout>

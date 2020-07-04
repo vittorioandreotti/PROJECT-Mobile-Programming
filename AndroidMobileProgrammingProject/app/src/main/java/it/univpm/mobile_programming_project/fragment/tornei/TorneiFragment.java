@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -62,6 +63,8 @@ public class TorneiFragment extends Fragment {
 
                 int titoloId = R.string.tornei;
                 Activity activity = getActivity();
+
+                new CloseKeyboard(activity);
 
                 switch(tab.getPosition()){
                     case TorneiFragment.PARTECIPA:
