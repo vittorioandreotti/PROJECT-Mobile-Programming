@@ -156,6 +156,13 @@ public class InserisciBolletteFragment extends Fragment implements View.OnClickL
                     Boolean isSpesaInseritaCorrettamente = task.getResult();
                     if(isSpesaInseritaCorrettamente) {
                         // Spesa inserita correttamente
+
+                        txtNomeCategoriaBollettaInput.setText("");
+                        txtDataScadenzaBollettaInput.setText("");
+                        txtDataSpesaBollettaInput.setText("");
+                        txtImportoBollettaInput.setText("");
+
+
                         Toast.makeText(InserisciBolletteFragment.this.getContext(), "Spesa inserita con successo.", Toast.LENGTH_LONG).show();
                     } else {
                         // Spesa non inserita

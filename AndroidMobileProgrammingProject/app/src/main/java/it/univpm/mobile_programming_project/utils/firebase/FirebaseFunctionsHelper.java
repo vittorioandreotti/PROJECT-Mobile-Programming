@@ -367,6 +367,7 @@ public class FirebaseFunctionsHelper {
                             String regolamento = (String)torneoSingolo.get("regolamento");
                             Object dataOra = torneoSingolo.get("dataOra");
 
+                            // TODO: Modificare la creazione della data.
                             listaTornei.add( new Torneo(id, titolo, categoria, indirizzo, new Date(), regolamento) );
                         }
 
