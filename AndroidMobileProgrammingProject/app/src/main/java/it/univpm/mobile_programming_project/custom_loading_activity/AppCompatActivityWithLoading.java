@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 
+import com.google.android.material.navigation.NavigationView;
+
 import it.univpm.mobile_programming_project.R;
 
 /**
@@ -22,6 +24,10 @@ public class AppCompatActivityWithLoading extends AppCompatActivity {
 
     public void stopLoading() {
         ((FragmentContainerView)this.findViewById(R.id.fragmentLoading)).setVisibility(View.GONE);
-        this.findViewById(R.id.navigation_view).bringToFront();
+
+        NavigationView navigationView = this.findViewById(R.id.navigation_view);
+        if( navigationView != null ) {
+            navigationView.bringToFront();
+        }
     }
 }

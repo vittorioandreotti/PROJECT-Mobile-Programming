@@ -21,7 +21,9 @@ public abstract class SharedPreferencesHelper {
     }
 
     public void clearPreferences() {
-        this.sharedpreferences.edit().clear().commit();
+        SharedPreferences.Editor editor = this.sharedpreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
     String getString( String key ) {
