@@ -17,14 +17,7 @@
             android:title="Home" />
     </group>
 
-    <group
-        android:id="@+id/group_statistiche"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_statistiche"
-            android:icon="@drawable/ic_statistiche"
-            android:title="Statistiche" />
-    </group>
+
 
 
     <!--    SPESE    -->

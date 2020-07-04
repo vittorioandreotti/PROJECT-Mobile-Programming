@@ -25,6 +25,10 @@ import java.util.HashMap;
 import it.univpm.mobile_programming_project.custom_loading_activity.AppCompatActivityWithLoading;
 import it.univpm.mobile_programming_project.fragment.HomeFragment;
 import it.univpm.mobile_programming_project.fragment.profilo.ProfiloFragment;
+import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
+import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserimentoSpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
@@ -216,23 +220,31 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.homepage;
                 break;
 
-//            // STATISTICHE
-//            case R.id.nav_statistiche:
-//                navigationFragment = new StatisticheFragment();
-//                titleId = R.string.statistiche;
-//                break;
 
 
-            // SOMMARIO
-//            case R.id.nav_sommario_pagate:
-//                navigationFragment = new StatisticheFragment();
-//                titleId = R.string.pagate;
-//                break;
-//
-//            case R.id.nav_sommario_non_pagate:
-//                navigationFragment = new StatisticheFragment();
-//                titleId = R.string.non_pagate;
-//                break;
+//             SOMMARIO SPESE
+            case R.id.nav_sommario_proprietario:
+                navigationFragment = new SommarioFragment();
+                titleId = R.string.sommario;
+                break;
+
+            case R.id.nav_spesecondominio_proprietario:
+                navigationFragment = new SpeseCondominioFragment();
+                titleId = R.string.spese_condominio;
+                break;
+
+            case R.id.nav_affitto_proprietario:
+                navigationFragment = new AffittoFragment();
+                titleId = R.string.affitto;
+                break;
+
+            case R.id.nav_bollette_proprietario:
+                navigationFragment = new BolletteFragment();
+                titleId = R.string.bollette;
+                break;
+
+
+
 
 
             // CODICE CASA
@@ -315,12 +327,7 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 titleId = R.string.homepage;
                 break;
 
-//            // Statistiche
-//            case R.id.nav_statistiche:
-//                navigationFragment = new StatisticheFragment();
-//                titleId = R.string.statistiche;
-//                break;
-//
+
             // SPESE
             case R.id.nav_gestione_spesa_comune:
                 navigationFragment = new InserimentoSpeseAffittuarioFragment(InserimentoSpeseAffittuarioFragment.SPESACOMUNE);
