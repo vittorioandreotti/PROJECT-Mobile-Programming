@@ -69,6 +69,7 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
         v.findViewById(R.id.btnCreaTorneo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new CloseKeyboard(getActivity());
                 creaTorneo();
             }
         });
