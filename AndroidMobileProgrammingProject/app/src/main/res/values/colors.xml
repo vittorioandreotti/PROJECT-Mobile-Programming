@@ -9,6 +9,8 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="background">@color/testBg</color>
 
+    <color name="darkGreyColor"> #555555 </color>
+
 
     <color name="Primary">@color/testBg</color>
     <color name="colorPrimaryDark"> #E1E2E1</color>

@@ -35,13 +35,13 @@ public class SpesePageAdapterProprietario extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new SommarioFragment();
+                return new SommarioFragment(this.speseSommario);
             case 1:
-                return new SpeseCondominioFragment();
+                return new SpeseCondominioFragment(this.speseSpesaCondominio);
             case 2:
-                return new AffittoFragment();
+                return new AffittoFragment(this.speseAffitto);
             case 3:
-                return new BolletteFragment();
+                return new BolletteFragment(this.speseBollette);
             default:
                 return null;
         }

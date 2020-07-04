@@ -3,7 +3,6 @@ package it.univpm.mobile_programming_project.fragment.spese.affittuario;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
@@ -34,19 +33,7 @@ public class SpesePageAdapterAffittuario extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new SommarioFragment();
-            case 1:
-                return new SpesaComuneFragment();
-            case 2:
-                return new AffittoFragment();
-            case 3:
-                return new BolletteFragment();
-            case 4:
-                return new SpeseCondominioFragment();
-            default: return null;
-        }
+        return this.fragments.get(position);
     }
 
     /**
@@ -55,6 +42,10 @@ public class SpesePageAdapterAffittuario extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return fragments.size();
+    }
+
+    public void clearFragmentList() {
+        this.fragments.clear();
     }
 }
 

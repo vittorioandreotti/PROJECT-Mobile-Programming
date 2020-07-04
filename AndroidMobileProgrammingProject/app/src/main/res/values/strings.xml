@@ -103,6 +103,13 @@
     <string name="regolamento_">Regolamento:</string>
 
     <string name="codice_casa2">Codice casa</string>
+    <string name="paga">Paga</string>
+    <string name="nome_spesa_">Nome spesa:</string>
+    <string name="descrizione_">Descrizione:</string>
+    <string name="tipo_">Tipo spesa:</string>
+    <string name="prezzo_">Prezzo:</string>
+    <string name="data_inserimento_">Data inserimento:</string>
+    <string name="data_pagamento_">Data pagamento:</string>
 
 
 </resources>

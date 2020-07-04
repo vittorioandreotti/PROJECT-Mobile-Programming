@@ -8,17 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import it.univpm.mobile_programming_project.R;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AffittoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.models.Spesa;
+
+
 public class AffittoFragment extends Fragment {
 
-    public AffittoFragment() {
-        // Required empty public constructor
+    private List<Spesa> speseAffitto;
+
+    public AffittoFragment(List<Spesa> speseAffitto) {
+        this.speseAffitto = speseAffitto;
     }
 
     @Override
