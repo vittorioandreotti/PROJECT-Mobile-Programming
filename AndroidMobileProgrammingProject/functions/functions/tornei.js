@@ -51,21 +51,18 @@ exports.inserisciTorneo = functions.https.onCall((data, context) => {
          uidTorneo == undefined || uidTorneo == null || uidTorneo == ""
      ) return false;
 
-     var TorneoRef = db.collection("tornei").doc(uidTorneo);
+     var torneoRef = db.collection("tornei").doc(uidTorneo);
 
-     return TorneoRef.get()
+     return torneoRef.get()
        .then((torneoDoc) => {
          if (torneoDoc.exists) {
 
                  let docUtente = db.collection("users").doc(uid);
 
-                 let dataUtenteTorneo = {
-                     torneo: torneoRef
-                 };
-
-                 return docUtente
-                     .set(dataUtenteTorneo, { merge: true })
-                     .then( () => {
+                  return docUtente.update({
+                     tornei: admin.firestore.FieldValue.arrayUnion( torneoRef )
+                  })
+                  .then( () => {
 
                          torneoRef.update({
                                  partecipanti: admin.firestore.FieldValue.arrayUnion( docUtente )
@@ -80,7 +77,7 @@ exports.inserisciTorneo = functions.https.onCall((data, context) => {
                      });
 
          } else {
-             // Il toreno non esiste
+             // Il torneo non esiste
              return false;
          }
      });
@@ -99,7 +96,6 @@ exports.elencoTornei = functions.https.onCall((data, context) => {
 
     return db
         .collection("tornei")
-        .doc()
         .get()
         .then( (torneiSnapshot) => {
                 // Tutti i tornei
@@ -136,9 +132,7 @@ exports.elencoTornei = functions.https.onCall((data, context) => {
 });
 
 
-/**
-*
-*/
+
 exports.storicoTornei = functions.https.onCall((data, context) => {
     let oggettoRitorno = {
         tornei : [],
@@ -153,17 +147,28 @@ exports.storicoTornei = functions.https.onCall((data, context) => {
         .then( (utenteSnapshot) => {
                 // Tutti i tornei
 
-                let torneiRefArray = utenteSnapshot.data().tornei;
+                let dataUtenteSnapshot = utenteSnapshot.data();
+                let torneiRefArray = dataUtenteSnapshot.tornei;
 
+                let promises = [];
 
-              torneiRefArray.forEach((torneoRef) => {
+                for( let i = 0; i < torneiRefArray.length; i++) {
+                    let torneoRef = torneiRefArray[i];
 
-                  torneoRef
-                    .get()
-                    .then( (torneoSnapshot) => {
-                        let datiTorneo = torneoSnapshot.data();
+                    let torneoDoc = torneoRef.get();
+                    promises.push(torneoDoc)
+                }
+
+                return Promise.all(promises)
+                .then((snapshotTornei)=>{
+
+                    for( let i = 0; i < snapshotTornei.length; i++) {
+                        let torneoSnapshotCorrente = snapshotTornei[i];
+
+                        let datiTorneo = torneoSnapshotCorrente.data();
+
                         let objDataTorneo = {
-                                id: torneoSnapshot.id,
+                                id: torneoSnapshotCorrente.id,
                                 titolo: datiTorneo.titolo,
                                 dataOra: datiTorneo.dataOraEvento,
                                 indirizzo: datiTorneo.indirizzo,
@@ -171,12 +176,15 @@ exports.storicoTornei = functions.https.onCall((data, context) => {
                                 regolamento: datiTorneo.regolamento,
                         };
 
-                         oggettoRitorno["tornei"].push(objDataTorneo);
-                      });
-              });
+                        console.log(objDataTorneo);
+                         oggettoRitorno.tornei.push(objDataTorneo);
+                    };
 
-                oggettoRitorno.error = false;
-                return oggettoRitorno;
+
+                    oggettoRitorno.error = false;
+                    return oggettoRitorno;
+                });
+
         })
         .catch((error) => {
             console.log("ERROR!");

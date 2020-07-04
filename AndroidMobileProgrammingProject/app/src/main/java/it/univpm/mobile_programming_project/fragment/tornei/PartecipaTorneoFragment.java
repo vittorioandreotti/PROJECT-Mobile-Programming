@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.functions.FirebaseFunctionsException;
 
 import java.util.List;
 
@@ -90,9 +91,39 @@ public class PartecipaTorneoFragment extends Fragment {
                         public void onClick(View view, Object object) {
                             Torneo torneo = (Torneo) object;
 
-                            // TODO: Chiamare la cloud function per la partecipazione ad un torneo - Usare torneo.getId()
+                            if (view.getId() == R.id.btnPartecipa) {
+
+                                ((HomeActivity) PartecipaTorneoFragment.this.getActivity()).startLoading();
+
+                                PartecipaTorneoFragment.this.firebaseFunctionsHelper.partecipaTorneo(torneo.getId()).addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+
+                                        // Handle Error
+                                        if (!task.isSuccessful()) {
+                                            Exception e = task.getException();
+                                            if (e instanceof FirebaseFunctionsException) {
+                                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                                FirebaseFunctionsException.Code code = ffe.getCode();
+                                                Object details = ffe.getDetails();
+                                            }
+                                            ((HomeActivity) PartecipaTorneoFragment.this.getActivity()).stopLoading();
+                                            return;
+                                        }
+
+                                        Boolean isTorneoValid = task.getResult();
+                                        if (isTorneoValid) {
+                                            Toast.makeText(PartecipaTorneoFragment.this.getContext(), "Partecipazione al torneo effettuata con successo.", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(PartecipaTorneoFragment.this.getContext(), "Errore nella partecipazione al torneo.", Toast.LENGTH_LONG).show();
+                                        }
+                                        ((HomeActivity) PartecipaTorneoFragment.this.getActivity()).stopLoading();
+                                    }
+                                });
+                            }
                         }
                     });
+
 
                     recyclerViewTorneo.setAdapter(adapter);
 

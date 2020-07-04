@@ -75,6 +75,7 @@ public class TorneiFragment extends Fragment {
 
                     case TorneiFragment.STORICO:
                         titoloId = R.string.storicotorneo;
+                        ((StoricoTorneiFragment)pagerAdapter.getItem(TorneiFragment.STORICO)).initRecyclerView();
                         break;
                 }
 
