@@ -29,6 +29,7 @@ import java.util.List;
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.SplashScreenActivity;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
@@ -111,6 +112,8 @@ public class ProfiloFragment extends Fragment {
         modifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new CloseKeyboard(getActivity());
+
                 modificaPassword();
             }
         });

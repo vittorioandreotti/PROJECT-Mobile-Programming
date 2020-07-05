@@ -5,7 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreenFragment">
+    android:theme="@style/Theme.App.Fullscreen"
+    android:background="@color/primaryColor"
+    tools:context=".fragment.splash_screen.SplashScreenFragment">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -27,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textAlignment="center"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="@style/Theme.App.TextView.Title"
+        android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
     <androidx.constraintlayout.widget.Guideline
