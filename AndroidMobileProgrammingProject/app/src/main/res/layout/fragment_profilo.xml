@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -94,9 +95,8 @@
             style="@style/Theme.Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="50dp"
             android:text="@string/logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -185,13 +185,14 @@
     <Button
         android:id="@+id/btnDisiscriviti"
         style="@style/Theme.Widget.ButtonRed"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cancella_account"
         android:visibility="visible"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="80dp"
+        app:layout_constraintEnd_toEndOf="@id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutModificaPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
