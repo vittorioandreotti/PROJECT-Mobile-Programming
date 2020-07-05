@@ -27,7 +27,6 @@
         <item name="android:textColorHint">@color/primaryColor</item>
         <item name="endIconTint">@color/primaryColor</item>
         <item name="hintTextColor">@color/primaryColor</item>
-
         <item name="boxStrokeColor">@color/primaryColor</item>
     </style>
 
