@@ -54,8 +54,15 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sommario, container, false);
-        initRecyclerView(view);
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if(savedInstanceState == null)
+            initRecyclerView(view);
     }
 
     private void initRecyclerView(View view) {
@@ -63,6 +70,7 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
         recyclerViewSommarioSpese.setHasFixedSize(true);
         recyclerViewSommarioSpese.setItemAnimator(new DefaultItemAnimator());
         layoutManager = new LinearLayoutManager(getActivity());
+        recyclerViewSommarioSpese.setLayoutManager(layoutManager);
 
         adapter = new SommarioSpeseAdapter(this.speseSommario, this);
         recyclerViewSommarioSpese.setAdapter(adapter);
@@ -73,6 +81,6 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
         Spesa spesa = (Spesa)object;
 
         // Cliccata la spesa "spesa"
-
+        // TODO: Setta la spesa pagata da cloud function
     }
 }

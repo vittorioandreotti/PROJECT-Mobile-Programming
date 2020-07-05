@@ -79,6 +79,8 @@ public class SpeseAffittuarioFragment extends Fragment {
 
         pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
 
+        viewPager.setAdapter(pagerAdapter);
+
         return view;
     }
 
@@ -116,7 +118,6 @@ public class SpeseAffittuarioFragment extends Fragment {
         pagerAdapter.addFragment(new SpeseCondominioFragment(this.speseSpesaCondominio));
         pagerAdapter.notifyDataSetChanged();
 
-        viewPager.setAdapter(pagerAdapter);
 
         // Naviga direttamente alla pagina specificata nel costruttore,
         // oppure alla prima pagina se non specificata
