@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.fragment.tornei.recycler.partecipa_torneo;
+package it.univpm.mobile_programming_project.fragment.tornei.recycler.storico_torneo;
 
 import android.view.LayoutInflater;
 import android.view.View;

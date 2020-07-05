@@ -79,6 +79,13 @@ public class SpeseAffittuarioFragment extends Fragment {
 
         pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         ((HomeActivity)getActivity()).startLoading();
         this.firebaseFunctionsHelper.elencoSpeseAffittuario(getContext())
                 .addOnCompleteListener(new OnCompleteListener<Map<String, List<Spesa>>>() {
@@ -98,8 +105,6 @@ public class SpeseAffittuarioFragment extends Fragment {
                         ((HomeActivity)getActivity()).stopLoading();
                     }
                 });
-
-        return view;
     }
 
     private void setupUI() {
@@ -109,6 +114,7 @@ public class SpeseAffittuarioFragment extends Fragment {
         pagerAdapter.addFragment(new AffittoFragment(this.speseAffitto));
         pagerAdapter.addFragment(new BolletteFragment(this.speseBollette));
         pagerAdapter.addFragment(new SpeseCondominioFragment(this.speseSpesaCondominio));
+        pagerAdapter.notifyDataSetChanged();
 
         viewPager.setAdapter(pagerAdapter);
 

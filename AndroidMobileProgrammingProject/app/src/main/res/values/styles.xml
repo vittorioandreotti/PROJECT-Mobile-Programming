@@ -113,6 +113,15 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Theme.App.TextView.Subtitle.NonPagata">
+        <item name="android:textColor">@color/errorColor</item>
+
+    </style>
+
+    <style name="Theme.App.TextView.Subtitle.Pagata">
+        <item name="android:textColor">@color/successColor</item>
+    </style>
+
     <style name="Theme.App.TextView.Paragraph">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">14sp</item>

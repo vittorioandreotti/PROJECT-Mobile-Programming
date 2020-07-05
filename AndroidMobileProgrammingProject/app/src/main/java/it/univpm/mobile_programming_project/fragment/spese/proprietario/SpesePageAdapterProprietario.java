@@ -33,18 +33,7 @@ public class SpesePageAdapterProprietario extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return new SommarioFragment(this.speseSommario);
-            case 1:
-                return new SpeseCondominioFragment(this.speseSpesaCondominio);
-            case 2:
-                return new AffittoFragment(this.speseAffitto);
-            case 3:
-                return new BolletteFragment(this.speseBollette);
-            default:
-                return null;
-        }
+        return this.fragments.get(position);
     }
 
     /**

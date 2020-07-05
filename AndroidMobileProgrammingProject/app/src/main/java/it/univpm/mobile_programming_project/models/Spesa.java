@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class Spesa {
 
-    private String id;
+    private String idSpesa;
+    private String idUtente;
     private String nome;
     private String descrizione;
     private String tipo;
@@ -13,8 +14,9 @@ public class Spesa {
     private Date dataInserimento;
     private Date dataPagamento;
 
-    public Spesa( String id, String nome, String descrizione, String tipo, Double prezzo, Date dataInserimento, Date dataPagamento ) {
-        this.id = id;
+    public Spesa( String idSpesa, String idUtente, String nome, String descrizione, String tipo, Double prezzo, Date dataInserimento, Date dataPagamento ) {
+        this.idSpesa = idSpesa;
+        this.idUtente = idUtente;
         this.nome = nome;
         this.descrizione = descrizione;
         this.tipo = tipo;
@@ -29,12 +31,20 @@ public class Spesa {
         return this.dataPagamento != null;
     }
 
-    public String getId() {
-        return id;
+    public String getIdSpesa() {
+        return idSpesa;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdSpesa(String idSpesa) {
+        this.idSpesa = idSpesa;
+    }
+
+    public String getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(String idUtente) {
+        this.idUtente = idUtente;
     }
 
     public String getNome() {
@@ -89,11 +99,16 @@ public class Spesa {
 
     public void createFromHashMap(Map<String, Object> spesaSingola) {
 
-        this.setId((String)spesaSingola.get("id"));
-        this.setNome((String)spesaSingola.get("nome"));
+        this.setPrezzo(Double.valueOf(spesaSingola.get("prezzo").toString()));
+        this.setIdSpesa((String)spesaSingola.get("idSpesa"));
         this.setDescrizione((String)spesaSingola.get("descrizione"));
-        this.setPrezzo((Double)spesaSingola.get("prezzo"));
+        this.setTipo((String)spesaSingola.get("tipo"));
+//        this.setDataInserimento();
+//        this.setDataPagamento();
+        this.setNome((String)spesaSingola.get("nome"));
+        this.setIdUtente((String)spesaSingola.get("idUtente"));
 
-//        this.setDataInserimento((String)spesaSingola.get("dataInserimento"));
+        // TODO: Setta le date correttamente
+
     }
 }

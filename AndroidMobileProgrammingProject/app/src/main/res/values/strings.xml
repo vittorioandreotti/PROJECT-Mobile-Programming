@@ -116,6 +116,7 @@
     <string name="l_importo_della_spesa_condominale_riferito_al_singolo_affittuario">L\'importo della spesa condominale è riferito al singolo affittuario.</string>
     <string name="richiesta_partecipazione">Non hai partecipato ancora a nessun torneo.</string>
     <string name="sommario_spese">Sommario spese</string>
+    <string name="nessuna_spesa_presente">Non è presente nessuna spesa.</string>
 
 
 </resources>

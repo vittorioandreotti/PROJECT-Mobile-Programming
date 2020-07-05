@@ -12,6 +12,9 @@
     <color name="darkGreyColor"> #555555 </color>
     <color name="greyTextMuted">#444444</color>
 
+    <color name="successColor">#76ff03</color>
+    <color name="errorColor">#DA0000</color>
+
 
     <color name="Primary">@color/testBg</color>
     <color name="colorPrimaryDark"> #E1E2E1</color>

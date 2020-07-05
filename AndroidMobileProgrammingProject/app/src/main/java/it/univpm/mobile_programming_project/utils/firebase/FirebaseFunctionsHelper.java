@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.FirebaseFunctionsException;
 import com.google.firebase.functions.HttpsCallableResult;
 
 import java.util.ArrayList;
@@ -15,7 +16,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import it.univpm.mobile_programming_project.HomeActivity;
+import it.univpm.mobile_programming_project.fragment.tornei.PartecipaTorneoFragment;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.models.Torneo;
 import it.univpm.mobile_programming_project.utils.Helper;
@@ -32,12 +36,10 @@ public class FirebaseFunctionsHelper {
     }
 
 
-    public FirebaseFunctionsHelper(UtenteSharedPreferences sharedPreferences)
-    {
+    public FirebaseFunctionsHelper(UtenteSharedPreferences sharedPreferences) {
         this();
         this.sharedPreferences = sharedPreferences;
     }
-
 
     public Task< Boolean > isUserInitialized() {
 
@@ -345,7 +347,6 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-
     public Task<List<Torneo>> elencoTornei() {
         return this.mFunctions
                 .getHttpsCallable("elencoTornei")
@@ -440,15 +441,28 @@ public class FirebaseFunctionsHelper {
 
         return this.mFunctions
                 .getHttpsCallable("elencoSpeseAffittuario")
+                .withTimeout(30, TimeUnit.SECONDS)
                 .call(dataInput)
                 .continueWith(new Continuation<HttpsCallableResult, Map<String, List<Spesa>>>() {
                     @Override
                     public Map<String, List<Spesa>> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                        HttpsCallableResult result = task.getResult();
-                        Map<String, Object> resultData = (Map<String, Object>) result.getData();
 
                         Map<String, List<Spesa>> speseTotali = new HashMap<>();
 
+                        List<Map<String, Object>> tmpSpeseList = new ArrayList<>();
+
+                        if(!task.isSuccessful()) {
+                            Exception e = task.getException();
+                            if (e instanceof FirebaseFunctionsException) {
+                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                FirebaseFunctionsException.Code code = ffe.getCode();
+                                Object details = ffe.getDetails();
+                            }
+                            return speseTotali;
+                        }
+
+                        HttpsCallableResult result = task.getResult();
+                        Map<String, Object> resultData = (Map<String, Object>) result.getData();
 
                         if( (Boolean)resultData.get("error") ) {
                             Toast.makeText(context, (String)resultData.get("errorMessage"), Toast.LENGTH_LONG).show();
@@ -457,43 +471,58 @@ public class FirebaseFunctionsHelper {
 
                         // Sommario
                         List<Spesa> listaSpeseSommario = new ArrayList<Spesa>();
-                        for( Map<String, Object> spesaSingola : (List<Map<String, Object>>) resultData.get("sommario") ) {
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("sommario")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("sommario")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
                             listaSpeseSommario.add( spesa );
                         }
+                        tmpSpeseList.clear();
 
                         // Affitto
                         List<Spesa> listaSpeseAffitto = new ArrayList<Spesa>();
-                        for( Map<String, Object> spesaSingola : (List<Map<String, Object>>) resultData.get("affitto") ) {
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("affitto")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("affitto")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
                             listaSpeseAffitto.add( spesa );
                         }
+                        tmpSpeseList.clear();
 
                         // Bollette
                         List<Spesa> listaSpeseBollette = new ArrayList<Spesa>();
-                        for( Map<String, Object> spesaSingola : (List<Map<String, Object>>) resultData.get("bollette") ) {
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
                             listaSpeseBollette.add( spesa );
                         }
+                        tmpSpeseList.clear();
 
                         // Comune
                         List<Spesa> listaSpeseComune = new ArrayList<Spesa>();
-                        for( Map<String, Object> spesaSingola : (List<Map<String, Object>>) resultData.get("comune") ) {
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("comune")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("comune")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
                             listaSpeseComune.add( spesa );
                         }
+                        tmpSpeseList.clear();
 
                         // Condominio
                         List<Spesa> listaSpeseCondominio = new ArrayList<Spesa>();
-                        for( Map<String, Object> spesaSingola : (List<Map<String, Object>>) resultData.get("comune") ) {
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("condominio")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("condominio")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
                             listaSpeseCondominio.add( spesa );
                         }
+                        tmpSpeseList.clear();
 
                         speseTotali.put("sommario", listaSpeseSommario);
                         speseTotali.put("affitto", listaSpeseAffitto);

@@ -2,6 +2,7 @@ package it.univpm.mobile_programming_project.utils;
 
 import android.annotation.SuppressLint;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +36,12 @@ public abstract class Helper {
 
     public static Date fromStringToDateTime(String dateString, String oraString) {
         return fromStringToDate(dateString + " " + oraString, "dd/MM/yyyy HH:mm");
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String formatDateToString(Date data) {
+        if(data == null) return "-";
+        return new SimpleDateFormat("dd/MM/yyyy HH:mm").format(data);
     }
 
     public static String getDateFormat() {

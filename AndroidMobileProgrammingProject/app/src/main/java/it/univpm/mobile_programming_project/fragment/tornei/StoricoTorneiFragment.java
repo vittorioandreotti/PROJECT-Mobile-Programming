@@ -23,8 +23,7 @@ import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.fragment.tornei.recycler.partecipa_torneo.PartecipaTorneoAdapter;
-import it.univpm.mobile_programming_project.fragment.tornei.recycler.partecipa_torneo.StoricoTorneoAdapter;
+import it.univpm.mobile_programming_project.fragment.tornei.recycler.storico_torneo.StoricoTorneoAdapter;
 import it.univpm.mobile_programming_project.models.Torneo;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;

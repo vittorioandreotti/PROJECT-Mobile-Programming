@@ -221,27 +221,27 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 break;
 
 
-
-//             SOMMARIO SPESE
-            case R.id.nav_sommario_proprietario:
-                navigationFragment = new SommarioFragment();
-                titleId = R.string.sommario;
-                break;
-
-            case R.id.nav_spesecondominio_proprietario:
-                navigationFragment = new SpeseCondominioFragment();
-                titleId = R.string.spese_condominio;
-                break;
-
-            case R.id.nav_affitto_proprietario:
-                navigationFragment = new AffittoFragment();
-                titleId = R.string.affitto;
-                break;
-
-            case R.id.nav_bollette_proprietario:
-                navigationFragment = new BolletteFragment();
-                titleId = R.string.bollette;
-                break;
+                // TODO: NON VA CREATO UN FRAGMENT PER OGNI SEZIONE MA VA CREATO UN SpeseProprietarioFragment ( come a riga 331 circa )
+////             SOMMARIO SPESE
+//            case R.id.nav_sommario_proprietario:
+//                navigationFragment = new SommarioFragment();
+//                titleId = R.string.sommario;
+//                break;
+//
+//            case R.id.nav_spesecondominio_proprietario:
+//                navigationFragment = new SpeseCondominioFragment();
+//                titleId = R.string.spese_condominio;
+//                break;
+//
+//            case R.id.nav_affitto_proprietario:
+//                navigationFragment = new AffittoFragment();
+//                titleId = R.string.affitto;
+//                break;
+//
+//            case R.id.nav_bollette_proprietario:
+//                navigationFragment = new BolletteFragment();
+//                titleId = R.string.bollette;
+//                break;
 
 
 
