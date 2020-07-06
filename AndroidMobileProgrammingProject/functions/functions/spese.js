@@ -23,14 +23,28 @@ let inserisciSpesaBolletta = (data, context) => {
                     spesa_totale == undefined || spesa_totale == null
                 ) return false;
 
+                // gg/mm/aaaa
+                let dataInserimentoSplitted = null;
+                if(dataInserimento != null) {
+                    dataInserimentoSplitted = dataInserimento.split("/");
+                }
+
+                // gg/mm/aaaa
+                let dataScadenzaSplitted = null;
+                if(dataScadenza != null) {
+                    dataScadenzaSplitted = dataScadenza.split("/");
+                }
+
                 let dataInput = {
                     prezzoTotale: spesa_totale,
                     categoria: categoria,
                     tipo: "bolletta",
-                    dataInserimento: dataInserimento,
-                    dataScadenza: dataScadenza,
-
+                    dataInserimento: dataInserimento != null ? new Date(dataInserimentoSplitted[2], dataInserimentoSplitted[1], dataInserimentoSplitted[0]) : null,
+                    dataScadenza: dataScadenza != null ? new Date(dataScadenzaSplitted[2], dataScadenzaSplitted[1], dataScadenzaSplitted[0]) : null,
                 }
+
+                console.log(dataInput);
+
                 return db
                     .collection('case')
                     .doc(idCasa)
@@ -110,12 +124,23 @@ let inserisciSpesaAffitto = (data, context) => {
                         spesa_totale == undefined || spesa_totale == null
                     ) return false;
 
+                    // gg/mm/aaaa
+                    let dataInserimentoSplitted = null;
+                    if(dataInserimento != null) {
+                        dataInserimentoSplitted = dataInserimento.split("/");
+                    }
+
+                    // gg/mm/aaaa
+                    let dataScadenzaSplitted = null;
+                    if(dataScadenza != null) {
+                        dataScadenzaSplitted = dataScadenza.split("/");
+                    }
+
                     let dataInput = {
                         titolo: titolo,
                         tipo: "affitto",
-                        dataInserimento: dataInserimento,
-                        dataScadenza: dataScadenza,
-
+                        dataInserimento: dataInserimento != null ? new Date(dataInserimentoSplitted[2], dataInserimentoSplitted[1], dataInserimentoSplitted[0]) : null,
+                        dataScadenza: dataScadenza != null ? new Date(dataScadenzaSplitted[2], dataScadenzaSplitted[1], dataScadenzaSplitted[0]) : null,
                     }
                     return db
                         .collection('case')
@@ -192,11 +217,17 @@ let inserisciSpesaCondominio = (data, context) => {
                             spesa_totale == undefined || spesa_totale == null
                         ) return false;
 
+                        // gg/mm/aaaa
+                        let dataInserimentoSplitted = null;
+                        if(dataInserimento != null) {
+                            dataInserimentoSplitted = dataInserimento.split("/");
+                        }
+
+
                         let dataInput = {
                             nome: nome,
                             tipo: "condominio",
-                            dataInserimento: dataInserimento,
-
+                            dataInserimento: dataInserimento != null ? new Date(dataInserimentoSplitted[2], dataInserimentoSplitted[1], dataInserimentoSplitted[0]) : null,
                         }
                         return db
                             .collection('case')
@@ -275,13 +306,18 @@ let inserisciSpesaComune = (data, context) => {
                             spesa_totale == undefined || spesa_totale == null
                         ) return false;
 
+                        // gg/mm/aaaa
+                        let dataInserimentoSplitted = null;
+                        if(dataInserimento != null) {
+                            dataInserimentoSplitted = dataInserimento.split("/");
+                        }
+
                         let dataInput = {
                             prezzoTotale: spesa_totale,
                             nome: nome,
                             descrizione: descrizione,
                             tipo: "comune",
-                            dataInserimento: dataInserimento,
-
+                            dataInserimento: dataInserimento != null ? new Date(dataInserimentoSplitted[2], dataInserimentoSplitted[1], dataInserimentoSplitted[0]) : null,
                         }
                         return db
                             .collection('case')
@@ -320,8 +356,14 @@ let inserisciSpesaComune = (data, context) => {
                                             }
 
                                             let docNuovaSpesaUtenteRef = spesaUtentiCollectionRef.doc(idUtenteSingolo);
+
+                                            let dataPagamentoTmp = null;
+                                            if(idUtenteSingolo == context.auth.uid) {
+                                                dataPagamentoTmp = admin.firestore.Timestamp.now();
+                                            }
+
                                             let datiSpesaUtente = {
-                                                dataPagamento : null,
+                                                dataPagamento : dataPagamentoTmp,
                                                 prezzo : spesa_singola,
                                             };
 
@@ -379,15 +421,24 @@ async function leggiSpesePerUtente( idCasa, idSpesa, datiSpesa ) {
 
                     let dataPagamento = utenteData.dataPagamento;
 
+                    let dataInserimentoMod = datiSpesa.dataInserimento || null;
+                    if(dataInserimentoMod != null) dataInserimentoMod = dataInserimentoMod.toMillis();
+
+                    let dataPagamentoMod = dataPagamento || null;
+                    if(dataPagamentoMod != null) dataPagamentoMod = dataPagamentoMod.toMillis();
+
+                    let dataScadenzaMod = datiSpesa.dataScadenza || null;
+                    if(dataScadenzaMod != null) dataScadenzaMod = dataScadenzaMod.toMillis();
+
                     let objDataSpesa = {
                             idUtente:  utenteSnapshot.id,
                             idSpesa:  idSpesa,
                             nome: datiSpesa.nome || "",
                             titolo: datiSpesa.titolo || "",
                             descrizione: datiSpesa.descrizione || "",
-                            dataInserimento: datiSpesa.dataInserimento || null,
-                            dataPagamento: utenteData.dataPagamento || null,
-                            dataScadenza: datiSpesa.dataScadenza || null,
+                            dataInserimento: dataInserimentoMod,
+                            dataPagamento: dataPagamentoMod,
+                            dataScadenza: dataScadenzaMod,
                             categoria: datiSpesa.categoria || "",
                             prezzo: utenteData.prezzo,
                             tipo: datiSpesa.tipo,
@@ -500,7 +551,7 @@ async function aggiungiDatiUtentePerSpesa(objSpese) {
         }
     }
 
-    console.log(datiUtenti);
+//    console.log(datiUtenti);
 
     let promiseUtenti = [];
 
@@ -523,7 +574,7 @@ async function aggiungiDatiUtentePerSpesa(objSpese) {
                     cognome: cognomeUtente,
                 };
 
-                console.log(datiUtenti[idUtente]);
+//                console.log(datiUtenti[idUtente]);
 
             });
 

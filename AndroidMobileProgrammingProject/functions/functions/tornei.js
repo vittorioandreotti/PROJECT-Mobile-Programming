@@ -104,10 +104,16 @@ exports.elencoTornei = functions.https.onCall((data, context) => {
                 // Per ogni torneo
                 let datiTorneo = doc.data();
 
+
+                    let dataOraEvento = datiTorneo.dataOraEvento || null;
+                    if( dataOraEvento != null ) {
+                        dataOraEvento = dataOraEvento.toMillis();
+                    }
+
                     let objDataTorneo = {
                             id: doc.id,
                             titolo: datiTorneo.titolo,
-                            dataOra: datiTorneo.dataOraEvento,
+                            dataOra: dataOraEvento,
                             indirizzo: datiTorneo.indirizzo,
                             categoria: datiTorneo.categoria,
                             regolamento: datiTorneo.regolamento,
@@ -167,10 +173,15 @@ exports.storicoTornei = functions.https.onCall((data, context) => {
 
                         let datiTorneo = torneoSnapshotCorrente.data();
 
+                        let dataOraEvento = datiTorneo.dataOraEvento || null;
+                        if( dataOraEvento != null ) {
+                            dataOraEvento = dataOraEvento.toMillis();
+                        }
+
                         let objDataTorneo = {
                                 id: torneoSnapshotCorrente.id,
                                 titolo: datiTorneo.titolo,
-                                dataOra: datiTorneo.dataOraEvento,
+                                dataOra: dataOraEvento,
                                 indirizzo: datiTorneo.indirizzo,
                                 categoria: datiTorneo.categoria,
                                 regolamento: datiTorneo.regolamento,
