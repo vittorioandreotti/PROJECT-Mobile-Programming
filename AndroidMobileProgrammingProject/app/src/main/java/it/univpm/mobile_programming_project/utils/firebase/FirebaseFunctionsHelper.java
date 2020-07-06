@@ -47,16 +47,16 @@ public class FirebaseFunctionsHelper {
         // exports.getUserInfo
 
         return this.mFunctions
-            .getHttpsCallable("isUserInitialized")
-            .call()
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                @Override
-                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    Boolean resultData = (Boolean) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("isUserInitialized")
+                .call()
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
 
     }
 
@@ -69,32 +69,32 @@ public class FirebaseFunctionsHelper {
         data.put("indirizzo", indirizzo);
 
         return this.mFunctions
-            .getHttpsCallable("creaCasa")
-            .call( data )
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                @Override
-                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    Boolean resultData = (Boolean) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("creaCasa")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
     }
 
 
     public Task<Boolean> inserisciProprietario() {
 
         return this.mFunctions
-            .getHttpsCallable("inserisciProprietario")
-            .call(  )
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                @Override
-                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    Boolean resultData = (Boolean) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("inserisciProprietario")
+                .call(  )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
     }
 
     public Task<Boolean> partecipaCasa(String idCasa) {
@@ -103,16 +103,16 @@ public class FirebaseFunctionsHelper {
         data.put("idCasa", idCasa);
 
         return this.mFunctions
-            .getHttpsCallable("partecipaCasa")
-            .call( data )
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                @Override
-                public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    Boolean resultData = (Boolean) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("partecipaCasa")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
+                    }
+                });
     }
 
     public Task<Boolean> inserisciAffittuario() {
@@ -296,16 +296,16 @@ public class FirebaseFunctionsHelper {
     public Task<HashMap<String, Object>> getUtenteAndCasa() {
 
         return this.mFunctions
-            .getHttpsCallable("getUtenteAndCasa")
-            .call( )
-            .continueWith(new Continuation<HttpsCallableResult, HashMap<String, Object>>() {
-                @Override
-                public HashMap<String, Object> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                    HttpsCallableResult result = task.getResult();
-                    HashMap<String, Object> resultData = (HashMap<String, Object>) result.getData();
-                    return resultData;
-                }
-            });
+                .getHttpsCallable("getUtenteAndCasa")
+                .call( )
+                .continueWith(new Continuation<HttpsCallableResult, HashMap<String, Object>>() {
+                    @Override
+                    public HashMap<String, Object> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        HashMap<String, Object> resultData = (HashMap<String, Object>) result.getData();
+                        return resultData;
+                    }
+                });
     }
 
     public Task<Boolean> disiscrizione() {
@@ -438,9 +438,10 @@ public class FirebaseFunctionsHelper {
         Map<String, Object> dataInput = new HashMap<>();
         dataInput.put("idCasa", this.sharedPreferences.getIdCasa());
 
+        final String idUtente = this.sharedPreferences.getIdUtente();
 
         return this.mFunctions
-                .getHttpsCallable("elencoSpeseAffittuario")
+                .getHttpsCallable("elencoSpese")
                 .withTimeout(30, TimeUnit.SECONDS)
                 .call(dataInput)
                 .continueWith(new Continuation<HttpsCallableResult, Map<String, List<Spesa>>>() {
@@ -474,9 +475,11 @@ public class FirebaseFunctionsHelper {
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("sommario")).get("daPagare") );
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("sommario")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
-                            Spesa spesa = new Spesa();
-                            spesa.createFromHashMap( spesaSingola );
-                            listaSpeseSommario.add( spesa );
+                            if(spesaSingola.get("idUtente").equals(idUtente)){
+                                Spesa spesa = new Spesa();
+                                spesa.createFromHashMap( spesaSingola );
+                                listaSpeseSommario.add( spesa );
+                            }
                         }
                         tmpSpeseList.clear();
 
@@ -485,20 +488,24 @@ public class FirebaseFunctionsHelper {
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("affitto")).get("daPagare") );
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("affitto")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
-                            Spesa spesa = new Spesa();
-                            spesa.createFromHashMap( spesaSingola );
-                            listaSpeseAffitto.add( spesa );
+                            if(spesaSingola.get("idUtente").equals(idUtente)){
+                                Spesa spesa = new Spesa();
+                                spesa.createFromHashMap( spesaSingola );
+                                listaSpeseAffitto.add( spesa );
+                            }
                         }
                         tmpSpeseList.clear();
 
                         // Bollette
                         List<Spesa> listaSpeseBollette = new ArrayList<Spesa>();
-                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("daPagare") );
-                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("pagate") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bolletta")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bolletta")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
-                            Spesa spesa = new Spesa();
-                            spesa.createFromHashMap( spesaSingola );
-                            listaSpeseBollette.add( spesa );
+                            if(spesaSingola.get("idUtente").equals(idUtente)){
+                                Spesa spesa = new Spesa();
+                                spesa.createFromHashMap( spesaSingola );
+                                listaSpeseBollette.add( spesa );
+                            }
                         }
                         tmpSpeseList.clear();
 
@@ -507,9 +514,11 @@ public class FirebaseFunctionsHelper {
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("comune")).get("daPagare") );
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("comune")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
-                            Spesa spesa = new Spesa();
-                            spesa.createFromHashMap( spesaSingola );
-                            listaSpeseComune.add( spesa );
+                            if(spesaSingola.get("idUtente").equals(idUtente)){
+                                Spesa spesa = new Spesa();
+                                spesa.createFromHashMap( spesaSingola );
+                                listaSpeseComune.add( spesa );
+                            }
                         }
                         tmpSpeseList.clear();
 
@@ -518,9 +527,11 @@ public class FirebaseFunctionsHelper {
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("condominio")).get("daPagare") );
                         tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("condominio")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
-                            Spesa spesa = new Spesa();
-                            spesa.createFromHashMap( spesaSingola );
-                            listaSpeseCondominio.add( spesa );
+                            if(spesaSingola.get("idUtente").equals(idUtente)){
+                                Spesa spesa = new Spesa();
+                                spesa.createFromHashMap( spesaSingola );
+                                listaSpeseCondominio.add( spesa );
+                            }
                         }
                         tmpSpeseList.clear();
 

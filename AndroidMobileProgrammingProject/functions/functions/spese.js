@@ -382,10 +382,13 @@ async function leggiSpesePerUtente( idCasa, idSpesa, datiSpesa ) {
                     let objDataSpesa = {
                             idUtente:  utenteSnapshot.id,
                             idSpesa:  idSpesa,
-                            nome: datiSpesa.nome,
-                            descrizione: datiSpesa.descrizione,
-                            dataInserimento: datiSpesa.dataInserimento,
-                            dataPagamento: utenteData.dataPagamento,
+                            nome: datiSpesa.nome || "",
+                            titolo: datiSpesa.titolo || "",
+                            descrizione: datiSpesa.descrizione || "",
+                            dataInserimento: datiSpesa.dataInserimento || null,
+                            dataPagamento: utenteData.dataPagamento || null,
+                            dataScadenza: datiSpesa.dataScadenza || null,
+                            categoria: datiSpesa.categoria || "",
                             prezzo: utenteData.prezzo,
                             tipo: datiSpesa.tipo,
                     };
@@ -411,7 +414,7 @@ async function leggiSpesePerCasa(idCasa) {
        let oggettoRitorno = {
            sommario : { daPagare:[], pagate:[] },
            affitto : { daPagare:[], pagate:[] },
-           bollette : { daPagare:[], pagate:[] },
+           bolletta : { daPagare:[], pagate:[] },
            comune : { daPagare:[], pagate:[] },
            condominio : { daPagare:[], pagate:[] },
        };
@@ -428,13 +431,13 @@ async function leggiSpesePerCasa(idCasa) {
 
                      // Per ogni spesa di una casa
                      speseSnapshot.forEach((spesaRef) => {
-
+//                         console.log();
                          let idSpesa = spesaRef.id;
                          let datiSpesa = spesaRef.data();
 
                          let spesePerUtentePromise = leggiSpesePerUtente( idCasa, idSpesa, datiSpesa )
                              .then((spesePerUtente)=>{
-                                 console.log(spesePerUtente);
+//                                 console.log(spesePerUtente);
                                  for( let j = 0; j < spesePerUtente.length; j++ ){
 
                                      let spesaPerUtente = spesePerUtente[j];
@@ -470,14 +473,97 @@ async function leggiSpesePerCasa(idCasa) {
     } catch(errorMsg) {
         console.log("ERROR!");
         console.log(errorMsg);
-        return [];
+        return {
+            error: true,
+            errorMessage: errorMsg
+        };
     }
+}
+
+async function aggiungiDatiUtentePerSpesa(objSpese) {
+
+    let datiUtenti = {};
+
+    let tipiSpese = Object.keys(objSpese);
+    for( let i = 0; i < tipiSpese.length; i++ ) {
+        // comune, affitto
+        let tipoSpesa = tipiSpese[i];
+
+        let tipiPagati = Object.keys(objSpese[tipoSpesa]);
+        for( let j = 0; j < tipiPagati.length; j++ ) {
+            // daPagare e pagate
+            let tipoPagato = tipiPagati[j];
+            for( let k = 0; k < objSpese[tipoSpesa][tipoPagato].length; k++ ) {
+                let spesaSingola = objSpese[tipoSpesa][tipoPagato][k];
+                datiUtenti[spesaSingola.idUtente] = {};
+            }
+        }
+    }
+
+    console.log(datiUtenti);
+
+    let promiseUtenti = [];
+
+    let chiaviChiavi = Object.keys(datiUtenti);
+    for(let i = 0; i < chiaviChiavi.length; i++ ) {
+        let chiaveUtente = chiaviChiavi[i];
+
+        let promiseUtente = db
+            .collection("users")
+            .doc(chiaveUtente)
+            .get()
+            .then((utenteSnapshot)=>{
+                let utenteData = utenteSnapshot.data();
+                let idUtente = utenteSnapshot.id;
+                let nomeUtente = utenteData.nome;
+                let cognomeUtente = utenteData.cognome;
+
+                datiUtenti[idUtente] = {
+                    nome: nomeUtente,
+                    cognome: cognomeUtente,
+                };
+
+                console.log(datiUtenti[idUtente]);
+
+            });
+
+        promiseUtenti.push(promiseUtente);
+    }
+
+    return Promise.all(promiseUtenti).then(()=>{
+
+        let tipiSpese = Object.keys(objSpese);
+        for( let i = 0; i < tipiSpese.length; i++ ) {
+            // comune, affitto
+            let tipoSpesa = tipiSpese[i];
+
+            let tipiPagati = Object.keys(objSpese[tipoSpesa]);
+            for( let j = 0; j < tipiPagati.length; j++ ) {
+                // daPagare e pagate
+                let tipoPagato = tipiPagati[j];
+
+
+                for( let k = 0; k < objSpese[tipoSpesa][tipoPagato].length; k++ ) {
+                    // spesa singola
+                    let datiSpesaSingola = objSpese[tipoSpesa][tipoPagato][k];
+                    let datiUser = datiUtenti[datiSpesaSingola.idUtente];
+
+                    objSpese[tipoSpesa][tipoPagato][k].nomeUtente = datiUser.nome;
+                    objSpese[tipoSpesa][tipoPagato][k].cognomeUtente = datiUser.cognome;
+                    console.log(datiSpesaSingola);
+
+                }
+            }
+        }
+
+        return objSpese;
+    });
 }
 
 /**
 *
 */
-exports.elencoSpeseAffittuario = functions.https.onCall((data, context) => {
+exports.elencoSpese = functions.https.onCall((data, context) => {
 
         let idCasa = data.idCasa;
         if(idCasa == undefined || idCasa == null || idCasa == "")
@@ -487,10 +573,8 @@ exports.elencoSpeseAffittuario = functions.https.onCall((data, context) => {
             };
 
         return leggiSpesePerCasa(idCasa)
-            .then((obj)=>{
-                console.log("Returning")
-                console.log(obj)
-                return obj;
+            .then((objSpese)=>{
+                return aggiungiDatiUtentePerSpesa(objSpese);
             })
             .catch((errorMsg) => {
                 console.log("ERROR!");
@@ -500,154 +584,4 @@ exports.elencoSpeseAffittuario = functions.https.onCall((data, context) => {
                     errorMessage: errorMsg
                 };
             });
-
-
 });
-
-
-//                            for( let j = 0; j < speseSingoleUtente.length; j++ ){
-//                                let spesaSingolaUtente = speseSingoleUtente[j];
-//                                let datiSpesa = datiSpese[j];
-//
-//                                let datiSpesaSingolaUtente = spesaSingolaUtente.data();
-//
-//                                let objDataSpesa = {
-//                                        nome: datiSpesaSingolaUtente.nome,
-//                                        descrizione: datiSpesaSingolaUtente.descrizione,
-//                                        dataInserimento: datiSpesaSingolaUtente.dataInserimento,
-//                                        prezzo: datiUtenteSpesaSingola.prezzo
-//                                };
-//                                if( dataPagamento == null ){
-//                                    // NON HA PAGATO
-//                                     oggettoRitorno[tipoSpesaDoc].daPagare.push(objDataSpesa);
-//                                     objDataSpesa.tipo = tipoSpesaDoc;
-//                                     oggettoRitorno.sommario.daPagare.push(objDataSpesa);
-//
-//                                }else{
-//                                    // HA PAGATO
-//                                    objDataSpesa.dataPagamento = datiUtenteSpesaSingola.dataPagamento;
-//                                    oggettoRitorno[tipoSpesaDoc].pagate.push(objDataSpesa);
-//                                    objDataSpesa.tipo = tipoSpesaDoc;
-//                                    oggettoRitorno.sommario.pagate.push(objDataSpesa);
-//                                }
-//                            }
-
-
-                            // Qualcosa
-
-
-
-//
-//                  speseSnapshot.forEach((doc) => {
-//                    // Per ogni spesa di una casa
-//                    let datiSpesaSingola = doc.data();
-//
-//                    // Tipo della spesa singola
-//                    let tipoSpesaDoc = datiSpesaSingola.tipo;
-//
-////                    let utentiSpesaSingola =
-//                    let utentiSnapshot = doc.collection("utenti").get();
-//
-//
-//                         // Tutti gli utenti di una spesa
-//
-//                    utentiSnapshot.forEach((utenteDoc) => {
-//                            // Per ogni utente di una singola spesa
-//                            let datiUtenteSpesaSingola = utenteDoc.data();
-//
-//                            let dataPagamento = datiUtenteSpesaSingola.dataPagamento;
-//
-//                            let objDataSpesa = {
-//                                    nome: datiSpesaSingola.nome,
-//                                    descrizione: datiSpesaSingola.descrizione,
-//                                    dataInserimento: datiSpesaSingola.dataInserimento,
-//                                    prezzo: datiUtenteSpesaSingola.prezzo
-//                            };
-//                            if( dataPagamento == null ){
-//                                // NON HA PAGATO
-//                                 oggettoRitorno[tipoSpesaDoc].daPagare.push(objDataSpesa);
-//                                 objDataSpesa.tipo = tipoSpesaDoc;
-//                                 oggettoRitorno.sommario.daPagare.push(objDataSpesa);
-//
-//                            }else{
-//                                // HA PAGATO
-//                                objDataSpesa.dataPagamento = datiUtenteSpesaSingola.dataPagamento;
-//                                oggettoRitorno[tipoSpesaDoc].pagate.push(objDataSpesa);
-//                                objDataSpesa.tipo = tipoSpesaDoc;
-//                                oggettoRitorno.sommario.pagate.push(objDataSpesa);
-//                            }
-//
-//                    });
-//              });
-//              oggettoRitorno.error = false;
-//              return oggettoRitorno;
-
-
-
-/**
-*
-
-exports.elencoSpeseProprietario = functions.https.onCall((data, context) => {
-
-    let oggettoRitorno = {
-           sommario : { nonPagate:[], pagate:[] },
-           affitto : { nonPagate:[], pagate:[] },
-           bollette : { nonPagate:[], pagate:[] },
-           condominio : { nonPagate:[], pagate:[] },
-       };
-
-    let idCasa = data.idCasa;
-    if(idCasa == undefined || idCasa == null || idCasa == "") return false;
-
-    return db
-        .collection("case")
-        .doc(idCasa)
-        .collection("spese")
-        .get()
-        .then( (speseSnapshot) => {
-                // Tutte le spese di una casa
-
-              speseSnapshot.forEach((doc) => {
-                // Per ogni spesa di una casa
-                let datiSpesaSingola = doc.data();
-
-                // Tipo della spesa singola
-                let tipoSpesaDoc = datiSpesaSingola.tipo;
-
-                let utentiSnapshot = doc.collection("utenti").get();
-                // Tutti gli utenti di una spesa
-
-                        utentiSnapshot.forEach((utenteDoc) => {
-                            // Per ogni utente di una singola spesa
-                            let datiUtenteSpesaSingola = utenteDoc.data();
-
-                            let dataPagamento = datiUtenteSpesaSingola.dataPagamento;
-
-                            let objDataSpesa = {
-                                    nome: datiSpesaSingola.nome,
-                                    descrizione: datiSpesaSingola.descrizione,
-                                    dataInserimento: datiSpesaSingola.dataInserimento,
-                                    prezzo: datiUtenteSpesaSingola.prezzo
-                            };
-                            if( dataPagamento == null ){
-                                // NON PAGATA
-                                 oggettoRitorno[tipoSpesaDoc].nonPagate.push(objDataSpesa);
-                                 objDataSpesa.tipo = tipoSpesaDoc;
-                                 oggettoRitorno.sommario.nonPagate.push(objDataSpesa);
-
-                            }else{
-                                // PAGATA
-                                objDataSpesa.dataPagamento = datiUtenteSpesaSingola.dataPagamento;
-                                oggettoRitorno[tipoSpesaDoc].pagate.push(objDataSpesa);
-                                objDataSpesa.tipo = tipoSpesaDoc;
-                                oggettoRitorno.sommario.pagate.push(objDataSpesa);
-                            }
-
-                });
-          });
-
-          return oggettoRitorno;
-    });
-});
-
-*/

@@ -13,17 +13,9 @@ public class Spesa {
     private Double prezzo;
     private Date dataInserimento;
     private Date dataPagamento;
-
-    public Spesa( String idSpesa, String idUtente, String nome, String descrizione, String tipo, Double prezzo, Date dataInserimento, Date dataPagamento ) {
-        this.idSpesa = idSpesa;
-        this.idUtente = idUtente;
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.tipo = tipo;
-        this.prezzo = prezzo;
-        this.dataInserimento = dataInserimento;
-        this.dataPagamento = dataPagamento;
-    }
+    private Date dataScadenza;
+    private String nomeUtente;
+    private String cognomeUtente;
 
     public Spesa() {}
 
@@ -95,7 +87,29 @@ public class Spesa {
         this.dataPagamento = dataPagamento;
     }
 
+    public String getNomeUtente() {
+        return nomeUtente;
+    }
 
+    public void setNomeUtente(String nomeUtente) {
+        this.nomeUtente = nomeUtente;
+    }
+
+    public String getCognomeUtente() {
+        return cognomeUtente;
+    }
+
+    public void setCognomeUtente(String cognomeUtente) {
+        this.cognomeUtente = cognomeUtente;
+    }
+
+    public Date getDataScadenza() {
+        return dataScadenza;
+    }
+
+    public void setDataScadenza(Date dataScadenza) {
+        this.dataScadenza = dataScadenza;
+    }
 
     public void createFromHashMap(Map<String, Object> spesaSingola) {
 
@@ -103,12 +117,28 @@ public class Spesa {
         this.setIdSpesa((String)spesaSingola.get("idSpesa"));
         this.setDescrizione((String)spesaSingola.get("descrizione"));
         this.setTipo((String)spesaSingola.get("tipo"));
+
+        this.setNomeUtente( (String)spesaSingola.get("nomeUtente") );
+        this.setCognomeUtente( (String)spesaSingola.get("cognomeUtente") );
+
+        Object dataInserimento = spesaSingola.get("dataInserimento");
+
 //        this.setDataInserimento();
 //        this.setDataPagamento();
         this.setNome((String)spesaSingola.get("nome"));
         this.setIdUtente((String)spesaSingola.get("idUtente"));
 
         // TODO: Setta le date correttamente
-
+//        "descrizione" -> ""
+//        "tipo" -> "affitto"
+//        "idSpesa" -> "7TGj40m9IkfZX79pBbxY"
+//        "titolo" -> "Affittor_prova"
+//        "dataInserimento" -> "Sat Jun 06 00:00:00 GMT 2020"
+//        "dataPagamento" -> null
+//        "categoria" -> ""
+//        "prezzo" -> {Integer@7120} 300
+//        "nome" -> ""
+//        "idUtente" -> "IuWUZhEQpbg6tvj8c6x8rfyaCFn1"
+//        "dataScadenza" -> "Wed Jul 01 00:00:00 GMT 2020"
     }
 }

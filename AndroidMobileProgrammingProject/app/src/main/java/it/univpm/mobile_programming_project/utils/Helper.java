@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +52,19 @@ public abstract class Helper {
     public static String getTimeFormat() {
         return "%02d:%02d";
     }
+
+//    public static Date fromGmtToDate(String gmtDate) {
+//        DateFormat df = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
+//        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+//
+//        try {
+//            // Convert string into Date
+//            Date today = df.parse("Mon, 16 Apr 2018 00:00:00 GMT+08:00");
+//            System.out.println("Today = " + df.format(today));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }
