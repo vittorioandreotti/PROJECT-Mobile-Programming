@@ -32,6 +32,7 @@ import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragme
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.InserimentoSpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.affittuario.SpeseAffittuarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserimentoSpeseProprietarioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.proprietario.SpeseProprietarioFragment;
 import it.univpm.mobile_programming_project.fragment.splash_screen.CondividiCodiceCasaFragment;
 import it.univpm.mobile_programming_project.fragment.tornei.TorneiFragment;
 import it.univpm.mobile_programming_project.utils.auth_helper.AuthenticationManager;
@@ -221,30 +222,26 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 break;
 
 
-                // TODO: NON VA CREATO UN FRAGMENT PER OGNI SEZIONE MA VA CREATO UN SpeseProprietarioFragment ( come a riga 331 circa )
-////             SOMMARIO SPESE
-//            case R.id.nav_sommario_proprietario:
-//                navigationFragment = new SommarioFragment();
-//                titleId = R.string.sommario;
-//                break;
-//
-//            case R.id.nav_spesecondominio_proprietario:
-//                navigationFragment = new SpeseCondominioFragment();
-//                titleId = R.string.spese_condominio;
-//                break;
-//
-//            case R.id.nav_affitto_proprietario:
-//                navigationFragment = new AffittoFragment();
-//                titleId = R.string.affitto;
-//                break;
-//
-//            case R.id.nav_bollette_proprietario:
-//                navigationFragment = new BolletteFragment();
-//                titleId = R.string.bollette;
-//                break;
+            //SOMMARIO SPESE
+            case R.id.nav_sommario_proprietario:
+                navigationFragment = new SpeseProprietarioFragment(SpeseProprietarioFragment.SOMMARIO);
+                titleId = R.string.sommario;
+                break;
 
+            case R.id.nav_spesecondominio_proprietario:
+                navigationFragment = new SpeseProprietarioFragment(SpeseProprietarioFragment.SPESACONDOMINIO);
+                titleId = R.string.sommario;
+                break;
 
+            case R.id.nav_affitto_proprietario:
+                navigationFragment = new SpeseProprietarioFragment(SpeseProprietarioFragment.AFFITTO);
+                titleId = R.string.sommario;
+                break;
 
+            case R.id.nav_bollette_proprietario:
+                navigationFragment = new SpeseProprietarioFragment(SpeseProprietarioFragment.BOLLETTE);
+                titleId = R.string.sommario;
+                break;
 
 
             // CODICE CASA
@@ -269,8 +266,6 @@ public class HomeActivity extends AppCompatActivityWithLoading implements Naviga
                 navigationFragment = new InserimentoSpeseProprietarioFragment(InserimentoSpeseProprietarioFragment.AFFITTO);
                 titleId = R.string.inserisci_affitto;
                 break;
-
-
 
 
             // TORNEI

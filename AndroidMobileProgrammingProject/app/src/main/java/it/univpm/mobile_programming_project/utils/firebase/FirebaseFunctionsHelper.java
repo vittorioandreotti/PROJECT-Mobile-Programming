@@ -440,7 +440,7 @@ public class FirebaseFunctionsHelper {
 
 
         return this.mFunctions
-                .getHttpsCallable("elencoSpeseAffittuario")
+                .getHttpsCallable("elencoSpese")
                 .withTimeout(30, TimeUnit.SECONDS)
                 .call(dataInput)
                 .continueWith(new Continuation<HttpsCallableResult, Map<String, List<Spesa>>>() {
@@ -534,4 +534,107 @@ public class FirebaseFunctionsHelper {
                     }
                 });
     }
+
+    public Task<Map<String, List<Spesa>>> elencoSpeseProprietario (final Context context) {
+
+        Map<String, Object> dataInput = new HashMap<>();
+        dataInput.put("idCasa", this.sharedPreferences.getIdCasa());
+
+
+        return this.mFunctions
+                .getHttpsCallable("elencoSpese")
+                .withTimeout(30, TimeUnit.SECONDS)
+                .call(dataInput)
+                .continueWith(new Continuation<HttpsCallableResult, Map<String, List<Spesa>>>() {
+                    @Override
+                    public Map<String, List<Spesa>> then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+
+                        Map<String, List<Spesa>> speseTotali = new HashMap<>();
+
+                        List<Map<String, Object>> tmpSpeseList = new ArrayList<>();
+
+                        if(!task.isSuccessful()) {
+                            Exception e = task.getException();
+                            if (e instanceof FirebaseFunctionsException) {
+                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                FirebaseFunctionsException.Code code = ffe.getCode();
+                                Object details = ffe.getDetails();
+                            }
+                            return speseTotali;
+                        }
+
+                        HttpsCallableResult result = task.getResult();
+                        Map<String, Object> resultData = (Map<String, Object>) result.getData();
+
+                        if( (Boolean)resultData.get("error") ) {
+                            Toast.makeText(context, (String)resultData.get("errorMessage"), Toast.LENGTH_LONG).show();
+                            return speseTotali;
+                        }
+
+                        // Sommario
+                        List<Spesa> listaSpeseSommario = new ArrayList<Spesa>();
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("sommario")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("sommario")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
+                            Spesa spesa = new Spesa();
+                            spesa.createFromHashMap( spesaSingola );
+                            listaSpeseSommario.add( spesa );
+                        }
+                        tmpSpeseList.clear();
+
+                        // Affitto
+                        List<Spesa> listaSpeseAffitto = new ArrayList<Spesa>();
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("affitto")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("affitto")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
+                            Spesa spesa = new Spesa();
+                            spesa.createFromHashMap( spesaSingola );
+                            listaSpeseAffitto.add( spesa );
+                        }
+                        tmpSpeseList.clear();
+
+                        // Bollette
+                        List<Spesa> listaSpeseBollette = new ArrayList<Spesa>();
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
+                            Spesa spesa = new Spesa();
+                            spesa.createFromHashMap( spesaSingola );
+                            listaSpeseBollette.add( spesa );
+                        }
+                        tmpSpeseList.clear();
+
+                        // Comune
+                        List<Spesa> listaSpeseComune = new ArrayList<Spesa>();
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("comune")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("comune")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
+                            Spesa spesa = new Spesa();
+                            spesa.createFromHashMap( spesaSingola );
+                            listaSpeseComune.add( spesa );
+                        }
+                        tmpSpeseList.clear();
+
+                        // Condominio
+                        List<Spesa> listaSpeseCondominio = new ArrayList<Spesa>();
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("condominio")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("condominio")).get("pagate") );
+                        for( Map<String, Object> spesaSingola : tmpSpeseList ) {
+                            Spesa spesa = new Spesa();
+                            spesa.createFromHashMap( spesaSingola );
+                            listaSpeseCondominio.add( spesa );
+                        }
+                        tmpSpeseList.clear();
+
+                        speseTotali.put("sommario", listaSpeseSommario);
+                        speseTotali.put("affitto", listaSpeseAffitto);
+                        speseTotali.put("bollette", listaSpeseBollette);
+                        speseTotali.put("condominio", listaSpeseCondominio);
+                        speseTotali.put("comune", listaSpeseComune);
+
+                        return speseTotali;
+                    }
+                });
+    }
+
 }

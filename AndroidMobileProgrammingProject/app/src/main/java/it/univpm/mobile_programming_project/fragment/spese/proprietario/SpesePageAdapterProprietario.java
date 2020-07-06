@@ -43,4 +43,8 @@ public class SpesePageAdapterProprietario extends FragmentStatePagerAdapter {
     public int getCount() {
         return fragments.size();
     }
+
+    public void clearFragmentList() {
+        this.fragments.clear();
+    }
 }
