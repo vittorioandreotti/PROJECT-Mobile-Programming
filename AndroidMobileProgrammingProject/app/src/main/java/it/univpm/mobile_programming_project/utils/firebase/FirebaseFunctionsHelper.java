@@ -493,8 +493,8 @@ public class FirebaseFunctionsHelper {
 
                         // Bollette
                         List<Spesa> listaSpeseBollette = new ArrayList<Spesa>();
-                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("daPagare") );
-                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("pagate") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bolletta")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bolletta")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
@@ -595,8 +595,8 @@ public class FirebaseFunctionsHelper {
 
                         // Bollette
                         List<Spesa> listaSpeseBollette = new ArrayList<Spesa>();
-                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("daPagare") );
-                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bollette")).get("pagate") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bolletta")).get("daPagare") );
+                        tmpSpeseList.addAll( (List<Map<String, Object>>)((Map<String, Object>)resultData.get("bolletta")).get("pagate") );
                         for( Map<String, Object> spesaSingola : tmpSpeseList ) {
                             Spesa spesa = new Spesa();
                             spesa.createFromHashMap( spesaSingola );
@@ -633,6 +633,26 @@ public class FirebaseFunctionsHelper {
                         speseTotali.put("comune", listaSpeseComune);
 
                         return speseTotali;
+                    }
+                });
+    }
+
+    public Task<Boolean> pagaSpesa(String idSpesa, String idCasa) {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("idSpesa", idSpesa);
+        data.put("idCasa", idCasa);
+
+
+        return this.mFunctions
+                .getHttpsCallable("pagaSpesa")
+                .call( data )
+                .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
+                    @Override
+                    public Boolean then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        HttpsCallableResult result = task.getResult();
+                        Boolean resultData = (Boolean) result.getData();
+                        return resultData;
                     }
                 });
     }

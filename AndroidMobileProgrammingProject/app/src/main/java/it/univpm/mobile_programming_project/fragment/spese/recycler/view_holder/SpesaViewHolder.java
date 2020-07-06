@@ -13,7 +13,7 @@ import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClic
 public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private final RecyclerViewClickListener listener;
-    private final InterfaceSpeseAdapter adapter;
+    public final InterfaceSpeseAdapter adapter;
     public TextView nomePlaceholder;
     public TextView descrizionePlaceholder;
     public TextView tipoPlaceholder;
@@ -46,7 +46,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
-        this.listener.onClick(view, this.adapter.getSpesa(getAdapterPosition()));
+        this.listener.onClick(view, this);
     }
 
 }

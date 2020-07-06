@@ -18,6 +18,7 @@ import java.util.List;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
@@ -71,7 +72,8 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
 
     @Override
     public void onClick(View view, Object object) {
-        Spesa spesa = (Spesa)object;
+        final SpesaViewHolder spesaHolder = (SpesaViewHolder)object;
+        Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
 
         // Cliccata la spesa "spesa"
         // TODO: Setta la spesa pagata da cloud function
