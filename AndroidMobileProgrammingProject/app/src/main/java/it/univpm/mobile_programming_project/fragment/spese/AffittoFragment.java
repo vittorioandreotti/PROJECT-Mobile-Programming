@@ -53,7 +53,7 @@ public class AffittoFragment extends Fragment implements RecyclerViewClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         firebaseFunctionsHelper = new FirebaseFunctionsHelper();
-        utenteSharedPreferences =new UtenteSharedPreferences(getContext());
+        utenteSharedPreferences = new UtenteSharedPreferences(getContext());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class AffittoFragment extends Fragment implements RecyclerViewClickListen
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-            initRecyclerView(view);
+        initRecyclerView(view);
     }
 
     private void initRecyclerView(View view) {
@@ -77,7 +77,9 @@ public class AffittoFragment extends Fragment implements RecyclerViewClickListen
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewAffitto.setLayoutManager(layoutManager);
 
-        adapter = new AffittoSpeseAdapter(this.speseAffitto, this);
+        int tipoUtente = this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO;
+
+        adapter = new AffittoSpeseAdapter(this.speseAffitto, this, tipoUtente);
         recyclerViewAffitto.setAdapter(adapter);
     }
 

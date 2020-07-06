@@ -19,8 +19,8 @@ import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClic
 public class SpesaCondominioSpeseAdapter extends InterfaceSpeseAdapter {
 
 
-    public SpesaCondominioSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
-        super(listaSpese, listener);
+    public SpesaCondominioSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener, int tipoUtenteAutenticato) {
+        super(listaSpese, listener, tipoUtenteAutenticato);
     }
 
     @NonNull
@@ -36,7 +36,7 @@ public class SpesaCondominioSpeseAdapter extends InterfaceSpeseAdapter {
 
         holder.nomePlaceholder.setText( spesa.getNome() );
         holder.dataInserimentoPlaceholder.setText(Helper.formatDateToString(spesa.getDataInserimento()) );
-        holder.dataPagamentoPlaceholder.setText(Helper.formatDateToString(spesa.getDataPagamento()) );
+        holder.dataPagamentoPlaceholder.setText(Helper.formatDateToStringWithHour(spesa.getDataPagamento()) );
         holder.prezzoPlaceholder.setText( String.format(Locale.ITALIAN, "%.2f€", spesa.getPrezzo()) );
 
         if( spesa.getDataPagamento() == null ) {
@@ -49,6 +49,12 @@ public class SpesaCondominioSpeseAdapter extends InterfaceSpeseAdapter {
             holder.txtPagata.setVisibility(View.VISIBLE);
             holder.txtNonPagata.setVisibility(View.GONE);
             holder.btnPaga.setVisibility(View.GONE);
+        }
+
+        if( this.tipoUtenteAutenticato == SommarioSpeseAdapter.PROPRIETARIO ) {
+            holder.fullnameUtentePlaceholder.setText( spesa.getNomeUtente() + "\n" + spesa.getCognomeUtente() );
+            holder.btnPaga.setVisibility(View.GONE);
+            holder.bloccoNomeAffittuario.setVisibility(View.VISIBLE);
         }
     }
 

@@ -4,7 +4,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.CollationElementIterator;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.InterfaceSpeseAdapter;
@@ -27,6 +30,9 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView txtPagata;
     public TextView txtNonPagata;
     public Button btnPaga;
+    public TextView fullnameUtentePlaceholder;
+
+    public ConstraintLayout bloccoNomeAffittuario;
 
     public SpesaViewHolder(View itemView, RecyclerViewClickListener listener, InterfaceSpeseAdapter adapter) {
         super(itemView);
@@ -43,9 +49,13 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnC
         dataScadenzaPlaceholder = itemView.findViewById(R.id.txtDataScadenzaSpesa);
         categoriaPlaceholder = itemView.findViewById(R.id.txtCategoriaSpesa);
 
+        fullnameUtentePlaceholder = itemView.findViewById(R.id.txtFullnameUtenteSpesa);
+
         txtPagata = itemView.findViewById(R.id.txtPagata);
         txtNonPagata = itemView.findViewById(R.id.txtNonPagata);
         btnPaga = itemView.findViewById(R.id.btnPaga);
+
+        bloccoNomeAffittuario = itemView.findViewById(R.id.bloccoNomeAffittuario);
 
         if(btnPaga != null)
             btnPaga.setOnClickListener(this);

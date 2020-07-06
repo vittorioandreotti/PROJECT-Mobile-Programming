@@ -76,7 +76,7 @@ public class SpeseCondominioFragment extends Fragment implements RecyclerViewCli
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewSpeseCondominio.setLayoutManager(layoutManager);
 
-        adapter = new SpesaCondominioSpeseAdapter(this.speseSpesaCondominio, this);
+        adapter = new SpesaCondominioSpeseAdapter(this.speseSpesaCondominio, this, this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO);
         recyclerViewSpeseCondominio.setAdapter(adapter);
     }
 

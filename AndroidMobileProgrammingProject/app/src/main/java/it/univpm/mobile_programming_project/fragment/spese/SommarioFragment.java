@@ -74,7 +74,7 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewSommarioSpese.setLayoutManager(layoutManager);
 
-        adapter = new SommarioSpeseAdapter(this.speseSommario, this);
+        adapter = new SommarioSpeseAdapter(this.speseSommario, this, this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO );
         recyclerViewSommarioSpese.setAdapter(adapter);
     }
 

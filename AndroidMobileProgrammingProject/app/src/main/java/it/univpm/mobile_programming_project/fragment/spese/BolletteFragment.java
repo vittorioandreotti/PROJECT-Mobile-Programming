@@ -76,7 +76,7 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewBollette.setLayoutManager(layoutManager);
 
-        adapter = new BolletteSpeseAdapter(this.speseBollette, this);
+        adapter = new BolletteSpeseAdapter(this.speseBollette, this, this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO);
         recyclerViewBollette.setAdapter(adapter);
     }
 

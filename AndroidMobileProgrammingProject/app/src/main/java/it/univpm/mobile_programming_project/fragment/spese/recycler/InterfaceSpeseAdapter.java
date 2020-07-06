@@ -13,13 +13,18 @@ import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClic
 
 public abstract class InterfaceSpeseAdapter extends RecyclerView.Adapter <SpesaViewHolder>{
 
-    private List<Spesa> mSpeseList;
+    protected final int tipoUtenteAutenticato;
+    protected List<Spesa> mSpeseList;
     protected final RecyclerViewClickListener listener;
 
-    public InterfaceSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
+    public static final int AFFITTUARIO = 0;
+    public static final int PROPRIETARIO = 1;
+
+    public InterfaceSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener, int tipoUtenteAutenticato) {
         super();
         this.listener = listener;
         this.mSpeseList = listaSpese;
+        this.tipoUtenteAutenticato = tipoUtenteAutenticato;
     }
 
     @Override
