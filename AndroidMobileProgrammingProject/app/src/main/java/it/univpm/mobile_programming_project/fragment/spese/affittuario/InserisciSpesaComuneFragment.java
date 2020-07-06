@@ -25,6 +25,7 @@ import java.util.Date;
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.fragment.spese.proprietario.InserisciSpesaCondominioFragment;
+import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.picker.DatePickerFragment;
@@ -87,6 +88,8 @@ public class InserisciSpesaComuneFragment extends Fragment implements DatePicker
 
     @Override
     public void onClick(View v) {
+        new CloseKeyboard(getActivity());
+
         switch (v.getId())
         {
             case R.id.btnInserisciSpesaComune:
