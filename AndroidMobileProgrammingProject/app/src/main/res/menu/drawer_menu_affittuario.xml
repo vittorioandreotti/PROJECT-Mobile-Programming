@@ -29,7 +29,7 @@
         <menu>
         <item
             android:id="@+id/nav_gestione_spesa_comune"
-            android:icon="@drawable/ic_spese"
+            android:icon="@drawable/insert"
             android:title="Gestisci spesa comune" />
 
         <item
@@ -39,22 +39,22 @@
 
         <item
             android:id="@+id/nav_spesacomune"
-            android:icon="@drawable/ic_spese"
+            android:icon="@drawable/spesacomune"
             android:title="Spese in comune" />
 
         <item
             android:id="@+id/nav_affitto"
-            android:icon="@drawable/ic_spese"
+            android:icon="@drawable/affitto"
             android:title="@string/affitto" />
 
         <item
             android:id="@+id/nav_bollette"
-            android:icon="@drawable/ic_spese"
+            android:icon="@drawable/bollette"
             android:title="@string/bollette" />
 
             <item
                 android:id="@+id/nav_spesecondominio"
-                android:icon="@drawable/ic_spese"
+                android:icon="@drawable/condominio"
                 android:title="@string/spese_condominio" />
         </menu>
         </item>
@@ -77,12 +77,12 @@
 
                 <item
                     android:id="@+id/nav_crea_un_torneo"
-                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:icon="@drawable/insert"
                     android:title="Crea" />
 
                 <item
                     android:id="@+id/nav_storico_torneo"
-                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:icon="@drawable/lista"
                     android:title="Storico" />
             </menu>
         </item>

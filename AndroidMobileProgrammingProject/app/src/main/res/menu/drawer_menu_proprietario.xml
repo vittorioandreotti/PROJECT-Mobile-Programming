@@ -32,17 +32,17 @@
 
                 <item
                     android:id="@+id/nav_spesecondominio_proprietario"
-                    android:icon="@drawable/ic_cake"
+                    android:icon="@drawable/condominio"
                     android:title="@string/spese_condominio" />
 
                 <item
                     android:id="@+id/nav_affitto_proprietario"
-                    android:icon="@drawable/ic_cake"
+                    android:icon="@drawable/affitto"
                     android:title="@string/affitto" />
 
                 <item
                     android:id="@+id/nav_bollette_proprietario"
-                    android:icon="@drawable/ic_cake"
+                    android:icon="@drawable/bollette"
                     android:title="@string/bollette" />
             </menu>
         </item>
@@ -73,17 +73,17 @@
             <menu>
                 <item
                     android:id="@+id/nav_ins_spesa_condominio"
-                    android:icon="@drawable/ic_spese"
+                    android:icon="@drawable/insert"
                     android:title="@string/inserisci_spese_condominio" />
 
                 <item
                     android:id="@+id/nav_ins_bollette"
-                    android:icon="@drawable/ic_spese"
+                    android:icon="@drawable/insert"
                     android:title="@string/inserisci_bollette" />
 
                 <item
                     android:id="@+id/nav_ins_affitto"
-                    android:icon="@drawable/ic_spese"
+                    android:icon="@drawable/insert"
                     android:title="@string/inserisci_affitto" />
 
             </menu>
@@ -108,12 +108,12 @@
 
                 <item
                     android:id="@+id/nav_crea_un_torneo"
-                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:icon="@drawable/insert"
                     android:title="@string/crea" />
 
                 <item
                     android:id="@+id/nav_storico_torneo"
-                    android:icon="@drawable/ic_trophy_icon_icons"
+                    android:icon="@drawable/lista"
                     android:title="@string/storico" />
             </menu>
         </item>
