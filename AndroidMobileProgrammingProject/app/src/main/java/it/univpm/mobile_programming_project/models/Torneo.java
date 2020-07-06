@@ -1,6 +1,9 @@
 package it.univpm.mobile_programming_project.models;
 
 import java.util.Date;
+import java.util.Map;
+
+import it.univpm.mobile_programming_project.utils.Helper;
 
 public class Torneo {
     private String id;
@@ -67,5 +70,15 @@ public class Torneo {
 
     public void setRegolamento(String regolamento) {
         this.regolamento = regolamento;
+    }
+
+    public void createFromHashMap(Map<String, Object> torneoSingolo) {
+
+        this.setId((String)torneoSingolo.get("id"));
+        this.setTitolo((String)torneoSingolo.get("titolo"));
+        this.setCategoria((String)torneoSingolo.get("categoria"));
+        this.setIndirizzo((String)torneoSingolo.get("indirizzo"));
+        this.setRegolamento((String)torneoSingolo.get("regolamento"));
+        this.setDataOra(Helper.fromMillisToDate((Long)torneoSingolo.get("dataOra")));
     }
 }

@@ -88,6 +88,7 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
         DialogFragment newFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                if (month >= 0) month = month+1;
                 txtDataScadenzaInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
             }
         });
@@ -99,6 +100,7 @@ public class InserisciAffittoFragment extends Fragment implements View.OnClickLi
         DialogFragment newFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                if (month >= 0) month = month+1;
                 txtDataAffittoInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
             }
         });

@@ -179,17 +179,14 @@ public class FirebaseFunctionsHelper {
 
         String idCasa = this.sharedPreferences.getIdCasa();
 
-        Date dataBolletta = Helper.fromStringToDate(stringDataBolletta);
-        Date dataScadenza = Helper.fromStringToDate(stringDataScadenza);
-
         // Call the function and extract the result
         // exports.getUserInfo
         Map<String, Object> data = new HashMap<>();
         data.put("idCasa", idCasa);
         data.put("categoria", categoria);
         data.put("prezzo", importo);
-        data.put("dataInserimento", dataBolletta.toString() );
-        data.put("dataScadenza", dataScadenza.toString() );
+        data.put("dataInserimento", stringDataBolletta );
+        data.put("dataScadenza", stringDataScadenza );
         data.put("tipoSpesa", "bolletta");
 
         return this.mFunctions
@@ -209,17 +206,14 @@ public class FirebaseFunctionsHelper {
 
         String idCasa = this.sharedPreferences.getIdCasa();
 
-        Date dataAffitto = Helper.fromStringToDate(stringDataAffitto);
-        Date dataScadenza = Helper.fromStringToDate(stringDataScadenza);
-
         // Call the function and extract the result
         // exports.getUserInfo
         Map<String, Object> data = new HashMap<>();
         data.put("idCasa", idCasa);
         data.put("titolo", titolo);
         data.put("prezzo", importo);
-        data.put("dataInserimento", dataAffitto.toString() );
-        data.put("dataScadenza", dataScadenza.toString() );
+        data.put("dataInserimento", stringDataAffitto );
+        data.put("dataScadenza", stringDataScadenza );
         data.put("tipoSpesa", "affitto");
 
         return this.mFunctions
@@ -239,15 +233,13 @@ public class FirebaseFunctionsHelper {
 
         String idCasa = this.sharedPreferences.getIdCasa();
 
-        Date dataAffitto = Helper.fromStringToDate(stringDataAffitto);
-
         // Call the function and extract the result
         // exports.getUserInfo
         Map<String, Object> data = new HashMap<>();
         data.put("idCasa", idCasa);
         data.put("nome", nome);
         data.put("prezzo", importo);
-        data.put("dataInserimento", dataAffitto.toString() );
+        data.put("dataInserimento", stringDataAffitto );
         data.put("tipoSpesa", "condominio");
 
         return this.mFunctions
@@ -267,15 +259,13 @@ public class FirebaseFunctionsHelper {
 
         String idCasa = this.sharedPreferences.getIdCasa();
 
-        Date dataSpesa = Helper.fromStringToDate(stringDataSpesa);
-
         // Call the function and extract the result
         // exports.getUserInfo
         Map<String, Object> data = new HashMap<>();
         data.put("idCasa", idCasa);
         data.put("nome", nome);
         data.put("prezzo", importo);
-        data.put("dataInserimento", dataSpesa.toString() );
+        data.put("dataInserimento", stringDataSpesa );
         data.put("descrizione", descrizione);
         data.put("tipoSpesa", "comune");
 
@@ -364,16 +354,9 @@ public class FirebaseFunctionsHelper {
                         }
 
                         for( Map<String, Object> torneoSingolo : (List<Map<String, Object>>) resultData.get("tornei") ) {
-                            //
-                            String id = (String)torneoSingolo.get("id");
-                            String titolo = (String)torneoSingolo.get("titolo");
-                            String categoria = (String)torneoSingolo.get("categoria");
-                            String indirizzo = (String)torneoSingolo.get("indirizzo");
-                            String regolamento = (String)torneoSingolo.get("regolamento");
-                            Object dataOra = torneoSingolo.get("dataOra");
-
-                            // TODO: Modificare la creazione della data.
-                            listaTornei.add( new Torneo(id, titolo, categoria, indirizzo, new Date(), regolamento) );
+                            Torneo torneo = new Torneo();
+                            torneo.createFromHashMap( torneoSingolo );
+                            listaTornei.add( torneo );
                         }
 
                         return listaTornei;
@@ -398,16 +381,9 @@ public class FirebaseFunctionsHelper {
                         }
 
                         for( Map<String, Object> torneoSingolo : (List<Map<String, Object>>) resultData.get("tornei") ) {
-                            //
-                            String id = (String)torneoSingolo.get("id");
-                            String titolo = (String)torneoSingolo.get("titolo");
-                            String categoria = (String)torneoSingolo.get("categoria");
-                            String indirizzo = (String)torneoSingolo.get("indirizzo");
-                            String regolamento = (String)torneoSingolo.get("regolamento");
-                            Object dataOra = torneoSingolo.get("dataOra");
-
-                            // TODO: Modificare la creazione della data.
-                            listaTornei.add( new Torneo(id, titolo, categoria, indirizzo, new Date(), regolamento) );
+                            Torneo torneo = new Torneo();
+                            torneo.createFromHashMap( torneoSingolo );
+                            listaTornei.add( torneo );
                         }
 
                         return listaTornei;

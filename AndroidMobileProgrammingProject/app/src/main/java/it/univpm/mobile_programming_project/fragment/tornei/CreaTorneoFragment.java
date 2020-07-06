@@ -107,6 +107,7 @@ public class CreaTorneoFragment extends Fragment implements DatePickerDialog.OnD
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        if (month >= 0) month = month+1;
         txtDataTorneoInput.setText(String.format(Helper.getDateFormat(), dayOfMonth, month, year));
     }
 

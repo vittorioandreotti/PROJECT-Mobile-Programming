@@ -8,6 +8,8 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
+import it.univpm.mobile_programming_project.R;
+
 public class DatePickerFragment extends DialogFragment {
 
     private final DatePickerDialog.OnDateSetListener dateSetListener;
@@ -25,7 +27,7 @@ public class DatePickerFragment extends DialogFragment {
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this.dateSetListener, year, month, day);
+        return new DatePickerDialog(getActivity(), R.style.Theme_Widget_Dialog, this.dateSetListener, year, month, day);
     }
 
 }

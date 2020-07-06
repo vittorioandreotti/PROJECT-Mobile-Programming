@@ -3,6 +3,8 @@ package it.univpm.mobile_programming_project.models;
 import java.util.Date;
 import java.util.Map;
 
+import it.univpm.mobile_programming_project.utils.Helper;
+
 public class Spesa {
 
     private String idSpesa;
@@ -135,28 +137,17 @@ public class Spesa {
         this.setIdSpesa((String)spesaSingola.get("idSpesa"));
         this.setDescrizione((String)spesaSingola.get("descrizione"));
         this.setTipo((String)spesaSingola.get("tipo"));
+        this.setTitolo((String)spesaSingola.get("titolo"));
+        this.setCategoria((String)spesaSingola.get("categoria"));
 
         this.setNomeUtente( (String)spesaSingola.get("nomeUtente") );
         this.setCognomeUtente( (String)spesaSingola.get("cognomeUtente") );
 
-        Object dataInserimento = spesaSingola.get("dataInserimento");
+        this.setDataInserimento(Helper.fromMillisToDate((Long)spesaSingola.get("dataInserimento")));
+        this.setDataPagamento(Helper.fromMillisToDate((Long)spesaSingola.get("dataPagamento")));
+        this.setDataScadenza(Helper.fromMillisToDate((Long)spesaSingola.get("dataScadenza")));
 
-//        this.setDataInserimento();
-//        this.setDataPagamento();
         this.setNome((String)spesaSingola.get("nome"));
         this.setIdUtente((String)spesaSingola.get("idUtente"));
-
-        // TODO: Setta le date correttamente
-//        "descrizione" -> ""
-//        "tipo" -> "affitto"
-//        "idSpesa" -> "7TGj40m9IkfZX79pBbxY"
-//        "titolo" -> "Affittor_prova"
-//        "dataInserimento" -> "Sat Jun 06 00:00:00 GMT 2020"
-//        "dataPagamento" -> null
-//        "categoria" -> ""
-//        "prezzo" -> {Integer@7120} 300
-//        "nome" -> ""
-//        "idUtente" -> "IuWUZhEQpbg6tvj8c6x8rfyaCFn1"
-//        "dataScadenza" -> "Wed Jul 01 00:00:00 GMT 2020"
     }
 }

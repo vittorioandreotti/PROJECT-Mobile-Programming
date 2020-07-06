@@ -14,6 +14,7 @@ import java.util.List;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.models.Torneo;
+import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
 public class StoricoTorneoAdapter extends RecyclerView.Adapter < StoricoTorneoAdapter.TorneoViewHolder > {
@@ -50,7 +51,7 @@ public class StoricoTorneoAdapter extends RecyclerView.Adapter < StoricoTorneoAd
         holder.titoloPlaceholder.setText( torneo.getTitolo() );
         holder.categoriaPlaceholder.setText( torneo.getCategoria() );
         holder.regolamentoPlaceholder.setText( torneo.getRegolamento() );
-        holder.dataOraPlaceholder.setText( torneo.getDataOra().toString() );
+        holder.dataOraPlaceholder.setText(Helper.formatDateToStringWithHour(torneo.getDataOra()) );
         holder.indirizzoPlaceholder.setText( torneo.getIndirizzo() );
     }
 

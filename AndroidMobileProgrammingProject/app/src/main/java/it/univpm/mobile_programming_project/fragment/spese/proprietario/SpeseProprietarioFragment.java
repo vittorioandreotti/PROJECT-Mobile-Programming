@@ -107,9 +107,9 @@ public class SpeseProprietarioFragment extends Fragment {
     private void setupUI() {
         pagerAdapter.clearFragmentList();
         pagerAdapter.addFragment(new SommarioFragment(this.speseSommario));
+        pagerAdapter.addFragment(new SpeseCondominioFragment(this.speseSpesaCondominio));
         pagerAdapter.addFragment(new AffittoFragment(this.speseAffitto));
         pagerAdapter.addFragment(new BolletteFragment(this.speseBollette));
-        pagerAdapter.addFragment(new SpeseCondominioFragment(this.speseSpesaCondominio));
         pagerAdapter.notifyDataSetChanged();
 
         viewPager.setAdapter(pagerAdapter);

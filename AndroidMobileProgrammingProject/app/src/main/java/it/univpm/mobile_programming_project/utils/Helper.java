@@ -40,9 +40,15 @@ public abstract class Helper {
     }
 
     @SuppressLint("SimpleDateFormat")
-    public static String formatDateToString(Date data) {
+    public static String formatDateToStringWithHour(Date data) {
         if(data == null) return "-";
         return new SimpleDateFormat("dd/MM/yyyy HH:mm").format(data);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String formatDateToString(Date data) {
+        if(data == null) return "-";
+        return new SimpleDateFormat("dd/MM/yyyy").format(data);
     }
 
     public static String getDateFormat() {
@@ -53,18 +59,8 @@ public abstract class Helper {
         return "%02d:%02d";
     }
 
-//    public static Date fromGmtToDate(String gmtDate) {
-//        DateFormat df = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
-//        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-//
-//        try {
-//            // Convert string into Date
-//            Date today = df.parse("Mon, 16 Apr 2018 00:00:00 GMT+08:00");
-//            System.out.println("Today = " + df.format(today));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
+    public static Date fromMillisToDate(Long dataInserimento) {
+        if( dataInserimento == null) return null;
+        return new Date(dataInserimento);
+    }
 }

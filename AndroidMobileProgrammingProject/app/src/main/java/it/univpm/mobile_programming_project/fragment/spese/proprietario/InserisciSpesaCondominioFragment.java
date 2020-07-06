@@ -78,6 +78,7 @@ public class InserisciSpesaCondominioFragment extends Fragment implements DatePi
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        if (month >= 0) month = month+1;
         String formattedDate = String.format("%d/%d/%d", dayOfMonth, month, year);
         txtDataSpesaCondominioInput.setText(formattedDate);
     }

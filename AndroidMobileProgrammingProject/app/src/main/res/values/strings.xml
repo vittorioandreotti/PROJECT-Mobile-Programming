@@ -120,6 +120,7 @@
     <string name="categoria_spesa">Categoria:</string>
     <string name="data_scadenza">Data scadenza:</string>
     <string name="titolo_spesa">Titolo :</string>
+    <string name="affittuario_">Affittuario:</string>
 
 
 </resources>
