@@ -3,7 +3,6 @@ package it.univpm.mobile_programming_project.fragment.spese.recycler.sommario;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -11,16 +10,16 @@ import java.util.List;
 import java.util.Locale;
 
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.SpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.InterfaceSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
-public class SommarioSpeseAdapter extends SpeseAdapter {
+public class SpeseAdapter extends InterfaceSpeseAdapter {
 
 
-    public SommarioSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
+    public SpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
         super(listaSpese, listener);
     }
 

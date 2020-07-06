@@ -11,12 +11,12 @@ import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
-public abstract class SpeseAdapter extends RecyclerView.Adapter <SpesaViewHolder>{
+public abstract class InterfaceSpeseAdapter extends RecyclerView.Adapter <SpesaViewHolder>{
 
     private List<Spesa> mSpeseList;
     protected final RecyclerViewClickListener listener;
 
-    public SpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
+    public InterfaceSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
         super();
         this.listener = listener;
         this.mSpeseList = listaSpese;

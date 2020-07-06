@@ -585,3 +585,35 @@ exports.elencoSpese = functions.https.onCall((data, context) => {
                 };
             });
 });
+
+
+exports.pagaSpesa = functions.https.onCall ((data, context) => {
+    const uid = context.auth.uid;
+    let idCasa = data.idCasa;
+    let idSpesa = data.idSpesa;
+
+    if(
+        idCasa == undefined || idCasa == null || idCasa == "" ||
+        idSpesa == undefined || idSpesa == null || idSpesa == ""
+    ) return false;
+
+   let spesaRef = db
+        .collection('case')
+        .doc(idCasa)
+        .collection("spese")
+        .doc(idSpesa)
+        .collection('utenti')
+        .doc(uid);
+
+        return spesaRef.update({
+                dataPagamento: admin.firestore.FieldValue.serverTimestamp()
+        })
+        .then (() => {
+            return true;
+        })
+        .catch((error) => {
+            console.log("ERROR!");
+            console.log(error);
+            return false;
+        });
+});

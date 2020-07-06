@@ -94,7 +94,7 @@ public class SpeseAffittuarioFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Map<String, List<Spesa>>> task) {
                         if(!task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Errore nella lettura delle spese dell'affittuario...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Errore nella lettura delle spese dell'affittuario.", Toast.LENGTH_LONG).show();
                             return;
                         }
                         Map<String, List<Spesa>> speseTotali = task.getResult();
