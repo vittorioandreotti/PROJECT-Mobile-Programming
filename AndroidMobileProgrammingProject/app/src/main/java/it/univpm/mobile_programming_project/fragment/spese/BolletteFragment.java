@@ -53,7 +53,6 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(savedInstanceState == null)
             initRecyclerView(view);
     }
 

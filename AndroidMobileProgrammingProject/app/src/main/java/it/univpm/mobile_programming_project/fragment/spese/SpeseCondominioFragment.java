@@ -53,7 +53,6 @@ public class SpeseCondominioFragment extends Fragment implements RecyclerViewCli
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(savedInstanceState == null)
             initRecyclerView(view);
     }
 

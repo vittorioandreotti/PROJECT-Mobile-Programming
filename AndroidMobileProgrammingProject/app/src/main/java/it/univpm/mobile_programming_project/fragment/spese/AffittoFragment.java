@@ -55,7 +55,6 @@ public class AffittoFragment extends Fragment implements RecyclerViewClickListen
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(savedInstanceState == null)
             initRecyclerView(view);
     }
 
