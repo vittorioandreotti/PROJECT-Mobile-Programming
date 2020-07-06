@@ -8,23 +8,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.List;
 
-import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.SpeseAdapter;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SommarioSpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SpeseAdapter;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
@@ -72,7 +65,7 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewSommarioSpese.setLayoutManager(layoutManager);
 
-        adapter = new SommarioSpeseAdapter(this.speseSommario, this);
+        adapter = new SpeseAdapter(this.speseSommario, this);
         recyclerViewSommarioSpese.setAdapter(adapter);
     }
 

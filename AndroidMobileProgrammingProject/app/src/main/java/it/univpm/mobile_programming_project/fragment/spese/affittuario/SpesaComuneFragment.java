@@ -18,7 +18,7 @@ import java.util.List;
 
 import it.univpm.mobile_programming_project.R;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SommarioSpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SpeseAdapter;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
@@ -64,10 +64,10 @@ public class SpesaComuneFragment extends Fragment implements RecyclerViewClickLi
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewSpesaComune.setLayoutManager(layoutManager);
 
-        // TODO: controllare se usare SommarioSpeseAdapter o crearne altri
-        adapter = new SommarioSpeseAdapter(this.speseSpesaComune, this);
+        adapter = new SpeseAdapter(this.speseSpesaComune, this);
         recyclerViewSpesaComune.setAdapter(adapter);
     }
+
 
     @Override
     public void onClick(View view, Object object) {

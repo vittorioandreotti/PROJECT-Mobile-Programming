@@ -7,13 +7,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.SpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.InterfaceSpeseAdapter;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
 public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private final RecyclerViewClickListener listener;
-    private final SpeseAdapter adapter;
+    private final InterfaceSpeseAdapter adapter;
     public TextView nomePlaceholder;
     public TextView descrizionePlaceholder;
     public TextView tipoPlaceholder;
@@ -25,7 +25,7 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView txtNonPagata;
     public Button btnPaga;
 
-    public SpesaViewHolder(View itemView, RecyclerViewClickListener listener, SpeseAdapter adapter) {
+    public SpesaViewHolder(View itemView, RecyclerViewClickListener listener, InterfaceSpeseAdapter adapter) {
         super(itemView);
         this.listener = listener;
         this.adapter = adapter;

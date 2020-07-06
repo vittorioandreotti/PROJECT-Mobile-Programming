@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SommarioSpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SpeseAdapter;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
@@ -66,8 +66,7 @@ public class AffittoFragment extends Fragment implements RecyclerViewClickListen
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewAffitto.setLayoutManager(layoutManager);
 
-        // TODO: controllare se usare SommarioSpeseAdapter o crearne altri
-        adapter = new SommarioSpeseAdapter(this.speseAffitto, this);
+        adapter = new SpeseAdapter(this.speseAffitto, this);
         recyclerViewAffitto.setAdapter(adapter);
     }
 
