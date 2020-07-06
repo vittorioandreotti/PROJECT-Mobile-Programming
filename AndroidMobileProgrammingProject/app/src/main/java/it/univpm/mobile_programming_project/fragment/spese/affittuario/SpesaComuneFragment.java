@@ -1,6 +1,5 @@
 package it.univpm.mobile_programming_project.fragment.spese.affittuario;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,14 +22,11 @@ import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
-import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
-import it.univpm.mobile_programming_project.fragment.spese.recycler.sommario.SpeseAdapter;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.adapter.SpesaComuneSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
-import it.univpm.mobile_programming_project.fragment.tornei.PartecipaTorneoFragment;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
-import it.univpm.mobile_programming_project.utils.shared_preferences.SharedPreferencesHelper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
 
@@ -82,7 +75,7 @@ public class SpesaComuneFragment extends Fragment implements RecyclerViewClickLi
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewSpesaComune.setLayoutManager(layoutManager);
 
-        adapter = new SpeseAdapter(this.speseSpesaComune, this);
+        adapter = new SpesaComuneSpeseAdapter(this.speseSpesaComune, this);
         recyclerViewSpesaComune.setAdapter(adapter);
     }
 

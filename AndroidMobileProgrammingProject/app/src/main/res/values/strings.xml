@@ -117,6 +117,9 @@
     <string name="richiesta_partecipazione">Non hai partecipato ancora a nessun torneo.</string>
     <string name="sommario_spese">Sommario spese</string>
     <string name="nessuna_spesa_presente">Non è presente nessuna spesa.</string>
+    <string name="categoria_spesa">Categoria:</string>
+    <string name="data_scadenza">Data scadenza:</string>
+    <string name="titolo_spesa">Titolo :</string>
 
 
 </resources>

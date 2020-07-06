@@ -9,6 +9,8 @@ public class Spesa {
     private String idUtente;
     private String nome;
     private String descrizione;
+    private String categoria;
+    private String titolo;
     private String tipo;
     private Double prezzo;
     private Date dataInserimento;
@@ -45,6 +47,22 @@ public class Spesa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public String getDescrizione() {

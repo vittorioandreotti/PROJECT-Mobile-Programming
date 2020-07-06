@@ -20,6 +20,9 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView dataInserimentoPlaceholder;
     public TextView dataPagamentoPlaceholder;
     public TextView prezzoPlaceholder;
+    public TextView titoloPlaceholder;
+    public TextView categoriaPlaceholder;
+    public TextView dataScadenzaPlaceholder;
 
     public TextView txtPagata;
     public TextView txtNonPagata;
@@ -31,17 +34,21 @@ public class SpesaViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.adapter = adapter;
 
         nomePlaceholder = itemView.findViewById(R.id.txtNomeSpesa);
+        titoloPlaceholder = itemView.findViewById(R.id.txtTitoloSpesa);
         descrizionePlaceholder = itemView.findViewById(R.id.txtDescrizioneSpesa);
         tipoPlaceholder = itemView.findViewById(R.id.txtTipoSpesa);
         prezzoPlaceholder = itemView.findViewById(R.id.txtPrezzoSpesa);
         dataInserimentoPlaceholder = itemView.findViewById(R.id.txtDataInserimentoSpesa);
         dataPagamentoPlaceholder = itemView.findViewById(R.id.txtDataPagamentoSpesa);
+        dataScadenzaPlaceholder = itemView.findViewById(R.id.txtDataScadenzaSpesa);
+        categoriaPlaceholder = itemView.findViewById(R.id.txtCategoriaSpesa);
 
         txtPagata = itemView.findViewById(R.id.txtPagata);
         txtNonPagata = itemView.findViewById(R.id.txtNonPagata);
         btnPaga = itemView.findViewById(R.id.btnPaga);
 
-        btnPaga.setOnClickListener(this);
+        if(btnPaga != null)
+            btnPaga.setOnClickListener(this);
     }
 
     @Override

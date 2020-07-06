@@ -1,4 +1,4 @@
-package it.univpm.mobile_programming_project.fragment.spese.recycler.sommario;
+package it.univpm.mobile_programming_project.fragment.spese.recycler.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +16,17 @@ import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.recycler_view.RecyclerViewClickListener;
 
-public class SpeseAdapter extends InterfaceSpeseAdapter {
+public class SpesaComuneSpeseAdapter extends InterfaceSpeseAdapter {
 
 
-    public SpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
+    public SpesaComuneSpeseAdapter(List<Spesa> listaSpese, RecyclerViewClickListener listener) {
         super(listaSpese, listener);
     }
 
     @NonNull
     @Override
     public SpesaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_spesa, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_spesa_comune, parent, false);
         return new SpesaViewHolder(view, this.listener, this);
     }
 
@@ -36,10 +36,10 @@ public class SpeseAdapter extends InterfaceSpeseAdapter {
 
         holder.nomePlaceholder.setText( spesa.getNome() );
         holder.descrizionePlaceholder.setText( spesa.getDescrizione() );
-        holder.tipoPlaceholder.setText( spesa.getTipo() );
         holder.dataInserimentoPlaceholder.setText(Helper.formatDateToString(spesa.getDataInserimento()) );
         holder.dataPagamentoPlaceholder.setText(Helper.formatDateToString(spesa.getDataPagamento()) );
-        holder.prezzoPlaceholder.setText( String.format(Locale.ITALIAN, "%f€", spesa.getPrezzo()) );
+        holder.prezzoPlaceholder.setText( String.format(Locale.ITALIAN, "%.2f€", spesa.getPrezzo()) );
+
 
         if( spesa.getDataPagamento() == null ) {
             // NON PAGATA

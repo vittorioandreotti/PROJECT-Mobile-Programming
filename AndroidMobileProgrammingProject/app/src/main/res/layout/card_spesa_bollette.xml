@@ -27,9 +27,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
 
-                <!-- NOME -->
+                <!-- CATEGORIA -->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintNomeSpesa"
+                    android:id="@+id/constraintCategoriaSpesa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
@@ -37,11 +37,11 @@
                     app:layout_constraintLeft_toLeftOf="@+id/constraintLayoutLeft">
 
                     <TextView
-                        android:id="@+id/lblNomeSpesa"
+                        android:id="@+id/lblCategoriaSpesa"
                         style="@style/Theme.App.TextView.Label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/nome_spesa_"
+                        android:text="@string/categoria_spesa"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintVertical_bias="0.0"
@@ -49,7 +49,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/txtNomeSpesa"
+                        android:id="@+id/txtCategoriaSpesa"
                         style="@style/Theme.App.TextView.Paragraph"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -59,79 +59,11 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblNomeSpesa" />
+                        app:layout_constraintTop_toBottomOf="@+id/lblCategoriaSpesa" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- DESCRIZIONE -->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintDescrizioneSpesa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintNomeSpesa"
-                    >
 
-                    <TextView
-                        android:id="@+id/lblDescrizioneSpesa"
-                        style="@style/Theme.App.TextView.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/descrizione_"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/txtDescrizioneSpesa"
-                        style="@style/Theme.App.TextView.Paragraph"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="xxxxxxxx"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblDescrizioneSpesa" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <!-- TIPO -->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintTipoSpesa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintDescrizioneSpesa">
-
-                    <TextView
-                        android:id="@+id/lblTipoSpesa"
-                        style="@style/Theme.App.TextView.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tipo_"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/txtTipoSpesa"
-                        style="@style/Theme.App.TextView.Paragraph"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="xxxxxxxx"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblTipoSpesa" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- PREZZO -->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:padding="2dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintTipoSpesa">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintCategoriaSpesa">
 
                     <TextView
                         android:id="@+id/lblPrezzoSpesa"
@@ -165,6 +97,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lblPrezzoSpesa" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <!-- DATA INSERIMENTO -->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -200,6 +133,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/lblDataInserimentoSpesa"
                         app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <!-- DATA SCADENZA -->
                 <androidx.constraintlayout.widget.ConstraintLayout
