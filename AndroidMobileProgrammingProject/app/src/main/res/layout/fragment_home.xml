@@ -3,15 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp" >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtRiepilogoSpese"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home"
+        android:text="Riepilogo spese"
+        style="@style/Theme.App.TextView.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/txtNessunaSpesaPresente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Theme.App.TextView.Subtitle"
+        android:padding="30dp"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:text="Nessuna spesa inserita, riepilogo non disponibile."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chartEsterno"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" >
+
+    </com.github.mikephil.charting.charts.PieChart>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chartInterno"
+        android:layout_marginHorizontal="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
