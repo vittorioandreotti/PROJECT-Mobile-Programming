@@ -121,6 +121,7 @@
     <string name="data_scadenza">Data scadenza:</string>
     <string name="titolo_spesa">Titolo :</string>
     <string name="affittuario_">Affittuario:</string>
+    <string name="nessun_torneo">Non esiste ancora nessun torneo.</string>
 
 
 </resources>
