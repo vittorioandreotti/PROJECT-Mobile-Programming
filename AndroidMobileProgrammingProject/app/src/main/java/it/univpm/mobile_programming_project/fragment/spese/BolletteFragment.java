@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctionsException;
 
+import java.util.Date;
 import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
@@ -93,7 +94,7 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
     @Override
     public void onClick(View view, Object object) {
         final SpesaViewHolder spesaHolder = (SpesaViewHolder)object;
-        Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
+        final Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
         String idCasa = utenteSharedPreferences.getIdCasa();
 
         ((HomeActivity) BolletteFragment.this.getActivity()).startLoading();
