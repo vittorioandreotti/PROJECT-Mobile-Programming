@@ -8,14 +8,14 @@
     tools:context=".fragment.spese.AffittoFragment">
 
     <LinearLayout
-        android:id="@+id/LinearLayoutRichiestaPartecipazione"
+        android:id="@+id/LinearLayoutNessunaSpesa"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/txtrichiestaPartecipazione"
+            android:id="@+id/txtNessunaSpesa"
             style="@style/Theme.App.TextView.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

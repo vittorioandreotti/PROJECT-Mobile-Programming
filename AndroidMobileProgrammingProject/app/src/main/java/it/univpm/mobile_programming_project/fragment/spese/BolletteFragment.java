@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +41,7 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
     private List<Spesa> speseBollette;
     private UtenteSharedPreferences utenteSharedPreferences;
     private FirebaseFunctionsHelper firebaseFunctionsHelper;
+    private LinearLayout linearLayout;
 
     public BolletteFragment(List<Spesa> speseBollette) {
         this.speseBollette = speseBollette;
@@ -60,7 +62,15 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bollette, container, false);
+        View view = inflater.inflate(R.layout.fragment_bollette, container, false);
+        linearLayout = view.findViewById(R.id.LinearLayoutNessunaSpesa);
+        if (speseBollette.size()==0){
+            linearLayout.setVisibility(View.VISIBLE);
+        }else {
+            linearLayout.setVisibility(View.GONE);
+        }
+
+        return view;
     }
 
     @Override

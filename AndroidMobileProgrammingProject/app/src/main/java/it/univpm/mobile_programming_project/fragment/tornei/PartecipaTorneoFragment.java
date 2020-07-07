@@ -13,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,12 +39,11 @@ public class PartecipaTorneoFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private View view;
     private SwipeRefreshLayout swipeLayout;
+    private LinearLayout linearLayout;
 
     public PartecipaTorneoFragment() {
         firebaseFunctionsHelper = new FirebaseFunctionsHelper();
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,8 @@ public class PartecipaTorneoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_partecipa_a_torneo, container, false);
+
+        linearLayout = view.findViewById(R.id.LinearLayoutNessunTorneo);
 
         swipeLayout = view.findViewById(R.id.swipe_refresh);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -85,6 +87,14 @@ public class PartecipaTorneoFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<List<Torneo>> task) {
                 if(task.isSuccessful()) {
+
+                    List<Torneo> listaTornei = task.getResult();
+
+                    if (listaTornei.size()==0){
+                        linearLayout.setVisibility(View.VISIBLE);
+                    }else {
+                        linearLayout.setVisibility(View.GONE);
+                    }
 
                     adapter = new PartecipaTorneoAdapter(task.getResult(), new RecyclerViewClickListener() {
                         @Override
