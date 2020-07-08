@@ -21,7 +21,7 @@
     <string name="cognome">Cognome</string>
     <string name="e_mail">E-mail</string>
     <string name="sono_un">Sono un:</string>
-    <string name="proprietario_locatario">Proprietario (Locatario)</string>
+    <string name="proprietario_locatario">Proprietario (Locatore)</string>
     <string name="affittuario_coinquilino">Affittuario (Coinquilino)</string>
 
     <string name="sommario">Sommario</string>
