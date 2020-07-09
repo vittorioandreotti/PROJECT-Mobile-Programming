@@ -8,7 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinApp.ViewModels;
 
-namespace XamarinApp
+
+namespace XamarinApp.Pages
 {
     public partial class InserimentoAffitto: ContentPage
     {

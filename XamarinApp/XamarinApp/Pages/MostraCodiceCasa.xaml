@@ -4,28 +4,31 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinApp.CreaCasa"
-             Padding="50">
+             x:Class="XamarinApp.Pages.MostraCodiceCasa"
+             Padding="50,100,50,50">
     <ContentPage.Content>
-        <StackLayout
-            Margin="0,100,0,0">
+        <StackLayout>
             <Label 
-                Text="Creazione casa"
+                Text="Ecco il tuo codice, pronto per essere condiviso"
                 FontSize="20"
                 Style="Theme.App.Title"
                 TextColor="Accent"
                 VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand" 
+                HorizontalOptions="StartAndExpand"
+                HorizontalTextAlignment="Center"
                 Margin=""/>
-            <Entry x:Name="NomeCasa"
-                Placeholder="Inserisci nome"
-                Text ="{Binding Nome}"/>
-            <Entry x:Name="IndirizzoCasa"
-                Placeholder="Inserisci indirizzo"
-                Text ="{Binding Indirizzo}"/>
+            <Label
+                Margin="0,20,0,0"
+                Text ="{Binding Codice}"
+                x:Name="Codice"
+                FontSize="10"
+                HorizontalTextAlignment="Center"
+            />
             <Button 
-                Text="Crea" 
-                Command="{Binding SubmitCommand}"/>
+                Margin="0,20,0,0"
+                Text="Condividi" 
+                Command="{Binding Condividi}"
+            />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
