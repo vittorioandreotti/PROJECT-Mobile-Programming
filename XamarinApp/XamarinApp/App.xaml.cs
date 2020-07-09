@@ -8,7 +8,9 @@ namespace XamarinApp
     {
         public App()
         {
+
             InitializeComponent();
+
 
             MainPage = new MainPage();
         }
