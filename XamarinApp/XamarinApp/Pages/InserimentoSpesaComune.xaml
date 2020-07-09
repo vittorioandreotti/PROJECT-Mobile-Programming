@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinApp.Pages.InserimentoSpesaComune"
+             Padding="50">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                Style="Theme.App.Title"
+                Text="Inserisci Spesa Comune"
+                TextColor="Accent"
+                FontSize="Title"
+                Margin="0,0,0,15"
+                HorizontalTextAlignment="Center"
+            />
+
+            <StackLayout>
+                <Label
+                    Text="Nome spesa"
+                    TextColor="Accent"
+                    FontSize="Caption"
+                />
+                <Entry 
+                    Placeholder="Nome Spesa"
+                    Keyboard="Text"
+                    Text="{Binding SpesaModel.Titolo, Mode=TwoWay}"
+                />
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Data" 
+                    TextColor="Accent"
+                    FontSize="Caption"
+                />
+                <DatePicker
+                    IsEnabled="True"
+                    Date="{Binding SpesaModel.DataInserimento, Mode=TwoWay}"
+                />
+            </StackLayout>
+
+            <StackLayout>
+                <Label
+                    Text="Descrizione"
+                    TextColor="Accent"
+                    FontSize="Caption"
+                />
+                <Entry 
+                    Placeholder="Descrizione"
+                    Keyboard="Text"
+                    Text="{Binding SpesaModel.Descrizione, Mode=TwoWay}"
+                />
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Importo mensile ( in € )" 
+                    TextColor="Accent"
+                    FontSize="Caption"
+                />
+                <Entry
+                    Placeholder="100"
+                    Keyboard="Numeric"
+                    Text="{Binding SpesaModel.Prezzo, Mode=TwoWay}"
+               />
+            </StackLayout>
+
+            <Label
+                Text="L'importo della spesa verrà diviso tra i coinquilini."
+                Padding="15,10,15,0"
+            />
+         
+
+            <Button
+                Margin="0,20,0,0"
+                Text="Inserisci Spesa"
+                Command="{Binding SubmitCommand}"
+            />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
