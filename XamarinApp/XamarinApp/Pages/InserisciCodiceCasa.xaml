@@ -13,7 +13,6 @@
             <Label 
                 Text="Entra in una casa"
                 FontSize="20"
-                Style="Theme.App.Title"
                 TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" 

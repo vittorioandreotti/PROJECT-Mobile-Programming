@@ -15,7 +15,6 @@
                 FontSize="20"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" 
-                Margin=""
              />
             <Entry x:Name="Nome"
                 Placeholder="Nome"

@@ -9,7 +9,6 @@
     <ContentPage.Content>
         <StackLayout>
             <Label
-                Style="Theme.App.Title"
                 Text="Inserisci Spesa Comune"
                 TextColor="Accent"
                 FontSize="Title"

@@ -171,9 +171,11 @@ namespace XamarinApp
             this.SetNomeUtente((String)SpesaSingola["nomeUtente"]);
             this.SetCognomeUtente((String)SpesaSingola["cognomeUtente"]);
 
-            this.SetDataInserimento(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataInserimento"]));
-            this.SetDataPagamento(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataPagamento"]));
-            this.SetDataScadenza(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataScadenza"]));
+            /*
+                this.SetDataInserimento(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataInserimento"]));
+                this.SetDataPagamento(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataPagamento"]));
+                this.SetDataScadenza(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataScadenza"]));
+            */
 
             this.SetNome((String)SpesaSingola["nome"]);
             this.SetIdUtente((String)SpesaSingola["idUtente"]);

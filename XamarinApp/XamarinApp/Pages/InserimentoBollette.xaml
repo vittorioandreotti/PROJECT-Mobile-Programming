@@ -9,7 +9,6 @@
     <ContentPage.Content>
         <StackLayout>
             <Label
-                Style="Theme.App.Title"
                 Text="Inserisci Bolletta"
                 TextColor="Accent"
                 FontSize="Title"

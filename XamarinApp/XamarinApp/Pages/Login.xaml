@@ -4,28 +4,33 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinApp.CreaCasa"
-             Padding="50">
+             x:Class="XamarinApp.Login"
+             Padding="50"
+             >
     <ContentPage.Content>
         <StackLayout
             Margin="0,100,0,0">
             <Label 
-                Text="Creazione casa"
+                Text="Accedi"
                 FontSize="20"
-                Style="Theme.App.Title"
-                TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" 
-                Margin=""/>
-            <Entry x:Name="NomeCasa"
-                Placeholder="Inserisci nome"
-                Text ="{Binding Nome}"/>
-            <Entry x:Name="IndirizzoCasa"
-                Placeholder="Inserisci indirizzo"
-                Text ="{Binding Indirizzo}"/>
+             />
+            <Entry x:Name="Email"
+                   Text ="{Binding Email}"
+                   Keyboard="Email"
+                   Placeholder="Email"
+             />
+            <Entry x:Name="Password"
+                Placeholder="Password"
+                Text ="{Binding Password}"
+                IsPassword="True"
+             />
             <Button 
-                Text="Crea" 
-                Command="{Binding SubmitCommand}"/>
+                Text="Accedi" 
+                Command="{Binding SubmitCommand}"
+             />
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

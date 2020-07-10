@@ -12,19 +12,15 @@ namespace XamarinApp.Utils
 {
     class FirebaseFunctionHelper
     {
+
+        /*
+
         private Preferences Preferences;
         private FirebaseFunctions MFunctions;
 
-        public FirebaseFunctionsHelper()
+        public FirebaseFunctionHelper()
         {
             this.MFunctions = FirebaseFunctions.getInstance();
-        }
-
-
-        public FirebaseFunctionHelper(Preferences preferences)
-        {
-            this();
-            this.Preferences = Preferences;
         }
 
         public Task<Boolean> IsUserInitialized()
@@ -673,5 +669,7 @@ String IdCasa = Preferences.GetIdCasa();
     }
 });
     }
+    */
+
     }
 }
