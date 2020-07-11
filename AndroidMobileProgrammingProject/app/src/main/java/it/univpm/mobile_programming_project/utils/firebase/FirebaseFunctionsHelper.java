@@ -25,7 +25,7 @@ import it.univpm.mobile_programming_project.models.Torneo;
 import it.univpm.mobile_programming_project.utils.Helper;
 import it.univpm.mobile_programming_project.utils.shared_preferences.UtenteSharedPreferences;
 
-public class FirebaseFunctionsHelper {
+public class FirebaseFunctionsHelper implements IFirebaseFunctionsHelper {
 
     private UtenteSharedPreferences sharedPreferences;
     private FirebaseFunctions mFunctions;
@@ -41,6 +41,7 @@ public class FirebaseFunctionsHelper {
         this.sharedPreferences = sharedPreferences;
     }
 
+    @Override
     public Task< Boolean > isUserInitialized() {
 
         // Call the function and extract the result
@@ -60,6 +61,7 @@ public class FirebaseFunctionsHelper {
 
     }
 
+    @Override
     public Task<Boolean> creaCasa(String nome, String indirizzo) {
 
         // Call the function and extract the result
@@ -82,6 +84,7 @@ public class FirebaseFunctionsHelper {
     }
 
 
+    @Override
     public Task<Boolean> inserisciProprietario() {
 
         return this.mFunctions
@@ -97,6 +100,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> partecipaCasa(String idCasa) {
 
         Map<String, Object> data = new HashMap<>();
@@ -115,6 +119,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> inserisciAffittuario() {
 
         return this.mFunctions
@@ -130,6 +135,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> registraUtente(String nome, String cognome) {
 
         Map<String, Object> dataInput = new HashMap<>();
@@ -149,7 +155,8 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-    public Task<Boolean> inserisciTorneo(String titolo, String indirizzo, String categoria, String regolamento, String dataEvento, String oraEvento ) {
+    @Override
+    public Task<Boolean> inserisciTorneo(String titolo, String indirizzo, String categoria, String regolamento, String dataEvento, String oraEvento) {
 
         Date dataOraEvento = Helper.fromStringToDateTime(dataEvento, oraEvento);
 
@@ -175,6 +182,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> inserisciSpesaBolletta(Double importo, String categoria, String stringDataBolletta, String stringDataScadenza) {
 
         String idCasa = this.sharedPreferences.getIdCasa();
@@ -202,6 +210,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> inserisciSpesaAffitto(Double importo, String titolo, String stringDataAffitto, String stringDataScadenza) {
 
         String idCasa = this.sharedPreferences.getIdCasa();
@@ -229,6 +238,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> inserisciSpesaCondominio(Double importo, String nome, String stringDataAffitto) {
 
         String idCasa = this.sharedPreferences.getIdCasa();
@@ -255,6 +265,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> inserisciSpesaComune(Double importo, String nome, String stringDataSpesa, String descrizione) {
 
         String idCasa = this.sharedPreferences.getIdCasa();
@@ -283,6 +294,7 @@ public class FirebaseFunctionsHelper {
     }
 
 
+    @Override
     public Task<HashMap<String, Object>> getUtenteAndCasa() {
 
         return this.mFunctions
@@ -298,6 +310,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> disiscrizione() {
 
         String idCasa = this.sharedPreferences.getIdCasa();
@@ -318,6 +331,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> modificaPassword(String newPassword, String newPasswordRepeat) {
 
         Map<String, Object> data = new HashMap<>();
@@ -337,6 +351,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<List<Torneo>> elencoTornei() {
         return this.mFunctions
                 .getHttpsCallable("elencoTornei")
@@ -364,7 +379,8 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-    public Task<List<Torneo>> storicoTornei () {
+    @Override
+    public Task<List<Torneo>> storicoTornei() {
         return this.mFunctions
                 .getHttpsCallable("storicoTornei")
                 .call()
@@ -391,6 +407,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> partecipaTorneo(String idTorneo) {
 
         Map<String, Object> data = new HashMap<>();
@@ -409,7 +426,8 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-    public Task<Map<String, List<Spesa>>> elencoSpeseAffittuario (final Context context) {
+    @Override
+    public Task<Map<String, List<Spesa>>> elencoSpeseAffittuario(final Context context) {
 
         Map<String, Object> dataInput = new HashMap<>();
         dataInput.put("idCasa", this.sharedPreferences.getIdCasa());
@@ -522,7 +540,8 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
-    public Task<Map<String, List<Spesa>>> elencoSpeseProprietario (final Context context) {
+    @Override
+    public Task<Map<String, List<Spesa>>> elencoSpeseProprietario(final Context context) {
 
         Map<String, Object> dataInput = new HashMap<>();
         dataInput.put("idCasa", this.sharedPreferences.getIdCasa());
@@ -624,6 +643,7 @@ public class FirebaseFunctionsHelper {
                 });
     }
 
+    @Override
     public Task<Boolean> pagaSpesa(String idSpesa, String idCasa) {
 
         Map<String, Object> data = new HashMap<>();

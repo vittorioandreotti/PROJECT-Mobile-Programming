@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "157998387277",
+    "firebase_url": "https://programmazione-mobile.firebaseio.com",
+    "project_id": "programmazione-mobile",
+    "storage_bucket": "programmazione-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157998387277:android:4fc21e90bcd56d66c34c04",
+        "android_client_info": {
+          "package_name": "it.univpm.mobile_programming_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157998387277-tkke10gvk7o3hbcln9qag3fsu18nrnpt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.univpm.mobile_programming_project",
+            "certificate_hash": "bcee9f60c798dbd7498e88789424a46bb7e2f345"
+          }
+        },
+        {
+          "client_id": "157998387277-rvn6se9eqai3djdtrdkqmntj93kk4ru4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.univpm.mobile_programming_project",
+            "certificate_hash": "9427f860a7207e3b96225fa1d2e4dd5f29866311"
+          }
+        },
+        {
+          "client_id": "157998387277-3hs3aej7s1hnk9t20p43qh3qjph0mut5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD8nQn2I_mgdYKWqU7R_G-sTwmNuXDjzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157998387277-g8hh6e6p897ovgqqc59upe0fdsf7q9l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157998387277:android:80eee970d518fc0cc34c04",
+        "android_client_info": {
+          "package_name": "it.univpm.mobile_programming_project.xamarin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157998387277-3tl1aiif0rlfi49mdt2f4ug2gks8t1a5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.univpm.mobile_programming_project.xamarin",
+            "certificate_hash": "910c0d2c575b4b97a57723a690cd81521cfdc3dd"
+          }
+        },
+        {
+          "client_id": "157998387277-3hs3aej7s1hnk9t20p43qh3qjph0mut5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD8nQn2I_mgdYKWqU7R_G-sTwmNuXDjzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157998387277-g8hh6e6p897ovgqqc59upe0fdsf7q9l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,16 +14,56 @@ namespace XamarinApp.ViewModels
         public ICommand SubmitCommand { protected set; get; }
 
         public Spesa _SpesaModel;
-        public Spesa SpesaModel
+
+        public string TitoloSpesa
         {
             get
             {
-                return _SpesaModel; 
+                return _SpesaModel.Titolo;
             }
             set
             {
-                _SpesaModel = value;
-                OnPropertyChanged();
+                _SpesaModel.Titolo = value;
+                OnPropertyChanged(nameof(TitoloSpesa));
+            }
+        }
+
+        public DateTime DataInserimentoSpesa
+        {
+            get
+            {
+                return _SpesaModel.DataInserimento;
+            }
+            set
+            {
+                _SpesaModel.DataInserimento = value;
+                OnPropertyChanged(nameof(DataInserimentoSpesa));
+            }
+        }
+
+        public DateTime DataScadenzaSpesa
+        {
+            get
+            {
+                return _SpesaModel.DataScadenza;
+            }
+            set
+            {
+                _SpesaModel.DataScadenza = value;
+                OnPropertyChanged(nameof(DataScadenzaSpesa));
+            }
+        }
+
+        public Double PrezzoSpesa
+        {
+            get
+            {
+                return _SpesaModel.Prezzo;
+            }
+            set
+            {
+                _SpesaModel.Prezzo = value;
+                OnPropertyChanged(nameof(PrezzoSpesa));
             }
         }
 
@@ -31,12 +71,14 @@ namespace XamarinApp.ViewModels
         public InserimentoAffittoViewModel()
         {
             SubmitCommand = new Command(InserisciAffitto);
-            SpesaModel = new Spesa();
+            _SpesaModel = new Spesa();
+            _SpesaModel.DataInserimento = DateTime.Now;
+            _SpesaModel.DataScadenza = DateTime.Now.AddDays(30);
         }
 
         private void InserisciAffitto()
         {
-            DisplayInserisciTuttiICampi(SpesaModel);
+            DisplayInserisciTuttiICampi(_SpesaModel);
             // if( DataScadenza )
         }
 

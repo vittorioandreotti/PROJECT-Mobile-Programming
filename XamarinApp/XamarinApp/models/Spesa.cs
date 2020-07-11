@@ -2,183 +2,229 @@
 using Java.Sql;
 using System;
 using System.Collections.Generic;
+using XamarinApp.Helpers;
+using XamarinApp.Utils;
 
 namespace XamarinApp
 {
-    class Spesa
+    public class Spesa : ObservableObject
     {
-        private String IdSpesa;
-        private String IdUtente;
-        private String Nome;
-        private String Descrizione;
-        private String Categoria;
-        private String Titolo;
-        private String Tipo;
-        private Double Prezzo;
-        private DateTime DataInserimento;
-        private DateTime DataPagamento;
-        private DateTime DataScadenza;
-        private String NomeUtente;
-        private String CognomeUtente;
+        private string _idSpesa;
+        public string IdSpesa
+        {
+            get { return _idSpesa; }
+            set
+            {
+                if (value != _idSpesa)
+                {
+                    _idSpesa = value;
+                    OnPropertyChanged(nameof(IdSpesa));
+                }
+            }
+        }
+
+        private string _idUtente;
+        public string IdUtente
+        {
+            get { return _idUtente; }
+            set
+            {
+                if (value != _idUtente)
+                {
+                    _idUtente = value;
+                    OnPropertyChanged(nameof(IdUtente));
+                }
+            }
+        }
+
+        private string _nome;
+        public string Nome
+        {
+            get { return _nome; }
+            set
+            {
+                if (value != _nome)
+                {
+                    _nome = value;
+                    OnPropertyChanged(nameof(Nome));
+                }
+            }
+        }
+
+        private string _descrizione;
+        public string Descrizione
+        {
+            get { return _descrizione; }
+            set
+            {
+                if (value != _descrizione)
+                {
+                    _descrizione = value;
+                    OnPropertyChanged(nameof(Descrizione));
+                }
+            }
+        }
+
+        private string _categoria;
+        public string Categoria
+        {
+            get { return _categoria; }
+            set
+            {
+                if (value != _categoria)
+                {
+                    _categoria = value;
+                    OnPropertyChanged(nameof(Categoria));
+                }
+            }
+        }
+
+        private string _titolo;
+        public string Titolo
+        {
+            get { return _titolo; }
+            set
+            {
+                if (value != _titolo)
+                {
+                    _titolo = value;
+                    OnPropertyChanged(nameof(Titolo));
+                }
+            }
+        }
+
+        private string _tipo;
+        public string Tipo
+        {
+            get { return _tipo; }
+            set
+            {
+                if (value != _tipo)
+                {
+                    _tipo = value;
+                    OnPropertyChanged(nameof(Tipo));
+                }
+            }
+        }
+
+        private Double _prezzo;
+        public Double Prezzo
+        {
+            get { return _prezzo; }
+            set
+            {
+                if (value != _prezzo)
+                {
+                    _prezzo = value;
+                    OnPropertyChanged(nameof(Prezzo));
+                }
+            }
+        }
+
+        private DateTime _dataInserimento;
+        public DateTime DataInserimento
+        {
+            get { return _dataInserimento; }
+            set
+            {
+                if (value != _dataInserimento)
+                {
+                    _dataInserimento = value;
+                    OnPropertyChanged(nameof(DataInserimento));
+                }
+            }
+        }
+
+        private DateTime _dataPagamento;
+        public DateTime DataPagamento
+        {
+            get { return _dataPagamento; }
+            set
+            {
+                if (value != _dataPagamento)
+                {
+                    _dataPagamento = value;
+                    OnPropertyChanged(nameof(DataPagamento));
+                }
+            }
+        }
+
+        private DateTime _dataScadenza;
+        public DateTime DataScadenza
+        {
+            get { return _dataScadenza; }
+            set
+            {
+                if (value != _dataScadenza)
+                {
+                    _dataScadenza = value;
+                    OnPropertyChanged(nameof(DataScadenza));
+                }
+            }
+        }
+
+        private string _nomeUtente;
+        public string NomeUtente
+        {
+            get { return _nomeUtente; }
+            set
+            {
+                if (value != _nomeUtente)
+                {
+                    _nomeUtente = value;
+                    OnPropertyChanged(nameof(NomeUtente));
+                }
+            }
+        }
+
+        private string _cognomeUtente;
+        public string CognomeUtente
+        {
+            get { return _cognomeUtente; }
+            set
+            {
+                if (value != _cognomeUtente)
+                {
+                    _cognomeUtente = value;
+                    OnPropertyChanged(nameof(CognomeUtente));
+                }
+            }
+        }
 
         public Spesa() { }
 
         public Boolean IsSpesaPagata()
         {
-            return this.DataPagamento != null;
+            return 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                    .ToUniversalTime()
+                    .Subtract(this.DataPagamento)
+                    .TotalMilliseconds != 0;
         }
 
-        public String GetIdSpesa()
-        {
-            return IdSpesa;
-        }
 
-        public void SetIdSpesa(String IdSpesa)
-        {
-            this.IdSpesa = IdSpesa;
-        }
-
-        public String GetIdUtente()
-        {
-            return IdUtente;
-        }
-
-        public void SetIdUtente(String IdUtente)
-        {
-            this.IdUtente = IdUtente;
-        }
-
-        public String GetNome()
-        {
-            return Nome;
-        }
-
-        public void SetNome(String Nome)
-        {
-            this.Nome = Nome;
-        }
-
-        public String GetTitolo()
-        {
-            return Titolo;
-        }
-
-        public void SetTitolo(String Titolo)
-        {
-            this.Titolo = Titolo;
-        }
-
-        public String GetCategoria()
-        {
-            return Categoria;
-        }
-
-        public void SetCategoria(String Categoria)
-        {
-            this.Categoria = Categoria;
-        }
-
-        public String GetDescrizione()
-        {
-            return Descrizione;
-        }
-
-        public void SetDescrizione(String Descrizione)
-        {
-            this.Descrizione = Descrizione;
-        }
-
-        public String GetTipo()
-        {
-            return Tipo;
-        }
-
-        public void SetTipo(String Tipo)
-        {
-            this.Tipo = Tipo;
-        }
-
-        public Double GetPrezzo()
-        {
-            return Prezzo;
-        }
-
-        public void SetPrezzo(Double Prezzo)
-        {
-            this.Prezzo = Prezzo;
-        }
-
-        public DateTime GetDataInserimento()
-        {
-            return DataInserimento;
-        }
-
-        public void SetDataInserimento(DateTime DataInserimento)
-        {
-            this.DataInserimento = DataInserimento;
-        }
-
-        public DateTime GetDataPagamento()
-        {
-            return DataPagamento;
-        }
-
-        public void SetDataPagamento(DateTime DataPagamento)
-        {
-            this.DataPagamento = DataPagamento;
-        }
-
-        public String GetNomeUtente()
-        {
-            return NomeUtente;
-        }
-
-        public void SetNomeUtente(String NomeUtente)
-        {
-            this.NomeUtente = NomeUtente;
-        }
-
-        public String GetCognomeUtente()
-        {
-            return CognomeUtente;
-        }
-
-        public void SetCognomeUtente(String CognomeUtente)
-        {
-            this.CognomeUtente = CognomeUtente;
-        }
-
-        public DateTime GetDataScadenza()
-        {
-            return DataScadenza;
-        }
-
-        public void SetDataScadenza(DateTime DataScadenza)
-        {
-            this.DataScadenza = DataScadenza;
-        }
 
         public void CreateFromHashMap(Dictionary<String, Object> SpesaSingola)
         {
 
-            this.SetPrezzo((Double)SpesaSingola["prezzo"]);
-            this.SetIdSpesa((String)SpesaSingola["idSpesa"]);
-            this.SetDescrizione((String)SpesaSingola["descrizione"]);
-            this.SetTipo((String)SpesaSingola["tipo"]);
-            this.SetTitolo((String)SpesaSingola["titolo"]);
-            this.SetCategoria((String)SpesaSingola["categoria"]);
+            this.Prezzo = (Double)SpesaSingola["prezzo"];
+            this.IdSpesa = (String)SpesaSingola["idSpesa"];
+            this.Descrizione = (String)SpesaSingola["descrizione"];
+            this.Tipo = (String)SpesaSingola["tipo"];
+            this.Titolo = (String)SpesaSingola["titolo"];
+            this.Categoria = (String)SpesaSingola["categoria"];
 
-            this.SetNomeUtente((String)SpesaSingola["nomeUtente"]);
-            this.SetCognomeUtente((String)SpesaSingola["cognomeUtente"]);
+            this.NomeUtente = (String)SpesaSingola["nomeUtente"];
+            this.CognomeUtente = (String)SpesaSingola["cognomeUtente"];
 
-            /*
-                this.SetDataInserimento(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataInserimento"]));
-                this.SetDataPagamento(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataPagamento"]));
-                this.SetDataScadenza(Helper.FromMillisToDate((Java.Lang.Long)SpesaSingola["dataScadenza"]));
-            */
+            
+            this.DataInserimento = Helper.FromMillisToDate((long)SpesaSingola["dataInserimento"]);
+            this.DataPagamento = Helper.FromMillisToDate((long)SpesaSingola["dataPagamento"]);
+            this.DataScadenza = Helper.FromMillisToDate((long)SpesaSingola["dataScadenza"]);
+            
 
-            this.SetNome((String)SpesaSingola["nome"]);
-            this.SetIdUtente((String)SpesaSingola["idUtente"]);
+            this.Nome = (String)SpesaSingola["nome"];
+            this.IdUtente = (String)SpesaSingola["idUtente"];
         }
     }
 

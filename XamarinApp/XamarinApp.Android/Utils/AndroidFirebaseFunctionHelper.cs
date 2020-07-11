@@ -7,12 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using XamarinApp;
+using XamarinApp.Utils;
 
-namespace XamarinApp.Utils
+namespace XamarinApp.Android.Utils
 {
-    class FirebaseFunctionHelper : IFirebaseFunctionHelper
+    class AndroidFirebaseFunctionHelper : IFirebaseFunctionHelper
     {
+        // FirebaseFunctions firebaseFunctions;
 
+        public AndroidFirebaseFunctionHelper()// (FirebaseApp firebaseApp)
+        {
+            // this.firebaseFunctions = FirebaseFunctions.GetInstance(firebaseApp);
+
+        }
 
         /*
 
@@ -671,10 +678,11 @@ String IdCasa = Preferences.GetIdCasa();
 });
     }
     */
-        public Task<bool> CreaCasa(string nome, string indirizzo)
+        public Task<bool> CreaCasa(string Nome, string Indirizzo)
         {
             throw new NotImplementedException();
         }
+
 
         public Task<bool> Disiscrizione()
         {
