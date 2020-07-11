@@ -5,37 +5,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinApp.Profilo"
-             Padding="50">
+             Padding="35">
     <ContentPage.Content>
         <StackLayout>
             <Label 
+                Text="Profilo"
+                FontSize="20"
+                Style="Theme.App.Title"
+                TextColor="Accent"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand"
+                Margin=""/>
+            <Label 
                 Text="Nome:"
                 VerticalOptions="Start" 
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="Start"
             />
-            <Label
+            <Label              
                 x:Name="Nome"
-                FontSize="15"
+                FontSize="10"
                 Text ="{Binding Nome}"
             />
             <Label 
                 Text="Cognome:"
                 VerticalOptions="Start" 
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="Start"
             />
             <Label
                 x:Name="Cognome"
-                FontSize="15"
+                FontSize="10"
                 Text ="{Binding Cognome}"
             />
             <Label 
                 Text="Email:"
                 VerticalOptions="Start" 
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="Start"
             />
             <Label
                 x:Name="Email"
-                FontSize="15"
+                FontSize="10"
                 Text ="{Binding Email}"
             />
             <Button 
@@ -51,15 +59,15 @@
             />
             <Entry
                 x:Name="NuovaPassword"
-                Text ="{Binding Email}"
-                Keyboard="Email"
+                Text ="{Binding NuovaPassword}"
+                IsPassword="True"
                 Placeholder="Nuova password"
                 VerticalOptions="Start"
              />
             <Entry 
                 x:Name="ConfermaPassword"
-                Text ="{Binding Email}"
-                Keyboard="Email"
+                Text ="{Binding ConfermaPassword}"
+                IsPassword="True"
                 Placeholder="Conferma password"
                 VerticalOptions="Start"
              />
