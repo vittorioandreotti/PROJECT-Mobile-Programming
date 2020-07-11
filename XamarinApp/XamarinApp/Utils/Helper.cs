@@ -6,18 +6,19 @@ using System;
 using System.Collections.Generic;
 using Date = Java.Util.Date;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace XamarinApp.Utils
 {
     abstract class Helper
     {
-        private static sealed Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        private static string VALID_EMAIL_ADDRESS_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
-    public static Boolean IsEmailValid(String EmailStr)
+        public static Boolean IsEmailValid(String EmailStr)
         {
-            Matcher Matcher = VALID_EMAIL_ADDRESS_REGEX.Matcher(EmailStr);
-            return Matcher.Find();
+            Regex regex = new Regex(VALID_EMAIL_ADDRESS_REGEX);
+            Match match = regex.Match(EmailStr);
+            return match.Success;
         }
 
         public static Date FromStringToDate(String DateString)
@@ -68,7 +69,7 @@ namespace XamarinApp.Utils
 
         public static Date FromMillisToDate(Int64 DataInserimento)
         {
-            if (DataInserimento == null) return null;
+            // if (DataInserimento == null) return null;
             return new Date(DataInserimento);
         }
     }

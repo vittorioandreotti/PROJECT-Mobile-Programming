@@ -12,11 +12,10 @@
             <Label 
                 Text="Sono un:"
                 FontSize="20"
-                Style="Theme.App.Title"
                 TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand"
-                Margin=""/>
+            />
             <Button 
                 Text="Proprietario (Locatore)" 
                 Command="{Binding Proprietario}"/>

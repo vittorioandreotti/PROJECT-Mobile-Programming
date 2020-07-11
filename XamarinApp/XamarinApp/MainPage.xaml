@@ -8,9 +8,11 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Button
+            Clicked="TestNavigation"
+            Text="Naviga alla main"
+        />
+        
     </StackLayout>
 
 </ContentPage>

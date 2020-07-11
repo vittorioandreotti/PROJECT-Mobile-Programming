@@ -11,12 +11,11 @@
             <Label 
                 Text="Ecco il tuo codice, pronto per essere condiviso"
                 FontSize="20"
-                Style="Theme.App.Title"
                 TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="StartAndExpand"
                 HorizontalTextAlignment="Center"
-                Margin=""/>
+            />
             <Label
                 Margin="0,20,0,0"
                 Text ="{Binding Codice}"

@@ -17,5 +17,11 @@ namespace XamarinApp
         {
             InitializeComponent();
         }
+
+        private async void TestNavigation(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Login());
+            await this.Navigation.PopAsync();
+        }
     }
 }

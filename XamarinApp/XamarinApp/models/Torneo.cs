@@ -94,7 +94,7 @@ namespace XamarinApp
             this.SetCategoria((String)TorneoSingolo["categoria"]);
             this.SetIndirizzo((String)TorneoSingolo["indirizzo"]);
             this.SetRegolamento((String)TorneoSingolo["regolamento"]);
-            this.SetDataOra(Helper.FromMillisToDate((Java.Lang.Long)TorneoSingolo["dataOra"]));
+            // this.SetDataOra(Helper.FromMillisToDate((Java.Lang.Long)TorneoSingolo["dataOra"]));
         }
     }
 }
