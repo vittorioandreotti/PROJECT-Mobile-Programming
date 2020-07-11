@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XamarinApp
 {
-    class Torneo
+    public class Torneo
     {
         private String Id;
         private String Titolo;

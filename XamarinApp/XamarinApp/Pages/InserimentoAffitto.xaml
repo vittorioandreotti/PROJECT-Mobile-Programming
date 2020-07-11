@@ -4,15 +4,18 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Padding="0"
              x:Class="XamarinApp.Pages.InserimentoAffitto"
-             Padding="50">
-  <ContentPage.Content>
-      <StackLayout>
-            <Label
+             >
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="50"
+            >
+                <Label
                 Text="Inserisci Affitto"
                 TextColor="Accent"
                 FontSize="Title"
-                Margin="0,0,0,15"
                 HorizontalTextAlignment="Center"
             />
 
@@ -25,7 +28,7 @@
                 <Entry 
                     Placeholder="Titolo"
                     Keyboard="Text"
-                    Text="{Binding SpesaModel.Titolo, Mode=TwoWay}"
+                    Text="{Binding TitoloSpesa}"
                 />
             </StackLayout>
 
@@ -36,7 +39,7 @@
                 />
                 <DatePicker
                     IsEnabled="True"
-                    Date="{Binding SpesaModel.DataInserimento, Mode=TwoWay}"
+                    Date="{Binding DataInserimentoSpesa}"
                 />
             </StackLayout>
 
@@ -47,7 +50,7 @@
                 />
                 <DatePicker
                     IsEnabled="True"
-                    Date="{Binding SpesaModel.DataScadenza, Mode=TwoWay}"
+                    Date="{Binding DataScadenzaSpesa}"
                 />
             </StackLayout>
 
@@ -59,7 +62,8 @@
                 <Entry
                     Placeholder="100"
                     Keyboard="Numeric"
-                    Text="{Binding SpesaModel.Prezzo, Mode=TwoWay}"
+                    x:Name="PrezzoSpesaEntry"
+                    Text="{Binding PrezzoSpesa}"
                />
             </StackLayout>
 
@@ -74,6 +78,7 @@
                 Command="{Binding SubmitCommand}"
               />
 
-        </StackLayout>
-  </ContentPage.Content>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

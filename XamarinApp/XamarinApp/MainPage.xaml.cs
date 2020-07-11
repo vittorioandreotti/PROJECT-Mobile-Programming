@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamarinApp.Pages;
 
 namespace XamarinApp
 {
@@ -21,7 +22,7 @@ namespace XamarinApp
         private async void TestNavigation(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Login());
-            await this.Navigation.PopAsync();
+            // await this.Navigation.PopAsync();
         }
     }
 }

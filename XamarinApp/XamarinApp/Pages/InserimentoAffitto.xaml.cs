@@ -25,8 +25,13 @@ namespace XamarinApp.Pages
 
         async void DisplayInserisciTuttiICampi(Spesa spesa)
         {
-            await DisplayAlert("DATI", spesa.GetTitolo(), "OK");
-            await DisplayAlert("Errore", "Inserisci tutti i campi per continuare", "CHIUDI");
+            if(true)
+            {
+                await DisplayAlert("Errore", "Inserisci tutti i campi per continuare", "CHIUDI");
+                return;
+            }
+            await DisplayAlert("DATI", spesa.Titolo, "OK");
         }
+
     }
 }

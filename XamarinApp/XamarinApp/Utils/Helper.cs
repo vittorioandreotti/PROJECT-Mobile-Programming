@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Date = Java.Util.Date;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace XamarinApp.Utils
 {
@@ -16,9 +17,15 @@ namespace XamarinApp.Utils
 
         public static Boolean IsEmailValid(String EmailStr)
         {
-            Regex regex = new Regex(VALID_EMAIL_ADDRESS_REGEX);
-            Match match = regex.Match(EmailStr);
-            return match.Success;
+            try
+            {
+                MailAddress m = new MailAddress(EmailStr);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
 
         public static Date FromStringToDate(String DateString)
@@ -67,10 +74,13 @@ namespace XamarinApp.Utils
             return "%02d:%02d";
         }
 
-        public static Date FromMillisToDate(Int64 DataInserimento)
+        public static DateTime FromMillisToDate(Int64 DataInserimento)
         {
-            // if (DataInserimento == null) return null;
-            return new Date(DataInserimento);
+            return (new DateTime(1970, 1, 1)).AddMilliseconds(DataInserimento);
         }
+
+
+        
+
     }
 }

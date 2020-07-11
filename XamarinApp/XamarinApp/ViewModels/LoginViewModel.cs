@@ -4,13 +4,16 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Text;
+using XamarinApp.Utils.Interfaces;
 
 namespace XamarinApp.ViewModels
 {
     class LoginViewModel : INotifyPropertyChanged
     {
         public Action DisplayInvalidLoginPrompt;
+        public Action<string, string> Login;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        
         private string email;
         public string Email
         {
@@ -18,9 +21,10 @@ namespace XamarinApp.ViewModels
             set
             {
                 email = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Email)));
             }
         }
+        
         private string password;
         public string Password
         {
@@ -28,21 +32,28 @@ namespace XamarinApp.ViewModels
             set
             {
                 password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Password)));
             }
         }
+
+        private IFirebaseAuth firebaseAuth;
+
         public ICommand SubmitCommand { protected set; get; }
-        public LoginViewModel()
+        public LoginViewModel(IFirebaseAuth firebaseAuth)
         {
+            this.firebaseAuth = firebaseAuth;
+
             SubmitCommand = new Command(OnSubmit);
         }
-        public void OnSubmit()
+        public async void OnSubmit()
         {
-            if (email.Length ==  0 || password.Length == 0)
+            if (email.Length ==  0 || password.Length == 0 || !Utils.Helper.IsEmailValid(Email) )
             {
                 DisplayInvalidLoginPrompt();
                 return;
             }
+
+            Login(Email, Password);
 
             // Azione di login con firebase
         }
