@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace XamarinApp.Utils
+namespace XamarinApp.Utils.Interfaces
 {
     public interface IFirebaseFunctionHelper
     {

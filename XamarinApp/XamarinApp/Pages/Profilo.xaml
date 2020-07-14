@@ -14,7 +14,7 @@
                 TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand"
-                Margin=""/>
+                />
             <Label 
                 Text="Nome:"
                 VerticalOptions="Start" 

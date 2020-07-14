@@ -1,6 +1,4 @@
-﻿using Android.Content;
-using Javax.Crypto;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using XamarinApp.Utils.Helpers;

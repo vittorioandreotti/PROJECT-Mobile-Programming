@@ -1,12 +1,7 @@
-﻿using Android.Content;
-using Android.Widget;
-using Java.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
-using XamarinApp;
+using XamarinApp.Utils.Interfaces;
 
 namespace XamarinApp.Utils
 {

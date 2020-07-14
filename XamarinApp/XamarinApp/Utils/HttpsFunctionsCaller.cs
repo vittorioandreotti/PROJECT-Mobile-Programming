@@ -55,23 +55,23 @@ namespace XamarinApp.Utils
 
             //Dictionary<string, Object> ResponseData;
 
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            /*using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();
-            }
+            }*/
 
-            Console.WriteLine()
+            Console.WriteLine();
 
 
             return new Dictionary<string, Object>();
 
             throw new NotImplementedException();
 
-            private Dictionary<string, Object> HandleResponse(Task<Dictionary<string, Object>> response)
+            /*private Dictionary<string, Object> HandleResponse(Task<Dictionary<string, Object>> response)
             {
 
                 return;
-            }
+            }*/
 
         }
     }

@@ -1,10 +1,5 @@
-﻿using Android.Annotation;
-using Android.Icu.Text;
-using Android.Net;
-using Java.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Date = Java.Util.Date;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
@@ -28,14 +23,15 @@ namespace XamarinApp.Utils
             }
         }
 
-        public static Date FromStringToDate(String DateString)
+        public static DateTime FromStringToDate(String DateString)
         {
             return FromStringToDate(DateString, "dd/MM/yyyy");
         }
 
-        public static Date FromStringToDate(String DateString, String DateFormat)
+        public static DateTime FromStringToDate(String DateString, String DateFormat)
         {
-            try
+            // TODO: Da convertire in c#
+            /*try
             {
                 SimpleDateFormat DataFormat = new SimpleDateFormat(DateFormat);
                 return DataFormat.Parse(DateString);
@@ -45,23 +41,28 @@ namespace XamarinApp.Utils
                 e.PrintStackTrace();
                 return null;
             }
+            */
+            return new DateTime();
         }
 
-        public static Date FromStringToDateTime(String DateString, String OraString)
+        public static DateTime FromStringToDateTime(String DateString, String OraString)
         {
-            return FromStringToDate(DateString + " " + OraString, "dd/MM/yyyy HH:mm");
+            // return FromStringToDate(DateString + " " + OraString, "dd/MM/yyyy HH:mm");
+            return new DateTime();
         }
 
-        public static String FormatDateToStringWithHour(Date Data)
-        {
-            if (Data == null) return "-";
-            return new SimpleDateFormat("dd/MM/yyyy HH:mm").Format(Data);
-        }
-
-        public static String FormatDateToString(Date Data)
+        public static String FormatDateToStringWithHour(DateTime Data)
         {
             if (Data == null) return "-";
-            return new SimpleDateFormat("dd/MM/yyyy").Format(Data);
+            // return new SimpleDateFormat("dd/MM/yyyy HH:mm").Format(Data);
+            return "";
+        }
+
+        public static String FormatDateToString(DateTime Data)
+        {
+            if (Data == null) return "-";
+            // return new SimpleDateFormat("dd/MM/yyyy").Format(Data);
+            return "";
         }
 
         public static String GetDateFormat()

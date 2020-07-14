@@ -1,11 +1,4 @@
-﻿using Android.Content;
-using Java.Lang;
-using Java.Util;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Essentials;
-using Boolean = Java.Lang.Boolean;
+﻿using Xamarin.Essentials;
 
 namespace XamarinApp.Utils.Helpers
 {

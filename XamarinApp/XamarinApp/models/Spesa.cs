@@ -1,6 +1,4 @@
-﻿using Java.Util;
-using Java.Sql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using XamarinApp.Helpers;
 using XamarinApp.Utils;

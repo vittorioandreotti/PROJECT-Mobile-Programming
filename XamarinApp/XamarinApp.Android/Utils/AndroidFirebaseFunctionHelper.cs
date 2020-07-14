@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using XamarinApp;
-using XamarinApp.Utils;
+using XamarinApp.Utils.Interfaces;
 
 namespace XamarinApp.Android.Utils
 {
