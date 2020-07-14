@@ -7,105 +7,76 @@ using System.Text;
 using Xamarin.Essentials;
 using Boolean = Java.Lang.Boolean;
 
-namespace XamarinApp.Utils
+namespace XamarinApp.Utils.Helpers
 {
-    abstract class PreferencesHelper
+     public abstract class PreferencesHelper
     {
-        // https://docs.microsoft.com/en-us/xamarin/essentials/preferences?tabs=android
-        // private Preferences Preferences;
-        private Context Context;
+  
 
-        PreferencesHelper(Context Context, string TipoPreferences)
-        {
-            this.Context = Context;
-            // this.Preferences = Context.GetSharedPreferences(TipoPreferences, Context.MODE_PRIVATE);
-        }
-
-        /*
-
-        public Boolean Contains(string Key)
+        public bool Contains(string Key)
         {
 
             return Preferences.ContainsKey(Key);
         }
 
         public void ClearPreferences()
-        {
-            Preferences.Editor Editor = this.Preferences.Edit();
-            Editor.clear();
-            Editor.apply();
+        {        
+            Preferences.Clear();
+            
         }
 
-        string Getstring(string Key)
+        protected string GetString(string Key)
         {
             if (this.Contains(Key))
                 return Preferences.Get(Key, "");
             return null;
         }
 
-        Integer GetInteger(string Key)
+        protected int GetInteger(string Key)
         {
             if (this.Contains(Key))
-                return this.Preferences.GetInt(Key, 0);
-            return null;
+                return Preferences.Get(Key, 0);
+            return 0;
         }
 
-        Boolean GetBoolean(string Key)
+        protected bool GetBoolean(string Key)
         {
             if (this.Contains(Key))
-                return this.Preferences.GetBoolean(Key, false);
-            return null;
+                return Preferences.Get(Key, false);
+            return false;
         }
 
-        Long GetLong(string Key)
+        protected long GetLong(string Key)
         {
             if (this.Contains(Key))
-                return this.Preferences.GetLong(Key, 0);
-            return null;
+                return Preferences.Get(Key, 0);
+            return 0;
         }
 
-        Set<string> GetstringSet(string Key)
+
+
+
+        protected void SetString(string Key, string Value)
         {
-            if (this.Contains(Key))
-                return this.Preferences.GetstringSet(Key, null);
-            return null;
+            Preferences.Set(Key, Value);
         }
 
-
-        void Setstring(string Key, string Value)
+        protected void SetInteger(string Key, int Value)
         {
-            Preferences.Editor editor = this.Preferences.edit();
-            editor.putstring(Key, Value);
-            editor.commit();
+            Preferences.Set(Key, Value);
         }
 
-        void SetInteger(string Key, Integer Value)
+        protected void SetBoolean(string Key, bool Value)
         {
-            Preferences.Editor editor = this.Preferences.edit();
-            editor.putInt(Key, Value);
-            editor.commit();
+           Preferences.Set(Key, Value);
         }
 
-        void SetBoolean(string Key, Boolean Value)
+        protected void SetLong(string Key, long Value)
         {
-            Preferences.Editor editor = this.Preferences.edit();
-            editor.putBoolean(Key, Value);
-            editor.commit();
+            Preferences.Set(Key, Value);
         }
 
-        void SetLong(string Key, Long Value)
-        {
-            Preferences.Editor editor = this.Preferences.edit();
-            editor.putLong(Key, Value);
-            editor.commit();
-        }
 
-        void SetstringSet(string Key, Set<string> Value)
-        {
-            Preferences.Editor editor = this.Preferences.edit();
-            editor.putstringSet(Key, Value);
-            editor.commit();
-        }
-        */
+
     }
 }

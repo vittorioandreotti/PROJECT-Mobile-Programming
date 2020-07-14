@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Login"
+             x:Class="XamarinApp.Pages.Login"
              Padding="50"
              >
     <ContentPage.Content>
@@ -13,8 +13,10 @@
             <Label 
                 Text="Accedi"
                 FontSize="20"
+                TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" 
+                
              />
             <Entry x:Name="Email"
                    Text ="{Binding Email}"

@@ -25,7 +25,7 @@
                 <Entry 
                     Placeholder="Categoria"
                     Keyboard="Text"
-                    Text="{Binding SpesaModel.Categoria, Mode=TwoWay}"
+                    Text="{Binding CategoriaSpesa}"
                 />
             </StackLayout>
 
@@ -36,7 +36,7 @@
                 />
                 <DatePicker
                     IsEnabled="True"
-                    Date="{Binding SpesaModel.DataInserimento, Mode=TwoWay}"
+                    Date="{Binding DataInserimentoSpesa}"
                 />
             </StackLayout>
 
@@ -47,7 +47,7 @@
                 />
                 <DatePicker
                     IsEnabled="True"
-                    Date="{Binding SpesaModel.DataScadenza, Mode=TwoWay}"
+                    Date="{Binding DataScadenzaSpesa}"
                 />
             </StackLayout>
 
@@ -59,7 +59,7 @@
                 <Entry
                     Placeholder="100"
                     Keyboard="Numeric"
-                    Text="{Binding SpesaModel.Prezzo, Mode=TwoWay}"
+                    Text="{Binding PrezzoSpesa}"
                />
             </StackLayout>
 

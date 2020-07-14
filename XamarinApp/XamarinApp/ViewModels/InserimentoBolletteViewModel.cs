@@ -14,29 +14,70 @@ namespace XamarinApp.ViewModels
         public ICommand SubmitCommand { protected set; get; }
 
         public Spesa _SpesaModel;
-        public Spesa SpesaModel
+
+        public string CategoriaSpesa
         {
             get
             {
-                return _SpesaModel;
+                return _SpesaModel.Categoria;
             }
             set
             {
-                _SpesaModel = value;
-                OnPropertyChanged();
+                _SpesaModel.Categoria = value;
+                OnPropertyChanged(nameof(CategoriaSpesa));
             }
         }
 
+        public DateTime DataInserimentoSpesa
+        {
+            get
+            {
+                return _SpesaModel.DataInserimento;
+            }
+            set
+            {
+                _SpesaModel.DataInserimento = value;
+                OnPropertyChanged(nameof(DataInserimentoSpesa));
+            }
+        }
+
+        public DateTime DataScadenzaSpesa
+        {
+            get
+            {
+                return _SpesaModel.DataScadenza;
+            }
+            set
+            {
+                _SpesaModel.DataScadenza = value;
+                OnPropertyChanged(nameof(DataScadenzaSpesa));
+            }
+        }
+
+        public Double PrezzoSpesa
+        {
+            get
+            {
+                return _SpesaModel.Prezzo;
+            }
+            set
+            {
+                _SpesaModel.Prezzo = value;
+                OnPropertyChanged(nameof(PrezzoSpesa));
+            }
+        }
 
         public InserimentoBolletteViewModel()
         {
             SubmitCommand = new Command(InserisciBollette);
-            SpesaModel = new Spesa();
+            _SpesaModel = new Spesa();
+            _SpesaModel.DataInserimento = DateTime.Now;
+            _SpesaModel.DataScadenza = DateTime.Now.AddDays(30);
         }
 
         private void InserisciBollette()
         {
-            DisplayInserisciTuttiICampi(SpesaModel);
+            DisplayInserisciTuttiICampi(_SpesaModel);
             // if( DataScadenza )
         }
 

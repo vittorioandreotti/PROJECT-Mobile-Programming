@@ -14,29 +14,72 @@ namespace XamarinApp.ViewModels
         public ICommand SubmitCommand { protected set; get; }
 
         public Spesa _SpesaModel;
-        public Spesa SpesaModel
+        public string TitoloSpesa
         {
             get
             {
-                return _SpesaModel;
+                return _SpesaModel.Titolo;
             }
             set
             {
-                _SpesaModel = value;
-                OnPropertyChanged();
+                _SpesaModel.Titolo = value;
+                OnPropertyChanged(nameof(TitoloSpesa));
             }
         }
+
+        public DateTime DataInserimentoSpesa
+        {
+            get
+            {
+                return _SpesaModel.DataInserimento;
+            }
+            set
+            {
+                _SpesaModel.DataInserimento = value;
+                OnPropertyChanged(nameof(DataInserimentoSpesa));
+            }
+        }
+
+
+        public string DescrizioneSpesa
+        {
+            get
+            {
+                return _SpesaModel.Descrizione;
+            }
+            set
+            {
+                _SpesaModel.Descrizione = value;
+                OnPropertyChanged(nameof(DescrizioneSpesa));
+            }
+        }
+
+
+        public Double PrezzoSpesa
+        {
+            get
+            {
+                return _SpesaModel.Prezzo;
+            }
+            set
+            {
+                _SpesaModel.Prezzo = value;
+                OnPropertyChanged(nameof(PrezzoSpesa));
+            }
+        }
+
 
 
         public InserimentoSpesaComuneViewModel()
         {
             SubmitCommand = new Command(InserisciSpesaComune);
-            SpesaModel = new Spesa();
+            _SpesaModel = new Spesa();
+            _SpesaModel.DataInserimento = DateTime.Now;
         }
 
         private void InserisciSpesaComune()
         {
-            DisplayInserisciTuttiICampi(SpesaModel);
+            DisplayInserisciTuttiICampi(_SpesaModel);
             // if( DataScadenza )
         }
 

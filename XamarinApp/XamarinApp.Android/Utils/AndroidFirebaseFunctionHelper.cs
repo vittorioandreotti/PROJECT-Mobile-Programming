@@ -699,10 +699,7 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<List<Torneo>> ElencoTornei()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Task<Dictionary<string, object>> GetUtenteAndCasa()
         {
@@ -739,10 +736,7 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<bool> InserisciTorneo(string titolo, string indirizzo, string categoria, string regolamento, string dataEvento, string oraEvento)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task<bool> IsUserInitialized()
         {
@@ -764,19 +758,13 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<bool> PartecipaTorneo(string idTorneo)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Task<bool> RegistraUtente(string nome, string cognome)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Torneo>> StoricoTornei()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

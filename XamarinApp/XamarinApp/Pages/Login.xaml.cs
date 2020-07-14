@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 using XamarinApp.Utils.Interfaces;
 using XamarinApp.ViewModels;
 
-namespace XamarinApp
+namespace XamarinApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
