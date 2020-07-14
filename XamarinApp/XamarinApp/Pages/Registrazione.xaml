@@ -14,7 +14,6 @@
                 Text="Registrazione"
                 FontSize="20"
                 VerticalOptions="Start" 
-                Style="Theme.App.Title"
                 TextColor="Accent"
                 HorizontalOptions="CenterAndExpand" 
                

@@ -13,7 +13,6 @@
             <Label 
                 Text="Accedi"
                 FontSize="20"
-                Style="Theme.App.Title"
                 TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" 
