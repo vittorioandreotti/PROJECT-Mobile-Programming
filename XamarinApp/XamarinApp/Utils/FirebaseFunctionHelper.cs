@@ -138,33 +138,7 @@ public Task<Boolean> InserisciProprietario()
 });
     }
 
-    public Task<Boolean> InserisciTorneo(String Titolo, String Indirizzo, String Categoria, String Regolamento, String DataEvento, String OraEvento)
-{
-
-    Date DataOraEvento = Helper.FromStringToDateTime(DataEvento, OraEvento);
-
-    // Call the function and extract the result
-    // exports.getUserInfo
-    Dictionary<String, Object> Data = new Dictionary<String, Object>();
-    Data["titolo"]= Titolo;
-    Data["indirizzo"] = Indirizzo;
-    Data["categoria"] = Categoria;
-    Data["regolamento"] = Regolamento;
     
-    Data["dataOraEvento"]= DataOraEvento.ToString();
-
-    return this.MFunctions
-            .getHttpsCallable("inserisciTorneo")
-            .call(Data)
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                    @Override
-                    public Boolean then(@NonNull Task< HttpsCallableResult > Task) throws Exception {
-        HttpsCallableResult Result = Task.getResult();
-        Boolean ResultData = (Boolean)Result.getData();
-        return ResultData;
-    }
-});
-    }
 
     public Task<Boolean> InserisciSpesaBolletta(Double Importo, String Categoria, String StringDataBolletta, String StringDataScadenza)
 {
@@ -335,84 +309,7 @@ public Task<Boolean> InserisciProprietario()
 });
     }
 
-    public Task<List<Torneo>> ElencoTornei()
-{
-    return this.MFunctions
-            .getHttpsCallable("elencoTornei")
-            .call()
-            .continueWith(new Continuation<HttpsCallableResult, List<Torneo>>() {
-                    @Override
-                    public List<Torneo> then(@NonNull Task< HttpsCallableResult > Task) throws Exception {
-        HttpsCallableResult Result = Task.getResult();
-        Dictionary<String, Object> ResultData = (Dictionary<String, Object>)Result.getData();
-
-        List<Torneo> ListaTornei = new ArrayList<Torneo>();
-
-        if ((Boolean)ResultData.get("error"))
-        {
-            return ListaTornei;
-        }
-
-        for (Dictionary<String, Object> TorneoSingolo : (List<Dictionary<String, Object>>)ResultData.get("tornei"))
-        {
-            Torneo Torneo = new Torneo();
-            Torneo.createFromHashMap(TorneoSingolo);
-            ListaTornei.Add(Torneo);
-        }
-
-        return ListaTornei;
-    }
-});
-    }
-
-    public Task<List<Torneo>> StoricoTornei()
-{
-    return this.MFunctions
-            .getHttpsCallable("storicoTornei")
-            .call()
-            .continueWith(new Continuation<HttpsCallableResult, List<Torneo>>() {
-                    @Override
-                    public List<Torneo> then(@NonNull Task< HttpsCallableResult > Task) throws Exception {
-        HttpsCallableResult Result = Task.getResult();
-        Dictionary<String, Object> ResultData = (Dictionary<String, Object>)Result.getData();
-
-        List<Torneo> ListaTornei = new ArrayList<Torneo>();
-
-        if ((Boolean)ResultData.get("error"))
-        {
-            return ListaTornei;
-        }
-
-        for (Dictionary<String, Object> TorneoSingolo : (List<Dictionary<String, Object>>)ResultData.get("tornei"))
-        {
-            Torneo Torneo = new Torneo();
-            Torneo.createFromHashMap(TorneoSingolo);
-            ListaTornei.Add(Torneo);
-        }
-
-        return ListaTornei;
-    }
-});
-    }
-
-    public Task<Boolean> PartecipaTorneo(String IdTorneo)
-{
-
-    Dictionary<String, Object> Data = new Dictionary<String, Object>();
-    Data["idTorneo"] = IdTorneo;
-
-    return this.mFunctions
-            .getHttpsCallable("partecipaTorneo")
-            .call(Data)
-            .continueWith(new Continuation<HttpsCallableResult, Boolean>() {
-                    @Override
-                    public Boolean then(@NonNull Task< HttpsCallableResult > Task) throws Exception {
-        HttpsCallableResult Result = Task.getResult();
-        Boolean ResultData = (Boolean)Result.getData();
-        return ResultData;
-    }
-});
-    }
+    
 
     public Task<Dictionary<String, List<Spesa>>> ElencoSpeseAffittuario(sealed Context Context)
 {
@@ -691,10 +588,7 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<List<Torneo>> ElencoTornei()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task<Dictionary<string, object>> GetUtenteAndCasa()
         {
@@ -731,10 +625,7 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<bool> InserisciTorneo(string titolo, string indirizzo, string categoria, string regolamento, string dataEvento, string oraEvento)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task<bool> IsUserInitialized()
         {
@@ -756,19 +647,13 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<bool> PartecipaTorneo(string idTorneo)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Task<bool> RegistraUtente(string nome, string cognome)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Torneo>> StoricoTornei()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

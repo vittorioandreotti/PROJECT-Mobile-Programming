@@ -18,7 +18,6 @@ namespace XamarinApp.Utils
 
         Task<Boolean> RegistraUtente(String nome, String cognome);
 
-        Task<Boolean> InserisciTorneo(String titolo, String indirizzo, String categoria, String regolamento, String dataEvento, String oraEvento);
 
         Task<Boolean> InserisciSpesaBolletta(Double importo, String categoria, String stringDataBolletta, String stringDataScadenza);
 
@@ -33,11 +32,7 @@ namespace XamarinApp.Utils
         Task<Boolean> Disiscrizione();
 
         Task<Boolean> ModificaPassword(String newPassword, String newPasswordRepeat);
-
-        Task<List<Torneo>> ElencoTornei();
-        Task<List<Torneo>> StoricoTornei();
-
-        Task<Boolean> PartecipaTorneo(String idTorneo);
+      
 
         Task<Dictionary<String, List<Spesa>>> ElencoSpeseAffittuario();
 
