@@ -7,10 +7,9 @@ using XamarinApp.Utils.Helpers;
 
 namespace XamarinApp.Utils
 {
-    class UtentePreferences : PreferencesHelper
+    public class UtentePreferences : PreferencesHelper
     {
-        private const  string TipoPreferences = "PROFILO";
-
+       
         private const string KeyInizializzato = "Inizializzato";
 
         private const string KeyIdUtente = "IdUtente";

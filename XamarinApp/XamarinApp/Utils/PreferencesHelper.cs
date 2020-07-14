@@ -9,7 +9,7 @@ using Boolean = Java.Lang.Boolean;
 
 namespace XamarinApp.Utils.Helpers
 {
-    abstract class PreferencesHelper
+     public abstract class PreferencesHelper
     {
   
 
