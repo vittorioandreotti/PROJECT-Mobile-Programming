@@ -6,26 +6,22 @@
              mc:Ignorable="d"
              Padding="0"
              x:Class="XamarinApp.Pages.InserimentoAffitto"
+             Visual="Material"
+             Title="Inserisci Affitto"
              >
     <ContentPage.Content>
         <ScrollView>
             <StackLayout
-                Padding="50"
-            >
-                <Label
-                Text="Inserisci Affitto"
-                TextColor="Accent"
-                FontSize="Title"
-                HorizontalTextAlignment="Center"
-            />
+                Padding="50">
 
-            <StackLayout>
+                <StackLayout>
                 <Label
                     Text="Titolo"
                     TextColor="Accent"
                     FontSize="Caption"
                 />
                 <Entry 
+                    Visual="Default"
                     Placeholder="Titolo"
                     Keyboard="Text"
                     Text="{Binding TitoloSpesa}"
@@ -60,6 +56,7 @@
                     FontSize="Caption"
                 />
                 <Entry
+                    Visual="Default"
                     Placeholder="100"
                     Keyboard="Numeric"
                     x:Name="PrezzoSpesaEntry"
