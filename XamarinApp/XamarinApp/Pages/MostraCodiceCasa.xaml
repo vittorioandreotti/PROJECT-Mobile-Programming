@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.MostraCodiceCasa"
-             Padding="50,100,50,50">
+             Padding="50,100,50,50"
+             Visual="Material"
+             Title="Codice Casa">
     <ContentPage.Content>
         <StackLayout>
             <Label 

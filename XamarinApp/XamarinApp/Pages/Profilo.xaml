@@ -4,82 +4,82 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Pages.Profilo"
-             Padding="35">
+             x:Class="XamarinApp.Pages.Profilo"         
+             Visual="Material"
+             Title="Profilo">
     <ContentPage.Content>
-        <StackLayout>
-            <Label 
-                Text="Profilo"
-                FontSize="20"
-                TextColor="Accent"
-                VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand"
-                />
-            <Label 
+        <ScrollView          
+                Padding="35">
+            <StackLayout>
+                
+                <Label 
                 Text="Nome:"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"
             />
-            <Label              
+                <Label              
                 x:Name="Nome"
                 FontSize="10"
                 Text ="{Binding Nome}"
             />
-            <Label 
+                <Label 
                 Text="Cognome:"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"
             />
-            <Label
+                <Label
                 x:Name="Cognome"
                 FontSize="10"
                 Text ="{Binding Cognome}"
             />
-            <Label 
+                <Label 
                 Text="Email:"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"
             />
-            <Label
+                <Label
                 x:Name="Email"
                 FontSize="10"
                 Text ="{Binding Email}"
             />
-            <Button 
+                <Button 
                 Text="LOG-OUT"
                 Command="{Binding LogOut}"
             />
-            <Label 
+                <Label 
                 Text="Modifica password:"
                 VerticalOptions="Start" 
                 HorizontalOptions="Center"
                 FontSize="28"
                 Padding="0,20,0,0"
             />
-            <Entry
+                <Entry
                 x:Name="NuovaPassword"
                 Text ="{Binding NuovaPassword}"
                 IsPassword="True"
                 Placeholder="Nuova password"
                 VerticalOptions="Start"
+                Visual="Default"
              />
-            <Entry 
+                <Entry 
                 x:Name="ConfermaPassword"
                 Text ="{Binding ConfermaPassword}"
                 IsPassword="True"
                 Placeholder="Conferma password"
                 VerticalOptions="Start"
+                Visual="Default"
              />
-            <Button 
+                <Button 
                 Text="Modifica" 
                 Command="{Binding Modfica}"
                 VerticalOptions="Start"
             />
-            <Button 
+                <Button 
                 Text="Cancella Account" 
                 Command="{Binding CancellaAccount}"
                 VerticalOptions="Start"
             />
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -4,18 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Pages.InserimentoBollette"
-             Padding="50">
+             x:Class="XamarinApp.Pages.InserimentoBollette"           
+             Visual="Material"
+             Title="Inserisci Bolletta">
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                Text="Inserisci Bolletta"
-                TextColor="Accent"
-                FontSize="Title"
-                Margin="0,0,0,15"
-                HorizontalTextAlignment="Center"
-            />
-
+        <ScrollView
+            Padding="50">
+            <StackLayout>
+           
             <StackLayout>
                 <Label
                     Text="Categoria"
@@ -23,6 +19,7 @@
                     FontSize="Caption"
                 />
                 <Entry 
+                    Visual="Default"
                     Placeholder="Categoria"
                     Keyboard="Text"
                     Text="{Binding CategoriaSpesa}"
@@ -57,6 +54,7 @@
                     FontSize="Caption"
                 />
                 <Entry
+                    Visual="Default"
                     Placeholder="100"
                     Keyboard="Numeric"
                     Text="{Binding PrezzoSpesa}"
@@ -75,5 +73,6 @@
               />
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -5,16 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.InserimentoSpesaCondominio"
-             Padding="50">
+             Visual="Material"
+             Title="Inserisci Spesa Condominio">
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                Text="Inserisci Spesa Condominio"
-                TextColor="Accent"
-                FontSize="Title"
-                Margin="0,0,0,15"
-                HorizontalTextAlignment="Center"
-            />
+        <ScrollView
+            Padding="50">
+            <StackLayout>
+            
 
             <StackLayout>
                 <Label
@@ -23,6 +20,7 @@
                     FontSize="Caption"
                 />
                 <Entry 
+                    Visual="Default"
                     Placeholder="Nome Spesa"
                     Keyboard="Text"
                     Text="{Binding TitoloSpesa}"
@@ -47,6 +45,7 @@
                     FontSize="Caption"
                 />
                 <Entry
+                    Visual="Default"
                     Placeholder="100"
                     Keyboard="Numeric"
                     Text="{Binding PrezzoSpesa}"
@@ -66,5 +65,6 @@
             />
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
