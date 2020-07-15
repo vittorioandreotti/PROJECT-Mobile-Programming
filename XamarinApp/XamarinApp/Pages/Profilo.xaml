@@ -71,12 +71,12 @@
              />
                 <Button 
                 Text="Modifica" 
-                Command="{Binding Modfica}"
+                Clicked = "ModificaPassword" 
                 VerticalOptions="Start"
             />
                 <Button 
                 Text="Cancella Account" 
-                Command="{Binding CancellaAccount}"
+                Clicked = "CancellaAccount"
                 VerticalOptions="Start"
             />
             </StackLayout>

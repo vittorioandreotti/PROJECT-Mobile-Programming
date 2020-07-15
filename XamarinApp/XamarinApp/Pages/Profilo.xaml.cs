@@ -16,5 +16,15 @@ namespace XamarinApp.Pages
         {
             InitializeComponent();
         }
+
+        private void ModificaPassword(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancellaAccount(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

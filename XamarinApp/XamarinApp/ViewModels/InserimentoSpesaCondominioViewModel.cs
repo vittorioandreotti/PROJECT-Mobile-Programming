@@ -11,7 +11,7 @@ namespace XamarinApp.ViewModels
     class InserimentoSpesaCondominioViewModel : INotifyPropertyChanged
     {
         public Action<Spesa> DisplayInserisciTuttiICampi;
-        public ICommand SubmitCommand { protected set; get; }
+        public ICommand InserisciSpesaCondominioClick { protected set; get; }
 
         public Spesa _SpesaModel;
 
@@ -58,16 +58,22 @@ namespace XamarinApp.ViewModels
 
         public InserimentoSpesaCondominioViewModel()
         {
-            SubmitCommand = new Command(InserisciSpesaCondominio);
+            InserisciSpesaCondominioClick = new Command(InserisciSpesaCondominio);
             _SpesaModel = new Spesa();
             _SpesaModel.DataInserimento = DateTime.Now;
+
         }
 
         private void InserisciSpesaCondominio()
         {
-            DisplayInserisciTuttiICampi(_SpesaModel);
-            // if( DataScadenza )
+
+            if( _SpesaModel.Titolo.Length == 0 || _SpesaModel.DataInserimento.ToString().Length == 0 || _SpesaModel.Prezzo.ToString().Length == 0 ) 
+               {
+
+               }else { DisplayInserisciTuttiICampi(_SpesaModel); }
+               
         }
+
 
 
 

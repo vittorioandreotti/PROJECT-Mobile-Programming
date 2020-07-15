@@ -1,5 +1,4 @@
-﻿using Android.Graphics.Drawables;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

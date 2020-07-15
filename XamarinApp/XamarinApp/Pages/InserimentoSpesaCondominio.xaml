@@ -61,7 +61,7 @@
             <Button
                 Margin="0,20,0,0"
                 Text="Inserisci Spesa"
-                Command="{Binding SubmitCommand}"
+                Command="{Binding InserisciSpesaCondominioClick}"
             />
 
         </StackLayout>
