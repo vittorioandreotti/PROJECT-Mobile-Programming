@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -15,9 +17,11 @@ namespace XamarinApp.Utils
 
         private string JsonRequest = "{}";
 
-        HttpsFunctionsCaller( string CloudFunctionName )
+        public HttpsFunctionsCaller( string CloudFunctionName )
         {
-            string BearerToken = "";
+            UtentePreferences utentePreferences = new UtentePreferences();
+
+            string BearerToken = utentePreferences.GetAuthToken();
 
             httpWebRequest = (HttpWebRequest)WebRequest.Create(FIREBASE_CLOUD_FUNCTIONS_URL + CloudFunctionName);
             httpWebRequest.ContentType = "application/json";
@@ -40,39 +44,34 @@ namespace XamarinApp.Utils
             return this.Call();
         }
 
-        public Task<Dictionary<string, Object>> Call()
+        public Task<Dictionary<string, object>> Call()
         {
             string BodyRequest = "{ \"data\": " + this.JsonRequest + " }";
-            return
-                (Task<Dictionary<string, Object>>) httpWebRequest
+
+            this.httpWebRequest.ContentLength = BodyRequest.Length;
+            this.httpWebRequest.Expect = "application/json";
+
+            this.httpWebRequest.GetRequestStream().Write(Encoding.UTF8.GetBytes(BodyRequest), 0, BodyRequest.Length);
+
+            return httpWebRequest
                     .GetResponseAsync()
                     .ContinueWith( this.HandleResponse );
         }
 
-        private Dictionary<string, Object> HandleResponse(Task<WebResponse> response)
+        private Dictionary<string, object> HandleResponse(Task<WebResponse> response)
         {
-            WebResponse webResponse = response.Result;
+            TaskAwaiter<WebResponse> taskAwaiter = response.GetAwaiter();
 
-            //Dictionary<string, Object> ResponseData;
+            WebResponse webResponse = taskAwaiter.GetResult();
 
-            /*using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            using (var streamReader = new StreamReader(webResponse.GetResponseStream()))
             {
-                var result = streamReader.ReadToEnd();
-            }*/
+                var StringResult = streamReader.ReadToEnd();
 
-            Console.WriteLine();
+                Dictionary<string, object> DictionaryResponse = JsonConvert.DeserializeObject<Dictionary<string, object>>(StringResult);
 
-
-            return new Dictionary<string, Object>();
-
-            throw new NotImplementedException();
-
-            /*private Dictionary<string, Object> HandleResponse(Task<Dictionary<string, Object>> response)
-            {
-
-                return;
-            }*/
-
+                return DictionaryResponse;
+            }
         }
     }
 }
