@@ -17,11 +17,17 @@ namespace XamarinApp.Utils
         private const string KeyTipo = "TipoUtente";
 
         private const string KeyIdCasa = "IdCasa";
+
+
         private const string KeyNomeCasa = "NomeCasa";
         private const string KeyIndirizzoCasa = "IndirizzoCasa";
 
 
 
+        public bool IsLoggedIn()
+        {
+            return this.Contains(KeyBearer) && this.GetAuthToken().Length > 0;
+        }
 
         public bool IsInitialized()
         {

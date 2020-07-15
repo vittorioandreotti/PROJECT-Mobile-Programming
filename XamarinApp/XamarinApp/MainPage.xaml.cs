@@ -56,7 +56,6 @@ namespace XamarinApp
                 foreach(JObject torneo in (JArray)cloudResponse.Data["tornei"])
                 {
                     allText += torneo["id"]+ " ";
-
                 }
             }
 

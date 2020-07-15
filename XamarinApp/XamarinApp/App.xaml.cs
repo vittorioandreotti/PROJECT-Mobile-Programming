@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinApp.Pages;
 
 namespace XamarinApp
 {
@@ -10,7 +11,10 @@ namespace XamarinApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage( new MainPage() );
+            // Visualizza splash screen
+
+            MainPage = new SplashScreen();
+            //MainPage = new NavigationPage( new MainPage() );
             // MainPage = new NavigationDrawer();
         }
 

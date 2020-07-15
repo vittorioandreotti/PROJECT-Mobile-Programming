@@ -43,7 +43,7 @@
                                     VerticalOptions="EndAndExpand" 
                                     />
                                 <Label 
-                                    x:Nome="Email"
+                                    x:Name="Email"
                                     Text="email@email.com" 
                                     TextColor="White"
                                     HorizontalTextAlignment="Start" 
