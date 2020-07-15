@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Android.Graphics.Drawables;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinApp.Pages;
+using XamarinApp.Utils;
 
 namespace XamarinApp
 {
@@ -10,23 +12,40 @@ namespace XamarinApp
     public partial class NavigationDrawer : MasterDetailPage
     {
         List<MenuItems> menu;
+        UtentePreferences utentePreferences;
 
         public NavigationDrawer()
         {
             InitializeComponent();
             menu = new List<MenuItems>();
 
-            menu.Add(new MenuItems { OptionName = "Home" });
-            menu.Add(new MenuItems { OptionName = "Sommario" });
-            menu.Add(new MenuItems { OptionName = "Spese condominio" });
-            menu.Add(new MenuItems { OptionName = "Affitto" });
-            menu.Add(new MenuItems { OptionName = "Bollette" });
-            menu.Add(new MenuItems { OptionName = "Codice casa" });
-            menu.Add(new MenuItems { OptionName = "Inserisci spese condominio" });
-            menu.Add(new MenuItems { OptionName = "Inserisci bollette" });
-            menu.Add(new MenuItems { OptionName = "Inserisci affitto" });
-            menu.Add(new MenuItems { OptionName = "Profilo" });
-            menu.Add(new MenuItems { OptionName = "Logout" });
+            utentePreferences = new UtentePreferences();
+            if (utentePreferences.IsAffittuario())
+            {
+                menu.Add(new MenuItems { OptionName = "Home", Icon = "Home" });
+                menu.Add(new MenuItems { OptionName = "Gestisci spesa comune", Icon = "Add" });
+                menu.Add(new MenuItems { OptionName = "Sommario", Icon = "Sommario.png" });
+                menu.Add(new MenuItems { OptionName = "Spese in comune", Icon = "SpesaComune" });
+                menu.Add(new MenuItems { OptionName = "Affitto", Icon = "Affitto" });
+                menu.Add(new MenuItems { OptionName = "Bollette", Icon = "Bollette" });
+                menu.Add(new MenuItems { OptionName = "Spese condominio", Icon = "Condominio" });
+                menu.Add(new MenuItems { OptionName = "Profilo", Icon = "Profilo" });
+                menu.Add(new MenuItems { OptionName = "Logout", Icon = "Logout" });
+            }
+            else
+            {
+                menu.Add(new MenuItems { OptionName = "Home", Icon = "Home" });
+                menu.Add(new MenuItems { OptionName = "Sommario", Icon = "Sommario" });
+                menu.Add(new MenuItems { OptionName = "Spese condominio", Icon = "Condominio" });
+                menu.Add(new MenuItems { OptionName = "Affitto", Icon = "Affitto" });
+                menu.Add(new MenuItems { OptionName = "Bollette", Icon = "Bollette" });
+                menu.Add(new MenuItems { OptionName = "Codice casa", Icon = "CodiceCasa" });
+                menu.Add(new MenuItems { OptionName = "Inserisci spese condominio", Icon = "Add" });
+                menu.Add(new MenuItems { OptionName = "Inserisci bollette", Icon = "Add" });
+                menu.Add(new MenuItems { OptionName = "Inserisci affitto", Icon = "Add" });
+                menu.Add(new MenuItems { OptionName = "Profilo", Icon = "Profilo" });
+                menu.Add(new MenuItems { OptionName = "Logout", Icon = "Logout" });
+            }
             navigationList.ItemsSource = menu;
             Detail = new NavigationPage(new Home());
         }
@@ -57,6 +76,12 @@ namespace XamarinApp
                             IsPresented = false;
                         }
                         break;
+                    case "Spese in comune":
+                        {
+                            //Detail = new NavigationPage(new SpesaComune());
+                            IsPresented = false;
+                        }
+                        break;
                     case "Affitto":
                         {
                             //Detail.Navigation.PushAsync(new Affitto());
@@ -72,6 +97,12 @@ namespace XamarinApp
                     case "Codice casa":
                         {
                             Detail.Navigation.PushAsync(new MostraCodiceCasa());
+                            IsPresented = false;
+                        }
+                        break;
+                    case "Gestisci spesa comune":
+                        {
+                            Detail = new NavigationPage(new InserimentoSpesaComune());
                             IsPresented = false;
                         }
                         break;
@@ -101,7 +132,8 @@ namespace XamarinApp
                         break;
                     case "Logout":
                         {
-                            //Detail.Navigation.PushAsync(new LogOut());
+                            utentePreferences.ClearPreferences();
+                            this.Navigation.PopAsync();
                             IsPresented = false;
                         }
                         break;
@@ -118,5 +150,6 @@ namespace XamarinApp
     public class MenuItems
     {
         public string OptionName { get; set; }
+        public string Icon { get; set; }
     }
 }
