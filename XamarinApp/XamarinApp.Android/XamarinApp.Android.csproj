@@ -42,6 +42,7 @@
     <AndroidSigningKeyAlias>
     </AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>password</AndroidSigningKeyPass>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinApp.Utils;
 using XamarinApp.Utils.Interfaces;
 using XamarinApp.ViewModels;
 
@@ -14,10 +15,12 @@ namespace XamarinApp.Pages
     public partial class Login : ContentPage
     {
         private IFirebaseAuth firebaseAuth;
+        private UtentePreferences utentePreferences;
 
         public Login()
         {
             firebaseAuth = DependencyService.Get<IFirebaseAuth>();
+            utentePreferences = new UtentePreferences();
 
             var vm = new LoginViewModel(firebaseAuth);
             this.BindingContext = vm;
@@ -32,8 +35,12 @@ namespace XamarinApp.Pages
             string Token = await firebaseAuth.LoginWithEmailPassword(Email, Password);
             if (Token != "")
             {
+                utentePreferences.SetAuthToken(Token);
+
+                string token = utentePreferences.GetAuthToken();
+
                 // await Navigation.PushAsync(new LoggedPage());
-                await DisplayAlert("Autenticazione Eseguita con successo!", "Token: " + Token, "OK");
+                await DisplayAlert("Autenticazione Eseguita con successo!", "Token: " + token, "OK");
 
                 // TODO: Da finire!!
             }
@@ -42,5 +49,6 @@ namespace XamarinApp.Pages
                 await DisplayAlert("Authentication Fallita", "E-mail o password errate.", "OK");
             }
         }
+
     }
 }

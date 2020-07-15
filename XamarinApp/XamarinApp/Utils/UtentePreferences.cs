@@ -7,8 +7,8 @@ namespace XamarinApp.Utils
 {
     public class UtentePreferences : PreferencesHelper
     {
-       
         private const string KeyInizializzato = "Inizializzato";
+        private const string KeyBearer = "BEARER_ACCESS";
 
         private const string KeyIdUtente = "IdUtente";
         private const string KeyNome = "Nome";
@@ -30,6 +30,15 @@ namespace XamarinApp.Utils
         public void SetInitialized()
         {
             SetBoolean(KeyInizializzato, true);
+        }
+
+        public string GetAuthToken()
+        {
+            return GetString(KeyBearer);
+        }
+        public void SetAuthToken(string BearerToken)
+        {
+            SetString(KeyBearer, BearerToken);
         }
 
         public string GetNome()
