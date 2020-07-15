@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -33,23 +34,33 @@ namespace XamarinApp
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            string token = utentePreferences.GetAuthToken();
-
             HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoTornei");
 
             functionsCaller.Call().ContinueWith(HandleLoginResponse);
 
         }
 
-        private void HandleLoginResponse( Task<Dictionary<string, Object>> taskDataDictionary )
+        private void HandleLoginResponse( Task<CloudFunctionResponse> taskCloudResponse )
         {
-            taskDataDictionary.Wait();
+            taskCloudResponse.Wait();
 
-            Dictionary<string, object> dataDictionary = taskDataDictionary.Result;
+            CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+            string allText = "";
 
-            CloudFunctionResponse response = new CloudFunctionResponse(dataDictionary);
+            if (cloudResponse.HasError)
+            {
+                //
+            }
+            else
+            {
+                foreach(JObject torneo in (JArray)cloudResponse.Data["tornei"])
+                {
+                    allText += torneo["id"]+ " ";
 
-            LabelRandom.Text = response.Data.ToString();
+                }
+            }
+
+            LabelRandom.Text = allText;
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)

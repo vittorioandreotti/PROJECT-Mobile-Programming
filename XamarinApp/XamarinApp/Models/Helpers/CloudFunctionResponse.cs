@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace XamarinApp.Models.Helpers
 {
-    class CloudFunctionResponse
+    public class CloudFunctionResponse
     {
-        bool HasError;
-        long ErrorStatus;
-        string ErrorMessage = "";
+        public bool HasError;
+        public long ErrorStatus;
+        public string ErrorMessage = "";
 
         public Dictionary<string, object> OriginalData;
 
-        public Dictionary<string, object> Data;
+        public JObject Data;
 
         public CloudFunctionResponse(Dictionary<string, object> RispostaCloudFunction)
         {
@@ -20,20 +21,20 @@ namespace XamarinApp.Models.Helpers
             {
                 object errorObj;
 
-                Dictionary<string, object> StatusCloudFunction = (Dictionary<string, object>)RispostaCloudFunction["error"];
+                JObject StatusCloudFunction = (JObject)RispostaCloudFunction["error"];
 
                 this.HasError = true;
 
-                StatusCloudFunction.TryGetValue("code", out errorObj);
+                errorObj = StatusCloudFunction["code"];
                 this.ErrorStatus = (long)errorObj;
 
-                StatusCloudFunction.TryGetValue("status", out errorObj);
+                errorObj = StatusCloudFunction["status"];
                 this.ErrorMessage = (string)errorObj;
             }
             else
             {
-                this.Data = (Dictionary<string, object>)RispostaCloudFunction["data"];
-                this.HasError = true;
+                this.Data = (JObject)RispostaCloudFunction["result"];
+                this.HasError = false;
             }
 
         }

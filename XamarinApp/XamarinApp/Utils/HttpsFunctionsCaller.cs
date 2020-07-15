@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using XamarinApp.Models.Helpers;
 
 namespace XamarinApp.Utils
 {
@@ -31,20 +32,17 @@ namespace XamarinApp.Utils
 
         private void SetData(Dictionary<string, object> inputData)
         {
-            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                string JsonRichiesta = JsonConvert.SerializeObject(inputData);
-                this.JsonRequest = JsonRichiesta;
-            }
+            string JsonRichiesta = JsonConvert.SerializeObject(inputData);
+            this.JsonRequest = JsonRichiesta;
         }
 
-        public Task<Dictionary<string, Object>> Call(Dictionary<string, Object> inputData)
+        public Task<CloudFunctionResponse> Call(Dictionary<string, Object> inputData)
         {
             this.SetData(inputData);
             return this.Call();
         }
 
-        public Task<Dictionary<string, object>> Call()
+        public Task<CloudFunctionResponse> Call()
         {
             string BodyRequest = "{ \"data\": " + this.JsonRequest + " }";
 
@@ -58,7 +56,7 @@ namespace XamarinApp.Utils
                     .ContinueWith( this.HandleResponse );
         }
 
-        private Dictionary<string, object> HandleResponse(Task<WebResponse> response)
+        private CloudFunctionResponse HandleResponse(Task<WebResponse> response)
         {
             TaskAwaiter<WebResponse> taskAwaiter = response.GetAwaiter();
 
@@ -70,7 +68,7 @@ namespace XamarinApp.Utils
 
                 Dictionary<string, object> DictionaryResponse = JsonConvert.DeserializeObject<Dictionary<string, object>>(StringResult);
 
-                return DictionaryResponse;
+                return new CloudFunctionResponse(DictionaryResponse);
             }
         }
     }

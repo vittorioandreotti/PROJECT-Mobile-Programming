@@ -10,7 +10,8 @@ namespace XamarinApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationDrawer();
+            MainPage = new NavigationPage( new MainPage() );
+            // MainPage = new NavigationDrawer();
         }
 
         protected override void OnStart()
