@@ -12,7 +12,7 @@ namespace XamarinApp.Utils.Interfaces
 
         Task<Boolean> InserisciProprietario();
 
-        Task<Boolean> PartecipaCasa(String idCasa);
+        Task<Boolean> PartecipaCasa();
 
         Task<Boolean> InserisciAffittuario();
 
@@ -32,12 +32,20 @@ namespace XamarinApp.Utils.Interfaces
         Task<Boolean> Disiscrizione();
 
         Task<Boolean> ModificaPassword(String newPassword, String newPasswordRepeat);
-      
 
-        Task<Dictionary<String, List<Spesa>>> ElencoSpeseAffittuario();
 
-        Task<Dictionary<String, List<Spesa>>> ElencoSpeseProprietario();
+        Task<List<Spesa>> ElencoSommarioAffittuario();
+        Task<List<Spesa>> ElencoAffittoAffittuario();
+        Task<List<Spesa>> ElencoSpesaComuneAffittuario();
+        Task<List<Spesa>> ElencoSpesaCondominioAffittuario();
+        Task<List<Spesa>> ElencoBolletteAffittuario();
+        Task<List<Spesa>> ElencoSommarioProprietario();
+        Task<List<Spesa>> ElencoAffittoProprietario();
+        Task<List<Spesa>> ElencoSpesaComuneProprietario();
+        Task<List<Spesa>> ElencoSpesaCondominioProprietario();
+        Task<List<Spesa>> ElencoBolletteProprietario();
 
-        Task<Boolean> PagaSpesa(String idSpesa, String idCasa);
+
+        Task<Boolean> PagaSpesa(String idSpesa);
     }
 }
