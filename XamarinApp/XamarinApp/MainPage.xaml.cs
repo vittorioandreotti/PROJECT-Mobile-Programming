@@ -43,8 +43,8 @@ namespace XamarinApp
         private void HandleLoginResponse( Task<CloudFunctionResponse> taskCloudResponse )
         {
             taskCloudResponse.Wait();
-
             CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+
             string allText = "";
 
             if (cloudResponse.HasError)
@@ -53,7 +53,7 @@ namespace XamarinApp
             }
             else
             {
-                foreach(JObject torneo in (JArray)cloudResponse.Data["tornei"])
+                foreach(JObject torneo in (JArray)cloudResponse.JsonData["tornei"])
                 {
                     allText += torneo["id"]+ " ";
                 }
@@ -62,19 +62,5 @@ namespace XamarinApp
             LabelRandom.Text = allText;
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-            Task.Factory.StartNew(async () =>
-            {
-                var initTimer = DateTime.Now;
-                var time = DateTime.Now;
-                do
-                {
-                    time = DateTime.Now;
-                    await Task.Delay(100);
-                    Timer.Text = ( time.Millisecond + time.Second * 1000 ).ToString();
-                } while ( (initTimer.AddSeconds(60) - time).TotalSeconds >= 0 );
-            });
-        }
     }
 }

@@ -13,7 +13,10 @@ namespace XamarinApp.Models.Helpers
 
         public Dictionary<string, object> OriginalData;
 
-        public JObject Data;
+        public bool BooleanData;
+        public JObject JsonData;
+
+        public object ObjectData;
 
         public CloudFunctionResponse(Dictionary<string, object> RispostaCloudFunction)
         {
@@ -33,12 +36,20 @@ namespace XamarinApp.Models.Helpers
             }
             else
             {
-                this.Data = (JObject)RispostaCloudFunction["result"];
+                this.ObjectData = RispostaCloudFunction["result"];
+
+                if(this.ObjectData is JObject )
+                {
+                    this.JsonData = (JObject)this.ObjectData;
+                }else if (this.ObjectData is bool )
+                {
+                    this.BooleanData = (bool)this.ObjectData;
+                }
+
                 this.HasError = false;
             }
 
         }
-
 
     }
 }

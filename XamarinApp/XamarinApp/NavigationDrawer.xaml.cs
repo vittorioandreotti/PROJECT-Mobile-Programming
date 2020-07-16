@@ -16,6 +16,19 @@ namespace XamarinApp
         public NavigationDrawer()
         {
             InitializeComponent();
+
+            InitUserData();
+        }
+
+        private void InitUserData()
+        {
+            // Chiamata a cloud functions
+                // Lettura dati getUtenteAndCasa in utentePreferences
+                    // Dopo delle shared preferences, chiamate InitUI()
+        }
+
+        private void InitUI()
+        {
             menu = new List<MenuItems>();
 
             utentePreferences = new UtentePreferences();

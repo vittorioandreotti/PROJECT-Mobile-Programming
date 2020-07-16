@@ -49,7 +49,7 @@ namespace XamarinApp.Pages
                             return;
                         }
 
-                        bool isUserInitialized = (bool)cloudFunctionResponse.Data;
+                        bool isUserInitialized = (bool)cloudFunctionResponse.JsonData;
 
                         if (isUserInitialized)
                         {

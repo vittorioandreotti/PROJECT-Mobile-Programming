@@ -20,10 +20,6 @@
         <Label Text="Time:"
                x:Name="Timer"/>
 
-        <Button
-            Clicked="Button_Clicked_1"
-            />
-
         <Label
             x:Name="LabelRandom"
             Text="Da riempire"
