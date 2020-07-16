@@ -7,21 +7,21 @@
              x:Class="XamarinApp.Pages.ScegliProprietarioAffittuario"
              Padding="50">
     <ContentPage.Content>
-        <StackLayout
-            Margin="0,100,0,0">
-            <Label 
-                Text="Sono un:"
-                FontSize="20"
-                TextColor="Accent"
-                VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand"
-            />
+
+        <StackLayout 
+            VerticalOptions="Center">
             <Button 
                 Text="Proprietario (Locatore)" 
-                Command="{Binding Proprietario}"/>
+                Clicked="Proprietario_Clicked"
+                Margin="20"
+                Padding="15"
+                />
             <Button 
-                Text="Affittuario (Coinquilino)" 
-                Command="{Binding Affittuario}"/>
+                Text="Affittuario (Coinquilino)"
+                Clicked="Affittuario_Clicked"
+                Margin="20"
+                Padding="15"
+                />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

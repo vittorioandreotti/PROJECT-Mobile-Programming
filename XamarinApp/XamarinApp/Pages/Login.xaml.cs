@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinApp.LoadingService;
 using XamarinApp.Utils;
 using XamarinApp.Utils.Interfaces;
 using XamarinApp.ViewModels;
@@ -24,31 +26,75 @@ namespace XamarinApp.Pages
 
             var vm = new LoginViewModel(firebaseAuth);
             this.BindingContext = vm;
-            vm.Login = LoginActionAsync;
+            vm.Login = LoginAction;
             vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Errore", "Inserire una mail valida e una password.", "OK");
             InitializeComponent();
-
         }
 
-        public async void LoginActionAsync(string Email, string Password)
+        public void LoginAction(string Email, string Password)
         {
-            string Token = await firebaseAuth.LoginWithEmailPassword(Email, Password);
-            if (Token != "")
-            {
-                utentePreferences.SetAuthToken(Token);
+            Device.BeginInvokeOnMainThread(() => {
+                StartLoading();
+            });
+            firebaseAuth
+                .LoginWithEmailPassword(Email, Password)
+                .ContinueWith( ( Task<string> taskLogin ) =>
+                {
+                    taskLogin.Wait();
+                    string Token = taskLogin.Result;
 
-                string token = utentePreferences.GetAuthToken();
+                    if (Token != "")
+                    {
+                        utentePreferences.SetAuthToken(Token);
+                        utentePreferences.SetLoginUsername(Email);
+                        utentePreferences.SetLoginPassword(Password);
 
-                // await Navigation.PushAsync(new LoggedPage());
-                await DisplayAlert("Autenticazione Eseguita con successo!", "Token: " + token, "OK");
+                        FirebaseFunctionHelper firebaseFunction = new FirebaseFunctionHelper();
 
-                // TODO: Da finire!!
-            }
-            else
-            {
-                await DisplayAlert("Authentication Fallita", "E-mail o password errate.", "OK");
-            }
+                        firebaseFunction
+                            .IsUserInitialized()
+                            .ContinueWith((Task<bool> taskIsUserInitialized) => {
+                                taskIsUserInitialized.Wait();
+
+                                if(taskIsUserInitialized.Result)
+                                {
+                                    // Inizializzato
+                                    Device.BeginInvokeOnMainThread(() => {
+                                        StopLoading();
+                                    });
+                                    App.Current.MainPage = new NavigationDrawer();
+                                }
+                                else
+                                {
+                                    // Non inizializzato
+                                    Device.BeginInvokeOnMainThread(() => {
+                                        StopLoading();
+                                        App.Current.MainPage = new NavigationPage(new ScegliProprietarioAffittuario());
+                                    });
+                                }
+                            });
+
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(() => {
+                            StopLoading();
+                            DisplayAlert("Authentication Fallita", "E-mail o password errate.", "OK");
+                        });
+                    }
+                });
         }
 
+        private async void StartLoading()
+        {
+            LoadingPage loadingPage = new LoadingPage();
+
+            await PopupNavigation.Instance.PushAsync(loadingPage);
+        }
+
+        private async void StopLoading()
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }

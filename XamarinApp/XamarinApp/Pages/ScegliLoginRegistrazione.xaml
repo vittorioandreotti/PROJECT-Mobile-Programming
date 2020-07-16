@@ -5,16 +5,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.ScegliLoginRegistrazione"
+             Visual="Material"
              Padding="50">
     <ContentPage.Content>
-        <StackLayout
-            Margin="0,100,0,0">
+        <StackLayout 
+            VerticalOptions="Center">
             <Button 
                 Text="Accedi" 
-                Command="{Binding Accedi}"/>
+                Clicked="Login_Clicked"
+                Margin="20"
+                Padding="20"
+                />
             <Button 
-                Text="Registrati" 
-                Command="{Binding Registrati}"/>
+                Text="Registrati"
+                Clicked="Registrazione_Clicked"
+                Margin="20"
+                Padding="20"
+                />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

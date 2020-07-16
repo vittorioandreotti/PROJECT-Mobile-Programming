@@ -10,6 +10,9 @@ namespace XamarinApp.Utils
         private const string KeyInizializzato = "Inizializzato";
         private const string KeyBearer = "BEARER_ACCESS";
 
+        public const string KeyLoginUsername = "Username";
+        public const string KeyLoginPassword = "Password";
+
         private const string KeyIdUtente = "IdUtente";
         private const string KeyNome = "Nome";
         private const string KeyCognome = "Cognome";
@@ -23,6 +26,27 @@ namespace XamarinApp.Utils
         private const string KeyIndirizzoCasa = "IndirizzoCasa";
 
 
+
+        public void SetLoginUsername(string Username)
+        {
+            this.SetString(KeyLoginUsername, Username);
+        }
+
+        public void SetLoginPassword(string Password)
+        {
+            this.SetString(KeyLoginPassword, Password);
+        }
+
+
+        public string GetLoginUsername()
+        {
+            return this.GetString(KeyLoginUsername);
+        }
+
+        public string GetLoginPassword()
+        {
+            return this.GetString(KeyLoginPassword);
+        }
 
         public bool IsLoggedIn()
         {

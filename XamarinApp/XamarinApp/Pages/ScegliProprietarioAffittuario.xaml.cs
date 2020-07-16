@@ -16,5 +16,16 @@ namespace XamarinApp.Pages
         {
             InitializeComponent();
         }
+
+        private void Proprietario_Clicked(object sender, EventArgs e)
+        {
+            this.Navigation.PushAsync(new CreaCasa());
+        }
+
+        private void Affittuario_Clicked(object sender, EventArgs e)
+        {
+            this.Navigation.PushAsync(new InserisciCodiceCasa());
+        }
+
     }
 }

@@ -18,6 +18,11 @@ namespace XamarinApp.Models.Helpers
 
         public object ObjectData;
 
+        public CloudFunctionResponse()
+        {
+
+        }
+
         public CloudFunctionResponse(Dictionary<string, object> RispostaCloudFunction)
         {
             if( RispostaCloudFunction.ContainsKey("error") )
