@@ -23,6 +23,7 @@ namespace XamarinApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            global::Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
             LoadApplication(new App());
 
