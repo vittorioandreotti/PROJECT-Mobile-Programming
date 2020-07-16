@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XamarinApp.Models.Helpers;
 using XamarinApp.Utils.Interfaces;
 
 namespace XamarinApp.Utils
@@ -573,6 +574,11 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
+        public Task<Dictionary<string, List<Spesa>>> ElencoBolletteAffittuario()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Dictionary<string, List<Spesa>>> ElencoSpeseAffittuario()
         {
             throw new NotImplementedException();
@@ -583,11 +589,44 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        
 
+        /*
+        
+            FirebaseFunctionHelper firebaseFunctionHelper = new FirebaseFunctionHelper();
+            firebaseFunctionHelper
+                .GetUtenteAndCasa()
+                .ContinueWith( (Task<Dictionary<string, object>> task ) => {
+                    task.Wait();
+                    Dictionary<string, object> utenteAndCasaData = task.Result;
+                    //
+                    // Qui usate il dictionary.
+                });
+
+         */
         public Task<Dictionary<string, object>> GetUtenteAndCasa()
         {
-            throw new NotImplementedException();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("getUtenteAndCasa");
+            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+
+                Dictionary<string, object> utenteAndCasaData = new Dictionary<string, object>();
+
+                string allText = "";
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    //
+                }
+
+                return utenteAndCasaData;
+
+            });
         }
 
         public Task<bool> InserisciAffittuario()
@@ -640,6 +679,7 @@ String IdCasa = Preferences.GetIdCasa();
         public Task<bool> PartecipaCasa(string idCasa)
         {
             throw new NotImplementedException();
+
         }
 
        

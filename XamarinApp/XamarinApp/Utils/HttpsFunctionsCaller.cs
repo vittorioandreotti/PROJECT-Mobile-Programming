@@ -18,6 +18,8 @@ namespace XamarinApp.Utils
 
         private string JsonRequest = "{}";
 
+        public object CloudFunctionResponse { get; private set; }
+
         public HttpsFunctionsCaller( string CloudFunctionName )
         {
             UtentePreferences utentePreferences = new UtentePreferences();
@@ -58,6 +60,14 @@ namespace XamarinApp.Utils
 
         private CloudFunctionResponse HandleResponse(Task<WebResponse> response)
         {
+            if(response.IsFaulted)
+            {
+                CloudFunctionResponse cloudFunctionResponse = new CloudFunctionResponse();
+                cloudFunctionResponse.HasError = true;
+                cloudFunctionResponse.ErrorMessage = response.Exception.Message;
+                return cloudFunctionResponse;
+            }
+
             TaskAwaiter<WebResponse> taskAwaiter = response.GetAwaiter();
 
             WebResponse webResponse = taskAwaiter.GetResult();
