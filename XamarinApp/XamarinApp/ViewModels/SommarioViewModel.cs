@@ -9,11 +9,11 @@ using XamarinApp.Utils;
 
 namespace XamarinApp.ViewModels
 {
-    public class BolletteViewModel
+    public class SommarioViewModel
     {
         public IList<Spesa> CardData { get; set; }
         UtentePreferences utentePreferences;
-        public BolletteViewModel ()
+        public SommarioViewModel()
         {
             utentePreferences = new UtentePreferences();
             FirebaseFunctionHelper firebaseFunctionHelper = new FirebaseFunctionHelper();
@@ -21,11 +21,11 @@ namespace XamarinApp.ViewModels
 
             if (utentePreferences.IsAffittuario())
             {
-                taskListaSpese = firebaseFunctionHelper.ElencoBolletteAffittuario();
+                taskListaSpese = firebaseFunctionHelper.ElencoSommarioAffittuario();
             }
             else
             {
-                taskListaSpese = firebaseFunctionHelper.ElencoBolletteProprietario();
+                taskListaSpese = firebaseFunctionHelper.ElencoSommarioProprietario();
             }
             taskListaSpese.ContinueWith((Task<List<Spesa>> task) =>
             {

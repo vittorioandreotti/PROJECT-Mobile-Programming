@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamarinApp.Models.Helpers;
@@ -574,35 +575,429 @@ String IdCasa = Preferences.GetIdCasa();
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, List<Spesa>>> ElencoBolletteAffittuario()
+
+
+        //Elenco spese Affittuario
+        public Task<List<Spesa>> ElencoSommarioAffittuario()
         {
-            throw new NotImplementedException();
-        }
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
 
-        public Task<Dictionary<string, List<Spesa>>> ElencoSpeseAffittuario()
-        {
-            throw new NotImplementedException();
-        }
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
 
-        public Task<Dictionary<string, List<Spesa>>> ElencoSpeseProprietario()
-        {
-            throw new NotImplementedException();
-        }
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
 
-        /*
-        
-            FirebaseFunctionHelper firebaseFunctionHelper = new FirebaseFunctionHelper();
-            firebaseFunctionHelper
-                .GetUtenteAndCasa()
-                .ContinueWith( (Task<Dictionary<string, object>> task ) => {
-                    task.Wait();
-                    Dictionary<string, object> utenteAndCasaData = task.Result;
+                if (cloudResponse.HasError)
+                {
                     //
-                    // Qui usate il dictionary.
-                });
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["sommario"];
 
-         */
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                        if (idUtente.Equals(spesaobj.IdUtente))
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoAffittoAffittuario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["affitto"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                        if (idUtente.Equals(spesaobj.IdUtente))
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoSpesaComuneAffittuario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["comune"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                        if (idUtente.Equals(spesaobj.IdUtente))
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoSpesaCondominioAffittuario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["condominio"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                        if (idUtente.Equals(spesaobj.IdUtente))
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+   
+        public Task< List<Spesa>> ElencoBolletteAffittuario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["bolletta"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                        if( idUtente.Equals(spesaobj.IdUtente) )
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+
+        //Elenco spese Proprietario
+        public Task<List<Spesa>> ElencoSommarioProprietario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["sommario"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoAffittoProprietario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["affitto"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoSpesaComuneProprietario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["comune"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoSpesaCondominioProprietario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["condominio"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+        public Task<List<Spesa>> ElencoBolletteProprietario()
+        {
+            UtentePreferences utentePreferences = new UtentePreferences();
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("elencoSpese");
+
+            Dictionary<string, object> inputData = new Dictionary<string, object>();
+            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+
+                taskCloudResponse.Wait();
+                CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
+                List<Spesa> listSpesa = new List<Spesa>();
+                string idUtente = utentePreferences.GetIdUtente();
+
+                if (cloudResponse.HasError)
+                {
+                    //
+                }
+                else
+                {
+                    JObject tuttleLeSpeseObj = (JObject)cloudResponse.JsonData["bolletta"];
+
+                    JArray tutteLeSpeseArr = new JArray();
+                    JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
+                    JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
+
+                    tutteLeSpeseArr.Add(daPagareArr);
+                    tutteLeSpeseArr.Add(pagateArr);
+
+                    foreach (JObject spesa in tutteLeSpeseArr)
+                    {
+                        Spesa spesaobj = new Spesa();
+                        spesaobj.CreateFromHashMap(spesa);
+                            listSpesa.Add(spesaobj);
+                    }
+                }
+                return listSpesa;
+            });
+        }
+
+
+
+
         public Task<Dictionary<string, object>> GetUtenteAndCasa()
         {
             HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("getUtenteAndCasa");
@@ -613,7 +1008,6 @@ String IdCasa = Preferences.GetIdCasa();
 
                 Dictionary<string, object> utenteAndCasaData = new Dictionary<string, object>();
 
-                string allText = "";
 
                 if (cloudResponse.HasError)
                 {
@@ -623,9 +1017,7 @@ String IdCasa = Preferences.GetIdCasa();
                 {
                     //
                 }
-
                 return utenteAndCasaData;
-
             });
         }
 

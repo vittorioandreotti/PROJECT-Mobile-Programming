@@ -24,7 +24,6 @@
                                 <!--   NOME E COGNOME-->
                                 <Label 
                                     x:Name="Nome"
-                                    Text="Nome" 
                                     TextColor="White"
                                     HorizontalTextAlignment="Start" 
                                     FontSize="Large" 
@@ -34,7 +33,6 @@
                                     />
                                 <Label 
                                     x:Name="Cognome"
-                                    Text="Cognome" 
                                     TextColor="White"
                                     HorizontalTextAlignment="Start" 
                                     FontSize="Large" 
@@ -44,7 +42,6 @@
                                     />
                                 <Label 
                                     x:Name="Email"
-                                    Text="email@email.com" 
                                     TextColor="White"
                                     HorizontalTextAlignment="Start" 
                                     FontSize="Small"  

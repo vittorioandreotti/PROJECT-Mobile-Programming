@@ -19,8 +19,7 @@
                 HorizontalTextAlignment="Center"
             />
             <Label
-                Margin="0,20,0,0"
-                Text ="{Binding Codice}"
+                Margin="0,20,0,0" 
                 x:Name="Codice"
                 FontSize="10"
                 HorizontalTextAlignment="Center"
@@ -28,7 +27,7 @@
             <Button 
                 Margin="0,20,0,0"
                 Text="Condividi" 
-                Command="{Binding Condividi}"
+                Clicked="Condividi"
             />
         </StackLayout>
     </ContentPage.Content>

@@ -9,11 +9,11 @@ using XamarinApp.Utils;
 
 namespace XamarinApp.ViewModels
 {
-    public class BolletteViewModel
+    public class SpesaComuneViewModel
     {
         public IList<Spesa> CardData { get; set; }
         UtentePreferences utentePreferences;
-        public BolletteViewModel ()
+        public SpesaComuneViewModel()
         {
             utentePreferences = new UtentePreferences();
             FirebaseFunctionHelper firebaseFunctionHelper = new FirebaseFunctionHelper();
@@ -21,25 +21,22 @@ namespace XamarinApp.ViewModels
 
             if (utentePreferences.IsAffittuario())
             {
-                taskListaSpese = firebaseFunctionHelper.ElencoBolletteAffittuario();
+                taskListaSpese = firebaseFunctionHelper.ElencoSpesaComuneAffittuario();
             }
             else
             {
-                taskListaSpese = firebaseFunctionHelper.ElencoBolletteProprietario();
+                taskListaSpese = firebaseFunctionHelper.ElencoSpesaComuneProprietario();
             }
             taskListaSpese.ContinueWith((Task<List<Spesa>> task) =>
-            {
-                task.Wait();
-                List<Spesa> listaSpesaComune = task.Result;
+             {
+                 task.Wait();
+                 List<Spesa> listaSpesaComune = task.Result;
 
-                foreach (Spesa spesa in listaSpesaComune)
-                {
-                    CardData.Add(spesa);
-                }
-            });
+                 foreach (Spesa spesa in listaSpesaComune)
+                 {
+                     CardData.Add(spesa);
+                 }
+             });
         }
     }
 }
-
-
-
