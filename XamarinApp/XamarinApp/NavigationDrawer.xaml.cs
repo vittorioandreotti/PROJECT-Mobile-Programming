@@ -1,9 +1,13 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinApp.Pages;
 using XamarinApp.Utils;
+using XamarinApp.Models.Helpers;
+using System.Threading.Tasks;
+
 
 namespace XamarinApp
 {
@@ -16,22 +20,53 @@ namespace XamarinApp
         public NavigationDrawer()
         {
             InitializeComponent();
-
+            utentePreferences = new UtentePreferences();
             InitUserData();
         }
 
         private void InitUserData()
         {
             // Chiamata a cloud functions
-                // Lettura dati getUtenteAndCasa in utentePreferences
-                    // Dopo delle shared preferences, chiamate InitUI()
+            HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("getUtenteAndCasa");
+            functionsCaller.Call().ContinueWith(HandleNavDrawerResponse).ContinueWith(InitUI);
+            // Dopo delle shared preferences, chiamate InitUI()
+
         }
 
-        private void InitUI()
+        // Lettura dati getUtenteAndCasa in utentePreferences
+        private void HandleNavDrawerResponse(Task<CloudFunctionResponse> taskCloudResponse)
         {
+            taskCloudResponse.Wait();
+            CloudFunctionResponse cloudResponse = taskCloudResponse.Result;        
+
+            if (cloudResponse.HasError)
+            {
+                //
+            }
+            else
+            {
+                JObject casa = (JObject)cloudResponse.JsonData["casa"];
+                JObject utente = (JObject)cloudResponse.JsonData["utente"];
+
+                utentePreferences.SetIdCasa((string) casa["id"]);
+                utentePreferences.SetNomeCasa((string)casa["nome"]);
+                utentePreferences.SetIndirizzoCasa((string)casa["indirizzo"]);
+                utentePreferences.SetIdUtente((string)utente["id"]);
+                utentePreferences.SetNome((string)utente["nome"]);
+                utentePreferences.SetCognome((string)utente["cognome"]);
+                utentePreferences.SetTipo((string)utente["tipo"]);
+            }
+        }
+
+        private void InitUI(Task task)
+        {
+            task.Wait();
             menu = new List<MenuItems>();
 
-            utentePreferences = new UtentePreferences();
+            Nome.Text = utentePreferences.GetNome();
+            Cognome.Text = utentePreferences.GetCognome();
+            Email.Text = utentePreferences.GetEmail();
+
             if (utentePreferences.IsAffittuario())
             {
                 menu.Add(new MenuItems { OptionName = "Home", Icon = "Home" });

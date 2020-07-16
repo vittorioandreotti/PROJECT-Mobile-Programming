@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using XamarinApp.Helpers;
 using XamarinApp.Utils;
@@ -202,27 +203,27 @@ namespace XamarinApp
 
 
 
-        public void CreateFromHashMap(Dictionary<String, Object> SpesaSingola)
+        public void CreateFromHashMap(JObject SpesaSingola)
         {
+            JToken tmp;
+            if(SpesaSingola.TryGetValue("prezzo", out tmp)) this.Prezzo = (Double)tmp;
+            if (SpesaSingola.TryGetValue("idSpesa", out tmp)) this.IdSpesa = (String)tmp;
+            if (SpesaSingola.TryGetValue("descrizione", out tmp)) this.Descrizione = (String)tmp;
+            if (SpesaSingola.TryGetValue("tipo", out tmp)) this.Tipo = (String)tmp;
+            if (SpesaSingola.TryGetValue("titolo", out tmp)) this.Titolo = (String)tmp;
+            if (SpesaSingola.TryGetValue("categoria", out tmp)) this.Categoria = (String)tmp;
 
-            this.Prezzo = (Double)SpesaSingola["prezzo"];
-            this.IdSpesa = (String)SpesaSingola["idSpesa"];
-            this.Descrizione = (String)SpesaSingola["descrizione"];
-            this.Tipo = (String)SpesaSingola["tipo"];
-            this.Titolo = (String)SpesaSingola["titolo"];
-            this.Categoria = (String)SpesaSingola["categoria"];
+            if (SpesaSingola.TryGetValue("nomeUtente", out tmp)) this.NomeUtente = (String)tmp;
+            if (SpesaSingola.TryGetValue("cognomeUtente", out tmp)) this.CognomeUtente = (String)tmp;
 
-            this.NomeUtente = (String)SpesaSingola["nomeUtente"];
-            this.CognomeUtente = (String)SpesaSingola["cognomeUtente"];
+            if (SpesaSingola.TryGetValue("dataInserimento", out tmp)) this.DataInserimento = Helper.FromMillisToDate((long) tmp);
+            if (SpesaSingola.TryGetValue("dataPagamento", out tmp)) this.DataPagamento = Helper.FromMillisToDate((long)tmp);
+            if (SpesaSingola.TryGetValue("dataScadenza", out tmp)) this.DataScadenza = Helper.FromMillisToDate((long)tmp);
+
+            if (SpesaSingola.TryGetValue("nome", out tmp)) this.Nome = (String)tmp;
+            if (SpesaSingola.TryGetValue("idUtente", out tmp)) this.IdUtente = (String)tmp;
 
             
-            this.DataInserimento = Helper.FromMillisToDate((long)SpesaSingola["dataInserimento"]);
-            this.DataPagamento = Helper.FromMillisToDate((long)SpesaSingola["dataPagamento"]);
-            this.DataScadenza = Helper.FromMillisToDate((long)SpesaSingola["dataScadenza"]);
-            
-
-            this.Nome = (String)SpesaSingola["nome"];
-            this.IdUtente = (String)SpesaSingola["idUtente"];
         }
     }
 
