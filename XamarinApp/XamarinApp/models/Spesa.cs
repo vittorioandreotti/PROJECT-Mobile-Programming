@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using XamarinApp.Helpers;
+using XamarinApp.Models.Helpers;
 using XamarinApp.Utils;
 
 namespace XamarinApp
@@ -201,32 +202,49 @@ namespace XamarinApp
                     .TotalMilliseconds != 0;
         }
 
-
-
         public void CreateFromHashMap(JObject SpesaSingola)
         {
             JToken tmp;
-            if(SpesaSingola.TryGetValue("prezzo", out tmp)) this.Prezzo = (Double)tmp;
-            if (SpesaSingola.TryGetValue("idSpesa", out tmp)) this.IdSpesa = (String)tmp;
-            if (SpesaSingola.TryGetValue("descrizione", out tmp)) this.Descrizione = (String)tmp;
-            if (SpesaSingola.TryGetValue("tipo", out tmp)) this.Tipo = (String)tmp;
-            if (SpesaSingola.TryGetValue("titolo", out tmp)) this.Titolo = (String)tmp;
-            if (SpesaSingola.TryGetValue("categoria", out tmp)) this.Categoria = (String)tmp;
 
-            if (SpesaSingola.TryGetValue("nomeUtente", out tmp)) this.NomeUtente = (String)tmp;
-            if (SpesaSingola.TryGetValue("cognomeUtente", out tmp)) this.CognomeUtente = (String)tmp;
+            if(SpesaSingola.TryGetValue("prezzo", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)) )
+                this.Prezzo = (Double)tmp;
+            
+            if (SpesaSingola.TryGetValue("idSpesa", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.IdSpesa = (String)tmp;
+            
+            if (SpesaSingola.TryGetValue("descrizione", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.Descrizione = (String)tmp;
+            
+            if (SpesaSingola.TryGetValue("tipo", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.Tipo = (String)tmp;
+            
+            if (SpesaSingola.TryGetValue("titolo", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.Titolo = (String)tmp;
+            
+            if (SpesaSingola.TryGetValue("categoria", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.Categoria = (String)tmp;
 
-            if (SpesaSingola.TryGetValue("dataInserimento", out tmp))
+            if (SpesaSingola.TryGetValue("nomeUtente", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.NomeUtente = (String)tmp;
+
+            if (SpesaSingola.TryGetValue("cognomeUtente", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.CognomeUtente = (String)tmp;
+
+            if (SpesaSingola.TryGetValue("dataInserimento", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
                 this.DataInserimento = Helper.FromMillisToDate((long) tmp);
-            if (SpesaSingola.TryGetValue("dataPagamento", out tmp))
+
+            if (SpesaSingola.TryGetValue("dataPagamento", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
                 this.DataPagamento = Helper.FromMillisToDate((long)tmp);
-            if (SpesaSingola.TryGetValue("dataScadenza", out tmp))
+
+            if (SpesaSingola.TryGetValue("dataScadenza", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
                 this.DataScadenza = Helper.FromMillisToDate((long)tmp);
 
-            if (SpesaSingola.TryGetValue("nome", out tmp)) this.Nome = (String)tmp;
-            if (SpesaSingola.TryGetValue("idUtente", out tmp)) this.IdUtente = (String)tmp;
+            if (SpesaSingola.TryGetValue("nome", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.Nome = (String)tmp;
 
-            
+            if (SpesaSingola.TryGetValue("idUtente", out tmp) && !(JsonHelper.IsJsonTokenNull(tmp)))
+                this.IdUtente = (String)tmp;
+
         }
     }
 
