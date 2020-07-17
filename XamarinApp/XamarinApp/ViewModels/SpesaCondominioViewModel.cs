@@ -13,6 +13,7 @@ namespace XamarinApp.ViewModels
     {
         public IList<Spesa> CardData { get; set; }
         UtentePreferences utentePreferences;
+        public object SelectedItem { get; set; }
         public SpesaCondominioViewModel()
         {
             utentePreferences = new UtentePreferences();
@@ -31,6 +32,7 @@ namespace XamarinApp.ViewModels
             {
                 task.Wait();
                 List<Spesa> listaSpesaComune = task.Result;
+                CardData = new ObservableCollection<Spesa>();
 
                 foreach (Spesa spesa in listaSpesaComune)
                 {
