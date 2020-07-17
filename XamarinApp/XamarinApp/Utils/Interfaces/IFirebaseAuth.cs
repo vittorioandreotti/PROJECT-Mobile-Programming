@@ -8,7 +8,7 @@ namespace XamarinApp.Utils.Interfaces
     public interface IFirebaseAuth
     {
         Task<string> LoginWithEmailPassword(string email, string password);
-        Task<string> SignInWithEmailPassword(string email, string password);
+        Task<string> RegisterWithEmailAndPassword(string email, string password);
 
 
     }

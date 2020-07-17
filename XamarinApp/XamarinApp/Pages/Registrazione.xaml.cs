@@ -16,7 +16,9 @@ namespace XamarinApp.Pages
         {
             var vm = new RegistrazioneViewModel();
             this.BindingContext = vm;
-            vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Error", "Inserire tutti i campi", "OK");
+            vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Errore nella registrazione", "Inserire tutti i campi.", "OK");
+            vm.DisplayInvalidPasswordPrompt += () => DisplayAlert("Errore nella registrazione", "La password deve combaciare con la password di conferma.", "OK");
+            vm.DisplayRegistrazioneFallita += () => DisplayAlert("Registrazione Fallita", "Registrazione fallita.", "OK");
             InitializeComponent();
         }
     }
