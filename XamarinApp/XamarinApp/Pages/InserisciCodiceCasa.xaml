@@ -6,25 +6,28 @@
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.InserisciCodiceCasa"
              Padding="50"
+             Visual="Material"
              >
     <ContentPage.Content>
         <StackLayout
-            Margin="0,100,0,0">
+            Margin="0,30,0,0">
             <Label 
                 Text="Entra in una casa"
                 FontSize="20"
-                TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" 
-                Margin="0,0,0,50"
+                Margin="0,0,0,20"
              />
             <Entry x:Name="CodiceCasa"
                    Text ="{Binding CodiceCasa}"        
                    Placeholder="Codice Casa"
+                   Visual="Default"
+                    Margin="0,0,0,30"
              />
             
             <Button 
                 Text="Partecipa" 
+                Margin="15,0,15,0"
                 Command="{Binding SubmitCommand}"
              />
         </StackLayout>

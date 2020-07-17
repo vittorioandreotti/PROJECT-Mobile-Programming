@@ -768,7 +768,7 @@ namespace XamarinApp.Utils
             inputData.Add("nome", nome);
             inputData.Add("cognome", cognome);
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;

@@ -7,7 +7,8 @@ using XamarinApp.Pages;
 using XamarinApp.Utils;
 using XamarinApp.Models.Helpers;
 using System.Threading.Tasks;
-
+using XamarinApp.LoadingService;
+using Rg.Plugins.Popup.Services;
 
 namespace XamarinApp
 {
@@ -17,8 +18,11 @@ namespace XamarinApp
         List<MenuItems> menu;
         UtentePreferences utentePreferences;
 
+        bool IsMenuReady { get; set; }
+
         public NavigationDrawer()
         {
+            IsMenuReady = false;
             InitializeComponent();
             utentePreferences = new UtentePreferences();
             InitUserData();
@@ -26,6 +30,11 @@ namespace XamarinApp
 
         private void InitUserData()
         {
+
+            Device.BeginInvokeOnMainThread(() => {
+                StartLoading();
+            });
+
             // Controllo se l'utente ha già le shared preferences settate
             if ( utentePreferences.Contains(UtentePreferences.KeyTipo) )
             {
@@ -100,10 +109,21 @@ namespace XamarinApp
                 menu.Add(new MenuItems { OptionName = "Profilo", Icon = "Profilo" });
                 menu.Add(new MenuItems { OptionName = "Logout", Icon = "Logout" });
             }
-            navigationList.ItemsSource = menu;
+
             Detail = new NavigationPage(new Home());
 
+            IsMenuReady = true;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Wait for menu to be ready. ( Aspetta un tempo molto basso, non blocca l'UI )
+            while (!IsMenuReady) ;
+            navigationList.ItemsSource = menu;
             SetNameSurnameAndEmail();
+
         }
 
         private void SetNameSurnameAndEmail()
@@ -115,6 +135,10 @@ namespace XamarinApp
             Nome.Text = nome;
             Cognome.Text = cognome;
             Email.Text = email;
+
+            Device.BeginInvokeOnMainThread(() => {
+                StopLoading();
+            });
         }
 
         private void Item_Tapped(object sender, ItemTappedEventArgs e)
@@ -211,6 +235,19 @@ namespace XamarinApp
                 Console.WriteLine(ex.Message);
             }
         }
+
+        private async void StartLoading()
+        {
+            LoadingPage loadingPage = new LoadingPage();
+
+            await PopupNavigation.Instance.PushAsync(loadingPage);
+        }
+
+        private async void StopLoading()
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
+
     }
 
 
