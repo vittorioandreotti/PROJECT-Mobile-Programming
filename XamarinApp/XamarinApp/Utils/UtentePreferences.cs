@@ -17,7 +17,7 @@ namespace XamarinApp.Utils
         private const string KeyNome = "Nome";
         private const string KeyCognome = "Cognome";
         private const string KeyEmail = "Email";
-        private const string KeyTipo = "TipoUtente";
+        public const string  KeyTipo = "TipoUtente";
 
         private const string KeyIdCasa = "IdCasa";
 

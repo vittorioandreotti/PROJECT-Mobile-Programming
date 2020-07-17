@@ -27,7 +27,7 @@ namespace XamarinApp
         private void InitUserData()
         {
             // Controllo se l'utente ha già le shared preferences settate
-            if ( utentePreferences.GetTipo().Length > 0)
+            if ( utentePreferences.Contains(UtentePreferences.KeyTipo) )
             {
                 Task.Factory.StartNew(InitUI);
                 return;
@@ -148,7 +148,7 @@ namespace XamarinApp
                         break;
                     case "Bollette":
                         {
-                            //Detail.Navigation.PushAsync(new Bollette());
+                            Detail.Navigation.PushAsync(new Bollette());
                             IsPresented = false;
                         }
                         break;

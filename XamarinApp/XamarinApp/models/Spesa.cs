@@ -216,9 +216,12 @@ namespace XamarinApp
             if (SpesaSingola.TryGetValue("nomeUtente", out tmp)) this.NomeUtente = (String)tmp;
             if (SpesaSingola.TryGetValue("cognomeUtente", out tmp)) this.CognomeUtente = (String)tmp;
 
-            if (SpesaSingola.TryGetValue("dataInserimento", out tmp)) this.DataInserimento = Helper.FromMillisToDate((long) tmp);
-            if (SpesaSingola.TryGetValue("dataPagamento", out tmp)) this.DataPagamento = Helper.FromMillisToDate((long)tmp);
-            if (SpesaSingola.TryGetValue("dataScadenza", out tmp)) this.DataScadenza = Helper.FromMillisToDate((long)tmp);
+            if (SpesaSingola.TryGetValue("dataInserimento", out tmp))
+                this.DataInserimento = Helper.FromMillisToDate((long) tmp);
+            if (SpesaSingola.TryGetValue("dataPagamento", out tmp))
+                this.DataPagamento = Helper.FromMillisToDate((long)tmp);
+            if (SpesaSingola.TryGetValue("dataScadenza", out tmp))
+                this.DataScadenza = Helper.FromMillisToDate((long)tmp);
 
             if (SpesaSingola.TryGetValue("nome", out tmp)) this.Nome = (String)tmp;
             if (SpesaSingola.TryGetValue("idUtente", out tmp)) this.IdUtente = (String)tmp;
