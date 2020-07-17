@@ -48,6 +48,8 @@ namespace XamarinApp.Pages
         {
             task.Wait();
             string token = task.Result;
+            string Email = utentePreferences.GetLoginUsername();
+            utentePreferences.SetEmail(Email);
             utentePreferences.SetAuthToken(token);
         }
 

@@ -46,6 +46,7 @@ namespace XamarinApp.Pages
                     if (Token != "")
                     {
                         utentePreferences.SetAuthToken(Token);
+                        utentePreferences.SetEmail(Email);
                         utentePreferences.SetLoginUsername(Email);
                         utentePreferences.SetLoginPassword(Password);
 

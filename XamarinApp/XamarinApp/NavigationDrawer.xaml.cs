@@ -74,10 +74,6 @@ namespace XamarinApp
         {
             menu = new List<MenuItems>();
 
-            Nome.Text = utentePreferences.GetNome();
-            Cognome.Text = utentePreferences.GetCognome();
-            Email.Text = utentePreferences.GetEmail();
-
             if (utentePreferences.IsAffittuario())
             {
                 menu.Add(new MenuItems { OptionName = "Home", Icon = "Home" });
@@ -106,6 +102,19 @@ namespace XamarinApp
             }
             navigationList.ItemsSource = menu;
             Detail = new NavigationPage(new Home());
+
+            SetNameSurnameAndEmail();
+        }
+
+        private void SetNameSurnameAndEmail()
+        {
+            string nome = utentePreferences.GetNome();
+            string cognome = utentePreferences.GetCognome();
+            string email = utentePreferences.GetEmail();
+
+            Nome.Text = nome;
+            Cognome.Text = cognome;
+            Email.Text = email;
         }
 
         private void Item_Tapped(object sender, ItemTappedEventArgs e)
