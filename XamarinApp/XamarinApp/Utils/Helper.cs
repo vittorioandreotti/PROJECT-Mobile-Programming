@@ -8,7 +8,7 @@ namespace XamarinApp.Utils
 {
     abstract class Helper
     {
-        private static string VALID_EMAIL_ADDRESS_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        // private static string VALID_EMAIL_ADDRESS_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
         public static Boolean IsEmailValid(String EmailStr)
         {

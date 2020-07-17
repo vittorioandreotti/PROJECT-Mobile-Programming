@@ -25,7 +25,7 @@ namespace XamarinApp.Pages
             utentePreferences = new UtentePreferences();
             InitializeComponent();
 
-            utentePreferences.ClearPreferences();
+            // utentePreferences.ClearPreferences();
 
             if(utentePreferences.Contains(UtentePreferences.KeyLoginUsername) && utentePreferences.Contains(UtentePreferences.KeyLoginPassword) )
             {

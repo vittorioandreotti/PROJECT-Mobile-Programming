@@ -26,10 +26,16 @@ namespace XamarinApp
 
         private void InitUserData()
         {
+            // Controllo se l'utente ha già le shared preferences settate
+            if ( utentePreferences.GetTipo().Length > 0)
+            {
+                Task.Factory.StartNew(InitUI);
+                return;
+            }
+
             // Chiamata a cloud functions
             HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("getUtenteAndCasa");
             functionsCaller.Call().ContinueWith(HandleNavDrawerResponse).ContinueWith(InitUI);
-            // Dopo delle shared preferences, chiamate InitUI()
 
         }
 
@@ -61,6 +67,11 @@ namespace XamarinApp
         private void InitUI(Task task)
         {
             task.Wait();
+            InitUI();
+        }
+
+        private void InitUI()
+        {
             menu = new List<MenuItems>();
 
             Nome.Text = utentePreferences.GetNome();
@@ -107,7 +118,7 @@ namespace XamarinApp
                 {
                     case "Home":
                         {
-                            Detail = new NavigationPage(new Home());
+                            Detail.Navigation.PushAsync(new Home());
                             IsPresented = false;
                         }
                         break;
@@ -149,7 +160,7 @@ namespace XamarinApp
                         break;
                     case "Gestisci spesa comune":
                         {
-                            Detail = new NavigationPage(new InserimentoSpesaComune());
+                            Detail.Navigation.PushAsync(new InserimentoSpesaComune());
                             IsPresented = false;
                         }
                         break;
@@ -180,15 +191,15 @@ namespace XamarinApp
                     case "Logout":
                         {
                             utentePreferences.ClearPreferences();
-                            this.Navigation.PopAsync();
                             IsPresented = false;
+                            App.Current.MainPage = new NavigationPage(new ScegliLoginRegistrazione());
+                            return;
                         }
-                        break;
                 }
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
         }
     }

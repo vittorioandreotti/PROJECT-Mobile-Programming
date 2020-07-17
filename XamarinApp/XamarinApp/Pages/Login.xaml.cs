@@ -61,8 +61,8 @@ namespace XamarinApp.Pages
                                     // Inizializzato
                                     Device.BeginInvokeOnMainThread(() => {
                                         StopLoading();
+                                        App.Current.MainPage = new NavigationDrawer();
                                     });
-                                    App.Current.MainPage = new NavigationDrawer();
                                 }
                                 else
                                 {

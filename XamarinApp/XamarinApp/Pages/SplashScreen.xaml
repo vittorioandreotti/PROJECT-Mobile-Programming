@@ -11,7 +11,7 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
             <Image
-                Source="LogoApp"
+                Source="Images/LogoApp"
                 HorizontalOptions="Start"
                 VerticalOptions="Center"
             />

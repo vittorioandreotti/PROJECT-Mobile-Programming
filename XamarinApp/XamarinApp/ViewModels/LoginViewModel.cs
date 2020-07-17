@@ -45,7 +45,7 @@ namespace XamarinApp.ViewModels
 
             SubmitCommand = new Command(OnSubmit);
         }
-        public async void OnSubmit()
+        public void OnSubmit()
         {
             if ( email == null && password == null || email.Length ==  0 || password.Length == 0 || !Utils.Helper.IsEmailValid(Email) )
             {

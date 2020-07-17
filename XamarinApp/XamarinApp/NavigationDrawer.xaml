@@ -96,4 +96,11 @@
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
 </MasterDetailPage>

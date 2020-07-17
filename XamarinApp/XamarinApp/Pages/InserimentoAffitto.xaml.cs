@@ -30,7 +30,7 @@ namespace XamarinApp.Pages
                 await DisplayAlert("Errore", "Inserisci tutti i campi per continuare", "CHIUDI");
                 return;
             }
-            await DisplayAlert("DATI", spesa.Titolo, "OK");
+            // await DisplayAlert("DATI", spesa.Titolo, "OK");
         }
 
     }
