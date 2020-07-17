@@ -15,7 +15,6 @@
             <StackLayout>
                 <Label
                     Text="Categoria"
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <Entry 
@@ -28,7 +27,6 @@
 
             <StackLayout>
                 <Label Text="Data" 
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <DatePicker
@@ -39,7 +37,6 @@
 
             <StackLayout>
                 <Label Text="Data scadenza" 
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <DatePicker
@@ -50,7 +47,6 @@
 
             <StackLayout>
                 <Label Text="Importo( in € )" 
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <Entry

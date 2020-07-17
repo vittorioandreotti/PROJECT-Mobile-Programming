@@ -44,7 +44,7 @@
             />
                 <Button 
                 Text="LOG-OUT"
-                Command="{Binding LogOut}"
+                Clicked = "LogOut"                
             />
                 <Label 
                 Text="Modifica password:"

@@ -5,12 +5,20 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XamarinApp.LoadingService;
+using Rg.Plugins.Popup.Services;
+using XamarinApp.Utils;
+using System.Threading.Tasks;
 
 namespace XamarinApp.ViewModels
 {
     class InserimentoSpesaCondominioViewModel : INotifyPropertyChanged
     {
-        public Action<Spesa> DisplayInserisciTuttiICampi;
+        public Action DisplayInserisciTuttiICampi;
+        public Action DisplayErrore;
+        public Func<Task> DisplaySuccesso;
+
+
         public ICommand InserisciSpesaCondominioClick { protected set; get; }
 
         public Spesa _SpesaModel;
@@ -66,17 +74,55 @@ namespace XamarinApp.ViewModels
 
         private void InserisciSpesaCondominio()
         {
+            if (PrezzoSpesa == 0 || TitoloSpesa.Length == 0)
+            {
+                DisplayInserisciTuttiICampi();
+                return;
+            }
 
-            if( _SpesaModel.Titolo.Length == 0 || _SpesaModel.DataInserimento.ToString().Length == 0 || _SpesaModel.Prezzo.ToString().Length == 0 ) 
-               {
+            Device.BeginInvokeOnMainThread(async () => {
+                await StartLoading();
+            });
 
-               }else { DisplayInserisciTuttiICampi(_SpesaModel); }
-               
+            FirebaseFunctionHelper firebaseFunction = new FirebaseFunctionHelper();
+            firebaseFunction
+                            .InserisciSpesaCondominio(PrezzoSpesa, TitoloSpesa, Helper.FormatDateToString(DataInserimentoSpesa))
+                            .ContinueWith((Task<bool> taskInserisciSpesaCondominio) => {
+                                taskInserisciSpesaCondominio.Wait();
+
+                                if (taskInserisciSpesaCondominio.Result)
+                                {
+                                    //Spesa inserita 
+                                    Device.BeginInvokeOnMainThread(async () => {
+                                        await StopLoading();
+                                        App.Current.MainPage = new NavigationDrawer();
+                                    });
+                                    return;
+                                }
+                                else
+                                {
+                                    //Spesa non inserita
+                                    Device.BeginInvokeOnMainThread(async () => {
+                                        await StopLoading();
+                                        await DisplaySuccesso();
+                                        DisplayErrore();
+                                    });
+                                }
+                            });
         }
 
 
+        private Task StartLoading()
+        {
+            LoadingPage loadingPage = new LoadingPage();
 
+            return PopupNavigation.Instance.PushAsync(loadingPage);
+        }
 
+        private Task StopLoading()
+        {
+            return PopupNavigation.Instance.PopAsync();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

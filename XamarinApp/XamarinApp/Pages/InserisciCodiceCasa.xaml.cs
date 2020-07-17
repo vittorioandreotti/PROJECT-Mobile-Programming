@@ -16,7 +16,7 @@ namespace XamarinApp.Pages
         {
             var vm = new InserisciCodiceCasaViewModel();
             this.BindingContext = vm;
-            vm.DisplayInvalidCodiceCasaPrompt += () => DisplayAlert("Error", "Inserire il codice della casa corretto", "OK");
+            vm.DisplayInvalidCodiceCasaPrompt += () => DisplayAlert("Errore", "Codice casa non valido", "OK");
             InitializeComponent();
         }
     }

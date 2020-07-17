@@ -12,7 +12,7 @@ namespace XamarinApp.Utils.Interfaces
 
         Task<Boolean> InserisciProprietario();
 
-        Task<Boolean> PartecipaCasa();
+        Task<Boolean> PartecipaCasa(String idCasa);
 
         Task<Boolean> InserisciAffittuario();
 
