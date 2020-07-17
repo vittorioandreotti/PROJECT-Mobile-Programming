@@ -12,12 +12,12 @@ using XamarinApp.Utils;
 
 namespace XamarinApp.ViewModels
 {
-    public class SpesaCondominioViewModel
+    public class SpeseViewModel
     {
         public IList<Spesa> CardData { get; set; }
         UtentePreferences utentePreferences;
         public object SelectedItem { get; set; }
-        public SpesaCondominioViewModel()
+        public SpeseViewModel()
         {
             Device.BeginInvokeOnMainThread(() => {
                 StartLoading();
@@ -30,22 +30,22 @@ namespace XamarinApp.ViewModels
 
             if (utentePreferences.IsAffittuario())
             {
-                taskListaSpese = firebaseFunctionHelper.ElencoSpesaCondominioAffittuario();
+                taskListaSpese = firebaseFunctionHelper.ElencoAffittoAffittuario();
             }
             else
             {
-                taskListaSpese = firebaseFunctionHelper.ElencoSpesaCondominioProprietario();
+                taskListaSpese = firebaseFunctionHelper.ElencoAffittoProprietario();
             }
             taskListaSpese.ContinueWith((Task<List<Spesa>> task) =>
             {
                 task.Wait();
                 List<Spesa> listaSpesaComune = task.Result;
 
-
                 foreach (Spesa spesa in listaSpesaComune)
                 {
                     CardData.Add(spesa);
                 }
+
                 Device.BeginInvokeOnMainThread(() => {
                     StopLoading();
                 });

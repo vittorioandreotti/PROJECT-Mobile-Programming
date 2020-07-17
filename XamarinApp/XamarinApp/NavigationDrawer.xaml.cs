@@ -139,19 +139,19 @@ namespace XamarinApp
                         break;
                     case "Spese condominio":
                         {
-                            //Detail.Navigation.PushAsync(new SpeseCondominio());
+                            Detail.Navigation.PushAsync(new SpeseCondominio());
                             IsPresented = false;
                         }
                         break;
                     case "Spese in comune":
                         {
-                            //Detail = new NavigationPage(new SpesaComune());
+                            Detail = new NavigationPage(new SpeseComune());
                             IsPresented = false;
                         }
                         break;
                     case "Affitto":
                         {
-                            //Detail.Navigation.PushAsync(new Affitto());
+                            Detail.Navigation.PushAsync(new Affitto());
                             IsPresented = false;
                         }
                         break;

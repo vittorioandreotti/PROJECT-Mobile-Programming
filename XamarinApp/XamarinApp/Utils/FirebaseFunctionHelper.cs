@@ -90,8 +90,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -132,8 +132,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -174,8 +174,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -216,8 +216,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -258,8 +258,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -302,8 +302,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -343,8 +343,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -384,8 +384,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
@@ -425,8 +425,8 @@ namespace XamarinApp.Utils
                     JArray daPagareArr = (JArray)tuttleLeSpeseObj["daPagare"];
                     JArray pagateArr = (JArray)tuttleLeSpeseObj["pagate"];
 
-                    tutteLeSpeseArr.Add(daPagareArr);
-                    tutteLeSpeseArr.Add(pagateArr);
+                    foreach (JObject tmpSpesa in daPagareArr) tutteLeSpeseArr.Add(tmpSpesa);
+                    foreach (JObject tmpSpesa in pagateArr) tutteLeSpeseArr.Add(tmpSpesa);
 
                     foreach (JObject spesa in tutteLeSpeseArr)
                     {
