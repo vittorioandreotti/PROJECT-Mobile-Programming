@@ -51,18 +51,16 @@ namespace XamarinApp.Utils
             return new DateTime();
         }
 
-        public static String FormatDateToStringWithHour(DateTime Data)
+        public static String FormatDateToStringWithHour(DateTime data)
         {
-            if (Data == null) return "-";
-            // return new SimpleDateFormat("dd/MM/yyyy HH:mm").Format(Data);
-            return "";
+            if (data == null) return "-";
+            return data.ToString("dd/MM/yyyy HH:mm");
         }
 
-        public static String FormatDateToString(DateTime Data)
+        public static String FormatDateToString(DateTime data)
         {
-            if (Data == null) return "-";
-            // return new SimpleDateFormat("dd/MM/yyyy").Format(Data);
-            return "";
+            if (data == null) return "-";
+            return data.ToString("dd/MM/yyyy");
         }
 
         public static String GetDateFormat()

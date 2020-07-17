@@ -13,7 +13,6 @@
             <Label 
                 Text="Ecco il tuo codice, pronto per essere condiviso"
                 FontSize="20"
-                TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="StartAndExpand"
                 HorizontalTextAlignment="Center"

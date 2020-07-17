@@ -15,7 +15,6 @@
             <StackLayout>
                 <Label
                     Text="Nome spesa"
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <Entry 
@@ -28,7 +27,6 @@
 
             <StackLayout>
                 <Label Text="Data" 
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <DatePicker
@@ -40,7 +38,6 @@
             <StackLayout>
                 <Label
                     Text="Descrizione"
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <Entry 
@@ -53,7 +50,6 @@
 
             <StackLayout>
                 <Label Text="Importo mensile ( in € )" 
-                    TextColor="Accent"
                     FontSize="Caption"
                 />
                 <Entry

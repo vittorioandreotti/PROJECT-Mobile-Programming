@@ -12,7 +12,6 @@
             <Label 
                 Text="Creazione casa"
                 FontSize="20"
-                TextColor="Accent"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand"
             />

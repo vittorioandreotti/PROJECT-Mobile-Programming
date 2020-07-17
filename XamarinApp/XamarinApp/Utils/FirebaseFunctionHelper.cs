@@ -20,7 +20,7 @@ namespace XamarinApp.Utils
             inputData.Add("indirizzo", indirizzo);
 
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -44,7 +44,7 @@ namespace XamarinApp.Utils
             Dictionary<string, object> inputData = new Dictionary<string, object>();
             inputData.Add("idCasa", utentePreferences.GetIdCasa());
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -559,7 +559,7 @@ namespace XamarinApp.Utils
             inputData.Add("dataScadenza", stringDataScadenza); 
             inputData.Add("tipoSpesa", "affitto");
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -588,7 +588,7 @@ namespace XamarinApp.Utils
             inputData.Add("dataScadenza", stringDataScadenza);
             inputData.Add("tipoSpesa", "bolletta");
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -617,7 +617,7 @@ namespace XamarinApp.Utils
             inputData.Add("descrizione", descrizione);
             inputData.Add("tipoSpesa", "comune");
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -645,7 +645,7 @@ namespace XamarinApp.Utils
             inputData.Add("dataInserimento", stringDataAffitto);
             inputData.Add("tipoSpesa", "condominio");
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -691,7 +691,7 @@ namespace XamarinApp.Utils
             inputData.Add("newPassword", newPassword);
             inputData.Add("newPasswordRepeat", newPasswordRepeat);
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -732,15 +732,15 @@ namespace XamarinApp.Utils
             });
         }
 
-        public Task<bool> PartecipaCasa()
+        public Task<bool> PartecipaCasa(string idCasa)
         {
             UtentePreferences utentePreferences = new UtentePreferences();
             HttpsFunctionsCaller functionsCaller = new HttpsFunctionsCaller("partecipaCasa");
 
             Dictionary<string, object> inputData = new Dictionary<string, object>();
-            inputData.Add("idCasa", utentePreferences.GetIdCasa());
+            inputData.Add("idCasa", idCasa);
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
@@ -768,7 +768,7 @@ namespace XamarinApp.Utils
             inputData.Add("nome", nome);
             inputData.Add("cognome", cognome);
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
