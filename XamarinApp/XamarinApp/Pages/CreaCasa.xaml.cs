@@ -14,11 +14,21 @@ namespace XamarinApp.Pages
     {
         public CreaCasa()
         {
+            InitializeComponent();
             var vm = new CreazioneCasaViewModel();
             this.BindingContext = vm;
-            vm.DisplayInvalidCreaCasaPrompt += () => DisplayAlert("Error", "Inserire tutti i campi", "OK");
-            InitializeComponent();
+            vm.DisplayErrore = DisplayErrore;
+            vm.DisplaySuccesso = DisplaySuccessoInserimento;
+        }
 
+        async void DisplayErrore()
+        {
+            await DisplayAlert("Errore", "Qualcosa è andato storto", "CHIUDI");
+        }
+
+        Task DisplaySuccessoInserimento()
+        {
+            return DisplayAlert("Successo!", "Partecipazione alla casa effettuata con successo.", "CHIUDI");
         }
     }
 }
