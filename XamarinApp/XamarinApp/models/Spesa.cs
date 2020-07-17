@@ -136,6 +136,13 @@ namespace XamarinApp
         }
 
         private DateTime _dataPagamento;
+        public string DataPagamentoStr
+        {
+            get
+            {
+                return Helper.FormatDateToStringWithHour(this._dataPagamento);
+            }
+        }
         public DateTime DataPagamento
         {
             get { return _dataPagamento; }
@@ -191,15 +198,26 @@ namespace XamarinApp
             }
         }
 
+        public bool VisibilityNonPagata
+        {
+            get { return !this.IsSpesaPagata(); }
+        }
+
+        public bool VisibilityPagata
+        {
+            get { return this.IsSpesaPagata(); }
+        }
+
         public Spesa() { }
 
         public Boolean IsSpesaPagata()
         {
-            return 
-                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            return this.DataPagamento != null && this.DataPagamento.Year > 1970;
+                /*
+                 * new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                     .ToUniversalTime()
                     .Subtract(this.DataPagamento)
-                    .TotalMilliseconds != 0;
+                    .TotalMilliseconds != 0;*/
         }
 
         public void CreateFromHashMap(JObject SpesaSingola)

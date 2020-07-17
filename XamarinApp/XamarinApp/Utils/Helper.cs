@@ -46,15 +46,15 @@ namespace XamarinApp.Utils
         }
 
         public static DateTime FromStringToDateTime(String DateString, String OraString)
-        {
+        { 
             // return FromStringToDate(DateString + " " + OraString, "dd/MM/yyyy HH:mm");
             return new DateTime();
         }
 
         public static String FormatDateToStringWithHour(DateTime data)
         {
-            if (data == null) return "-";
-            return data.ToString("dd/MM/yyyy HH:mm");
+            if (Data == null || Data.Year <= 1971) return "-";
+            return Data.ToString("dd/MM/yyyy HH:mm");
         }
 
         public static String FormatDateToString(DateTime data)

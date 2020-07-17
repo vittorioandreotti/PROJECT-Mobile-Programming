@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinApp.Pages.SpeseCondominio"
              xmlns:view="clr-namespace:XamarinApp.Pages.Template"
              xmlns:viewModel="clr-namespace:XamarinApp.ViewModels"
-             mc:Ignorable="d"
-             x:Class="XamarinApp.Pages.Bollette"
-             Title="Bollette">
+             Title="Spese condominio">
     <ContentPage.BindingContext>
-        <viewModel:BolletteViewModel/>
+        <viewModel:SpesaCondominioViewModel/>
     </ContentPage.BindingContext>
 
     <StackLayout 
@@ -17,13 +17,13 @@
         <ListView 
             x:Name="listView" 
             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
-            RowHeight="150" 
+            RowHeight="150"
             ItemsSource="{Binding CardData}" 
             HasUnevenRows="True"  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <view:CardBollettaTemplate/>
+                        <view:CardSpeseCondominioTemplate/>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

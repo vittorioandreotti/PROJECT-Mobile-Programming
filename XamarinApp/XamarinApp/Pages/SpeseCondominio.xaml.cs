@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace XamarinApp.Pages.Template
+namespace XamarinApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BolletteTemplate : ContentView
+    public partial class SpeseCondominio : ContentPage
     {
-        public BolletteTemplate()
+        public SpeseCondominio()
         {
             InitializeComponent();
         }
