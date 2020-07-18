@@ -120,27 +120,36 @@
                         VerticalTextAlignment="Start"
                         FontSize="10"
                         Text="Affittuario:" 
-                        TextColor="Gray"/>
+                        TextColor="Gray"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
                         Text="{Binding NomeUtente}" 
-                        TextColor="#006064"/>
+                        TextColor="#006064"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
                         Text="{Binding CognomeUtente}" 
-                        TextColor="#006064"/>
+                        TextColor="#006064"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
                 </StackLayout>
                 <AbsoluteLayout 
                     VerticalOptions="Start" 
                     HorizontalOptions="End"
                     Grid.Column="1"
                     Grid.Row="1">
+                    <Button
+                        Text="Paga"
+                        Margin="20,-20,0,0"
+                        IsVisible="{Binding VisibilityNonPagata}"
+                        Command="{Binding Paga}"/>
                     <Label
                         x:Name="NonPagata"
+                        Margin="0,-45,0,0"
                         FontSize="20"
                         FontAttributes="Bold"
                         Text="NON PAGATA" 
@@ -148,6 +157,7 @@
                         IsVisible="{Binding VisibilityNonPagata}"/>
                     <Label
                         x:Name="Pagata"
+                        Margin="25,-5,0,0"
                         FontSize="20"
                         FontAttributes="Bold"
                         Text="PAGATA" 

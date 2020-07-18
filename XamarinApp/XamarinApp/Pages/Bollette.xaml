@@ -15,11 +15,10 @@
     <StackLayout 
         Orientation="Vertical">
         <ListView 
-            x:Name="listView" 
-            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+            x:Name="listView"
             RowHeight="150" 
             ItemsSource="{Binding CardData}" 
-            HasUnevenRows="True"  >
+            HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

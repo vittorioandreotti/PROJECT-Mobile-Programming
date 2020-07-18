@@ -1,9 +1,14 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Windows.Input;
+using Xamarin.Forms;
 using XamarinApp.Helpers;
 using XamarinApp.Models.Helpers;
 using XamarinApp.Utils;
+using XamarinApp.LoadingService;
+using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace XamarinApp
 {
@@ -152,6 +157,11 @@ namespace XamarinApp
                 {
                     _dataPagamento = value;
                     OnPropertyChanged(nameof(DataPagamento));
+                    OnPropertyChanged(nameof(DataPagamentoStr));
+
+                    OnPropertyChanged(nameof(VisibilityButtonPaga));
+                    OnPropertyChanged(nameof(VisibilityNonPagata));
+                    OnPropertyChanged(nameof(VisibilityPagata));
                 }
             }
         }
@@ -208,7 +218,73 @@ namespace XamarinApp
             get { return this.IsSpesaPagata(); }
         }
 
+
+        UtentePreferences utentePreferences = new UtentePreferences();
+        public bool VisibilityAffittuario
+        {
+            get { return utentePreferences.IsProprietario(); }
+        }
+
+        public bool VisibilityButtonPaga
+        {
+            get { return utentePreferences.IsAffittuario() && !this.IsSpesaPagata(); }
+        }
+
         public Spesa() { }
+
+        private Command pagaSpesaCommand;
+        public ICommand PagaSpesaCommand
+        {
+            get
+            {
+               pagaSpesaCommand = new Command( () => PagaSpesa(IdSpesa));
+               return pagaSpesaCommand;
+            }
+        }
+
+        public void PagaSpesa (object Parameter)
+        {
+            Device.BeginInvokeOnMainThread(() => {
+                StartLoading();
+            });
+
+            FirebaseFunctionHelper firebaseFunction = new FirebaseFunctionHelper();
+            firebaseFunction
+                    .PagaSpesa(IdSpesa)
+                    .ContinueWith((Task<bool> taskPagaSpesa) => {
+                        taskPagaSpesa.Wait();
+
+                        if (taskPagaSpesa.Result)
+                        {
+                            //Spesa pagata  
+                            Device.BeginInvokeOnMainThread(() => {
+                                StopLoading();
+                                DataPagamento = DateTime.Now;
+                            });
+                            return;
+                        }
+                        else
+                        {
+                            //Spesa non pagata
+                            Device.BeginInvokeOnMainThread(() => {
+                                StopLoading();
+                                
+                            });
+                        }
+                    });
+        }
+        private async void StartLoading()
+        {
+            LoadingPage loadingPage = new LoadingPage();
+
+            await PopupNavigation.Instance.PushAsync(loadingPage);
+        }
+
+        private async void StopLoading()
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
+    
 
         public Boolean IsSpesaPagata()
         {

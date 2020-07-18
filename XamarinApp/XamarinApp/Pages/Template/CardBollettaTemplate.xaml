@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.Template.CardBollettaTemplate">
     <Frame
+        IsEnabled="False"
         IsClippedToBounds="True"
         HasShadow="True"
         BackgroundColor="White" >
@@ -111,7 +112,7 @@
 
                 <StackLayout
                     Orientation="Vertical" 
-                    VerticalOptions="Start" 
+                    VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand"
                     Grid.Column="1"
                     Grid.Row="0">
@@ -120,27 +121,42 @@
                         VerticalTextAlignment="Start"
                         FontSize="10"
                         Text="Affittuario:" 
-                        TextColor="Gray"/>
+                        TextColor="Gray"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
                         Text="{Binding NomeUtente}" 
-                        TextColor="#006064"/>
+                        TextColor="#006064"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
                         Text="{Binding CognomeUtente}" 
-                        TextColor="#006064"/>
+                        TextColor="#006064"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
+
+                    <Button
+                        HorizontalOptions="End"
+                        VerticalOptions="EndAndExpand"
+                        Margin="0,0,17,0"
+                        Text="Paga"
+                        IsVisible="{Binding VisibilityButtonPaga}"
+                        Command="{Binding PagaSpesaCommand}"
+                        CommandParameter="{Binding IdSpesa}"
+                        />
                 </StackLayout>
                 <AbsoluteLayout 
                     VerticalOptions="Start" 
                     HorizontalOptions="End"
                     Grid.Column="1"
                     Grid.Row="1">
+
                     <Label
                         x:Name="NonPagata"
+                        Margin="20,7,0,0"
                         FontSize="20"
                         FontAttributes="Bold"
                         Text="NON PAGATA" 
@@ -148,6 +164,7 @@
                         IsVisible="{Binding VisibilityNonPagata}"/>
                     <Label
                         x:Name="Pagata"
+                        Margin="44,7,0,0"
                         FontSize="20"
                         FontAttributes="Bold"
                         Text="PAGATA" 

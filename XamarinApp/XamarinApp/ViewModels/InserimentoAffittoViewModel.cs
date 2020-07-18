@@ -10,7 +10,6 @@ using Rg.Plugins.Popup.Services;
 using XamarinApp.Utils;
 using System.Threading.Tasks;
 using Xamarin.Forms.Shapes;
-using Java.Lang;
 
 namespace XamarinApp.ViewModels
 {

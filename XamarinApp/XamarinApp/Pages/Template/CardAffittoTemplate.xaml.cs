@@ -12,9 +12,15 @@ namespace XamarinApp.Pages.Template
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CardAffittoTemplate : ContentView
     {
+        Spesa spesa = new Spesa();
         public CardAffittoTemplate()
         {
             InitializeComponent();
+        }
+
+        public void Paga()
+        {
+            String id = spesa.IdSpesa;
         }
     }
 }

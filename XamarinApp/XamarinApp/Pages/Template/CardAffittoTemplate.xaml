@@ -8,7 +8,7 @@
     <Frame
         IsClippedToBounds="True"
         HasShadow="True"
-        BackgroundColor="White" >
+        BackgroundColor="White">
         <Frame.OutlineColor>
             <OnPlatform 
                     x:TypeArguments="Color"
@@ -120,18 +120,21 @@
                         VerticalTextAlignment="Start"
                         FontSize="10"
                         Text="Affittuario:" 
-                        TextColor="Gray"/>
+                        TextColor="Gray"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding NomeUtente}" 
+                        Text="{Binding NomeUtente}"
+                        IsVisible="{Binding VisibilityAffittuario}"
                         TextColor="#006064"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
                         Text="{Binding CognomeUtente}" 
+                        IsVisible="{Binding VisibilityAffittuario}"
                         TextColor="#006064"/>
                 </StackLayout>
                 <AbsoluteLayout 
@@ -139,8 +142,14 @@
                     HorizontalOptions="End"
                     Grid.Column="1"
                     Grid.Row="1">
+                    <Button
+                        Text="Paga"
+                        Margin="20,-20,0,0"
+                        IsVisible="{Binding VisibilityNonPagata}"
+                        Command="{Binding PagaSpesa}"/>
                     <Label
                         x:Name="NonPagata"
+                        Margin="0,-45,0,0"
                         FontSize="20"
                         FontAttributes="Bold"
                         Text="NON PAGATA" 
@@ -148,6 +157,7 @@
                         IsVisible="{Binding VisibilityNonPagata}"/>
                     <Label
                         x:Name="Pagata"
+                        Margin="25,-5,0,0"
                         FontSize="20"
                         FontAttributes="Bold"
                         Text="PAGATA" 
