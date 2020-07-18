@@ -62,6 +62,18 @@
                         TextColor="#006064" />
                     <Label 
                         HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="10"
+                        Text="Descrizione:" 
+                        TextColor="Gray" />
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="12"
+                        Text="{Binding Descrizione , Mode = TwoWay}" 
+                        TextColor="#006064" />
+                    <Label 
+                        HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="10"
                         Text="Prezzo:" 
@@ -83,18 +95,6 @@
                         VerticalTextAlignment="Start"
                         FontSize="12"
                         Text="{Binding DataInserimentoStr}" 
-                        TextColor="#006064"/>
-                    <Label
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Start"
-                        FontSize="10"
-                        Text="Data scadenza:" 
-                        TextColor="Gray"/>
-                    <Label 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Start"
-                        FontSize="12"
-                        Text="{Binding DataScadenzaStr}" 
                         TextColor="#006064"/>
                     <Label
                         HorizontalTextAlignment="Start"

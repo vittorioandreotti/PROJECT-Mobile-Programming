@@ -88,18 +88,6 @@
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="10"
-                        Text="Data scadenza:" 
-                        TextColor="Gray"/>
-                    <Label 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Start"
-                        FontSize="12"
-                        Text="{Binding DataScadenzaStr}" 
-                        TextColor="#006064"/>
-                    <Label
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Start"
-                        FontSize="10"
                         Text="Data pagamento:" 
                         TextColor="Gray"/>
                     <Label 

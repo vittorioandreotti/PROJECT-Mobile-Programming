@@ -157,7 +157,7 @@ namespace XamarinApp
                         break;
                     case "Sommario":
                         {
-                            //Detail.Navigation.PushAsync(new Sommario());
+                            Detail.Navigation.PushAsync(new Sommario());
                             IsPresented = false;
                         }
                         break;

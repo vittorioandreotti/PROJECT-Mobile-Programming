@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.Template.CardTemplate">
-    <Frame 
+    <Frame
+        IsEnabled="False"
         IsClippedToBounds="True"
         HasShadow="True"
-        BackgroundColor="White" >
+        BackgroundColor="White">
         <Frame.OutlineColor>
             <OnPlatform 
                     x:TypeArguments="Color"
@@ -30,24 +31,64 @@
         <StackLayout 
                 Orientation="Horizontal">
             <Grid 
-                    VerticalOptions="CenterAndExpand"
-                    Padding="4"
-                    HorizontalOptions="FillAndExpand"
-                    BackgroundColor="Transparent">
+                    Padding="7"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
                 <StackLayout 
                     Orientation="Vertical" 
-                    VerticalOptions="Start" >
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Column="0"
+                    Grid.Row="0">
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="10"
+                        Text="Titolo:" 
+                        IsVisible="{Binding VisibilityTitolo}"
+                        TextColor="Gray" />
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="12"
+                        Text="{Binding Titolo, Mode = TwoWay}" 
+                        IsVisible="{Binding VisibilityTitolo}"
+                        TextColor="#006064" />
                     <Label 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         FontSize="10"
                         Text="Categoria:" 
+                        IsVisible="{Binding VisibilityCategoria}"
                         TextColor="Gray" />
                     <Label 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         FontSize="12"
                         Text="{Binding Categoria , Mode = TwoWay}" 
+                        IsVisible="{Binding VisibilityCategoria}"
+                        TextColor="#006064" />
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="10"
+                        Text="Nome spesa:" 
+                        IsVisible="{Binding VisibilityNomeSpesa}"
+                        TextColor="Gray" />
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="12"
+                        Text="{Binding Nome , Mode = TwoWay}" 
+                        IsVisible="{Binding VisibilityNomeSpesa}"
                         TextColor="#006064" />
                     <Label 
                         HorizontalTextAlignment="Start"
@@ -59,8 +100,22 @@
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding Prezzo, Mode = TwoWay}" 
+                        Text="{Binding Prezzo}" 
                         TextColor="#006064"/>
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="10"
+                        Text="Descrizione:" 
+                        IsVisible="{Binding VisibilityDescrizione}"
+                        TextColor="Gray" />
+                    <Label 
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="12"
+                        Text="{Binding Descrizione , Mode = TwoWay}" 
+                        IsVisible="{Binding VisibilityDescrizione}"
+                        TextColor="#006064" />
                     <Label 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
@@ -71,19 +126,21 @@
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding DataInserimento, Mode = TwoWay}" 
+                        Text="{Binding DataInserimentoStr}" 
                         TextColor="#006064"/>
                     <Label
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="10"
                         Text="Data scadenza:" 
+                        IsVisible="{Binding VisibilityScadenza}"
                         TextColor="Gray"/>
                     <Label 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding DataScadenza, Mode = TwoWay}" 
+                        Text="{Binding DataScadenzaStr}" 
+                        IsVisible="{Binding VisibilityScadenza}"
                         TextColor="#006064"/>
                     <Label
                         HorizontalTextAlignment="Start"
@@ -95,9 +152,69 @@
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding DataPagamento, Mode = TwoWay}" 
+                        Text="{Binding DataPagamentoStr}" 
                         TextColor="#006064"/>
                 </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical" 
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Column="1"
+                    Grid.Row="0">
+                    <Label
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Start"
+                        FontSize="10"
+                        Text="Affittuario:" 
+                        TextColor="Gray"
+                        IsVisible="{Binding VisibilityAffittuario}"/>
+                    <Label
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Start"
+                        FontSize="12"
+                        Text="{Binding NomeUtente}"
+                        IsVisible="{Binding VisibilityAffittuario}"
+                        TextColor="#006064"/>
+                    <Label
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Start"
+                        FontSize="12"
+                        Text="{Binding CognomeUtente}" 
+                        IsVisible="{Binding VisibilityAffittuario}"
+                        TextColor="#006064"/>
+                    <Button
+                        HorizontalOptions="End"
+                        VerticalOptions="EndAndExpand"
+                        Margin="0,0,17,0"
+                        Text="Paga"
+                        IsVisible="{Binding VisibilityButtonPaga}"
+                        Command="{Binding PagaSpesaCommand}"
+                        CommandParameter="{Binding IdSpesa}"
+                        />
+                </StackLayout>
+                <AbsoluteLayout 
+                    VerticalOptions="Start" 
+                    HorizontalOptions="End"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <Label
+                        x:Name="NonPagata"
+                        Margin="20,7,0,0"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="NON PAGATA" 
+                        TextColor="Red"
+                        IsVisible="{Binding VisibilityNonPagata}"/>
+                    <Label
+                        x:Name="Pagata"
+                        Margin="44,7,0,0"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="PAGATA" 
+                        TextColor="Green"
+                        IsVisible="{Binding VisibilityPagata}"/>
+                </AbsoluteLayout>
             </Grid>
         </StackLayout>
     </Frame>

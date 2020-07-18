@@ -226,6 +226,51 @@ namespace XamarinApp
             }
         }
 
+
+
+
+        public Boolean IsBollette()
+        {
+            return this.Tipo == "bolletta";         
+        }
+
+        public Boolean IsAffitto()
+        {
+            return this.Tipo == "affitto";
+        }
+        public Boolean IsComune()
+        {
+            return this.Tipo == "comune";
+        }
+
+        public Boolean IsSpesa()
+        {
+            return this.Tipo == "comune" || this.Tipo == "condominio";
+        }
+
+
+
+        public bool VisibilityCategoria
+        {
+            get { return this.IsBollette(); }
+        }
+        public bool VisibilityDescrizione
+        {
+            get { return this.IsComune(); }
+        }
+        public bool VisibilityNomeSpesa
+        {
+            get { return this.IsSpesa(); }
+        }
+        public bool VisibilityTitolo
+        {
+            get { return this.IsAffitto(); }
+        }
+        public bool VisibilityScadenza
+        {
+            get { return !this.IsSpesa(); }
+        }
+
         public bool VisibilityNonPagata
         {
             get { return !this.IsSpesaPagata(); }
