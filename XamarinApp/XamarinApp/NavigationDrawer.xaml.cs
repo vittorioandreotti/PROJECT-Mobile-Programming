@@ -157,7 +157,7 @@ namespace XamarinApp
                         break;
                     case "Sommario":
                         {
-                            //Detail = new NavigationPage(new Sommario());
+                            //Detail.Navigation.PushAsync(new Sommario());
                             IsPresented = false;
                         }
                         break;
@@ -169,7 +169,7 @@ namespace XamarinApp
                         break;
                     case "Spese in comune":
                         {
-                            Detail = new NavigationPage(new SpeseComune());
+                            Detail.Navigation.PushAsync(new SpeseComune());
                             IsPresented = false;
                         }
                         break;

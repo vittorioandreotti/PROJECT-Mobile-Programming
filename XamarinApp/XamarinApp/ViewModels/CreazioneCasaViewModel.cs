@@ -15,6 +15,8 @@ namespace XamarinApp.ViewModels
     class CreazioneCasaViewModel : INotifyPropertyChanged
     {
         public Action DisplayInvalidCreaCasaPrompt;
+        public Action DisplayErrore;
+        public Func<Task> DisplaySuccesso;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private string nome;
         public string Nome
@@ -61,12 +63,29 @@ namespace XamarinApp.ViewModels
 
                                 if (taskCreaCasa.Result)
                                 {
-                                    //Casa creata   
-                                    Device.BeginInvokeOnMainThread(() => {
-                                        StopLoading();
-                                        App.Current.MainPage = new NavigationDrawer();
-                                    });
-                                    return;
+
+                                    firebaseFunction
+                                        .InserisciProprietario()
+                                        .ContinueWith((Task<bool> taskInserisciProprietario) => {
+                                            taskInserisciProprietario.Wait();
+
+                                            if (taskInserisciProprietario.Result)
+                                            {
+                                                Device.BeginInvokeOnMainThread(async () => {
+                                                    await StopLoading();
+                                                    await DisplaySuccesso();
+                                                    App.Current.MainPage = new NavigationDrawer();
+                                                });
+                                                return;
+                                            }
+                                            else
+                                            {
+                                                Device.BeginInvokeOnMainThread(() => {
+                                                    StopLoading();
+                                                    DisplayErrore();
+                                                });
+                                            }
+                                        });
                                 }
                                 else
                                 {
@@ -78,16 +97,16 @@ namespace XamarinApp.ViewModels
                                 }
                             });
         }
-        private async void StartLoading()
+        private Task StartLoading()
         {
             LoadingPage loadingPage = new LoadingPage();
 
-            await PopupNavigation.Instance.PushAsync(loadingPage);
+            return PopupNavigation.Instance.PushAsync(loadingPage);
         }
 
-        private async void StopLoading()
+        private Task StopLoading()
         {
-            await PopupNavigation.Instance.PopAsync();
+            return PopupNavigation.Instance.PopAsync();
         }
     }
 }

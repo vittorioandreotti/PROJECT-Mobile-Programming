@@ -16,6 +16,8 @@ namespace XamarinApp.ViewModels
     class InserisciCodiceCasaViewModel : INotifyPropertyChanged
     {
         public Action DisplayInvalidCodiceCasaPrompt;
+        public Action DisplayErrore;
+        public Func<Task> DisplaySuccesso;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private string codice_casa;
         public string CodiceCasa
@@ -47,39 +49,56 @@ namespace XamarinApp.ViewModels
                    
             FirebaseFunctionHelper firebaseFunction = new FirebaseFunctionHelper();
             firebaseFunction
-                            .PartecipaCasa(codice_casa)
-                            .ContinueWith((Task<bool> taskPartecipaCasa) => {
-                                taskPartecipaCasa.Wait();
+                .PartecipaCasa(codice_casa)
+                .ContinueWith((Task<bool> taskPartecipaCasa) => {
+                    taskPartecipaCasa.Wait();
 
-                                if (taskPartecipaCasa.Result)
+                    if (taskPartecipaCasa.Result)
+                    {
+
+                        firebaseFunction
+                            .InserisciAffittuario()
+                            .ContinueWith((Task<bool> taskInserisciAffittuario) => {
+                                taskInserisciAffittuario.Wait();
+
+                                if (taskInserisciAffittuario.Result)
                                 {
-                                    //Codice casa valido 
-                                    Device.BeginInvokeOnMainThread(() => {
-                                        StopLoading();
+                                    Device.BeginInvokeOnMainThread(async () => {
+                                        await StopLoading();
+                                        await DisplaySuccesso();
                                         App.Current.MainPage = new NavigationDrawer();
                                     });
                                     return;
                                 }
                                 else
                                 {
-                                    //Codice casa non valido
                                     Device.BeginInvokeOnMainThread(() => {
                                         StopLoading();
-                                        DisplayInvalidCodiceCasaPrompt();
+                                        DisplayErrore();
                                     });
                                 }
                             });
+                    }
+                    else
+                    {
+                        //Codice casa non valido
+                        Device.BeginInvokeOnMainThread(() => {
+                            StopLoading();
+                            DisplayInvalidCodiceCasaPrompt();
+                        });
+                    }
+                });
         }
-        private async void StartLoading()
+        private Task StartLoading()
         {
             LoadingPage loadingPage = new LoadingPage();
 
-            await PopupNavigation.Instance.PushAsync(loadingPage);
+            return PopupNavigation.Instance.PushAsync(loadingPage);
         }
 
-        private async void StopLoading()
+        private Task StopLoading()
         {
-            await PopupNavigation.Instance.PopAsync();
+            return PopupNavigation.Instance.PopAsync();
         }
     }
 }
