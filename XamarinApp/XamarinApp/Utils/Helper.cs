@@ -53,8 +53,8 @@ namespace XamarinApp.Utils
 
         public static String FormatDateToStringWithHour(DateTime data)
         {
-            if (Data == null || Data.Year <= 1971) return "-";
-            return Data.ToString("dd/MM/yyyy HH:mm");
+            if (data == null || data.Year <= 1971) return "-";
+            return data.ToString("dd/MM/yyyy HH:mm");
         }
 
         public static String FormatDateToString(DateTime data)

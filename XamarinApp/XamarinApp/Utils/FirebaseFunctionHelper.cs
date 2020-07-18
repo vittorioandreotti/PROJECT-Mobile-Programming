@@ -716,7 +716,7 @@ namespace XamarinApp.Utils
             inputData.Add("idSpesa", idSpesa);
             inputData.Add("idCasa", utentePreferences.GetIdCasa());
 
-            return functionsCaller.Call().ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
+            return functionsCaller.Call(inputData).ContinueWith((Task<CloudFunctionResponse> taskCloudResponse) => {
 
                 taskCloudResponse.Wait();
                 CloudFunctionResponse cloudResponse = taskCloudResponse.Result;
