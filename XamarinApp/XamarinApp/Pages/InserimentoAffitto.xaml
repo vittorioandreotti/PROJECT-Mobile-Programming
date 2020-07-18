@@ -48,7 +48,7 @@
             </StackLayout>
 
             <StackLayout>
-                <Label Text="Importo mensile ( in € )" 
+                <Label Text="Importo ( in € )" 
                     FontSize="Caption"
                 />
                 <Entry

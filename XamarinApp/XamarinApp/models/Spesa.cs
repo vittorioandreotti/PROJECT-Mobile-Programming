@@ -126,7 +126,16 @@ namespace XamarinApp
             }
         }
 
+        
+        
         private DateTime _dataInserimento;
+        public string DataInserimentoStr
+        {
+            get
+            {
+                return Helper.FormatDateToString(this._dataInserimento);
+            }
+        }
         public DateTime DataInserimento
         {
             get { return _dataInserimento; }
@@ -136,6 +145,7 @@ namespace XamarinApp
                 {
                     _dataInserimento = value;
                     OnPropertyChanged(nameof(DataInserimento));
+                    OnPropertyChanged(nameof(DataInserimentoStr));
                 }
             }
         }
@@ -167,6 +177,13 @@ namespace XamarinApp
         }
 
         private DateTime _dataScadenza;
+        public string DataScadenzaStr
+        {
+            get
+            {
+                return Helper.FormatDateToString(this._dataScadenza);
+            }
+        }
         public DateTime DataScadenza
         {
             get { return _dataScadenza; }
@@ -176,6 +193,7 @@ namespace XamarinApp
                 {
                     _dataScadenza = value;
                     OnPropertyChanged(nameof(DataScadenza));
+                    OnPropertyChanged(nameof(DataScadenzaStr));
                 }
             }
         }

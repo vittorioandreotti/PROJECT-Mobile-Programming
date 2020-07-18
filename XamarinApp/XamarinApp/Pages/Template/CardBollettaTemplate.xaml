@@ -82,7 +82,7 @@
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding DataInserimento}" 
+                        Text="{Binding DataInserimentoStr}" 
                         TextColor="#006064"/>
                     <Label
                         HorizontalTextAlignment="Start"
@@ -94,7 +94,7 @@
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Start"
                         FontSize="12"
-                        Text="{Binding DataScadenza}" 
+                        Text="{Binding DataScadenzaStr}" 
                         TextColor="#006064"/>
                     <Label
                         HorizontalTextAlignment="Start"
