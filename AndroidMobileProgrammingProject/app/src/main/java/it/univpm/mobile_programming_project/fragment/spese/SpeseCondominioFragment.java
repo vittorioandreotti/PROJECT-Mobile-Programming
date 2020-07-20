@@ -19,10 +19,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctionsException;
 
+import java.util.Date;
 import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.fragment.spese.listener.HandlerSpesaPagataListener;
+import it.univpm.mobile_programming_project.fragment.spese.listener.OnSpesaPagataListener;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.InterfaceSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.adapter.SommarioSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.adapter.SpesaCondominioSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
@@ -42,6 +46,12 @@ public class SpeseCondominioFragment extends Fragment implements RecyclerViewCli
     private UtenteSharedPreferences utenteSharedPreferences;
     private FirebaseFunctionsHelper firebaseFunctionsHelper;
     private LinearLayout linearLayout;
+    private HandlerSpesaPagataListener handlerSpesaPagata;
+
+    public SpeseCondominioFragment(List<Spesa> speseSpesaCondominio, HandlerSpesaPagataListener handlerSpesaPagata) {
+        this.speseSpesaCondominio = speseSpesaCondominio;
+        this.handlerSpesaPagata = handlerSpesaPagata;
+    }
 
     public SpeseCondominioFragment(List<Spesa> speseSpesaCondominio) {
         this.speseSpesaCondominio = speseSpesaCondominio;
@@ -88,12 +98,21 @@ public class SpeseCondominioFragment extends Fragment implements RecyclerViewCli
 
         adapter = new SpesaCondominioSpeseAdapter(this.speseSpesaCondominio, this, this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO);
         recyclerViewSpeseCondominio.setAdapter(adapter);
+
+        if(this.utenteSharedPreferences.isAffittuario()) {
+            this.handlerSpesaPagata.addListener(new OnSpesaPagataListener() {
+                @Override
+                public void notifySpesaPagata(Spesa spesaPagata) {
+                    ((InterfaceSpeseAdapter) adapter).updateSpesa(spesaPagata);
+                }
+            });
+        }
     }
 
     @Override
     public void onClick(View view, Object object) {
         final SpesaViewHolder spesaHolder = (SpesaViewHolder)object;
-        Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
+        final Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
         String idCasa = utenteSharedPreferences.getIdCasa();
 
         ((HomeActivity) SpeseCondominioFragment.this.getActivity()).startLoading();
@@ -119,6 +138,9 @@ public class SpeseCondominioFragment extends Fragment implements RecyclerViewCli
                     spesaHolder.txtNonPagata.setVisibility(View.GONE);
                     spesaHolder.txtPagata.setVisibility(View.VISIBLE);
                     spesaHolder.btnPaga.setVisibility(View.GONE);
+
+                    handlerSpesaPagata.pagaSpesa( spesa );
+
                     Toast.makeText(SpeseCondominioFragment.this.getContext(), "Spesa pagata con successo.", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(SpeseCondominioFragment.this.getContext(), "Errore nel pagamento della spesa.", Toast.LENGTH_LONG).show();

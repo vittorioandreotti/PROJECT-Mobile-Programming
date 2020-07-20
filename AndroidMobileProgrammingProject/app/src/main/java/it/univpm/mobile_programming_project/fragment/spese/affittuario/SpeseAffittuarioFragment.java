@@ -13,6 +13,7 @@ import it.univpm.mobile_programming_project.fragment.spese.AffittoFragment;
 import it.univpm.mobile_programming_project.fragment.spese.BolletteFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SommarioFragment;
 import it.univpm.mobile_programming_project.fragment.spese.SpeseCondominioFragment;
+import it.univpm.mobile_programming_project.fragment.spese.listener.HandlerSpesaPagataListener;
 import it.univpm.mobile_programming_project.utils.CloseKeyboard;
 import it.univpm.mobile_programming_project.models.Spesa;
 import it.univpm.mobile_programming_project.utils.firebase.FirebaseFunctionsHelper;
@@ -79,6 +80,7 @@ public class SpeseAffittuarioFragment extends Fragment {
 
         pagerAdapter = new SpesePageAdapterAffittuario(getActivity().getSupportFragmentManager());
 
+        viewPager.setOffscreenPageLimit(10);
         viewPager.setAdapter(pagerAdapter);
 
         return view;
@@ -111,11 +113,15 @@ public class SpeseAffittuarioFragment extends Fragment {
 
     private void setupUI() {
         pagerAdapter.clearFragmentList();
-        pagerAdapter.addFragment(new SommarioFragment(this.speseSommario));
-        pagerAdapter.addFragment(new SpesaComuneFragment(this.speseSpesaComune));
-        pagerAdapter.addFragment(new AffittoFragment(this.speseAffitto));
-        pagerAdapter.addFragment(new BolletteFragment(this.speseBollette));
-        pagerAdapter.addFragment(new SpeseCondominioFragment(this.speseSpesaCondominio));
+
+        // Listener updateSpesaListener = new ();//
+        HandlerSpesaPagataListener handlerSpesaPagata = new HandlerSpesaPagataListener();
+
+        pagerAdapter.addFragment(new SommarioFragment(this.speseSommario, handlerSpesaPagata));
+        pagerAdapter.addFragment(new SpesaComuneFragment(this.speseSpesaComune, handlerSpesaPagata));
+        pagerAdapter.addFragment(new AffittoFragment(this.speseAffitto, handlerSpesaPagata));
+        pagerAdapter.addFragment(new BolletteFragment(this.speseBollette, handlerSpesaPagata));
+        pagerAdapter.addFragment(new SpeseCondominioFragment(this.speseSpesaCondominio, handlerSpesaPagata));
         pagerAdapter.notifyDataSetChanged();
 
 

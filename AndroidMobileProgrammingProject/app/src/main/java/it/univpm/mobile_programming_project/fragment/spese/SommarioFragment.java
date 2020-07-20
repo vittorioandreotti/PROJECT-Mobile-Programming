@@ -19,10 +19,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctionsException;
 
+import java.util.Date;
 import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.fragment.spese.listener.HandlerSpesaPagataListener;
+import it.univpm.mobile_programming_project.fragment.spese.listener.OnSpesaPagataListener;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.InterfaceSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.adapter.SommarioSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
 import it.univpm.mobile_programming_project.models.Spesa;
@@ -41,6 +45,12 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
     private UtenteSharedPreferences utenteSharedPreferences;
     private FirebaseFunctionsHelper firebaseFunctionsHelper;
     private LinearLayout linearLayout;
+    private HandlerSpesaPagataListener handlerSpesaPagata;
+
+    public SommarioFragment(List<Spesa> speseSommario, HandlerSpesaPagataListener handlerSpesaPagata) {
+        this.speseSommario = speseSommario;
+        this.handlerSpesaPagata = handlerSpesaPagata;
+    }
 
     public SommarioFragment(List<Spesa> speseSommario) {
         this.speseSommario = speseSommario;
@@ -79,19 +89,28 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
 
     private void initRecyclerView(View view) {
         recyclerViewSommarioSpese = view.findViewById(R.id.recyclerViewSommarioSpese);
-        recyclerViewSommarioSpese.setHasFixedSize(true);
+        recyclerViewSommarioSpese.setHasFixedSize(false);
         recyclerViewSommarioSpese.setItemAnimator(new DefaultItemAnimator());
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewSommarioSpese.setLayoutManager(layoutManager);
 
         adapter = new SommarioSpeseAdapter(this.speseSommario, this, this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO );
         recyclerViewSommarioSpese.setAdapter(adapter);
+
+        if(this.utenteSharedPreferences.isAffittuario()) {
+            this.handlerSpesaPagata.addListener(new OnSpesaPagataListener() {
+                @Override
+                public void notifySpesaPagata(Spesa spesaPagata) {
+                    ((InterfaceSpeseAdapter)adapter).updateSpesa(spesaPagata);
+                }
+            });
+        }
     }
 
     @Override
     public void onClick(View view, Object object) {
         final SpesaViewHolder spesaHolder = (SpesaViewHolder)object;
-        Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
+        final Spesa spesa = spesaHolder.adapter.getSpesa(spesaHolder.getAdapterPosition());
         String idCasa = utenteSharedPreferences.getIdCasa();
 
         ((HomeActivity) SommarioFragment.this.getActivity()).startLoading();
@@ -112,11 +131,14 @@ public class SommarioFragment extends Fragment implements RecyclerViewClickListe
                     return;
                 }
 
-                Boolean isSpesaPagata= task.getResult();
+                Boolean isSpesaPagata = task.getResult();
                 if (isSpesaPagata) {
                     spesaHolder.txtNonPagata.setVisibility(View.GONE);
                     spesaHolder.txtPagata.setVisibility(View.VISIBLE);
                     spesaHolder.btnPaga.setVisibility(View.GONE);
+
+                    handlerSpesaPagata.pagaSpesa( spesa );
+
                     Toast.makeText(SommarioFragment.this.getContext(), "Spesa pagata con successo.", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(SommarioFragment.this.getContext(), "Errore nel pagamento della spesa.", Toast.LENGTH_LONG).show();

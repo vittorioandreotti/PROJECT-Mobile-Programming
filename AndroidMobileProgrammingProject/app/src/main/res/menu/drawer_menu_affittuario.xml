@@ -7,7 +7,7 @@
 
     <!--    HOME    -->
     <group
-        android:checkableBehavior="single"
+        android:checkableBehavior="none"
         android:id="@+id/home"
         >
 
@@ -23,7 +23,7 @@
     <!--    SPESE    -->
     <group
         android:id="@+id/group_spese"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item android:title="Spese">
         <menu>
@@ -66,7 +66,7 @@
     <!--    TORNEI    -->
     <group
         android:id="@+id/group_tornei"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item android:title="Tornei">
             <menu>
@@ -92,7 +92,7 @@
 
     <group
         android:id="@+id/group_profilo"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_profile"
@@ -101,7 +101,7 @@
 
     <group
         android:id="@+id/group_logout"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

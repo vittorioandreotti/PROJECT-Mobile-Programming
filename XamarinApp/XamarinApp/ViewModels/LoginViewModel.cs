@@ -47,7 +47,7 @@ namespace XamarinApp.ViewModels
         }
         public void OnSubmit()
         {
-            if ( email == null && password == null || email.Length ==  0 || password.Length == 0 || !Utils.Helper.IsEmailValid(Email) )
+            if ( email == null || password == null || email.Length ==  0 || password.Length == 0 || !Utils.Helper.IsEmailValid(Email) )
             {
                 DisplayInvalidLoginPrompt();
                 return;

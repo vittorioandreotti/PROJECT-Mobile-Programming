@@ -21,7 +21,7 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
 
     private TabLayout intabLayout;
     private ViewPager inviewPager;
-    public InserimentoSpesePageAdapterProprietario inpagerAdapter;
+    public SpesePageAdapterProprietario inpagerAdapter;
 
     private int paginaDiLancio;
 
@@ -42,7 +42,7 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
         intabLayout = view.findViewById(R.id.intablayout);
         inviewPager = view.findViewById(R.id.inviewpager);
 
-        inpagerAdapter = new InserimentoSpesePageAdapterProprietario(getActivity().getSupportFragmentManager());
+        inpagerAdapter = new SpesePageAdapterProprietario(getActivity().getSupportFragmentManager());
 
         inpagerAdapter.addFragment(new InserisciSpesaCondominioFragment());
         inpagerAdapter.addFragment(new InserisciBolletteFragment());
@@ -68,15 +68,15 @@ public class InserimentoSpeseProprietarioFragment extends Fragment {
 
                 switch(tab.getPosition()){
                     case InserimentoSpeseProprietarioFragment.SPESACONDOMINIO:
-                        titoloId = R.string.spese_condominio;
+                        titoloId = R.string.inserisci_spesa_condominio;
                         break;
 
                     case InserimentoSpeseProprietarioFragment.BOLLETTE:
-                        titoloId = R.string.bollette;
+                        titoloId = R.string.inserisci_bollette;
                         break;
 
                     case InserimentoSpeseProprietarioFragment.AFFITTO:
-                        titoloId = R.string.affitto;
+                        titoloId = R.string.inserisci_affitto;
                         break;
                 }
 

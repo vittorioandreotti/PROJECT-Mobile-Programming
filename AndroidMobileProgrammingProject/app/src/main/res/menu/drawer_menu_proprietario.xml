@@ -8,7 +8,7 @@
     <!--    HOME    -->
     <group
         android:id="@+id/home"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
@@ -21,7 +21,7 @@
     <!--    SOMMARIO SPESE   -->
     <group
         android:id="@+id/group_sommario_spese"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item android:title="@string/sommario_spese">
             <menu>
@@ -51,7 +51,7 @@
     <!--  Codice casa  -->
     <group
         android:id="@+id/group_codice_casa"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item android:title="@string/casa">
             <menu>
@@ -67,7 +67,7 @@
     <!--    SPESE    -->
     <group
         android:id="@+id/group_spese"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item android:title="@string/spese">
             <menu>
@@ -97,7 +97,7 @@
     <!--    TORNEI    -->
     <group
         android:id="@+id/group_tornei"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item android:title="@string/tornei">
             <menu>
@@ -122,7 +122,7 @@
 
     <group
         android:id="@+id/group_profilo"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_profile"
@@ -131,7 +131,7 @@
 
     <group
         android:id="@+id/group_logout"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

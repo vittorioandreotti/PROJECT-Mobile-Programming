@@ -9,190 +9,198 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.profilo.ProfiloFragment">
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/linearLayout"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="vertical"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent">-->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutDatiUtente"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="30dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/lblNome"
-            style="@style/Theme.App.TextView.Muted"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_nome"
-            app:layout_constraintBottom_toTopOf="@+id/txtNome" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txtNome"
-            style="@style/Theme.App.TextView.Subtitle"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutDatiUtente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nome"
+            android:layout_marginHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lblNome"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblNome"
+                style="@style/Theme.App.TextView.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/label_nome"
+                app:layout_constraintBottom_toTopOf="@+id/txtNome" />
+
+            <TextView
+                android:id="@+id/txtNome"
+                style="@style/Theme.App.TextView.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lblNome" />
 
 
-        <TextView
-            android:id="@+id/lblCognome"
-            style="@style/Theme.App.TextView.Muted"
+            <TextView
+                android:id="@+id/lblCognome"
+                style="@style/Theme.App.TextView.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/label_cognome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNome" />
+
+            <TextView
+                android:id="@+id/txtCognome"
+                style="@style/Theme.App.TextView.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/cognome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblCognome" />
+
+
+            <TextView
+                android:id="@+id/lblEmail"
+                style="@style/Theme.App.TextView.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/label_email"
+                app:layout_constraintTop_toBottomOf="@+id/txtCognome" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                style="@style/Theme.App.TextView.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/e_mail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                style="@style/Theme.Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutModificaPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_cognome"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNome" />
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="30dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDatiUtente"
+            tools:layout_editor_absoluteX="25dp">
 
-        <TextView
-            android:id="@+id/txtCognome"
-            style="@style/Theme.App.TextView.Subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cognome"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblCognome"/>
+            <TextView
+                android:id="@+id/txtModificaPassword"
+                style="@style/Theme.App.TextView.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modifica_password"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtNewPassword"
+                style="@style/Theme.Widget.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/nuova_password"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtModificaPassword"
+                app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
 
-        <TextView
-            android:id="@+id/lblEmail"
-            style="@style/Theme.App.TextView.Muted"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_email"
-            app:layout_constraintTop_toBottomOf="@+id/txtCognome" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNewPasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10sp"
+                    android:inputType="textPassword" />
 
-        <TextView
-            android:id="@+id/txtEmail"
-            style="@style/Theme.App.TextView.Subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/e_mail"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblEmail"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtConfermaPassword"
+                style="@style/Theme.Widget.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="@string/conferma_password"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNewPassword"
+                app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtConfermaPasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnModifica"
+                style="@style/Theme.Widget.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/modifica"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtConfermaPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/btnLogout"
-            style="@style/Theme.Widget.Button"
+            android:id="@+id/btnDisiscriviti"
+            style="@style/Theme.Widget.ButtonRed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="80dp"
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="50dp"
-            android:text="@string/logout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+            android:text="@string/cancella_account"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutModificaPassword" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutModificaPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="20dp"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDatiUtente"
-        tools:layout_editor_absoluteX="25dp">
-
-        <TextView
-            android:id="@+id/txtModificaPassword"
-            style="@style/Theme.App.TextView.Subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/modifica"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtNewPassword"
-            style="@style/Theme.Widget.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/nuova_password"
-            app:endIconMode="password_toggle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtModificaPassword"
-            app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtNewPasswordInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10sp"
-                android:inputType="textPassword"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtConfermaPassword"
-            style="@style/Theme.Widget.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="@string/conferma_password"
-            app:endIconMode="password_toggle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNewPassword"
-            app:startIconDrawable="@drawable/ic_vpn_key_light_grey_24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtConfermaPasswordInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnModifica"
-            style="@style/Theme.Widget.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Modifica"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtConfermaPassword" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btnDisiscriviti"
-        style="@style/Theme.Widget.ButtonRed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cancella_account"
-        android:visibility="visible"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="80dp"
-        app:layout_constraintEnd_toEndOf="@id/constraintLayout"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutModificaPassword" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
