@@ -8,11 +8,11 @@
              BackgroundColor="#006064">
     <ContentPage.Content>
         <StackLayout
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
             <Image
-                Source="Images/LogoApp"
-                HorizontalOptions="Start"
+                Source="LogoApp"               
+                HorizontalOptions="FillAndExpand"
                 VerticalOptions="Center"
             />
         </StackLayout>

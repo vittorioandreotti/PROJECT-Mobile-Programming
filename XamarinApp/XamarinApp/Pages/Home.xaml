@@ -25,7 +25,7 @@
                     </Label>
                     
                     <forms:ChartView x:Name="ChartEsterno" HeightRequest="200" WidthRequest="200" IsVisible="True"/>
-                    <forms:ChartView x:Name="ChartEsternoLabels" HeightRequest="50" WidthRequest="200" IsVisible="True"/>
+                    <forms:ChartView x:Name="ChartEsternoLabels" HeightRequest="75" WidthRequest="250" IsVisible="True"/>
                     
                     <forms:ChartView x:Name="ChartInterno" HeightRequest="200" WidthRequest="200" IsVisible="True"/>
                     <forms:ChartView x:Name="ChartInternoLabels" HeightRequest="100" WidthRequest="200" IsVisible="True"/>
