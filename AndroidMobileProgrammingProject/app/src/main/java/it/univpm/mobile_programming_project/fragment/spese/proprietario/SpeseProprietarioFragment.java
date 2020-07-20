@@ -130,23 +130,19 @@ public class SpeseProprietarioFragment extends Fragment {
                 new CloseKeyboard(activity);
 
                 switch (tab.getPosition()) {
-                    case SpeseAffittuarioFragment.SOMMARIO:
+                    case SpeseProprietarioFragment.SOMMARIO:
                         titoloId = R.string.sommario;
                         break;
 
-                    case SpeseAffittuarioFragment.SPESACOMUNE:
-                        titoloId = R.string.spesacomune;
-                        break;
-
-                    case SpeseAffittuarioFragment.AFFITTO:
+                    case SpeseProprietarioFragment.AFFITTO:
                         titoloId = R.string.affitto;
                         break;
 
-                    case SpeseAffittuarioFragment.BOLLETTE:
+                    case SpeseProprietarioFragment.BOLLETTE:
                         titoloId = R.string.bollette;
                         break;
 
-                    case SpeseAffittuarioFragment.SPESACONDOMINIO:
+                    case SpeseProprietarioFragment.SPESACONDOMINIO:
                         titoloId = R.string.spese_condominio;
                 }
 

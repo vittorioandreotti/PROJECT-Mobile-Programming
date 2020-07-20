@@ -24,6 +24,9 @@ import java.util.List;
 
 import it.univpm.mobile_programming_project.HomeActivity;
 import it.univpm.mobile_programming_project.R;
+import it.univpm.mobile_programming_project.fragment.spese.listener.HandlerSpesaPagataListener;
+import it.univpm.mobile_programming_project.fragment.spese.listener.OnSpesaPagataListener;
+import it.univpm.mobile_programming_project.fragment.spese.recycler.InterfaceSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.adapter.BolletteSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.adapter.SommarioSpeseAdapter;
 import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
@@ -43,6 +46,12 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
     private UtenteSharedPreferences utenteSharedPreferences;
     private FirebaseFunctionsHelper firebaseFunctionsHelper;
     private LinearLayout linearLayout;
+    private HandlerSpesaPagataListener handlerSpesaPagata;
+
+    public BolletteFragment(List<Spesa> speseBollette, HandlerSpesaPagataListener handlerSpesaPagata) {
+        this.speseBollette = speseBollette;
+        this.handlerSpesaPagata = handlerSpesaPagata;
+    }
 
     public BolletteFragment(List<Spesa> speseBollette) {
         this.speseBollette = speseBollette;
@@ -89,6 +98,15 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
 
         adapter = new BolletteSpeseAdapter(this.speseBollette, this, this.utenteSharedPreferences.isAffittuario() ? SommarioSpeseAdapter.AFFITTUARIO : SommarioSpeseAdapter.PROPRIETARIO);
         recyclerViewBollette.setAdapter(adapter);
+
+        if( this.utenteSharedPreferences.isAffittuario() ) {
+            this.handlerSpesaPagata.addListener(new OnSpesaPagataListener() {
+                @Override
+                public void notifySpesaPagata(Spesa spesaPagata) {
+                ((InterfaceSpeseAdapter)adapter).updateSpesa(spesaPagata);
+                    }
+            });
+        }
     }
 
     @Override
@@ -120,6 +138,9 @@ public class BolletteFragment extends Fragment implements RecyclerViewClickListe
                     spesaHolder.txtNonPagata.setVisibility(View.GONE);
                     spesaHolder.txtPagata.setVisibility(View.VISIBLE);
                     spesaHolder.btnPaga.setVisibility(View.GONE);
+
+                    handlerSpesaPagata.pagaSpesa( spesa );
+
                     Toast.makeText(BolletteFragment.this.getContext(), "Spesa pagata con successo.", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(BolletteFragment.this.getContext(), "Errore nel pagamento della spesa.", Toast.LENGTH_LONG).show();

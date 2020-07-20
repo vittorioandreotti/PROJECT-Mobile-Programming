@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Date;
 import java.util.List;
 
 import it.univpm.mobile_programming_project.fragment.spese.recycler.view_holder.SpesaViewHolder;
@@ -34,5 +35,19 @@ public abstract class InterfaceSpeseAdapter extends RecyclerView.Adapter <SpesaV
 
     public Spesa getSpesa(int position) {
         return this.mSpeseList.get(position);
+    }
+
+    public void updateSpesa(Spesa spesa) {
+        String idSpesa = spesa.getIdSpesa();
+        for(int i = 0; i < mSpeseList.size();i++) {
+            Spesa spesaIesima = mSpeseList.get(i);
+            if( idSpesa.equals(spesaIesima.getIdSpesa()) ) {
+                spesaIesima.setDataPagamento(new Date(System.currentTimeMillis()));
+                mSpeseList.remove(i);
+                mSpeseList.add(i, spesaIesima);
+                notifyItemChanged(i);
+                break;
+            }
+        }
     }
 }

@@ -61,7 +61,7 @@ public class InserimentoSpeseAffittuarioFragment extends Fragment {
 
                 switch(tab.getPosition()){
                     case InserimentoSpeseAffittuarioFragment.SPESACOMUNE:
-                        titoloId = R.string.spese_condominio;
+                        titoloId = R.string.inserisci_comune;
                         break;
                 }
 
