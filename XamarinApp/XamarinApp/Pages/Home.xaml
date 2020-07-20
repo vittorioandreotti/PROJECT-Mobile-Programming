@@ -3,14 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.Home"
              Title="Homepage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="ABBELLI"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView
+                Padding="20"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+            >
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                >
+                    <Label
+                        Text="Riepilogo spese"
+                        FontSize="25"
+                        VerticalOptions="Start" 
+                        HorizontalOptions="CenterAndExpand">
+                    </Label>
+                    
+                    <forms:ChartView x:Name="ChartEsterno" HeightRequest="200" WidthRequest="200" IsVisible="True"/>
+                    <forms:ChartView x:Name="ChartEsternoLabels" HeightRequest="50" WidthRequest="200" IsVisible="True"/>
+                    
+                    <forms:ChartView x:Name="ChartInterno" HeightRequest="200" WidthRequest="200" IsVisible="True"/>
+                    <forms:ChartView x:Name="ChartInternoLabels" HeightRequest="100" WidthRequest="200" IsVisible="True"/>
+
+                    <!--StackLayout
+                        Orientation="Horizontal"
+                    >
+                        <forms:ChartView x:Name="ChartEsterno" HeightRequest="200" WidthRequest="200" IsVisible="True"/>
+                        <ListView x:Name="LegendEsterna"></ListView>
+                    </>
+                    
+                    <StackLayout
+                        Orientation="Horizontal"
+                    >
+                        <forms:ChartView x:Name="ChartInterno" HeightRequest="200" WidthRequest="200" IsVisible="True"/>
+                        <ListView x:Name="LegendInterna"></ListView>
+                    </StackLayout-->
+                </StackLayout>
+                
+            </ScrollView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

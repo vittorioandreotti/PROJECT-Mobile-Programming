@@ -84,8 +84,7 @@ namespace XamarinApp
             menu = new List<MenuItems>();
 
             if (utentePreferences.IsAffittuario())
-            {
-                menu.Add(new MenuItems { OptionName = "Home", Icon = "Home" });
+            {             
                 menu.Add(new MenuItems { OptionName = "Gestisci spesa comune", Icon = "Add" });
                 menu.Add(new MenuItems { OptionName = "Sommario", Icon = "Sommario.png" });
                 menu.Add(new MenuItems { OptionName = "Spese in comune", Icon = "SpesaComune" });
@@ -96,8 +95,7 @@ namespace XamarinApp
                 menu.Add(new MenuItems { OptionName = "Logout", Icon = "Logout" });
             }
             else
-            {
-                menu.Add(new MenuItems { OptionName = "Home", Icon = "Home" });
+            {              
                 menu.Add(new MenuItems { OptionName = "Sommario", Icon = "Sommario" });
                 menu.Add(new MenuItems { OptionName = "Spese condominio", Icon = "Condominio" });
                 menu.Add(new MenuItems { OptionName = "Affitto", Icon = "Affitto" });
@@ -148,13 +146,7 @@ namespace XamarinApp
                 var item = e.Item as MenuItems;
 
                 switch (item.OptionName)
-                {
-                    case "Home":
-                        {
-                            Detail.Navigation.PushAsync(new Home());
-                            IsPresented = false;
-                        }
-                        break;
+                {                  
                     case "Sommario":
                         {
                             Detail.Navigation.PushAsync(new Sommario());
