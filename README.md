@@ -7,17 +7,11 @@ This university project consists of the development of two mobile applications: 
 ## Table of Contents 🧭
 - [Overview](#overview-ℹ️)
 - [Goals & Learning Outcomes](#goals--learning-outcomes-🎯)
-- [Features (Planned / Implemented)](#features-planned--implemented-✨)
-- [Architecture & Design Patterns](#architecture--design-patterns-🏗️)
+- [Architecture & Design Patterns](#architecture-&-design-patterns-🏗️)
 - [Technologies & Tools](#technologies--tools-🧰)
 - [Repository Structure](#repository-structure-🗂️)
 - [Build & Run (Android)](#build--run-android-🚀)
 - [Build & Run (Xamarin)](#build--run-xamarin-🪟)
-- [Testing](#testing-🧪)
-- [Roadmap](#roadmap-🗺️)
-- [Contributing](#contributing-🤝)
-- [License](#license-📜)
-- [Acknowledgements](#acknowledgements-🙏)
 
 ---
 
@@ -114,9 +108,6 @@ Clean:
 ```bash
 ./gradlew clean
 ```
-
-> You may want to list the minimum SDK, target SDK, and main application ID here (extract from `app/build.gradle`).
-
 ---
 
 ## Build & Run (Xamarin) 🪟
@@ -131,64 +122,3 @@ If using Xamarin.Forms:
 - Shared UI lives in a `.NET Standard` project.
 If platform-specific only:
 - Logic is duplicated — consider refactoring into a shared library.
-
----
-
-## Testing 🧪
-
-Planned or Recommended:
-- Unit tests (business logic)
-- Instrumentation tests (Android: Espresso)
-- UI tests (Xamarin: Xamarin.UITest or MAUI migration path)
-- Static analysis (Android Lint, detekt / ktlint if Kotlin)
-
-Add a `tests/` directory or dedicated modules as the project evolves.
-
----
-
-## Roadmap 🗺️
-
-| Phase | Focus | Status |
-|-------|-------|--------|
-| 1 | Set up native Android project | ✅ |
-| 2 | Add Xamarin parallel solution | ✅ |
-| 3 | Align features across both | ⏳ |
-| 4 | Introduce architecture refactor (MVVM) | ⏳ |
-| 5 | Add automated tests | ⏳ |
-| 6 | Continuous Integration (GitHub Actions) | ⏳ |
-| 7 | Documentation polishing / English report | ⏳ |
-| 8 | (Optional) Migrate Xamarin -> .NET MAUI | 🔍 |
-
----
-
-## Contributing 🤝
-
-This appears to be a personal / academic project.  
-If you accept contributions:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit changes with clear messages
-4. Open a Pull Request describing intent + screenshots (if UI related)
-
----
-
-## License 📜
-
-No license file is currently present.  
-Until a license (e.g., MIT, Apache 2.0) is added, the default is “all rights reserved”.  
-Add a `LICENSE` file to clarify usage permissions.
-
----
-
-## Acknowledgements 🙏
-
-- Course / academic instructors (add names if appropriate)
-- Official Android & Xamarin documentation
-- Open-source libraries (list once confirmed)
-
----
-
-> Feel free to request an Italian summary or a localized README variant.
-
-Happy coding! 🚀
