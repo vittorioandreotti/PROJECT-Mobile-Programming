@@ -1,13 +1,14 @@
 # PROJECT Mobile Programming 📱
 
-This university project consists of the development of two mobile applications: one Android Native and the other Cross-Platform. The goal was to design, implement, and compare different approaches to mobile development, highlighting strengths, limitations, and performance differences between the two solutions.
+This university project consists of the development of two mobile applications: one Android Native and the other Cross-Platform. The goal was to design, implement, and compare different approaches to mobile development by building the same app with distinct technologies.
 
 ---
 
 ## Table of Contents 🧭
 - [Overview](#overview-ℹ️)
+- [App Purpose & User Roles](#app-purpose--user-roles-🏠)
 - [Goals & Learning Outcomes](#goals--learning-outcomes-🎯)
-- [Architecture & Design Patterns](#architecture-&-design-patterns-🏗️)
+- [Architecture & Design Patterns](#architecture--design-patterns-🏗️)
 - [Technologies & Tools](#technologies--tools-🧰)
 - [Repository Structure](#repository-structure-🗂️)
 - [Build & Run (Android)](#build--run-android-🚀)
@@ -24,12 +25,35 @@ This project contains two parallel implementations of the same mobile applicatio
 
 ---
 
+## App Purpose & User Roles 🏠
+
+The application is designed for **house management**, allowing different users to interact based on their role. The two user types are:
+
+### Tenant
+Once logged in, tenants can:
+- **View expenses** related to the house or apartments they live in.
+- **Mark expenses as paid** to keep track of their contributions.
+- **See statistics** and summaries about their expenses, including paid/unpaid status, trends, and totals.
+
+### Landlord
+Once logged in, landlords can:
+- **Create and manage one or more houses** within the app.
+- **Invite and accept tenants** to specific houses, managing access and roles.
+- **Add and delete expenses** associated with each house.
+- **Monitor payment status**, seeing which tenants still need to pay certain expenses.
+- **Oversee all expense activities** and maintain control over multiple properties.
+
+This role-based approach allows for a comprehensive and collaborative house management experience, with features tailored for both tenants and landlords.
+
+---
+
 ## Goals & Learning Outcomes 🎯
 
 - Understand lifecycle differences between Android native and Xamarin.
-- Practice **UI layer separation** and **MVP**.
+- Practice **UI layer separation** and **MVP/MVVM**.
 - Explore distribution (APK generation) and configuration.
 - Document and reflect (the included ZIP likely contains a written report in Italian).
+- Apply real-world requirements (multi-role, expense management, statistics, invitations, etc.) to mobile development.
 
 ---
 
